@@ -1,0 +1,43 @@
+.genSelectContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genSelectContDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.genSelectLabel {
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.genSelectSelect {
+    text-align: center;
+    padding: 3px;
+    border-radius: 7px;
+}
+
+.genSelectOption {
+    text-align: center;
+}
+
+/* --------------- ERROR --------------- */
+
+
+.inputErrorText {
+    font-weight: bolder;
+    color:  red;
+}
+

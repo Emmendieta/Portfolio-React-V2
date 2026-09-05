@@ -1,0 +1,14 @@
+.centNavCont{
+    display: flex;
+    width: 33%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.centerNavH2 {
+    font-family: 'Aguafina Script', cursive;
+    font-size: xx-large;
+    margin-bottom: 0;
+    color: #ffe0bd;
+}

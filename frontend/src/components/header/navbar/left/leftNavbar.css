@@ -1,0 +1,23 @@
+.leftNavCont {
+    display:  flex;
+    box-sizing: border-box;
+    width: 33%;
+}
+
+.leftNavHomeCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+}
+
+#iconHome {
+    width: 45px;
+    height: 45px;
+}
+
+.leftNavLangCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,79 @@
+.genFormSelectContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.genFormSelectTitle {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#genFormSelectH1 h1{
+    font-size: xx-large;
+}
+
+.genFormSelectBodyContainer {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genFormSelectSelectItemsContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#genFormSelectItems{
+    padding: 5px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.genFormUlContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.genFormSelectUl {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genFormSelectUlLi {
+    margin: 15px;
+}
+
+.genFormSelectUlLiDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* --------------------- H2 TEXT --------------------- */
+
+.selectV1H2Text {
+    text-align: center;
+}

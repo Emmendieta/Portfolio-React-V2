@@ -1,0 +1,38 @@
+.eduListDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #E6E4D8;
+    padding: 15px 0;
+}
+
+.eduListSectAddCont {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.genListErrCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.eduDivLineTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgba(72, 77, 72, 0.493);
+    border-radius: 50x;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 5px;
+}

@@ -1,0 +1,43 @@
+.catsListCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6E4D8;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+
+.catsListDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0, 0%, 50%, .171);
+    border: 1px solid #5e5c5c;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 5px 5px 5px 5px #5555555e;
+}
+
+.catListSectAddCont {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 15px;
+}
+
+.genListErrCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}

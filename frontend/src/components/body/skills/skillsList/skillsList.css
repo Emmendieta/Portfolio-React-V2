@@ -1,0 +1,78 @@
+.skillListDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #212529;
+    padding: 15px 0;
+}
+
+.skillListSectAddCont {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.skillListSectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.genListErrContDark {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.skillHardSoftListDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.skillHardListCont,
+.skillSoftListCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.skillDivLineTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    border: 1px dashed rgba(227, 236, 227, 0.315);
+    border-radius: 15x;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* -------------- ULS TYPE GRID -------------- */
+
+.skillsListUls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 35px 100px;
+    width: 100%;
+    padding: 20px 15px;
+    list-style: none;
+}

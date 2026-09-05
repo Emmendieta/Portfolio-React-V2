@@ -1,0 +1,27 @@
+.proyListDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #E6E4D8;
+    padding: 15px 0;
+}
+
+.proyListSectAddCont {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.genListErrCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}

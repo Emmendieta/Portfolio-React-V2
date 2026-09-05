@@ -1,0 +1,23 @@
+.divTextAreaFieldBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.textAreaLabel {
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.textAreaValue {
+    width: 95%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    resize: none;
+}

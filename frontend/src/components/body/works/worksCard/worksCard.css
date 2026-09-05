@@ -1,0 +1,65 @@
+.workCard {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 94%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+/* --------------------- BUTTONS --------------------- */
+
+.workCardSectBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+/* --------------------- BODY --------------------- */
+
+.workCardBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------------- BODY TOP --------------------- */
+
+.workCardBodyTop {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 25px;
+}
+
+.workBodyInfo {
+    margin-left: 35px;
+}
+
+/* --------------------- CAROUSEL --------------------- */
+
+.workCarouselCont {
+    margin-right: 35px;
+}
+
+/* --------------------- BODY BOTTOM --------------------- */
+
+.workCardBodyBottom {
+    display: flex;
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+/* --------------------- IMG ERROR --------------------- */
+
+.workCardImgNotFound {
+    width: 75px;
+    height: 75px;
+}

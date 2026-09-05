@@ -1,0 +1,77 @@
+/* ---------- ESTOS SERIAN LOS ESTILOS PERO TENGO QUE EDITARLOS ---------------- */
+
+.genCarousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.genCarousel_viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.genCarousel_track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.5s ease-in-out;
+}
+
+.genCarousel_slide {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genCarousel_button {
+    position: absolute;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.genCarousel_button:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.genCarousel_button:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.genCarousel_button--prev {
+    left: 10px;
+}
+
+.genCarousel_button--next {
+    right: 10px;
+}
+
+.genCarousel_counter {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+}

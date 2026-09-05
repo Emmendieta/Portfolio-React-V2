@@ -1,0 +1,51 @@
+#ftDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #212529;
+}
+
+/* -------------------------- LINE -------------------------- */
+
+#ftDivLineCont {
+
+}
+
+/* -------------------------- TOP -------------------------- */
+
+#ftSocialSectAddCont {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 15px;
+    padding-right: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* -------------------------- MIDDLE -------------------------- */
+
+#ftDivMiddleCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.ftDivMiddleLeft, .ftDivMiddleMidd, .ftDivMiddleRigth {
+    display: flex;
+    width: 33%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+/* -------------------------- BOTTOM -------------------------- */
+
+#ftDivBottomCont {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}

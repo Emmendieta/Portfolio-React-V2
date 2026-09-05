@@ -1,0 +1,208 @@
+.ulWrapped {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ulGeneral {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 0;
+}
+
+.clH1TextDisp {
+    font-size: large;
+    font-weight: bold;
+}
+
+
+/* --------------- BUTTON ULS ASSIGNED - UNASSIGNED --------------- */
+
+.btnAddAssignedUls, .btnAddUnassignedUls {
+    margin: 5px;
+}
+
+.clBtnAddAssigned, .clBtnRemoveAssigned {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clBtnAddAssignedH2, .clBtnRemoveAssignedH2 {
+    font-size: large;
+    margin: 5px;
+} 
+
+/* --------------- WORK CARD --------------- */
+
+.workCardUlCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.workCardUl {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.workCardTitle {
+    color: antiquewhite;
+    font-size: xx-large;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.workCardLi {
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.workCardLi::before {
+    content: "•";
+    color: #3c9b75;
+    font-weight: bold;
+    margin-right: 3px;
+    padding-bottom: 5px;
+}
+
+/* --------------- EDUCATION CARD --------------- */
+
+.eduCardUlCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.eduCardUl {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.eduCardTitle {
+    font-size: xx-large;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.eduCardLi {
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.eduCardLi::before {
+    content: "•";
+    color: #3c9b75;
+    font-weight: bold;
+    margin-right: 3px;
+    padding-bottom: 5px;
+}
+
+/* --------------- PROYECT CARD CARD --------------- */
+
+.proyCardUlCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.proyCardUl {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.proyCardTitle {
+    font-size: xx-large;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.proyCardLi {
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.proyCardLi::before {
+    content: "•";
+    color: #3c9b75;
+    font-weight: bold;
+    margin-right: 3px;
+    padding-bottom: 5px;
+}
+
+.proyCardLSimple {
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.proyCardUlsDivCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- CATEGORIES --------------- */
+
+.catListUlsCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.catListUls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 70px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.catListUlsLi {
+    flex: 0 0 150px;
+    width: 100%;
+    margin-bottom: 15px;
+}

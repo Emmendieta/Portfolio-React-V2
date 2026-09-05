@@ -1,0 +1,54 @@
+.catFormCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.catFormSectTitle {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+/* --------------- FORM --------------- */
+
+#catForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.catFormDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.catFormCheckCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM BUTTONS --------------- */
+
+.catFormDivContBottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin: 30px;
+}

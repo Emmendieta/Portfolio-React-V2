@@ -1,0 +1,74 @@
+.workFormCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.workFormSectTitle {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------- FORM --------------- */
+
+#workForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/*.workFormDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}*/
+
+.workFormCheckCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM IMG --------------- */
+
+.workFormImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- FORM ULS --------------- */
+
+
+.workFormUlsCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM BUTTONS --------------- */
+
+.workFormDivContBottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin: 30px;
+}

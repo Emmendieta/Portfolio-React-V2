@@ -1,0 +1,44 @@
+.socialCard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.socialCardCarouselCont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.socialCardBodyCont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.socialCardBtnCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.socialCardH1 {
+    font-size: larger;
+    font-style: normal;
+}
+.socialCardH1A {
+    font-weight: larger;
+    text-decoration: none;
+    color: rgba(240, 248, 255, 0.746);
+}

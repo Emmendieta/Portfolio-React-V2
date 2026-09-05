@@ -1,0 +1,84 @@
+.eduFormCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.eduFormSectTitle {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------- FORM --------------- */
+
+#eduForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.eduFormDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.eduFormCheckCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM SELECT --------------- */
+
+.eduFormSelectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* --------------- FORM IMG --------------- */
+
+.eduFormImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- FORM ULS --------------- */
+
+.eduFormUlsCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM BUTTONS --------------- */
+
+.eduFormDivContBottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin: 30px;
+}

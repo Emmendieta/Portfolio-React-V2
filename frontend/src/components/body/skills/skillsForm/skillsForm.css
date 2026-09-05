@@ -1,0 +1,72 @@
+.skillFormCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.skillFormSectTitle {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------- FORM --------------- */
+
+#skillForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.skillFormDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.skillFormCheckCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------- FORM SELECT --------------- */
+
+.skillFormSelectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* --------------- FORM IMG --------------- */
+
+.skillFormImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- FORM BUTTONS --------------- */
+
+.skillFormDivContBottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin: 30px;
+}

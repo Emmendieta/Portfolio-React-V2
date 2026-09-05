@@ -1,0 +1,85 @@
+.proyFormCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.proyFormSectTitle {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------- FORM --------------- */
+
+
+#proyForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.proyFormDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.proyFormCheckCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* --------------- FORM IMG --------------- */
+
+.proyFormImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- FORM ULS --------------- */
+
+.proyFormUlsCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.proyFormUlsDivCont {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+/* --------------- FORM BUTTONS --------------- */
+
+.proyFormDivContBottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin: 30px;
+}

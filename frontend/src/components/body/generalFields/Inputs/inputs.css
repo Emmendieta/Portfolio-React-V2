@@ -1,0 +1,41 @@
+/* --------------- FORMS INPUTS --------------- */
+
+.genFormInputCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genFormInputTopCont, .genFormInputBottomCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.genFormInputBottomCont {
+    flex-direction: column;
+}
+
+.genFormInputBottomCont p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.genFormInputTopCont h2 {
+    font-size: large;
+    margin: 0;
+    font-weight: bold;
+}
+
+.genFormInput {
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+

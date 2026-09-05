@@ -1,0 +1,28 @@
+.loginDivCont, .loginSectCont, #loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginDivCont {
+    margin-top: 50px;
+}
+
+.loginFormInputsCont {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.loginFormBtnCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

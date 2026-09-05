@@ -1,0 +1,19 @@
+.clCheckLabel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.divInputCheckbox {
+    margin-right: 15px;
+}
+
+.clCheckLabel {
+    font-size: larger;
+    font-weight: bold;
+}
+

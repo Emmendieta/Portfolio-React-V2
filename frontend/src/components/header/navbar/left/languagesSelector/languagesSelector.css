@@ -1,0 +1,30 @@
+.langDropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#langSelectCurrentFlag {
+    margin-right: 10px;
+}
+
+.dropdown-menu {
+    width: 50px;
+    height: 80px;
+    margin-top: 30px;
+}
+
+
+#langSelectFlag {
+    width: 25px;
+    height: 25px;
+}
+
+.langFlagBtn {
+        display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

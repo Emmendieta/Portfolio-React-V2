@@ -1,0 +1,12 @@
+.rightNavCont {
+    display:  flex;
+    flex-direction: row;
+    width: 33%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#btnNavbarSignOut,  #btnNavbarLogin{
+    margin-left: 10px;
+}

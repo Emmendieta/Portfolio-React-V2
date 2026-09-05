@@ -1,0 +1,174 @@
+/* ------------------------ FORMS ------------------------ */
+
+.genFormH2TitleCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genFormH2TextTitle {
+    font-size: x-large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ------------------------ H2 LIGHT ------------------------ */
+
+/* ----- CARDS ----- */
+
+.lightCardH2FieldCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lightCardH2FieldContColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.lightCardH2Text {
+    font-size: x-large;
+    padding: 0;
+    padding-left: 10px;
+    text-align: justify;
+}
+
+.lightCardH2TextNoPadding {
+    font-size: x-large;
+    padding: 0;
+    text-align: justify;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.lightCardH2Label {
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0;
+}
+
+/* ----- LISTS ----- */
+
+.lightTitleH2FieldCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightTitleH2Text {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+/* ------------------------ ERROR LIGHT ------------------------ */
+
+.genListErr {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genListErrH2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* ------------------------ H2 DARK ------------------------ */
+
+/* ----- CARDS ----- */
+
+.darkCardH2FieldCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.darkCCardH2Text {
+    font-size: x-large;
+    padding: 0;
+    padding-left: 10px;
+    color: rgba(240, 248, 255, 0.746);
+}
+
+.darkCCardH2TextNoLabel {
+    font-size: x-large;
+    padding: 0;
+    color: rgba(240, 248, 255, 0.746);
+}
+
+.darkCCardH2TextTitle {
+    font-size: xx-large;
+    text-decoration: underline;
+    padding: 0;
+    color: rgba(240, 248, 255, 0.746);
+}
+
+.darkCardH2Label {
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0;
+    color: rgba(240, 248, 255, 0.746);
+}
+
+/* ----- LISTS ----- */
+
+.darkTitleH2FieldCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.darkTitleH2Text {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+
+/* ----- FOOTER ----- */
+
+.ftBottomH2Cont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.ftBottomH2Text {
+    color: aliceblue;
+    font-size: large;
+}
+
+/* ------------------------ ERROR DARK ------------------------ */
+
+.genListErrDark {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.genListErrH2Dark {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: aliceblue;
+}

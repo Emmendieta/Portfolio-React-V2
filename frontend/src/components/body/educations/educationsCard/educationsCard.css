@@ -1,0 +1,65 @@
+.educationCard {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 94%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+/* --------------------- BUTTONS --------------------- */
+
+.eduCardSectBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+/* --------------------- BODY --------------------- */
+
+.eduCardBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------------- BODY TOP --------------------- */
+
+.eduCardBodyTop {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 25px;
+}
+
+.eduCardBodyInfo {
+    margin-left: 35px;
+}
+
+/* --------------------- CAROUSEL --------------------- */
+
+.eduCardCarouselCont {
+    margin-right: 35px;
+}
+
+/* --------------------- BODY BOTTOM --------------------- */
+
+.eduCardBodyBottom {
+    display: flex;
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+/* --------------------- IMG ERROR --------------------- */
+
+.eduCardImgNotFound {
+    width: 75px;
+    height: 75px;
+}
