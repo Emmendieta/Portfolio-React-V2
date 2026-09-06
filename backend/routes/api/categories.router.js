@@ -17,6 +17,7 @@ class CategoriesRouter extends RouterHepler {
         this.read("/:id", ["public"], categoriesController.getCategoryById);
         this.read("/filtOne/filter", ["public"], categoriesController.getCategoryByFilter);
         this.read("/filt/filter", ["public"], categoriesController.getCategoriesByFilter);
+        this.update("/reorder", ["public"], categoriesController.updateCategoriesOrder);
         this.update("/:id", ["public"], upload.array("images"), categoriesController.updateCategoryById);
         this.destroy("/:id", ["public"], categoriesController.deleteCategoryById);
     };

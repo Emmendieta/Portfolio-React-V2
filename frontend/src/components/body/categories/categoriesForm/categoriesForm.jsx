@@ -63,9 +63,7 @@ function CategoriesForm() {
                 if(!allowed) return;
                 startLoading();
                 await new Promise(resolve => setTimeout(resolve, 600));
-                if (!isEdit) {
-                    setFormData({ name: { es: formData.name?.es || "", en: formData.name?.en || "" }, images: [] });
-                } else {
+                if (!isEdit) { } else {
                     const result = await fetchGetCategoryById(id);
                     if (result?.error) return await errorSweet(result?.error.message || TEXT.TEXT_ERROR_OOPS);
                     const category = result.response || [];
@@ -83,7 +81,7 @@ function CategoriesForm() {
             }
         };
         loadCategory();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 

@@ -162,15 +162,26 @@ class DaoMongo {
         }
     };
     totalElements = async () => await this.model.countDocuments();
-    reorderAfterDelete = async () => {
-        const docs = await this.model.find().sort({ order: 1 });
+    /*     reorderAfterDelete = async (session = null) => {
+            const docs = await this.model.find().sort({ order: 1 });
+            const orderOps = docs.map((doc, index) => ({
+                updateOne: {
+                    filter: { _id: doc._id },
+                    update: { order: index }
+                },
+            }));
+            if (orderOps.length > 0) await this.model.bulkWrite(orderOps);
+        }; */
+    reorderAfterDelete = async (session = null) => {
+        const docs = await this.model.find().sort({ order: 1 }).session(session);
         const orderOps = docs.map((doc, index) => ({
             updateOne: {
-                filter: { _id: doc_id },
-                update: { order: index }
+                filter: { _id: doc._id },
+                update: { $set: { order: index + 1 } }
             },
         }));
-        if (orderOps.length > 0) await this.model.bulkWrite(orderOps);
+        if (orderOps.length > 0) await this.model.bulkWrite(orderOps, session ? { session}: {});
+        return docs;
     };
     paginate = async ({ page = 1, limit = 10, filter = {}, populateFields = [], sort = {} }) => {
         try {

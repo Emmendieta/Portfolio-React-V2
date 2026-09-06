@@ -1,0 +1,50 @@
+.ols {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.olsItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.olsContent {
+    flex: 1;
+}
+
+.olsActions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.olsButton {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.olsButton:hover:not(:disabled) {
+    background-color: #f0f0f0;
+}
+
+.olsButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

@@ -304,7 +304,7 @@ export const bulkUpdateData = async (baseUrl, dataArray = []) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 export const deleteData = async (baseUrl) => {
     try {

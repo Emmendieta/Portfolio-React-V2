@@ -10,7 +10,6 @@ import H2Fields from "../../generalFields/h2Fields/h2Fields.jsx";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import CategoriesCard from "../categoriesCard/categoriesCard.jsx";
-import CarouselGeneric from "../../generalFields/carouselGeneric/carouselGeneric.jsx";
 import "./categoriesList.css";
 import Uls from "../../generalFields/Uls/Uls.jsx";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper.js";
@@ -39,7 +38,8 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                     return;
                 };
                 const categories = result.response || [];
-                setCategories(categories);
+                const sortedCategories = [...categories].sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
+                setCategories(sortedCategories);
             } catch (error) {
                 setCategories([]);
                 console.error("Error: ", error.message);

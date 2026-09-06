@@ -87,7 +87,7 @@ class Service {
             throw error;
         }
     };
-    reorderAfterDelete = async () => await this.repository.reorderAfterDelete();
+    reorderAfterDelete = async (session = null) => await this.repository.reorderAfterDelete(session);
     readPaginate = async (options) => await this.repository.paginate(options);
     readPaginateAggregate = async (options) => await this.repository.paginateAggregate(options);
 };

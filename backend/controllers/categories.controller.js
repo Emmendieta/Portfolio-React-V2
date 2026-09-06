@@ -20,6 +20,8 @@ class CategoriesController {
             data.name = JSON.parse(data.name);
             let verify = await this.verifyName(data.name);
             if(verify === 1) throw new Error("Error: The name of the Category alredy exist!");
+            const totalElements = await this.cService.totalElements();
+            data.order = totalElements + 1;
             const category = await this.cService.createOneWithImages(data, files, categoryPath, session);
             if(!category) throw new Error("Error: Couldn't create the Category!");
             await session.commitTransaction();
@@ -144,6 +146,24 @@ class CategoriesController {
         }
     };
 
+    updateCategoriesOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered categories was provided!");
+            const categoriesOrderUpdate = await this.cService.updateOrderDragDrop(data);
+            if(!categoriesOrderUpdate) return res.json500("Error in updating the order of the categories");
+            await session.commitTransaction();
+            return res.json200(categoriesOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            session.endSession();
+        }
+    };
+
     deleteCategoryById = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -167,6 +187,7 @@ class CategoriesController {
             if(!deleteFolder) return res.json404("Error: Couldn't deleted the Folder from Cloudinary!");
             const categoryDeleted = await this.cService.destroyById(id, { session });
             if(!categoryDeleted) return res.json400("Error: Couldn't delete the Category!");
+            await this.cService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(categoryDeleted);
         } catch (error) {

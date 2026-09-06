@@ -41,6 +41,7 @@ import Forbidden from './components/forbidden/forbidden'
 import NotFound from './components/notFound/notFound'
 import ProtectedRoutes from './routes/ProtectedRoutes'
 import CategoriesCreateManyForm from './components/body/categories/categoriesManyForm/categoriesManyForm'
+import CategoriesOrder from './components/body/categories/categoriesOrder/categoriesOrder'
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
@@ -169,6 +170,7 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path='/categories/many/form' element={<CategoriesCreateManyForm />} />
+        <Route path='/categories/order' element={<CategoriesOrder /> } />
 
         <Route path='/educations' element={
           <ProtectedRoutes permissionResolver={() => "read_all_educations"}>

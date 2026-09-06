@@ -113,7 +113,7 @@ export const fetchUpdateCategoriesOrder = async (orderedCategories) => {
         if(!Array.isArray(orderedCategories || orderedCategories.length === 0)) throw new Error("Error: No ordereded Categories was provided!");
         const dataArray = orderedCategories.map((category, index) => {
             if(!category._id || category._id.length !== 24) throw new Error("Error: Invalid Id!");
-            return { _id: category._id, order: index};
+            return { _id: category._id, order: index + 1};
         });
         const url = `categories/reorder`;
         const response = await bulkUpdateData(url, dataArray);
