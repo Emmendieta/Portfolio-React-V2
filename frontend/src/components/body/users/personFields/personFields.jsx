@@ -135,7 +135,7 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
                     />
                 </div>
                 <div className="perFieldImgCont">
-                    <ImageManager images={data.images} setImages={setImages} genderInput={"f"} textInput={TEXT.IMAGES} editable={true} cThumbInput={TEXT.URL_IMG} cThumbInput={TEXT.SELECT_IMAGES_ADD}
+                    <ImageManager images={data.images} setImages={setImages} genderInput={"f"} textInput={TEXT.IMAGES} editable={true}/*  cThumbInput={TEXT.URL_IMG} */ cThumbInput={TEXT.SELECT_IMAGES_ADD}
                         /* cThumbCont={"thumbnailsContainerDetails"} cThumbAddCont={"thumbnailsAddContainerDetails"} 
                         cThumbPrevContainer={"thumnailsPreviewImgContainerDetails"} labelH2={""} valueH2={""} cThumbPrevImg={"thumbnailsImgPreviewDetails"}
                         cThumbImgContainer={"thumbnailsImgsContainerDetails"} cThumbImgBody={"thumbnailsImgBodyDetails"} cThumbImgBodyCont={"thumbnailsImgBodyContainerDetails"}

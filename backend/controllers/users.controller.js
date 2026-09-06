@@ -21,8 +21,8 @@ class UsersController {
             const person = {
                 firstName: body.firstName, lastName: body.lastName, dni: body.dni, cuil: body.cuil, birthday: body.birthday, phone: body.phone,
                 jobTitle: body.jobTitle ? JSON.parse(body.jobTitle) : undefined, address: body.address ? JSON.parse(body.address) : undefined,
-                legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined, continents: body.continents, countries: body.countries,
-                provinces: body.provinces, cities: body.cities
+                legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined, aboutMe: body.aboutMe ? JSON.parse(body.aboutMe): undefined, 
+                continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
             };
             if (!user.user || !user.email || !user.password || !user.active === undefined) throw new Error("Error: Missing information of the User to create!");
             if (!person.dni || !person.cuil || !person.firstName || !person.lastName || !person.birthday || !person.address || !person.legalAddress) throw new Error("Error: Missing information of the person to create the user!");
@@ -214,7 +214,7 @@ class UsersController {
             const person = {
                 _id: body.personId, firstName: body.firstName, lastName: body.lastName, dni: body.dni, cuil: body.cuil, birthday: body.birthday, phone: body.phone,
                 jobTitle: body.jobTitle ? JSON.parse(body.jobTitle) : undefined, address: body.address ? JSON.parse(body.address) : undefined, legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined,
-                continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
+                aboutMe: body.aboutMe ? JSON.parse(body.aboutMe): undefined, continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
             };
             if (person.dni) person.dni = Number(person.dni);
             if (person.cuil) person.cuil = Number(person.cuil);

@@ -22,7 +22,8 @@ const emptyLocation = { _id: "", name: { es: "", en: "" } };
 const emptyPerson = {
     dni: "", firstName: "", lastName: "", phone: "", jobTitle: { es: "", en: "" }, continents: { ...emptyLocation, countries: [] },
     countries: { ...emptyLocation, provinces: [] }, provinces: { ...emptyLocation, cities: [] }, cities: emptyLocation,
-    address: { street: "", number: "", floor: "", aparment: "" }, legalAddress: { street: "", number: "", floor: "", aparment: "" }, images: []
+    address: { street: "", number: "", floor: "", aparment: "" }, legalAddress: { street: "", number: "", floor: "", aparment: "" }, images: [],
+    aboutMe: { es: "", en: "" }
 };
 
 function UsersForm() {
@@ -142,6 +143,7 @@ function UsersForm() {
                         }, roles: user.roles || [], extraPermission: user.extraPermission || [], images: personData?.images?.length ?
                             personData.images.map(img => ({ publicId: img.publicId, url: img.url, hash: img.hash, width: img.width, height: img.height, isMain: img.isMain || false, })) : [],
                     }));
+                    console.log("PERSON DATA", personData);
                 }
             } catch (error) {
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);

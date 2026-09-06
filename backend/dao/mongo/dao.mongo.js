@@ -161,6 +161,7 @@ class DaoMongo {
             throw error;
         }
     };
+    totalElements = async () => await this.model.countDocuments();
     reorderAfterDelete = async () => {
         const docs = await this.model.find().sort({ order: 1 });
         const orderOps = docs.map((doc, index) => ({

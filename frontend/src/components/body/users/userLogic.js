@@ -29,6 +29,7 @@ export const fetchCreateUserWithImages = async (data) => {
         //Objetos Complejos -> stringify:
         if(data.person.jobTitle) formData.append("jobTitle", JSON.stringify(data.person.jobTitle));
         if(data.person.address) formData.append("address", JSON.stringify(data.person.address));
+        if(data.person.aboutMe) formData.append("aboutMe", JSON.stringify(data.person.aboutMe));
         if(data.person.legalAddress) formData.append("legalAddress", JSON.stringify(data.person.legalAddress));
         if(data.person.continents?._id) formData.append("continents", data.person.continents?._id);
         if(data.person.countries?._id) formData.append("countries", data.person.countries?._id);
@@ -115,10 +116,12 @@ export const fetchUpdateUserByIdWithImages = async (id, data) => {
         if(data.person._id) formData.append("personId", data.person._id);
         if(data.person.jobTitle) formData.append("jobTitle", JSON.stringify(data.person.jobTitle));
         if(data.person.address) formData.append("address", JSON.stringify(data.person.address));
+        if(data.person.aboutMe) formData.append("aboutMe", JSON.stringify(data.person.aboutMe));
         if(data.person.continents?._id) formData.append("continents", data.person.continents?._id);
         if(data.person.countries?._id) formData.append("countries", data.person.countries?._id);
         if(data.person.provinces?._id) formData.append("provinces", data.person.provinces?._id);
         if(data.person.cities?._id) formData.append("cities", data.person.cities?._id);
+        console.log("LOGIC", data.person);
         //Images:
         if(data.person.images && data.person.images.length > 0) {
             //Imagenes existentes:

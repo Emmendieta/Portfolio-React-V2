@@ -78,6 +78,7 @@ class Service {
     readLastByOrder = async () => await this.repository.readLastByOrder();
     destroyById = async (id, options = {}) => await this.repository.destroyById(id, options);
     destroyManybyFilter = async (filter, options = {}) => await this.repository.destroyManybyFilter(filter, options);
+    totalElements = async () => await this.repository.totalElements();
     destroyFolder = async (id, folder) => {
         try {
             const folderPath = `portfolio/${folder}/${id}`;

@@ -42,6 +42,7 @@ class Repository {
     readLastByOrder = async (orderedIds) => await this.manager.readLastByOrder();
     destroyById = async (id, options = {}) => await this.manager.destroyById(id, options);
     destroyManyByFilter = async (filter, options = {}) => await this.manager.destroyManyByFilter(filter, options);
+    totalElements = async () => await this.manager.totalElements();
     reorderAfterDelete = async () => await this.manager.reorderAfterDelete();
     paginate = async (options) => await this.manager.paginate(options);
     paginateAggregate = async (options) => await this.manager.paginateAggregate(options);
