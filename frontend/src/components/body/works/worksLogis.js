@@ -1,4 +1,4 @@
-import { createDataWithImages, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, updateDataByIdWithImages } from "../../../helpers/crud.helper";
+import { bulkUpdateData, createDataWithImages, getData, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, updateDataByIdWithImages } from "../../../helpers/crud.helper";
 
 export const fetchCreateWorkWithImages = async (data) => {
     try {
@@ -21,6 +21,17 @@ export const fetchCreateWorkWithImages = async (data) => {
         };
         const dataResponse = await createDataWithImages(url, formData);
         if (!dataResponse) throw new Error("Error: Couldn't create the Work!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchGetAllWorks = async () => {
+    try {
+        const url = "works";
+        const dataResponse = await getData(url);
+        if(!dataResponse) throw new Error("Error: Couldn't get the data of Works or not data available!");
         return dataResponse;
     } catch (error) {
         throw error;
@@ -90,6 +101,22 @@ export const fetchUpdateWorkByIdWithImages = async (id, data) => {
         };
         const dataResponse = await updateDataByIdWithImages(url, formData);
         if (!dataResponse) throw new Error("Error in fetch update work with images or no data available!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchUpdateWorksOrder = async (orderedWorks) => {
+    try {
+        if(!Array.isArray(orderedWorks) || orderedWorks.length === 0) throw new Error("Error: No data recived!");
+        const dataArray = orderedWorks.map((work, index) => {
+            if(!work._id || work._id.length !== 24) throw new Error("Error: Invalid Id!");
+            return { _id: work._id, order: index + 1 };
+        });
+        const url = "works/reorder";
+        const dataResponse = await bulkUpdateData(url, dataArray);
+        if(!dataResponse) throw new Error("Error: Couldn't update the order of the Works!");
         return dataResponse;
     } catch (error) {
         throw error;

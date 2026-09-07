@@ -1,4 +1,4 @@
-import { createDataWithImages, deleteData, getDataByIdPopulate, getDataPopulate, updateDataByIdWithImages } from "../../../helpers/crud.helper";
+import { bulkUpdateData, createDataWithImages, deleteData, getData, getDataByIdPopulate, getDataPopulate, updateDataByIdWithImages } from "../../../helpers/crud.helper";
 
 export const fetchCreateEducationWithIamges = async (data) => {
     try {
@@ -27,6 +27,17 @@ export const fetchCreateEducationWithIamges = async (data) => {
         throw error;
     }
 };
+
+export const fetchGetAllEducations = async () => {
+    try {
+        const url = "educations";
+        const dataResponse = await getData(url);
+        if(!dataResponse) throw new Error("Error in fetch get all Educations or no data availalbe!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+}
 
 export const fetchGetAllEducationsPopulate = async () => {
     try {
@@ -87,6 +98,22 @@ export const fetchUpdateEducationByIdWithImages = async (id, data) => {
         throw error;
     }
 };
+
+export const fetchUpdateEducationsOrder = async (orderedEducations) => {
+    try {
+        if(!Array.isArray(orderedEducations) || orderedEducations.length === 0) throw new Error("Error: No ordered Educations was provided!");
+        const dataArray = orderedEducations.map((education, index) => {
+            if(!education._id || education._id.length !== 24) throw new Error("Error: Invalid Id!");
+            return { _id: education._id, order: index + 1 };
+        });
+        const url = "educations/reorder";
+        const dataResponse = await bulkUpdateData(url, dataArray);
+        if(!dataResponse) throw new Error ("Error: Couldn't update the order ot the Educations!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+}
 
 export const fetchDeleteEducationById = async (id) => {
     try {

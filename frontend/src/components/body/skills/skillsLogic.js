@@ -77,7 +77,7 @@ export const fetchUpdateSkillsOrder = async (orderedSKills) => {
         if(!Array.isArray(orderedSKills || orderedSKills.length === 0)) throw new Error("Error: No ordereded Skills was provided!");
         const dataArray = orderedSKills.map((skill, index) => {
             if(!skill._id || skill._id.length !== 24) throw new Error("Error: Invalid Id!");
-            return { _id: skill._id, order: index };
+            return { _id: skill._id, order: index + 1 };
         });
         const url = `skills/reorder`;
         const dataResponse = await bulkUpdateData(url, dataArray);

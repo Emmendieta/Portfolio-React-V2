@@ -1,4 +1,4 @@
-import { createDataWithImages, deleteData, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, getDataPopulateFilter, updateDataByIdWithImages } from "../../../helpers/crud.helper";
+import { bulkUpdateData, createDataWithImages, deleteData, getData, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, getDataPopulateFilter, updateDataByIdWithImages } from "../../../helpers/crud.helper";
 
 export const fetchCreateProyectWithImages = async (data) => {
     try {
@@ -34,6 +34,17 @@ export const fetchCreateProyectWithImages = async (data) => {
         };
         const dataResponse = await createDataWithImages(url, formData);
         if (!dataResponse) throw new Error("Error: Couldn't create the proyect!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchGetAllProyects = async () => {
+    try {
+        const url = "proyects";
+        const dataResponse = await getData(url);
+        if(!dataResponse) throw new Error("Error: Couldn't get all the proyects or no data available!");
         return dataResponse;
     } catch (error) {
         throw error;
@@ -130,6 +141,22 @@ export const fetchUpdateProyectByIdWithImages = async (id, data) => {
         console.log("IMAGES", data.images);
         const dataResponse = await updateDataByIdWithImages(url, formData);
         if (!dataResponse) throw new Error("Error in fetch update proyect with images or no data available!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchUpdateProyecsOrder = async (orderedProyects) => {
+    try {
+        if(!Array.isArray(orderedProyects) || orderedProyects.length === 0) throw new Error("Error: No ordered Proyects was provived!");
+        const dataArray = orderedProyects.map((proyect, index) => {
+            if(!proyect._id || proyect._id.length !== 24) throw new Error("Error: Invalid Id!");
+            return { _id: proyect._id, order: index + 1 };
+        });
+        const url = "proyects/reorder";
+        const dataResponse = await bulkUpdateData(url, dataArray);
+        if(!dataResponse) throw new Error("Error: Couldn't update the order of the Proyects!");
         return dataResponse;
     } catch (error) {
         throw error;

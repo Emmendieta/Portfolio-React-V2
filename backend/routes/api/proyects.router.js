@@ -20,6 +20,7 @@ class ProyectsRouter extends RouterHepler {
         this.read("/all/populate", ["public"], proyectsController.getAllProyectsPopulateFilter);
         this.read("/:id/populate", ["public"], proyectsController.getProyectByIdPopulate);
         this.read("/filt/filter", ["public"], proyectsController.getProyectByFilter);
+        this.update("/reorder", ["public"], proyectsController.updateProyectsOrder);
         this.update("/:id", ["public"], upload.array("images"), proyectsController.updateProyectById);
         this.destroy("/:id", ["public"], proyectsController.deleteProyectById);
     };

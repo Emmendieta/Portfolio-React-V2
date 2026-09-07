@@ -45,6 +45,7 @@ export const PREV_ELEMENT = "Elemento Previo";
 export const MORE_ABOUT_ME = "Más acerca de mí...";
 export const LANGUAGES = "Lenguajes";
 export const FORBIDDEN = "¡Prohibido!";
+export const UPDATE_ORDER = "Actualizar Orden";
 
 /* ------------ SEARCHS ------------ */
 

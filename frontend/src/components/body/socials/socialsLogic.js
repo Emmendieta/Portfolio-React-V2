@@ -1,4 +1,5 @@
-import { createDataWithImages, deleteData, getData, getDataByFilter, getDataById, updateDataByIdWithImages } from "../../../helpers/crud.helper";
+import { AR } from "country-flag-icons/react/3x2";
+import { bulkUpdateData, createDataWithImages, deleteData, getData, getDataByFilter, getDataById, updateDataByIdWithImages } from "../../../helpers/crud.helper";
 
 export const fetchCreateSocialWithImages = async (data) => {
     try {
@@ -75,6 +76,22 @@ export const fetchUpdateSocialWithImages = async (id, data) => {
         };
         const dataResponse = await updateDataByIdWithImages(url, formData);
         if(!dataResponse) throw new Error("Error: Couldn't update the Social Network!");
+        return dataResponse;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchUpdateSocialsOrder = async (orderedSocials) => {
+    try {
+        if(!Array.isArray(orderedSocials) || orderedSocials.length === 0) throw new Error("Error: No ordered Social was provided!");
+        const dataArray = orderedSocials.map((social, index) => {
+            if(!social._id || social._id.length !== 24) throw new Error("Error: Invalid Id!");
+            return { _id: social._id, order: index + 1 };
+        });
+        const url = "socials/reorder";
+        const dataResponse = await bulkUpdateData(url, dataArray);
+        if(!dataResponse) throw new Error("Error: Couldn't update the order of the Socials!");
         return dataResponse;
     } catch (error) {
         throw error;

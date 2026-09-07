@@ -20,7 +20,7 @@ const skillsSchema  = new mongoose.Schema(
             required: true,
             default: "Hard"
         },
-        order: { type: Number, default: 0 }
+        order: { type: Number, required: true, default: 1 }
     },
     { timestamps: true }
 );

@@ -22,6 +22,8 @@ class WorksController {
             if(data.responsibilities) data.responsibilities = JSON.parse(data.responsibilities);
             const verify = await this.verifyJobTitleCompany(data.jobTitle, data.company);
             if(verify === 1) throw new Error("Error: The Job for the Company alredy exist!");
+            const totalElements = await this.wService.totalElements();
+            data.order = totalElements + 1;
             const work = await this.wService.createOneWithImages(data, files, worksPath, session);
             if(!work) throw new Error("Error: Couldn't create the work!");
             await session.commitTransaction();
@@ -168,6 +170,24 @@ class WorksController {
         }
     };
 
+    updateWorksOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("No otdered works was provided!");
+            const worksOrderUpdate = await this.wService.updateOrderDragDrop(data);
+            if(!worksOrderUpdate) return res.json500("Error in updting the order of the works!");
+            await session.commitTransaction();
+            return res.json200(worksOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            session.endSession();
+        }
+    }
+
     deleteWorkById = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -182,6 +202,7 @@ class WorksController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedWork = await this.wService.destroyById(id);
             if(!deletedWork) throw new Error("Error: Couldn't delete the work!");
+            await this.wService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(deletedWork);
         } catch (error) {

@@ -15,6 +15,7 @@ class SocialsDTO {
         this.images = data.images;
         this.user = data.user;
         this.password = data.password;
+        this.order = data.order;
     };
 };
 

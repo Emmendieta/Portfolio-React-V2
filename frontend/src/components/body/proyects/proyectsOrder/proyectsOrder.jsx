@@ -1,36 +1,34 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../../context/User.Context";
+import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
+import { useLoading } from "../../../../context/Loading.Context";
 import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useLoading } from "../../../../context/Loading.Context";
-import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
-import { fetchGetAllCategories, fetchUpdateCategoriesOrder } from "../categoriesLogic";
+import { fetchGetAllProyects, fetchUpdateProyecsOrder } from "../proyectsLogic";
 import Ols from "../../generalFields/Ols/Ols";
 
-function CategoriesOrder() {
+function ProyectsOrder() {
     const { user } = useContext(UserContext);
     const { errorSweet, successSweet } = useSweetAlert();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const { startLoading, stopLoading } = useLoading();
     const { language } = useLanguage();
     const TEXT = LANG_CONST[language];
-    const [categories, setCategories] = useState([]);
+    const [proyects, setProyects] = useState([]);
 
     useEffect(() => {
-        const loadCategories = async () => {
+        const loadProyects = async () => {
             try {
                 startLoading();
-                const result = await fetchGetAllCategories();
+                const result = await fetchGetAllProyects();
                 if(result?.error) {
-                    setCategories([]);
+                    setProyects([]);
                     return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                 };
-                const categories = result.response || [];
-                setCategories(categories);
+                const proyects = result.response || [];
+                setProyects(proyects);
             } catch (error) {
-                setCategories([]);
+                setProyects([]);
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
                 await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
             } finally {
@@ -38,35 +36,35 @@ function CategoriesOrder() {
                 stopLoading();
             }
         };
-        loadCategories();
+        loadProyects();
     }, [user, language]);
 
     const handleSaveOrder = async () => {
         try {
             setLoading(true);
             startLoading();
-            const result = await fetchUpdateCategoriesOrder(categories);
+            const result = await fetchUpdateProyecsOrder(proyects);
             if(result?.error) {
-                console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
-                return await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+                console.error(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
+                return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
             };
-            await successSweet(`${TEXT.CATEGORIES} ${TEXT.UPDATE_SUCCESS}!`);
+            await successSweet(`${TEXT.PROYECTS} ${TEXT.UPDATE_SUCCESS}!`);
         } catch (error) {
-            console.error(`${TEXT.ERROR}: ${error.message}`|| TEXT.TEXT_ERROR_OOPS);
-            await errorSweet(`${TEXT.ERROR}: ${error.message}`|| TEXT.TEXT_ERROR_OOPS);
+            console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+            await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
         } finally {
             setLoading(false);
             stopLoading();
         }
     };
 
-    return(
+    return (
         <div>
             <section>
-                <Ols items={categories} setItems={setCategories} renderItem={(category) => (
+                <Ols items={proyects} setItems={setProyects} renderItem={(proyect) => (
                     <div>
-                        {category.order}
-                        {category.name?.[language]}
+                        {proyect.order}
+                        {proyect.name?.[language]}
                     </div>
                 )} />
             </section>
@@ -77,4 +75,4 @@ function CategoriesOrder() {
     );
 };
 
-export default CategoriesOrder;
+export default ProyectsOrder;

@@ -16,6 +16,8 @@ class SocialsController {
             const socialPath = "socials";
             const verify = await this.verifyName(data.name);
             if(verify === 1) throw new Error("Error: The name of the social network alredy exist!");
+            const totalElements = await this.sService.totalElements();
+            data.order = totalElements + 1;
             const social = await this.sService.createOneWithImages(data, files, socialPath, session);
             if(!social) throw new Error("Error: Couldn't create the social network!");
             await session.commitTransaction();
@@ -116,6 +118,24 @@ class SocialsController {
         }
     };
 
+    updateSocialsOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered socials was provided!");
+            const socialesOrderUpdate = await this.sService.updateOrderDragDrop(data);
+            if(!socialesOrderUpdate) return res.json500("Error in updating the order of the Socials!");
+            await session.commitTransaction();
+            return res.json200(socialesOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            await session.endSession();
+        }
+    };
+
     deleteSocialById = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -130,6 +150,7 @@ class SocialsController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedSocial = await this.sService.destroyById(id);
             if(!deletedSocial) throw new Error("Error: Couldn't delete the social network!");
+            await this.sService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(deletedSocial);
         } catch (error) {

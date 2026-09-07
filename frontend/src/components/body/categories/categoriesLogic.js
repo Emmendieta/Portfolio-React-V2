@@ -48,9 +48,9 @@ export const fetchCreateManyCategories = async (data) => {
 export const fetchGetAllCategories = async () => {
     try {
         const url =`categories`;
-        const data = await getData(url);
-        if(!data) throw new Error("Error in fetch get all Categories or no data available!");
-        return data;
+        const dataResponse = await getData(url);
+        if(!dataResponse) throw new Error("Error in fetch get all Categories or no data available!");
+        return dataResponse;
     } catch (error) {
         throw error;
     }
@@ -113,12 +113,12 @@ export const fetchUpdateCategoriesOrder = async (orderedCategories) => {
         if(!Array.isArray(orderedCategories || orderedCategories.length === 0)) throw new Error("Error: No ordereded Categories was provided!");
         const dataArray = orderedCategories.map((category, index) => {
             if(!category._id || category._id.length !== 24) throw new Error("Error: Invalid Id!");
-            return { _id: category._id, order: index + 1};
+            return { _id: category._id, order: index + 1 };
         });
         const url = `categories/reorder`;
-        const response = await bulkUpdateData(url, dataArray);
-        if(!response) throw new Error("Error: Couldn't updte the order of the Categories!");
-        return response;
+        const dataResponse = await bulkUpdateData(url, dataArray);
+        if(!dataResponse) throw new Error("Error: Couldn't updte the order of the Categories!");
+        return dataResponse;
     } catch (error) {
         throw error;
     }
@@ -128,9 +128,9 @@ export const fetchDeleteCategoryById = async (id) => {
     try {
         if(!id) throw new Error("Error: Missing the Id of the Category!");
         const url = `categories/${id}`;
-        const data = await deleteData(url);
-        if(!data) throw new Error("Error: Couldn't delete the Category!");
-        return data;
+        const dataResponse = await deleteData(url);
+        if(!dataResponse) throw new Error("Error: Couldn't delete the Category!");
+        return dataResponse;
     } catch (error) {
         throw error;
     }

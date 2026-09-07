@@ -38,7 +38,6 @@ class CategoriesController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            console.log("INGRESO ACA")
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) throw new Error("Error: Missing the information to create many Categories!");
             //Verify names:

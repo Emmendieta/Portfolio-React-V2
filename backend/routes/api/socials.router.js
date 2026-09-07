@@ -17,6 +17,7 @@ class SocialsRouter extends RouterHepler {
         this.read("/:id", ["public"], socialsController.getSocialById);
         this.read("/filtOne/filter", ["public"], socialsController.getSocialByFilter);
         this.read("/filt/filter", ["public"], socialsController.getSocialsByFilter);
+        this.update("/reorder", ["public"], socialsController.updateSocialsOrder);
         this.update("/:id", ["public"], upload.array("images"), socialsController.updateSocialById);
         this.destroy("/:id", ["public"], socialsController.deleteSocialById);
     };

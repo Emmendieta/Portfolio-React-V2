@@ -27,6 +27,8 @@ class ProyectsController {
             if (data.skills) data.skills = JSON.parse(data.skills);
             const verifiy = await this.verifyNameProyect(data.name);
             if (verifiy === 1) throw new Error("Error: The name of the proyect alredy Exist!");
+            const totalElements = await this.pService.totalElements();
+            data.order = totalElements  + 1;
             const proyect = await this.pService.createOneWithImages(data, files, proyectsPath, session);
             if (!proyect) throw new Error("Error: Couldn't create the proyect!");
             await session.commitTransaction();
@@ -189,6 +191,24 @@ class ProyectsController {
         }
     };
 
+    updateProyectsOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("Error: No ordered Proyects was provided!");
+            const proyectsOrderUpdate = await this.pService.updateOrderDragDrop(data);
+            if(!proyectsOrderUpdate) return res.json500("Error in updating the order of the proyects!");
+            await session.commitTransaction();
+            return res.json200(proyectsOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            await session.endSession();
+        }
+    };
+
     deleteProyectById = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -202,6 +222,7 @@ class ProyectsController {
             const deleteFolder = await this.pService.destroyFolder(id, folder);
             const deletedProyect = await this.pService.destroyById(id);
             if (!deletedProyect) throw new Error("Error: Couldn't delete the proyect!");
+            await this.pService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(deletedProyect);
         } catch (error) {

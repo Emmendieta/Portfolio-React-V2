@@ -20,7 +20,8 @@ const socialMediasSchema = new mongoose.Schema(
             required: true
         },
         user: { type: String },
-        password: { type: String }
+        password: { type: String },
+        order: { type: Number, required: true, default: 1 }
     }, { timestamps: true }
 );
 

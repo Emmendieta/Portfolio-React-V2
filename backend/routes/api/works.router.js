@@ -20,6 +20,7 @@ class WorksRouter extends RouterHepler {
         this.read("/all/populate", ["public"], worksController.getAllWorksPopulate);
         this.read("/:id/populate", ["public"], worksController.getWorkByIdPopulate);
         this.read("/filt/filter", ["public"], worksController.getWorksByFilter);
+        this.update("/reorder", ["public"], worksController.updateWorksOrder);
         this.update("/:id", ["public"], upload.array("images"), worksController.updateWorkById);
         this.destroy("/:id", ["public"], worksController.deleteWorkById);
     };

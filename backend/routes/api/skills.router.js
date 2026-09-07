@@ -16,6 +16,7 @@ class SkillsRouter extends RouterHepler {
         this.read("/:id", ["public"], skillsController.getSkillById);
         this.read("/filtOne/filter", ["public"], skillsController.getOneSkillByFilter);
         this.read("/filt/filter", ["public"], skillsController.getSkillsByFilter);
+        this.update("/reorder", ["public"], skillsController.updateSkillsOrder);
         this.update("/:id", ["public"], upload.array("images"), skillsController.updateSocialMediaById);
         this.destroy("/:id", ["public"], skillsController.deleteSkill);
     };

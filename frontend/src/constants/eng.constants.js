@@ -44,6 +44,7 @@ export const NEXT_ELEMENT = "Next Element";
 export const PREV_ELEMENT = "Previus Element";
 export const MORE_ABOUT_ME = "More about me...";
 export const FORBIDDEN = "Forbidden!";
+export const UPDATE_ORDER = "Update Order";
 
 /* ------------ SEARCHS ------------ */
 

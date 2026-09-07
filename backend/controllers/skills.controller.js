@@ -20,6 +20,8 @@ class SkillsController {
             if(!files) throw new Error("Error: No image sent to upload!");
             let verify = await this.verifyName(data.name);
             if(verify === 1) throw new Error("Error: The name of the Skill alredy exist!");
+            const totalElements = await this.sService.totalElements();
+            data.order = totalElements + 1;
             const skill = await this.sService.createOneWithImages(data, files, skillPath, session)
             if(!skill) throw new Error("Error: Cound't create the Skill!");
             await session.commitTransaction();
@@ -110,6 +112,25 @@ class SkillsController {
         }
     };
 
+    updateSkillsOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        console.log("INGRESO ACA")
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered Skills was provided!");
+            const socialsOrderUpdate = await this.sService.updateOrderDragDrop(data);
+            if(!socialsOrderUpdate) return res.json500("Error in updating the order of the Socials!");
+            await session.commitTransaction();
+            return res.json200(socialsOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            await session.endSession();
+        }
+    };
+
     deleteSkill = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -133,6 +154,7 @@ class SkillsController {
             if(!deleteFolder) throw new Error("Error: Couldn't deleted the Folder from Cloudinary!");
             const skillDeleted = await this.sService.destroyById(id, { session });
             if(!skillDeleted) throw new Error("Error: Couldn't delete the Skill!");
+            await this.sService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(skillDeleted);
         } catch (error) {

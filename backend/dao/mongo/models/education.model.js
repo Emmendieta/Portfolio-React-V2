@@ -32,7 +32,7 @@ const educationsSchema = new mongoose.Schema(
                 ref: "habilities"
             }
         ],
-        order: { type: Number , required: true, default: 0 }
+        order: { type: Number , required: true, default: 1 }
         
     },
     { timestamps: true }

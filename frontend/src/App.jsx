@@ -42,6 +42,11 @@ import NotFound from './components/notFound/notFound'
 import ProtectedRoutes from './routes/ProtectedRoutes'
 import CategoriesCreateManyForm from './components/body/categories/categoriesManyForm/categoriesManyForm'
 import CategoriesOrder from './components/body/categories/categoriesOrder/categoriesOrder'
+import EducationsOrder from './components/body/educations/educationsOrder/educationsOrder'
+import ProyectsOrder from './components/body/proyects/proyectsOrder/proyectsOrder'
+import SkillsOrder from './components/body/skills/skillsOrder/skillsOrder'
+import SocialOrder from './components/body/socials/socialsOrder/socialsOrder'
+import WorksOrder from './components/body/works/worksOrder/worksOrder'
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
@@ -170,7 +175,7 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path='/categories/many/form' element={<CategoriesCreateManyForm />} />
-        <Route path='/categories/order' element={<CategoriesOrder /> } />
+        <Route path='/categories/reorder' element={<CategoriesOrder /> } />
 
         <Route path='/educations' element={
           <ProtectedRoutes permissionResolver={() => "read_all_educations"}>
@@ -182,28 +187,7 @@ function AppRoutes() {
             <EducationsForm />
           </ProtectedRoutes>
         } />
-
-        <Route path='/works' element={
-          <ProtectedRoutes permissionResolver={() => "read_all_works"}>
-            <WorksList />
-          </ProtectedRoutes>
-        } />
-        <Route path='/works/form/:id' element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_works" : "update_works"}>
-            <WorksForm />
-          </ProtectedRoutes>
-        } />
-
-        <Route path='/skills' element={
-          <ProtectedRoutes permissionResolver={() => "read_all_skills"}>
-            <SkillsList />
-          </ProtectedRoutes>
-        } />
-        <Route path='/skills/form/:id' element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_skills" : "update_skills"} >
-            <SkillsForm />
-          </ProtectedRoutes>
-        } />
+        <Route path='/educations/reorder' element={<EducationsOrder /> } />
 
         <Route path='/proyects' element={
           <ProtectedRoutes permissionResolver={() => "read_all_proyects"}>
@@ -215,6 +199,20 @@ function AppRoutes() {
             <ProyectsForm />
           </ProtectedRoutes>
         } />
+        <Route path='proyects/reorder' element={ <ProyectsOrder /> } />
+
+        <Route path='/skills' element={
+          <ProtectedRoutes permissionResolver={() => "read_all_skills"}>
+            <SkillsList />
+          </ProtectedRoutes>
+        } />
+        <Route path='/skills/form/:id' element={
+          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_skills" : "update_skills"} >
+            <SkillsForm />
+          </ProtectedRoutes>
+        } />
+        <Route path='/skills/reorder' element={<SkillsOrder /> } />
+
 
         <Route path='/socials' element={
           <ProtectedRoutes permissionResolver={() => "read_all_socials"}>
@@ -226,6 +224,19 @@ function AppRoutes() {
             <SocialsForm />
           </ProtectedRoutes>
         } />
+        <Route path='/socials/reorder' element={<SocialOrder /> } />
+
+        <Route path='/works' element={
+          <ProtectedRoutes permissionResolver={() => "read_all_works"}>
+            <WorksList />
+          </ProtectedRoutes>
+        } />
+        <Route path='/works/form/:id' element={
+          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_works" : "update_works"}>
+            <WorksForm />
+          </ProtectedRoutes>
+        } />
+        <Route path='/works/reorder' element={<WorksOrder /> } />
 
         <Route path='/forbidden' element={<Forbidden />} />
         <Route path='*' element={<NotFound />} />

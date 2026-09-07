@@ -24,6 +24,8 @@ class EducationsController {
             if(data.habilities) data.habilities = JSON.parse(data.habilities);
             const verify = await this.verifiyNameEducationAndTitle(data.institutionName, data.title);
             if(verify === 1) throw new Error("Error: The Title for the institution alredy exist!");
+            const totalElements = await this.edService.totalElements();
+            data.order = totalElements + 1;
             const education = await this.edService.createOneWithImages(data, files, educationsPath, session);
             if(!education) throw new Error("Error: Couldn't create the Education!");
             await session.commitTransaction();
@@ -166,6 +168,24 @@ class EducationsController {
         }
     };
 
+    updateEducationsOrder = async (req, res) => {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        try {
+            const data = req.body;
+            if(!Array.isArray(data) || data.length === 0) return res.json400("Error: No ordered educations was provided!");
+            const educationsOrderUpdate = await this.edService.updateOrderDragDrop(data);
+            if(!educationsOrderUpdate) return res.json500("Error in updating the order of the Educations!");
+            await session.commitTransaction();
+            return res.json200(educationsOrderUpdate);
+        } catch (error) {
+            await session.abortTransaction();
+            return res.json500(error.message);
+        } finally {
+            await session.endSession();
+        }
+    };
+
     deleteEducationById = async (req, res) => {
         const session = await mongoose.startSession();
         session.startTransaction();
@@ -180,6 +200,7 @@ class EducationsController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedEducation = await this.edService.destroyById(id);
             if(!deletedEducation) throw new Error("Error: Couldn't delete the education!");
+            await this.edService.reorderAfterDelete(session);
             await session.commitTransaction();
             return res.json200(education);
         } catch (error) {

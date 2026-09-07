@@ -20,6 +20,7 @@ class EducationsRouter extends RouterHepler {
         this.read("/all/populate", ["public"], educationsController.getAllEducationsPopulate);
         this.read("/:id/populate", ["public"], educationsController.getEducationByIdPopulate);
         this.read("/filt/filter", ["public"], educationsController.getEducaciontsByFilter);
+        this.update("/reorder", ["public"], educationsController.updateEducationsOrder);
         this.update("/:id", ["public"], upload.array("images"), educationsController.updateEducationById);
         this.destroy("/:id", ["public"], educationsController.deleteEducationById);
     };
