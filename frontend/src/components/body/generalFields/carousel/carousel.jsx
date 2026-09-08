@@ -10,7 +10,7 @@ function Carousel({ images = [], width = 300, height = 300, clCont = "", clImgCo
 
     return (
         <div className={`carousel-wrapper ${clCont}`} style={{ width, height }}>
-            {showNextPrev && (<div className={`carousel-button prev ${clBtnPrev}`} onClick={handlePrev}>&#10094;</div>)}
+            {showNextPrev && images.length > 1 && (<div className={`carousel-button prev ${clBtnPrev}`} onClick={handlePrev}>&#10094;</div>)}
             <div className={`carousel-image-container ${clImgCont}`}>
                 <div className="carousel-image-row" style={{ transform: `translateX(-${currentIndex * 100}%)`, transition: "transform 0.5s easse-in-out" }}>
                     {images.map((img, index) => (
@@ -20,7 +20,7 @@ function Carousel({ images = [], width = 300, height = 300, clCont = "", clImgCo
                     ))}
                 </div>
             </div>
-            {showNextPrev && (<div className={`carousel-button next ${clBtnNext}`} onClick={handleNext}>&#10095;</div>)}
+            {showNextPrev && images.length > 1 && (<div className={`carousel-button next ${clBtnNext}`} onClick={handleNext}>&#10095;</div>)}
         </div>
     );
 };

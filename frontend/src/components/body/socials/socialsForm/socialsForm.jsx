@@ -76,7 +76,6 @@ function SocialsForm() {
                 } else {
 
                     const result = await fetchGetSocialById(id);
-                    console.log("ACA", result.response)
                     if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                     const social = result.response || [];
                     setFormData(prev => ({
