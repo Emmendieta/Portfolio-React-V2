@@ -6,8 +6,7 @@ import { useLoading } from "../../../../context/Loading.Context";
 import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useEffect } from "react";
-import { fetchGetAllEducations } from "../educationsLogic";
-import { fetchUpdateCategoriesOrder } from "../../categories/categoriesLogic";
+import { fetchGetAllEducations, fetchUpdateEducationsOrder } from "../educationsLogic";
 import Ols from "../../generalFields/Ols/Ols";
 
 function EducationsOrder() {
@@ -46,7 +45,7 @@ function EducationsOrder() {
         try {
             setLoading(true);
             startLoading();
-            const result = await fetchUpdateCategoriesOrder(educations);
+            const result = await fetchUpdateEducationsOrder(educations);
             if(result?.error) {
                 console.error(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                 return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);

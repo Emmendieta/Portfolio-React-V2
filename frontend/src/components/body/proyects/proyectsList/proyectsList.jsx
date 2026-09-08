@@ -40,7 +40,8 @@ function ProyectsList({ selectedCategory }) {
                     return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                 };
                 const proyects = result.response || [];
-                setProyects(proyects);
+                const sortedProyects = [...proyects].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setProyects(sortedProyects);
             } catch (error) {
                 setProyects([]);
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);

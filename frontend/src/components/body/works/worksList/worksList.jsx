@@ -43,7 +43,8 @@ function WorksList() {
                     return;
                 };
                 const { docs = [], totalPages = 1 } = result.response;
-                setWorks(docs);
+                const sortedWworks = [...docs].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setWorks(sortedWworks);
                 setTotalPages(totalPages);
             } catch (error) {
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);

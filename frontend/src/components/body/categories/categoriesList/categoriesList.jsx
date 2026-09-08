@@ -38,7 +38,7 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                     return;
                 };
                 const categories = result.response || [];
-                const sortedCategories = [...categories].sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
+                const sortedCategories = [...categories].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
                 setCategories(sortedCategories);
             } catch (error) {
                 setCategories([]);

@@ -38,8 +38,12 @@ function SkillsList() {
                     return;
                 };
                 const skills = result.response || [];
-                setSoftSkills(skills.filter(skill => skill.type === "Soft"));
-                setHardSkills(skills.filter(skill => skill.type === "Hard"));
+                const softSkills = skills.filter(skill => skill.type === "Soft");
+                const sortedSoftSkills = [...softSkills].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                const hardSkills = skills.filter(skill => skill.type === "Hard");
+                const sortedHardSkills = [...hardSkills].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setSoftSkills(sortedSoftSkills);
+                setHardSkills(sortedHardSkills);
                 setSkills(skills);
             } catch (error) {
                 setSkills([]);
@@ -89,57 +93,7 @@ function SkillsList() {
             stopLoading();
         }
     };
-
-    /*return (
-        <div>
-            <section>
-                <H2Fields label={TEXT.SKILLS_LIST} />
-                <div>
-                    <Link to={"/skills/form/new"} className="btn btn-outline-success" id="skillListAddBtn" >
-                        <IoIosAddCircleOutline className="skillsListAddBtnIcon" />
-                    </Link>
-                </div>
-            </section>
-            <section>
-                {skills.length > 0 ? (
-                    <Uls list={skills} classNameUl="" classnameli=""
-                        idH1Field={""} language={language} renderItem={(skill) => (
-                            <SkillsCard key={skill._id} skill={skill} onDelete={handleDelete} />
-                        )} />
-                ): (
-                    <div>
-                        <H2Fields value={`${TEXT.SKILLS_NOT_FOUND}!`} className="" classNameH2="" classNameLabel="" language={language} />
-                        <img src="/img/not-found.jpg" />
-                    </div>
-                )}
-
-            </section>
-        </div>
-    );*/
-
-    /*return (
-        <div className="skillListDivCont">
-            <section className="skillListSectAddCont">
-                <Link to={"/skills/form/new"} >
-                    <button type="button" className="btn btn-outline-success" id="btnAddSkill" >{`${TEXT.NEW_F} ${TEXT.SKILL}`}</button>
-                </Link>
-            </section>
-            <section>
-                {skills.length > 0 ? (
-                    <CarouselGeneric items={skills} renderItem={(skill) => (
-                            <SkillsCard key={skill._id} skill={skill} onDelete={handleDelete} />
-                        )} />
-                ) : (
-                    <div className="genListErrContDark">
-                        <H2Fields value={`${TEXT.SKILLS_NOT_FOUND}!`} className="genListErrDark" classNameH2="genListErrH2Dark" language={language} />
-                        <img src="/img/not-found.jpg" />
-                    </div>
-                )}
-                PARA SKILLS SACAR EL CAROUSEL GENERIC Y SEPARAR EN SOFT SKILLS Y HARD SKILLS
-            </section>
-        </div>
-    );*/
-
+    
     return (
         <div className="skillListDivCont">
             {canCreate && (

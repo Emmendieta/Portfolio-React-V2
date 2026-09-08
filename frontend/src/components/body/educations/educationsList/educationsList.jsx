@@ -54,12 +54,24 @@ function EduactionsList() {
                     return;
                 };
                 const educations = result.response || [];
-                setUniversities(educations.filter(education => education.typeEducation === "University") || []);
-                setHighSchools(educations.filter(education => education.typeEducation === "High School") || []);
-                setPrimarySchools(educations.filter(education => education.typeEducation === "Primary School") || []);
-                setCourses(educations.filter(education => education.typeEducation === "Course") || []);
-                setConferences(educations.filter(education => education.typeEducation === "Conference") || []);
-                setOthers(educations.filter(education => education.typeEducation === "Other") || []);
+                const universities = educations.filter(education => education.typeEducation === "University") || [];
+                const sortedUniversities = [...universities].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setUniversities(sortedUniversities);
+                const highSchools = educations.filter(education => education.typeEducation === "High School") || [];
+                const sortedHighSchools = [...highSchools].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setHighSchools(sortedHighSchools);
+                const primarySchools = educations.filter(education => education.typeEducation === "Primary School") || [];
+                const sortedPrimarySchools = [...primarySchools].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setPrimarySchools(sortedPrimarySchools);
+                const courses = educations.filter(education => education.typeEducation === "Course") || [];
+                const sortedCourse = [...courses].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setCourses(sortedCourse);
+                const conferences = educations.filter(education => education.typeEducation === "Conference") || [];
+                const sortedConferences = [...conferences].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setConferences(sortedConferences);
+                const others = educations.filter(education => education.typeEducation === "Other") || [];
+                const sortedOthers = [...others].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setOthers(sortedOthers);
                 setEducations(educations);
             } catch (error) {
                 setEducations([]);
@@ -72,7 +84,6 @@ function EduactionsList() {
         };
         loadEducations();
     }, [language]);
-
 
     const handleDelete = async (id) => {
         try {

@@ -136,10 +136,10 @@ class DaoMongo {
     updateOrderDragDrop = async (orderedIds) => {
         try {
             if (!Array.isArray(orderedIds)) throw new Error("Ordered Ids must be an Array!");
-            const orderOps = orderedIds.map((id, index) => ({
+            const orderOps = orderedIds.map(({ _id, order }) => ({
                 updateOne: {
-                    filter: { _id: id },
-                    update: { order: index },
+                    filter: { _id },
+                    update: { $set: { order } },
                 },
             }));
             const result = await this.model.bulkWrite(orderOps);
