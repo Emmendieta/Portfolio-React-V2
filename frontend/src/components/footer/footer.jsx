@@ -30,8 +30,12 @@ function Footer() {
                     //FALTA SWEET
                 };
                 const socialsNetworks = result.response || [];
-                setContacts(socialsNetworks.filter(contact => contact.typeSocial === "Contact") || []);
-                setSocials(socialsNetworks.filter(social => social.typeSocial === "Social") || []);
+                const contacts = socialsNetworks.filter(contact => contact.typeSocial === "Contact") || [];
+                const sortedContacts = [...contacts].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setContacts(sortedContacts);
+                const socials = socialsNetworks.filter(social => social.typeSocial === "Social") || [];
+                const sortedSocials = [...socials].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setSocials(sortedSocials);
             } catch (error) {
                 //FALTA ERROR
             }

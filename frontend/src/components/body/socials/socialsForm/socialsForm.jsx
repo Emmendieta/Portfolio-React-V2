@@ -93,7 +93,7 @@ function SocialsForm() {
             }
         };
         loadSocial();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
