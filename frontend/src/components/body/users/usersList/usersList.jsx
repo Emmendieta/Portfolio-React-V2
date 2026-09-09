@@ -110,21 +110,21 @@ function UsersList() {
             <section className="generalListSearchColumnContainer">
                 <div className="generalListSearchRowSubContainer">
                     <div className="generalListSearchRow">
-                        <Inputs textH2={TEXT.USER_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.USER_NAME_OF_THE_USER)} */ value={searchUser} onChange={(e) => setSearchUser(e.target.value)} />
+                        <Inputs textH2={TEXT.USER_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m", TEXT.USER_NAME_OF_THE_USER)} value={searchUser} onChange={(e) => setSearchUser(e.target.value)} />
                             <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchUserFilter(searchUser.trim()), setSearchDNI(""), setSearchDNIFilter(""), setSearchEmail(""), setSearchEmailFilter(""), setSearchFullName(""), setSearchFullNameFilter("")}}>{TEXT.SEARCH_BY_USER}</button>
                     </div>
                     <div className="generalListSearchRow">
-                        <Inputs textH2={TEXT.EMAIL} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.EMAIL_OF_THE_USER)} */ value={searchEmail} onChange={(e) => setSearchEmail(e.target.value)} />
+                        <Inputs textH2={TEXT.EMAIL} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m", TEXT.EMAIL)} value={searchEmail} onChange={(e) => setSearchEmail(e.target.value)} />
                             <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchEmailFilter(searchEmail.trim()), setSearchDNI(""), setSearchDNIFilter(""), setSearchUser(""), setSearchUserFilter(""), setSearchFullName(""), setSearchFullNameFilter("")}}>{TEXT.SEARCH_BY_EMAIL}</button>
                     </div>
                 </div>
                 <div className="generalListSearchRowSubContainer">
                     <div className="generalListSearchRow">
-                        <Inputs textH2={TEXT.DNI} type="number" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.DNI_OF_THE_USER)} */ value={searchDNI} onChange={(e) => setSearchDNI(e.target.value)} />
+                        <Inputs textH2={TEXT.DNI} type="number" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m", TEXT.DNI)} value={searchDNI} onChange={(e) => setSearchDNI(e.target.value)} />
                             <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchDNIFilter(searchDNI), setSearchUser(""), setSearchUserFilter(""), setSearchEmail(""), setSearchEmailFilter(""), setSearchFullName(""), setSearchFullNameFilter("")}}>{TEXT.SEARCH_BY_DNI}</button>
                     </div>
                     <div className="generalListSearchRow">
-                        <Inputs textH2={TEXT.FULL_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.FULLNAME_OF_THE_USER)} */ value={searchFullName} onChange={(e) => setSearchFullName(e.target.value)} />
+                        <Inputs textH2={TEXT.FULL_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m", TEXT.FULL_NAME)} value={searchFullName} onChange={(e) => setSearchFullName(e.target.value)} />
                             <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchFullNameFilter(searchFullName), setSearchDNI(""), setSearchDNIFilter(""), setSearchEmail(""), setSearchEmailFilter(""), setSearchUser(""), setSearchUserFilter("")}}>{TEXT.SEACH_BY_FULL_NAME}</button>
                     </div>
                 </div>

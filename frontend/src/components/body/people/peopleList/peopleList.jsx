@@ -107,11 +107,11 @@ function PeopleList() {
             )}
             <section className="generalListSearchRowContainer">
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.DNI} type="number" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder="FALTA TEXTO PLACEHOLDER" /*{TEXT.inputsText("m", TEXT.DNI_OF_THE_USER)} */ value={searchDNI}  onChange={(e) => setSearchDNI(e.target.value)}/>
+                    <Inputs textH2={TEXT.DNI} type="number" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder={TEXT.inputsText("m", TEXT.DNI)} value={searchDNI}  onChange={(e) => setSearchDNI(e.target.value)}/>
                     <button type="button" className="btn btn-outline-success" onClick={(e) => { setPage(1), setSearchDNIFilter(searchDNI), setSearchFullName(""), setSearchFullNameFilter("")}}>{TEXT.SEARCH_BY_DNI}</button>
                 </div>
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.FULL_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder="FALTA TEXTO PLACEHOLDER"/*{TEXT.inputsText("m", TEXT.FULLNAME_OF_THE_USER)}*/ value={searchFullName} onChange={(e) => setSearchFullName(e.target.value)} />
+                    <Inputs textH2={TEXT.FULL_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder={TEXT.inputsText("m", TEXT.FULL_NAME)} value={searchFullName} onChange={(e) => setSearchFullName(e.target.value)} />
                     <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchFullNameFilter(searchFullName.trim()), setSearchDNI(""), setSearchDNIFilter("")}}>{TEXT.SEACH_BY_FULL_NAME}</button>
                 </div>
             </section>  

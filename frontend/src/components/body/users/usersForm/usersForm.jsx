@@ -66,8 +66,8 @@ function UsersForm() {
         try { validatorAlphaNumeric(data.person?.address?.street, TEXT.ERROR_ONLY_ALPHANUMERICS); } catch (error) { errors.address.street = error.message; };
         try { validatorNumber(data.person?.address?.number, TEXT.ERROR_NUMBERS_MIN); } catch (error) { errors.address.number = error.message; };
         try { validatorNumber(data.person?.address?.floor, TEXT.ERROR_NUMBERS_MIN); } catch (error) { errors.address.floor = error.message; };
-        try { validatorLongText(data.person?.aboutMe?.[primaryLang], "FALTA TEXTO ERROR LONG TEXT"); } catch (error) { errors.person.aboutMePrimary = error.message; };
-        if (showOtherLang) { try { validatorLongText(data.person?.aboutMe?.[secondaryLang], "FALTA TEXTO ERROR LONG TEXT"); } catch (error) { errors.person.aboutMeSecondary = error.message; } };
+        try { validatorLongText(data.person?.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.person.aboutMePrimary = error.message; };
+        if (showOtherLang) { try { validatorLongText(data.person?.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.person.aboutMeSecondary = error.message; } };
         //FALTA VALIDAR CONTINENTES; COUNTRY; PROVINCE; CITY
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
@@ -143,7 +143,6 @@ function UsersForm() {
                         }, roles: user.roles || [], extraPermission: user.extraPermission || [], images: personData?.images?.length ?
                             personData.images.map(img => ({ publicId: img.publicId, url: img.url, hash: img.hash, width: img.width, height: img.height, isMain: img.isMain || false, })) : [],
                     }));
-                    console.log("PERSON DATA", personData);
                 }
             } catch (error) {
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);

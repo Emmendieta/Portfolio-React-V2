@@ -36,9 +36,9 @@ function SocialsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorAlphaNumeric(data.name, "FALTA TEXTO VALIDADOR ALPHA NUMERIC") } catch (error) { errors.name = error.message; };
-        try { validatorURL(data.url, "FALTA TEXTO ERROR VALIDATOR URL") } catch (error) { errors.url = error.message; };
-        if (!data.typeSocial) { errors.typeSocial = "FALTA TEXTO ERROR SOCIAL! " };
+        try { validatorAlphaNumeric(data.name, TEXT.ERROR_NAME_ALPHANUMERIC) } catch (error) { errors.name = error.message; };
+        try { validatorURL(data.url, TEXT.ERROR_URL) } catch (error) { errors.url = error.message; };
+        if (!data.typeSocial) { errors.typeSocial = TEXT.ERROR_TYPE };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 

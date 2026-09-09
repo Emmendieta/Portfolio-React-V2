@@ -38,7 +38,7 @@ class Service {
             const imagesToDelete = currentImages.filter(img => !imagesToKeep.some(keep => keep.publicId === img.publicId));
             for (const img of imagesToDelete) {
                 await deleteImageFromCloudinary(img.publicId);
-                console.log("Image deleted from Cloudinary: ", img.publicId);
+                console.warn("Image deleted from Cloudinary: ", img.publicId);
             };
             let finalImages = currentImages.filter(img => imagesToKeep.some(keep => keep.publicId === img.publicId)).map(img => {
                 const updated = imagesToKeep.find(keep => keep.publicId === img.publicId);
@@ -50,7 +50,7 @@ class Service {
                     const newHash = generateFileImageHash(buffer);
                     const alredyExists = finalImages.some(img => img.hash === newHash);
                     if (alredyExists) {
-                        console.log("Error: Image duplicate, will nop upload!");
+                        console.error("Error: Image duplicate, will nop upload!");
                         continue;
                     };
                     const uploaded = await uploadImage(buffer, `portfolio/${folder}`);

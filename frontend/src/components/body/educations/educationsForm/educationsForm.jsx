@@ -47,18 +47,17 @@ function EducationsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorName(data.institutionName?.[primaryLang], "FALTA TEXTO PERO EN REALIDAD TIENE QUE PERMITIR NUMEROS"); } catch (error) { errors.institutionNamePrimary = error.message; };
-        if (showOtherLang) try { validatorName(data.institutionName?.[secondaryLang], "FALTA TEXTO PERO EN REALIDAD TIENE QUE PERMITRI NUMEROS"); } catch (error) { errors.institutionNameSencondary = error.message; };
-        try { validatorName(data.title?.[primaryLang], "FALTA TEXTO ERROR; PERO VER SI SON PALABRAS O TAMBIEN NUMEROS"); } catch (error) { errors.titlePrimary = error.message; };
-        if (showOtherLang) try { validatorName(data.title?.[secondaryLang], "FALTA TEXTO PERO VER SI SON PALABRAS O TAMBIEN NUMEROS"); } catch (error) { errors.titleSecondary = error.message; };
-        try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, "FALTA TEXTO ERROR EMPTY DATE, OTRO: ERROR DATE FORMAT, OTRO: DATE INVALID, OTRO: DATE FUTURE, OTRO, DATE TOO OLD") } catch (error) { errors.dateStart = error.message; };
-        //try { validatorDate(data.dateEnd, { allowsFuture: false, maxYearsAgo: 120 }, "FALTA TEXTO ERROR EMPTY DATE, OTRO: ERROR DATE FORMAT, OTRO: DATE INVALID, OTRO: DATE FUTURE, OTRO, DATE TOO OLD") } catch (error) { errors.dateStart = error.message; };
-        try { validatorURL(data.linkInstitution), "FALTA TEXTO ERROR URL" } catch (error) { errors.linkInstitution = error.message; };
-        try { validatorAlphaNumeric(data.certificate), "FALTA TEXTO ERROR CERTIFICATE" } catch (error) { errors.certificate = error.message; };
-        try { validatorURL(data.linkCertificate), "FALTA TEXTO ERROR URL CERTIFICATE" } catch (error) { errors.linkCertificate = error.message; };
+        try { validatorAlphaNumeric(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNamePrimary = error.message; };
+        if (showOtherLang) try { validatorAlphaNumeric(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNameSencondary = error.message; };
+        try { validatorName(data.title?.[primaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titlePrimary = error.message; };
+        if (showOtherLang) try { validatorName(data.title?.[secondaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titleSecondary = error.message; };
+        try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE ) } catch (error) { errors.dateStart = error.message; };
+        try { validatorURL(data.linkInstitution), TEXT.ERROR_URL } catch (error) { errors.linkInstitution = error.message; };
+        try { validatorAlphaNumeric(data.certificate), TEXT.ERROR_CERTIFICATE } catch (error) { errors.certificate = error.message; };
+        try { validatorURL(data.linkCertificate), TEXT.ERROR_URL } catch (error) { errors.linkCertificate = error.message; };
         //FALTA VALIDAR typeEducation
-        try { validatorLongText(data.description?.[primaryLang], "FALTA TEXTO ERROR; PERO VER SI SON PALABRAS O TAMBIEN NUMEROS"); } catch (error) { errors.descriptionPrimary = error.message; };
-        if (showOtherLang) try { validatorLongText(data.description?.[secondaryLang], "FALTA TEXTO PERO VER SI SON PALABRAS O TAMBIEN NUMEROS"); } catch (error) { errors.descriptionSecondary = error.message; };
+        try { validatorLongText(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) try { validatorLongText(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionSecondary = error.message; };
         if (!data.typeEducation) { errors.typeEducation = `${TEXT.ERROR}: ${TEXT.ERROR_TYPE_EDUCATION}!` };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);

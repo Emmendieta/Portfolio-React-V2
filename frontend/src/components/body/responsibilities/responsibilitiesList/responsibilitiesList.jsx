@@ -111,7 +111,7 @@ function ResponsibilitiesList() {
             <section>
                 <div>
                     <Inputs textH2={TEXT.NAME} type="text" cNContainer="" cNSecTop="" cnSectBottom=""
-                        placeHolder={"FALTA TEXTO DEL PLACEHODER"} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
+                        placeHolder={TEXT.inputsText("m", TEXT.RESPONSIBILITIES_NAME)} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
                     <button type="button" onClick={handleSearchName} className="btn btn-outline-success">{TEXT.SEARCH_NAME}</button>
                 </div>
             </section>

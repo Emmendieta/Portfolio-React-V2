@@ -43,16 +43,15 @@ function ProyectsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorAlphaNumeric((data.name?.[primaryLang]), "FALTA TEXTO ERROR ALPHA NUMERIC") } catch (error) { errors.namePrimary = error.message; };
-        if (showOtherLang) try { validatorAlphaNumeric((data.name?.[secondaryLang]), "FALTA TEXTO ERRROR ALPHA NUMERIC") } catch (error) { errors.nameSecondary = error.message; };
-        try { validatorDate((data.dateStart), "FALTA TEXTO ERROR DATE") } catch (error) { errors.dateStart = error.message; };
-        try { validatorDate(data.dateEnd), "FALTA TEXTO ERROR DATE" } catch (error) { errors.dateEnd = error.message; };
-        try { validatorAlphaNumeric(data.company?.[primaryLang]), "FALTA TEXTO ERROR ALPHA NUMERIC" } catch (error) { errors.companyPrimary = error.message; };
-        if (showOtherLang) try { validatorAlphaNumeric(data.company?.[secondaryLang]), "FALTA TEXTO ERROR ALPHA NUMERIC" } catch (error) { errors.companySecondary = error.message; };
-        try { validatorURL((data.linkCompany)), "FALTA TEXTO ERROR URL" } catch (error) { errors.linkCompany = error.message; };
-        try { validatorURL((data.linkProyect)), "FALTA TEXTO ERROR" } catch (error) { errors.linkCompany = error.message; };
-        try { validatorLongText((data.description?.[primaryLang]), "FALTA TEXTO ERROR ALPHA NUMERIC") } catch (error) { errors.descriptionPrimary = error.message; };
-        if (showOtherLang) try { validatorLongText((data.description?.[secondaryLang]), "FALTA TEXTO ERROR ALPHA NUMERIC") } catch (error) { errors.descriptionSecondary = error.message; };
+        try { validatorAlphaNumeric((data.name?.[primaryLang]), TEXT.ERROR_NAME_ALPHANUMERIC) } catch (error) { errors.namePrimary = error.message; };
+        if (showOtherLang) try { validatorAlphaNumeric((data.name?.[secondaryLang]), TEXT.ERROR_NAME_ALPHANUMERIC) } catch (error) { errors.nameSecondary = error.message; };
+        try { validatorDate((data.dateStart), TEXT.ERROR_DATE) } catch (error) { errors.dateStart = error.message; };
+        try { validatorAlphaNumeric(data.company?.[primaryLang]), TEXT.ERROR_COMPANY } catch (error) { errors.companyPrimary = error.message; };
+        if (showOtherLang) try { validatorAlphaNumeric(data.company?.[secondaryLang]), TEXT.ERROR_COMPANY } catch (error) { errors.companySecondary = error.message; };
+        try { validatorURL((data.linkCompany)), TEXT.ERROR_URL } catch (error) { errors.linkCompany = error.message; };
+        try { validatorURL((data.linkProyect)), TEXT.ERROR_URL } catch (error) { errors.linkCompany = error.message; };
+        try { validatorLongText((data.description?.[primaryLang]), TEXT.ERROR_LONG_TEXT ) } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) try { validatorLongText((data.description?.[secondaryLang]), TEXT.ERROR_LONG_TEXT ) } catch (error) { errors.descriptionSecondary = error.message; };
         //FALTA VALIDAR SKILLS
         //FALTA VALIDAR CATEGORIES
         //FALTA VALIDAR RESPONSIBILITIES

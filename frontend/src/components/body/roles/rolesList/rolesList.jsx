@@ -106,11 +106,11 @@ function RoleList() {
             )}
             <section className="generalListSearchRowContainer">
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.NAME_OF_THE_ROLE)} */ value={searchName} onChange={(e) => setSearchName(e.target.value)} />
+                    <Inputs textH2={TEXT.NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m", TEXT.NAME_OF_THE_ROLE)} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
                     <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchNameFilter(searchName.trim()), setSearchPermissionFilter(""), setSearchPermission("")}}>{TEXT.SEARCH_NAME}</button>
                 </div>
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.PERMISSION} cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} type="text" placeHolder="FALTA TEXTO PLACEHOLDER" /* {TEXT.inputsText("m", TEXT.NAME_OF_THE_PERMISSION)} */ value={searchPermission} onChange={(e) => setSearchPermission(e.target.value)} />
+                    <Inputs textH2={TEXT.PERMISSION} cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} type="text" placeHolder={TEXT.inputsText("m", TEXT.NAME_OF_THE_PERMISSION)} value={searchPermission} onChange={(e) => setSearchPermission(e.target.value)} />
                     <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchPermissionFilter(searchPermission.trim()), setSearchNameFilter(""), setSearchName("")}}>{TEXT.SEARCH_BY_NAME_OF_THE_PERMISSION}</button>
                 </div>
             </section>

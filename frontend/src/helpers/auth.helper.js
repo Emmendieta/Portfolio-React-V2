@@ -37,7 +37,6 @@ const loginUser = async (email, password) => {
         const url = `${BACKEND_URL}/auth/login`;
         const payload = { email, password };
         const response = await fetch(url, OPTS_POST_WITH_BODY(payload));
-        console.log("AUTH FRONT", response);
         const data = await response.json();
         if(!response.ok || data.error) return { user: null, error: true, message: data?.error?.message || "Login Fail!" };
         return { user: data.response, error: false };

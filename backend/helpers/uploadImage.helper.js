@@ -42,7 +42,7 @@ export const uploadImage = async (fileBuffer, folderPath) => {
 export const deleteImageFromCloudinary = async(publicId) => {
     try {
         const result = await cloudinary.uploader.destroy(publicId, { resource_type: "image" });
-        console.log("Image deleted from Cloudinary: ", result);
+        console.warn("Image deleted from Cloudinary: ", result);
         return result;
     } catch (error) {
         console.error("Error deleting image from Cloudinary: ", error);
@@ -56,10 +56,10 @@ export const deleteFolderFromCloudinary = async(folderPath) => {
     try {
         await cloudinary.api.delete_resources_by_prefix(folderPath, { invalidate: true });
         await cloudinary.api.delete_folder(folderPath);
-        console.log("Folder deleted with the image from Cloudinary");
+        console.warn("Folder deleted with the image from Cloudinary");
         return true;
     } catch (error) {
-        console.log("Error: Deleting folder from Cloudinary: ", error);
+        console.warn("Error: Deleting folder from Cloudinary: ", error);
         throw error;
     }
 };

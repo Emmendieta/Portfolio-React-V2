@@ -11,7 +11,7 @@ function H2FieldsBool({ label, value, id = "", name, onChange, isReadyOnly: prop
             return (
                 <div className={clH2BoolCont} id={id}>
                     <h2 className={clH2FieldsBoolLabel}>{label}: </h2>
-                    <h2 className={clH2FieldsBoolValue}>{value ? "FALTA TEXTO YES": "FALTA TEXTO NO" }</h2>
+                    <h2 className={clH2FieldsBoolValue}>{value ? TEXT.YES: TEXT.NO}</h2>
                 </div>
             );
         } else {

@@ -106,11 +106,11 @@ function CountriesList() {
             )}
             <section className="generalListSearchRowContainer">
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m",TEXT.NAME_OF_THE_COUNTRY)} */ value={searchNameInput} onChange={(e) => setSearchNameInput(e.target.value)} />
+                    <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m",TEXT.NAME_OF_THE_COUNTRY)} value={searchNameInput} onChange={(e) => setSearchNameInput(e.target.value)} />
                     <button type="button" onClick={() => { setPage(1), setSearchNameFilter(searchNameInput.trim()), setSearchProvinceFilter(""), setSearchProvinceInput("") }} className="btn btn-outline-success">{TEXT.SEARCH_NAME}</button>
                 </div>
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.SEARCH_BY_PROVINCE} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m",TEXT.NAME_OF_THE_PROVINCE)} */ value={searchProvinceInput} onChange={(e) => setSearchProvinceInput(e.target.value)} />
+                    <Inputs textH2={TEXT.SEARCH_BY_PROVINCE} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeHolder={TEXT.inputsText("m",TEXT.NAME_OF_THE_PROVINCE)} value={searchProvinceInput} onChange={(e) => setSearchProvinceInput(e.target.value)} />
                     <button type="button" onClick={() => { setPage(1), setSearchProvinceFilter(searchProvinceInput.trim()), setSearchNameFilter(""), setSearchNameInput("") }} className="btn btn-outline-success">{TEXT.SEARCH_BY_PROVINCE}</button>
                 </div>
             </section>

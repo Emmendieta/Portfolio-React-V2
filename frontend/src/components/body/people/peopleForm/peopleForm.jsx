@@ -58,8 +58,8 @@ function PeopleForm() {
             if (!errors.address) errors.address = {};
             errors.address.floor = error.message;
         };
-        try { validatorLongText(data.aboutMe?.[primaryLang], "FALTA TEXTO ERROR TEXTO LARGO"); } catch(error) { errors.aboutMePrimary = error.message; };
-        if(showOtherLang) { try { validatorLongText(data.aboutMe?.[secondaryLang], "FALTA TEXTO ERROR TEXTO LARGO"); } catch(error) { error.aboutMeSecondary = error.message; }; };
+        try { validatorLongText(data.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch(error) { errors.aboutMePrimary = error.message; };
+        if(showOtherLang) { try { validatorLongText(data.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch(error) { error.aboutMeSecondary = error.message; }; };
         //FALTA VALIDAR CONTINENTES; COUNTRY; PROVINCE; CITY y LEGAL ADDRESS
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);

@@ -14,7 +14,6 @@ class AuthController {
             sameSite: "lax", // O "none" si usás HTTPS y querés compartir entre dominios ⚠️ Si usás sameSite: "none", secure debe estar en true y necesitás usar HTTPS. Para desarrollo local, mejor usar sameSite: "lax" y secure: false.
             maxAge: 24 * 60 * 60 * 1000
         };
-        console.log("USER CONTROLLER LOGIN", user)
         res.cookie("tokenPortfolioEmm", req.user.token, opts);
         const payload = jwt.decode(user.token);
         const safeUser = {
@@ -25,7 +24,6 @@ class AuthController {
             active: user.active
             
         };
-        console.log("SAFE USER CONTROLLER", safeUser)
         return res.json200(safeUser, "Logged in Success!");
     };
 

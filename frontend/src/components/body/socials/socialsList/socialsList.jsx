@@ -73,7 +73,7 @@ function SocialsList() {
             startLoading();
             const result = await fetchDeleteSocialById(id);
             if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
-            await successSweet(`FALTA TEXTO SOCIAL DELETED!`);
+            await successSweet(`${TEXT.SOCIAL} ${TEXT.DELETED}!`);
             setSocials(prev => prev.filter(social => social._id !== id));
         } catch (error) {
             console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);

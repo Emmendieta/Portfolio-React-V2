@@ -5,13 +5,13 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { Link, useNavigate } from "react-router-dom";
-import Uls from "../../generalFields/Uls/Uls";
 import EducationsCard from "../educationsCard/educationsCard";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import { fetchDeleteEducationById, fetchGetAllEducationsPopulate } from "../educationsLogic";
 import CarouselGeneric from "../../generalFields/carouselGeneric/carouselGeneric";
-import "./educationsList.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "./educationsList.css";
+import H1Fields from "../../generalFields/h1Fields/h1fields";
 
 function EduactionsList() {
     const { user } = useContext(UserContext);
@@ -109,36 +109,12 @@ function EduactionsList() {
         }
     };
 
-    // SIN EL CAROUSEL:
-
-    /*return (
-        <div className="eduListDivCont">
-            <section className="eduListSectAddCont">
-                <Link to={"/educations/form/new"}>
-                    <button type="button" className="btn btn-outline-success" id="btnAddEdu">{`${TEXT.NEW_F} ${TEXT.EDUCATION}`}</button>
-                </Link>
-            </section>
-            VER SI PONGO BUSCADORES (HAY QUE EDITAR EL METODO DEL FETCH)
-            <section>
-                <div>
-                    {educations.length > 0 ? (
-                        <Uls list={educations} classNameUl="" classnameli="" valueH1Field={`${TEXT.EDUCATIONS_LIST}`} language={language} renderItem={(education) => (
-                            <EducationsCard key={education._id} education={education} onDelete={handleDelete} />
-                        )} />
-                    ): (
-                        <div className="genListErrCont">
-                            <H2Fields value={`${TEXT.EDUCATIONS_NOT_FOUND}!`} className="genListErr" classNameH2="genListErrH2" language={language} />
-                            <img src="/img/not-found.jpg"/>
-                        </div>
-                    )}
-                </div>
-            </section>
-        </div>
-    );*/
-
     // CON EL CAROUSEL:
     return (
         <div className="eduListDivCont">
+            <section className="eduListTitleCont">
+                <H1Fields value={`${TEXT.EDUCATIONS}:`} language={language} clH1Cont="eduListH1Cont" clH1Text="eduListH1Text" />
+            </section>
             {canCreate && (
                 <section className="eduListSectAddCont">
                     <Link to={"/educations/form/new"}>

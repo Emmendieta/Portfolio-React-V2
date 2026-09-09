@@ -114,7 +114,6 @@ class SkillsController {
 
     updateSkillsOrder = async (req, res) => {
         const session = await mongoose.startSession();
-        console.log("INGRESO ACA")
         session.startTransaction();
         try {
             const data = req.body;

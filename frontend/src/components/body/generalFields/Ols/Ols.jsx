@@ -34,8 +34,8 @@ function Ols( { items = [], setItems, renderItem, getId= (item) => item._id, ord
                         {renderItem(item, index)}
                     </div>
                     <div className={clButtonsCont}>
-                        <button type="button" onClick={() => hanldeMoveUp(index)} disabled={index === 0} title="FLATA TEXTO UP" className={`btn btn-outline-success ${clButtons}`}>↑</button>
-                        <button type="button" onClick={() => handleMoveDown(index)} disabled={ index === sortedItems.length - 1} title="FALTA TEXT DOWN" className={`btn btn-outline-danger ${clButtons}`}>↓</button>
+                        <button type="button" onClick={() => hanldeMoveUp(index)} disabled={index === 0} title={TEXT.MOVE_UP} className={`btn btn-outline-success ${clButtons}`}>↑</button>
+                        <button type="button" onClick={() => handleMoveDown(index)} disabled={ index === sortedItems.length - 1} title={TEXT.MOVE_DOWN} className={`btn btn-outline-danger ${clButtons}`}>↓</button>
                     </div>
                 </li>
             ))}

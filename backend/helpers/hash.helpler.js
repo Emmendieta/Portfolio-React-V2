@@ -3,7 +3,6 @@ import crypto from "crypto";
 
 const createHash = (password) => hashSync(password, genSaltSync(15));
 const compareHash = (password, passwordDB) => {
-    console.log("COMPARE HASH")
     return compareSync(password, passwordDB);
 };
 

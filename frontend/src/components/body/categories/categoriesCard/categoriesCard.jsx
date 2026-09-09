@@ -57,9 +57,6 @@ function CategoriesCard({ category, onDelete, onClick, isSelected, isDraggable }
         <div key={category._id} className={`catCard ${visible ? "fade-in" : ""} ${isSelected ? "catCardSelected": ""}`} onClick={() => onClick(category._id)}>
             <section className="catCardBodySect">
                 <div className="catCardImagesSect">
-                    {/*  <ImagesManager images={category.images ? category.images: []} setImages={setImages} genderInput={"f"} textInput={"FALTA TEXTO IMAGENES"} editable={false}
-                        cThumbCont="catImgsCont" cThumbAddCont="catImgsAddCont" cThumbInput="catImgsInput" cThumbPrevContainer="catImgsPrevCont" labelH2="" valueH2="" cThumbPrevImg="catImgsPrev"
-                        cThumbImgContainer="catImgsImgCont" cThumbImgBody="catImgsBody" cThumbImgBodyCont = "catImgsBodyCont" cImgDisplay="catImgsDisplay" /> */}
                     <Carousel type="category" id={category._id} images={category.images?.map(img => img.url) || []} width={75} height={75} showNextPrev={false}
                         clCont="" clImgCont="" clImg="catCardImg" clDivImgCont="" clBtnPrev="" clBtnNext="" />
                 </div>

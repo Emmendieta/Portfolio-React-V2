@@ -46,6 +46,8 @@ export const MORE_ABOUT_ME = "Más acerca de mí...";
 export const LANGUAGES = "Lenguajes";
 export const FORBIDDEN = "¡Prohibido!";
 export const UPDATE_ORDER = "Actualizar Orden";
+export const MOVE_UP = "Mover hacia arriba";
+export const MOVE_DOWN = "Mover hacia abajo";
 
 /* ------------ SEARCHS ------------ */
 
@@ -147,6 +149,8 @@ export const DELETE_PERMISSION = "Eliminar Permiso";
 export const NO_PERMISSION = "No se encontraron Permisos";
 export const PERMISSIONS_AVAILABLES = "Permisos disponibles";
 export const PERMISSIONS_ASSIGNED = "Permisos asignados";
+export const ERROR_NO_PERMISSION_PROVIDED = "No se otorgaron permisos";
+export const NAME_OF_THE_PERMISSION = "Nombre del Permiso";
 
 /* ------------ PROYECTS ------------ */
 
@@ -179,6 +183,7 @@ export const DELETE_ROLE = "ELiminar Rol";
 export const ROLES_NOT_FOUND = "No se encontraron Roles";
 export const ROLES_AVAILABLES = "Roles disponibles";
 export const ROLES_ASSIGNED = "Roles asignados";
+export const NAME_OF_THE_ROLE = "Nombre del Rol";
 
 /* ------------ SKILLS ------------ */
 
@@ -207,6 +212,7 @@ export const DELETE_SOCIAL = "Eliminar Red social";
 export const DELETE_CONTACT = "Eliminar Contacto";
 export const SOCIALS_NOT_FOUND = "No se encontraron Redes sociales";
 export const CONTACTS_NOT_FOUND = "No se encontraron Contactos";
+export const ERROR_NO_TYPE_SOCIAL = "Error: No se pudo recuperar el Tipo de la Red Social";
 
 /* ------------ USERS ------------ */
 
@@ -217,6 +223,8 @@ export const EMAIL = "Correo Electrónico";
 export const USERS_LIST = "Lista de Usuarios";
 export const DELETE_USER = "Eliminar Usuario";
 export const USERS_NOT_FOUND = "No se encontraron Usuarios";
+export const USER_NOT_LOGGED = "Usuario no logueado";
+export const USER_NAME_OF_THE_USER = "Nombre de Usuario";
 
 /* ------------ WORKS ------------ */
 
@@ -250,6 +258,7 @@ export const NO_PROVINCE = "No se encontraron Provincias";
 export const SELECT_A_PROVINCE = "Seleccione una Provincia";
 export const NO_PROVINCE_ASSOCIATED = "No se ha asociado ninguna Provincia";
 export const PROVINCES_ASSOCIATED = "Provincias asociadas";
+export const NAME_OF_THE_PROVINCE = "nombre de la Provincia";
 
 /* ------------ COUNTRIES ------------ */
 
@@ -277,18 +286,37 @@ export const NAME_OF_THE_CONTINENT = "nombre del Continente";
 
 export const LOGIN = "Iniciar Sesión";
 export const SIGN_OUT = "Cerrar Sesión";
+export const LOGIN_SUCCESS = "Se inició sesión correctamente";
 export const SIGN_OUT_SUCCESS = "Cierre de sesión exitosa!";
 export const ERROR_SIGN_OUT = "Error: No se pudo procesar el cierre de sesión!";
 
 /* ------------ SWEET ALERT ------------ */
 
 export const ARE_YOU_SURE = "¿Estás seguro?";
+export const SUCCESS = "Exitoso";
 
 /* ------------ ERRORS ------------ */
 
 export const TEXT_ERROR_OOPS = `Ooooppsss! Un error ocurrrio durante el proceso!`;
 export const ERROR_MISSING_ID = "No se encontró el Id!";
 export const ERROR_ONLY_WORD_MAX_MIN = "Solo se aceptan palabras con espacios simples y que tengan un tamaño entre 2 y 50 letras!";
+export const ERROR_ALL_FIELDS = "Se necesitan completar todos los campos";
+export const ERROR_LOGIN_FAIL = "Algo fallo en el logueo";
+export const ERROR_NOT_FOUND = "No se encontró lo que estabas buscando";
+export const NO_ENOUGH_PRIVILEGES = "No tienes los privilegios necesarios";
+export const ERROR_CHECKING_PRIVILEGES = "Error cuando se verificaban los privilegios";
+export const ERROR_JOB_TITLE = "Error: El cargo solo acepta valores alfanuméricos";
+export const ERROR_DATE = "Error: Solo se aceptan valores de fechas o se ingreso una fecha inválida";
+export const ERROR_COMPANY = "Error: El nombre de la Compañia solo acepta valores alfanuméricos";
+export const ERROR_URL = "Error: Se ingreso una URL inválida";
+export const ERROR_LONG_TEXT = "Error: El texto tiene que ser superior a dos letras";
+export const ERROR_INSTITUTION_NAME = "Error: El nombre de la Institución acepta solo valores alfanuméricos";
+export const ERROR_TITLE = "Error: El Título solo aceptan palabras";
+export const ERROR_CERTIFICATE = "Error: El Certificado solo acepta valores alfa numéricos";
+export const ERROR_NAME = "Error: El nombre solo aceptas palabras y el largo máximo es 50 y mínimo 2";
+export const ERROR_NAME_ALPHANUMERIC = "Error: El nombre solo acepta valores alfanuméricos";
+export const ERROR_TYPE = "Error: El Tipo no es válido";
+export const ERROR_PERCENT = "Error: El Porcentaje tiene que ser superior a 0 e inferior o igual a 100"
 
 /* ------------ PLACEHOLDERS ------------ */
 

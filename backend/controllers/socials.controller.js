@@ -43,10 +43,6 @@ class SocialsController {
     getSocialsByFilter = async (req, res) => {
         try {
             let filter = req.query || {};
-                    console.log("========== GET SOCIALS BY FILTER ==========");
-        console.log("URL:", req.originalUrl);
-        console.log("QUERY:", req.query);
-        console.log("typeSocial:", req.query.typeSocial);
             filter = Object.assign({}, filter);
             if(Object.keys(filter).length === 0) throw new Error("Error: Missing filter/s to get the socials!");
             for(const key in filter) {
@@ -93,7 +89,6 @@ class SocialsController {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            console.log("INGRESO ACA")
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Social!");
             if(!isValidObjectId(id)) throw new Error("Error: Invalid Id of the social network!");

@@ -5,7 +5,6 @@ export const fetchCreateWorkWithImages = async (data) => {
         if (!data) throw new Error("Error: Missing the information to create the work!");
         const url = "works";
         const formData = new FormData();
-        console.log("WORK LOGIC CREATE", data)
         //Simple fields:
         Object.keys(data).forEach((key) => { if (key !== "images" && typeof data[key] !== "object") formData.append(key, data[key]); });
         //Objects -> Stringify:

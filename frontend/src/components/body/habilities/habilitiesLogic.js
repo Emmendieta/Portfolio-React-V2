@@ -27,9 +27,7 @@ export const fetchGetAllHabilitiesPaginate = async ({ page = 1, limit = 10, sear
         const filter = {};
         if(searchName) filter[`name.${language}`] = { $regex: searchName, $options: "i" };
         const url = 'habilities';
-        const data = await getDataPaginate(url, { page, limit, filter, sort: { [`name.${language}`]: 1 } });
-        console.log("LOGIC ", data)
-        if(!data) throw new Error("Error in fetch get all habilities paginate or no data available!");
+        const data = await getDataPaginate(url, { page, limit, filter, sort: { [`name.${language}`]: 1 } });        if(!data) throw new Error("Error in fetch get all habilities paginate or no data available!");
         return data;
     } catch (error) {
         throw error;

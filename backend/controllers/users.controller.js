@@ -140,7 +140,6 @@ class UsersController {
             };
             const users = await this.uService.readPaginateAggregate({ page: verifyPage, limit: verifyLimit, pipeline, sort: { user: 1 } });
             if (!users || users.docs.length === 0) throw new Error("Error: Users not found!");
-            console.log("USERS CONTROLLER", users.docs)
             return res.json200(users);
         } catch (error) {
             return res.json500(error.message);

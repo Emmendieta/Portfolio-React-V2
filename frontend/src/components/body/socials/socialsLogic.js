@@ -48,7 +48,6 @@ export const fetchGetSocialById = async (id) => {
         if(!id) throw new Error("Error: Missing the Id of the social network!");
         const url = `socials/${id}`;
         const dataResponse = await getDataById(url);
-        console.log("LOGIC", dataResponse.response)
         if(!dataResponse) throw new Error("Error: Couldn't get the social network by Id!");
         return dataResponse;
     } catch (error) {

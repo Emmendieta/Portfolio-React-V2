@@ -115,7 +115,7 @@ function HabilitiesList() {
             <section>
                 <div>
                     <Inputs textH2={TEXT.NAME} type="text" cnContainer={""} cNSecTop={""} cnSectBottom={""}
-                        placeHolder={"FALTA TEXTO PLACEHOLDER"} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
+                        placeHolder={TEXT.inputsTEXT("m", TEXT.NAME_OF_THE_HABILITY)} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
                     <button type="button" onClick={handleSearchName} className="btn btn-outline-success">{TEXT.SEARCH_NAME}</button>
                 </div>
             </section>

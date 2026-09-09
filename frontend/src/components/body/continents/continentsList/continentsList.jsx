@@ -108,11 +108,11 @@ function ContinentsList() {
             )}
             <section className="generalListSearchRowContainer">
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.NAME_OF_THE_CONTINENT)} */ value={searchNameInput} onChange={(e) => setSearchNameInput(e.target.value)} />
+                    <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder={TEXT.inputsText("m", TEXT.NAME_OF_THE_CONTINENT)} value={searchNameInput} onChange={(e) => setSearchNameInput(e.target.value)} />
                     <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchNameFilter(searchNameInput.trim()), setSearchCountryFilter(""), setSearchCountryInput("") }}>{TEXT.SEARCH_NAME}</button>
                 </div>
                 <div className="generalListSearchRow">
-                    <Inputs textH2={TEXT.SEARCH_BY_COUNTRY} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder="FALTA TEXTO PLACEHOLDER"/* {TEXT.inputsText("m", TEXT.NAME_OF_THE_COUNTRY)} */ value={searchCountryInput} onChange={(e) => setSearchCountryInput(e.target.value)} />
+                    <Inputs textH2={TEXT.SEARCH_BY_COUNTRY} type="text" cNContainer={"generalListInputsContainerRow"} cNSecTop={"generalListInputsTopRow"} cNSectBottom={"generalListInputsBottomRow"} placeholder={TEXT.inputsText("m", TEXT.NAME_OF_THE_COUNTRY)} value={searchCountryInput} onChange={(e) => setSearchCountryInput(e.target.value)} />
                     <button type="button" className="btn btn-outline-success" onClick={() => { setPage(1), setSearchCountryFilter(searchCountryInput.trim()), setSearchNameFilter(""), setSearchNameInput("") }}>{TEXT.SEARCH_BY_COUNTRY}</button>
                 </div>
             </section>

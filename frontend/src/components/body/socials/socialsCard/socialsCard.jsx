@@ -20,7 +20,7 @@ function SocialsCard({ social, onDelete }) {
         { value: "Social", label: { es: "Red Social", en: "Social Network" } },
         { value: "Contact", label: { es: "Contacto", en: "Contact" } }
     ];
-    const socialTypeValue = socialsTranslations[social.typeSocial?.[language] || "FALTA TEXTO ERROR NO SE PUDO RECUPERAR EL TIPO DE SOCIAL"];
+    const socialTypeValue = socialsTranslations[social.typeSocial?.[language] || TEXT.ERROR_NO_TYPE_SOCIAL];
     const [canEdit, setCanEdit] = useState(false);
     const [canDelete, setCanDelete] = useState(false);
     const { verifyPrivileges } = userVerifyPrivileges();
@@ -46,7 +46,7 @@ function SocialsCard({ social, onDelete }) {
     return (
         <div key={social._id} className="socialCard">
             <section className="socialCardCarouselCont">
-                <Carousel type="social" id={social._id} images={social.images?.map(img => img.url) || []} width={75} height={75} showNextPrev={false}
+                <Carousel type="social" id={social._id} images={social.images?.map(img => img.url) || []} width={60} height={60} showNextPrev={false}
                     clCont="" clImgCont="" clImg="socialCardImg" clDivImgCont="" clBtnPrev="" clBtnNext="" />
             </section>
             <section className="socialCardBodyCont">

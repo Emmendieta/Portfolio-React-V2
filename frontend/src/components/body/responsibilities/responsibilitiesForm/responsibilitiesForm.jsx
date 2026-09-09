@@ -32,8 +32,8 @@ function ResponsibilitiesForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorName(data.name?.[primaryLang], "FALTA TEXTO ERROR ONLY WORDS MAX MIN") } catch (error) { errors.primaryName = error.message; };
-        if(showOtherLang) { try { validatorName(data.name?.[secondaryLang], "FALTA TEXTO ERROR ONLY WORDS MAX MIN") } catch (error) { errors.secondaryName = error.message; } };
+        try { validatorName(data.name?.[primaryLang], TEXT.ERROR_NAME) } catch (error) { errors.primaryName = error.message; };
+        if(showOtherLang) { try { validatorName(data.name?.[secondaryLang], TEXT.ERROR_NAME) } catch (error) { errors.secondaryName = error.message; } };
         return errors;
     }, [ primaryLang, secondaryLang, showOtherLang, TEXT]);
 

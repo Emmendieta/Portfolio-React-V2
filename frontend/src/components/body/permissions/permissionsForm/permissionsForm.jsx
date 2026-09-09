@@ -37,8 +37,8 @@ function PermissionsForm() {
         if (showOtherLang) {
             try { validatorName(data.name?.[secondaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.nameSecondary = error.message; };
         };
-        try { validatorLongText(data.description?.[primaryLang], "FALTA TEXTO ERROR LONG TEXT") } catch (error) { errors.descriptionPrimary = error.message; };
-        if(showOtherLang){ try { validatorLongText(data.description?.[secondaryLang], "FALTA TEXTO ERROR LONG");} catch(error) { errors.descriptionSecondary = error.message; }};
+        try { validatorLongText(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT ) } catch (error) { errors.descriptionPrimary = error.message; };
+        if(showOtherLang){ try { validatorLongText(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT );} catch(error) { errors.descriptionSecondary = error.message; }};
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 

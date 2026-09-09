@@ -181,9 +181,7 @@ export const getDataPaginate = async (baseUrl, options) => {
             for (const [key, value] of Object.entries(options.sort)) { params.append(`sort[${key}]`, JSON.stringify(value)); };
         }
         let url = `${BACKEND_URL}/${baseUrl}/pag/paginate?${params.toString()}`;
-        console.log("URL CRUD", url);
         const response = await fetch(url, OPTS_GET);
-        console.log("CRUD RESPONSE", response);
         const data = await response.json();
         if (!response.ok) {
             const error = new Error(data?.message || "Request Error");

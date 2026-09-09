@@ -12,7 +12,6 @@ export const fetchCreateUser = async (data) => {
 
 export const fetchCreateUserWithImages = async (data) => {
     try {
-        console.log("USER LOGIC", data);
         if(!data) throw new Error("Error: Couldn't get the data to create the User!");
         const url = "users";
         const formData = new FormData();
@@ -121,7 +120,6 @@ export const fetchUpdateUserByIdWithImages = async (id, data) => {
         if(data.person.countries?._id) formData.append("countries", data.person.countries?._id);
         if(data.person.provinces?._id) formData.append("provinces", data.person.provinces?._id);
         if(data.person.cities?._id) formData.append("cities", data.person.cities?._id);
-        console.log("LOGIC", data.person);
         //Images:
         if(data.person.images && data.person.images.length > 0) {
             //Imagenes existentes:

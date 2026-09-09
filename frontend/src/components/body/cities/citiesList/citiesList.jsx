@@ -121,12 +121,12 @@ function CitiesList() {
             <section>
                 <div>
                     <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"citiesListContInput"} cNSecTop={"citiesListTopInput"} cnSectBottom={"citiesListBottonInput"}
-                        placeHolder={"FALTA TEXTO PLACEHOLDER"} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
+                        placeHolder={TEXT.inputsText("m", TEXT.NAME_OF_THE_CITY)} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
                     <button type="button" onClick={handleSearchName} className="btn btn-outline-success">{TEXT.SEARCH_NAME}</button>
                 </div>
                 <div>
                     <Inputs textH2={TEXT.SEARCH_ZIPCODE} type="text" cNContainer={"citiesListContInput"} cNSecTop={"citiesListTopInput"} cnSectBottom={"citiesListBottonInput"}
-                        placeHolder={"FALTA TEXTO PLACEHOLDER"} value={searchZipCode} onChange={(e) => setSearchZipCode(e.target.value)} />
+                        placeHolder={TEXT.inputsText("m", TEXT.ZIP_CODE)} value={searchZipCode} onChange={(e) => setSearchZipCode(e.target.value)} />
                     <button type="button" onClick={handleSearchZipCode} className="btn btn-outline-success">{TEXT.SEARCH_ZIPCODE}</button>
                 </div>
             </section>

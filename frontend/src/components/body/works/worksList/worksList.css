@@ -7,6 +7,25 @@
     padding: 15px 0;
 }
 
+/* --------------- TITLE --------------- */
+
+.workListTitleCont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.workListH1Text {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+    color: rgba(240, 248, 255, 0.746);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
 .workListSectAddCont {
     display: flex;
     justify-content: flex-end;

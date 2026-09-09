@@ -47,14 +47,6 @@ export function validatorName(value, textErr) {
     return true;
 };
 
-/* export function isValidName(value) {
-    if (typeof value !== "string") return false;
-    const trimmed = value.trim();
-    if (trimmed.length <= 2 || trimmed.length >= 50) return false;
-    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$/;
-    return regex.test(trimmed);
-}; */
-
 //ZIP CODE:
 
 export function validatorZipCode(value, textErr) {
@@ -71,15 +63,6 @@ export function validatorZipCode(value, textErr) {
     }
 };
 
-/* export function isValidZipCode(value) {
-    if (typeof value !== "string") return false;
-    const trimmed = value.trim();
-    if (trimmed.length < 3 || trimmed.length > 12) return false;
-    const regex = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,11}[A-Za-z0-9]$/;
-    return regex.test(trimmed);
-}; */
-
-
 //KEY:
 
 export function validatorKey(value, textErr) {
@@ -90,40 +73,7 @@ export function validatorKey(value, textErr) {
     return true;
 };
 
-/* export function isValidKey(value) {
-    if(!value || typeof value !== "string") return false;
-    const key = value.toLowerCase();
-    const pattern = /^(create|read|update|delete)_[a-z]+(_[a-z]+)*$/;
-    return pattern.test(key);
-}; */
-
 //DATE
-
-/*
-export function isValidDate(value, options = {}) {
-    if (!value) return false;
-    const {
-        allowFuture = false,
-        maxYearsAgo = 120,
-    } = options;
-    let date;
-    if (value instanceof Date) {  date = value; } 
-    else if (typeof value === "string") {
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-        date = new Date(value + "T00:00:00");
-    } else { return false; };
-    if (isNaN(date.getTime())) return false;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (!allowFuture && date > today) return false;
-    if (maxYearsAgo) {
-        const minDate = new Date();
-        minDate.setFullYear(today.getFullYear() - maxYearsAgo);
-        if (date < minDate) return false;
-    };
-    return true;
-};
-*/
 
 export function validatorDate(value, options = {}, textErDateEmpty, textErFormat, textErInvalid, textErFuture, textErOld) {
     if (!value) throw new Error(textErDateEmpty);
@@ -177,26 +127,6 @@ export function validatorCUILCUIT(value, textErr) {
     if (digit !== calculateDigit) throw new Error(textErr);
     return true;
 };
-/*
-export function isValidCUILCUIT(value) {
-    if (value === null || value === undefined) return false;
-    const str = String(value);
-    if (!/^\d{11}$/.test(str)) return false;
-    const pre = Number(str.slice(0, 2));
-    const digit = Number(str.slice(10));
-    const preDigitsValid = [20, 23, 27, 30, 33, 34];
-    if (!preDigitsValid.includes(pre)) return false;
-    const factors = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
-    let plus = 0;
-    for (let i = 0; i < factors.length; i++) {
-        plus += Number(str[i]) * factors[i];
-    };
-    let left = plus % 11;
-    let calculateDigit = 11 - left;
-    if (calculateDigit === 11) calculateDigit = 0;
-    if (calculateDigit === 10) calculateDigit = 9;
-    return digit === calculateDigit;
-};*/
 
 //DNI CUIL CUIT:
 
@@ -218,13 +148,6 @@ export function validatorPhone(value, textErr) {
     return true;
 };
 
-/*export function isValidPhone(value) {
-    if (value === null || value === undefined) return false;
-    const str = String(value).trim();
-    if (!/^\d+$/.test(str)) return false;
-    return /^[1-9]\d{7,14}$/.test(str);
-};*/
-
 //DNI:
 
 export function validatorDNI(value, textErr) {
@@ -234,13 +157,6 @@ export function validatorDNI(value, textErr) {
     if (numberValue <= 100000 || numberValue >= 99999999) throw new Error(textErr);
     return true;
 };
-
-/*export function isValidDNI(value) {
-    const numberValue = Number(value);
-    if (isNaN(numberValue)) return false;
-    if (numberValue < 100000 || numberValue > 99999999) return false;
-    return true;
-};*/
 
 //ALPHA NUMERIC:
 
@@ -253,14 +169,6 @@ export function validatorAlphaNumeric(value, textErr) {
     return true;
 };
 
-/*export function isValidAlphaNumeric(value) {
-    if(typeof value !== "string") return false;
-    const trimmed = value.trim();
-    if(trimmed.length <= 2 || trimmed.length >= 50) return false;
-    const regex = /^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]+)*$/;
-    return regex.test(trimmed);
-};*/
-
 //NUMBER:
 
 export function validatorNumber(value, textErr) {
@@ -270,12 +178,15 @@ export function validatorNumber(value, textErr) {
     return true;
 };
 
-/*export function isValidNumber(value) {
+//PERCENT:
+
+export function validatorPercent(value, textErr) {
     const numberValue = Number(value);
-    if (isNaN(numberValue)) return false;
-    if (numberValue <= 0) return false;
+    if(isNaN(numberValue)) throw new Error(textErr);
+    if(numberValue < 0 || numberValue > 100) throw new Error(textErr);
     return true;
-};*/
+};
+
 
 //USERS:
 
@@ -285,13 +196,6 @@ export function validatorUser(value, textErr) {
     const trimmed = value.trim();
     if(!/^[a-z0-9]+$/.test(trimmed)) throw new Error(textErr)
 };
-
-/* export function isValidUser(value) {
-    if(typeof value !== "string") return false;
-    if(/\s/.test(value)) return false;
-    const trimmed = value.trim();
-    return /^[a-z0-9]+$/.test(trimmed);
-}; */
 
 //URL:
 
@@ -305,6 +209,8 @@ export function validatorURL(value, textErr) {
     } catch (error) { throw error; }  
     return true;   
 };
+
+//LONG TEXT:
 
 export function validatorLongText(value, textErr) {
     if(typeof value !== "string") throw new Error(textErr);

@@ -31,21 +31,21 @@ function Login() {
         e.preventDefault();
         try {
             if (!email || !password) {
-                await errorSweet("FALTA TEXTO ERROR ALL FIELDS ARE NEEDED!");
+                await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_ALL_FIELDS}`);
                 return;
             };
             const { user, error, message } = await loginUser(email, password);
             if (error || !user) {
-                await errorSweet("FALTA TEXTO ERROR LOGIN FAIL");
+                await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_LOGIN_FAIL}`);
                 return;
             };
             const { user: freshUser } = await getCurrentUser();
             setUser(freshUser);
-            await successSweet("FALTA TEXTO LOGIN SUCCESS");
+            await successSweet(`${TEXT.LOGIN_SUCCESS}!`);
             navigate("/");
         } catch (error) {
-            console.error("FALTA TEXTO ERROR", error.message);
-            await errorSweet("FALTA TEXTO ERROR, OOPS");
+            console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+            await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
         }
     };
 
@@ -55,30 +55,6 @@ function Login() {
             handleLogin(e);
         };
     };
-
-    /*
-        return (
-        <div className="loginDivCont">
-            <section className="loginSectCont">
-                <Forms id="loginForm" idForm="" textTitle={`${TEXT.LOGIN}:`} onSubmit={handleLogin} buttons={[
-                    { text: TEXT.HOME, style: "success", onClick: () => navigate("/"), idButton: "btnHomeForm" },
-                    { text: TEXT.LOGIN, style: "success", type: "submit", idButton: "btnLoginForm" }  ]} 
-                >
-                    <div className="loginFormInputsCont">
-                        <Inputs textH2={TEXT.EMAIL} type="email" placeHolder={"FALTA TEXTO PLACEHOLDER EMAIL"} value={email} onChange={(e) => setEmail(e.target.value)} onKeyPress={handleKeyPress} 
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.PASSWORD} type="password" placeHolder={"FALTA TEXTO PLACEHOLDER PASSWORD"} value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeyPress} 
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                    </div>
-                    <div className="loginFormBtnCont">
-                        <a className="btn btn-outline-danger" href="/">{TEXT.HOME}</a>
-                        <button type="submit" className="btn btn-outline-success" onSubmit={handleLogin}>{TEXT.LOGIN}</button>
-                    </div>
-                </Forms>
-            </section>
-        </div>
-    );
-    */
 
     return (
         <div className="loginDivCont">

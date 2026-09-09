@@ -23,7 +23,6 @@ export const fetchCreateProyectWithImages = async (data) => {
             formData.append("categories", JSON.stringify(categoriesIds));
         };
         //Responsibilities:
-        console.log("LOGIC", data.responsibilities);
         if (Array.isArray(data.responsibilities)) {
             const responsibilitiesIds = data.responsibilities.map(responsibility => responsibility._id);
             formData.append("responsibilities", JSON.stringify(responsibilitiesIds));
@@ -138,7 +137,6 @@ export const fetchUpdateProyectByIdWithImages = async (id, data) => {
         if (data.images && data.images.length > 0) {
             data.images.forEach(img => { if (img.file instanceof File) formData.append("images", img.file); });
         };
-        console.log("IMAGES", data.images);
         const dataResponse = await updateDataByIdWithImages(url, formData);
         if (!dataResponse) throw new Error("Error in fetch update proyect with images or no data available!");
         return dataResponse;

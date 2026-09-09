@@ -45,6 +45,8 @@ export const PREV_ELEMENT = "Previus Element";
 export const MORE_ABOUT_ME = "More about me...";
 export const FORBIDDEN = "Forbidden!";
 export const UPDATE_ORDER = "Update Order";
+export const MOVE_UP = "Move up";
+export const MOVE_DOWN = "Move down";
 
 /* ------------ SEARCHS ------------ */
 
@@ -147,6 +149,8 @@ export const DELETE_PERMISSION = "Delete Permission";
 export const NO_PERMISSION = "Permissions not found";
 export const PERMISSIONS_AVAILABLES = "Permissions available";
 export const PERMISSIONS_ASSIGNED = "Permissions assigned";
+export const ERROR_NO_PERMISSION_PROVIDED = "No permission was provided";
+export const NAME_OF_THE_PERMISSION = "Name of the Permission";
 
 /* ------------ PROYECTS ------------ */
 
@@ -169,6 +173,7 @@ export const DELETE_RESPONSIBILITY = "Delete the Responsibility";
 export const RESPONSIBILITIES_NOT_FOUND = "Responsibilities not found";
 export const RESPONSIBILITIES_AVAILABLE = "Responsibilities availables";
 export const RESPONSIBILITIES_ASSIGNED = "Responsibilities assigned";
+export const RESPONSIBILITIES_NAME = "responsibility name";
 
 /* ------------ ROLES ------------ */
 
@@ -179,6 +184,7 @@ export const DELETE_ROLE = "ELiminar Rol";
 export const ROLES_NOT_FOUND = "No se encontraron Roles";
 export const ROLES_AVAILABLES = "Roles disponibles";
 export const ROLES_ASSIGNED = "Roles asignados";
+export const NAME_OF_THE_ROLE = "Name of the Role";
 
 /* ------------ SKILLS ------------ */
 
@@ -207,6 +213,7 @@ export const DELETE_SOCIAL = "Delete Social network";
 export const DELETE_CONTACT = "Delete Contact";
 export const SOCIALS_NOT_FOUND = "Socials networks not found";
 export const CONTACTS_NOT_FOUND = "Contacts not found";
+export const ERROR_NO_TYPE_SOCIAL ="Couldn't get the Type of the Social Network";
 
 /* ------------ USERS ------------ */
 
@@ -217,6 +224,8 @@ export const EMAIL = "Email";
 export const USERS_LIST = "Users List";
 export const DELETE_USER = "Delete User";
 export const USERS_NOT_FOUND = "Users not found";
+export const USER_NOT_LOGGED = "User not logged";
+export const USER_NAME_OF_THE_USER = "User Name";
 
 /* ------------ WORKS ------------ */
 
@@ -250,6 +259,7 @@ export const NO_PROVINCE = "Provinces not found";
 export const SELECT_A_PROVINCE = "Select a Province";
 export const NO_PROVINCE_ASSOCIATED = "No Provinces has been associated";
 export const PROVINCES_ASSOCIATED = "Provinces associated";
+export const NAME_OF_THE_PROVINCE = "name of the Province";
 
 /* ------------ COUNTRIES ------------ */
 
@@ -276,18 +286,37 @@ export const NAME_OF_THE_CONTINENT = "name of the Continent";
 
 export const LOGIN = "Login";
 export const SIGN_OUT = "Sign out";
+export const LOGIN_SUCCESS = "Login successfully";
 export const SIGN_OUT_SUCCESS = "Sign out successfully!";
 export const ERROR_SIGN_OUT = "Error: Couldn't Sign out!";
 
 /* ------------ SWEET ALERT ------------ */
 
 export const ARE_YOU_SURE = "Are you sure?";
+export const SUCCESS = "Success";
 
 /* ------------ ERRORS ------------ */
 
 export const TEXT_ERROR_OOPS = `Ooooppsss! An error has occurred!`;
 export const ERROR_MISSING_ID = "Missing the Id!";
 export const ERROR_ONLY_WORD_MAX_MIN = "Only words with single spaces are accepted and must have a length between 2 and 50 characters!";
+export const ERROR_ALL_FIELDS = "All fields are needed";
+export const ERROR_LOGIN_FAIL = "Something goes wrong";
+export const ERROR_NOT_FOUND = "Couldn't found what you are looking";
+export const NO_ENOUGH_PRIVILEGES = "You don't have enough privileges";
+export const ERROR_CHECKING_PRIVILEGES = "Error while cheking privileges";
+export const ERROR_JOB_TITLE = "Error: The Job Title only accept alphanumerics values";
+export const ERROR_DATE = "Error: Only accept Dates values or you select an invalid Date";
+export const ERROR_COMPANY = "Error: The Company name only accept alphanumerics values"
+export const ERROR_URL = "Error: Invalid Url";
+export const ERROR_LONG_TEXT = "Error: The text must be longer than 2 letters";
+export const ERROR_INSTITUTION_NAME = "Error: The Institution name only accepts alphanumerics values";
+export const ERROR_TITLE = "Error: The Title only acepts letters";
+export const ERROR_CERTIFICATE = "Error: The Certificate only accept alphanumerics values";
+export const ERROR_NAME = "Error: The name only accept letter, and the max length is 50 and the min is 2";
+export const ERROR_NAME_ALPHANUMERIC = "Error: The name only accept alphanmerics values";
+export const ERROR_TYPE = "Error: The Type is invalid";
+export const ERROR_PERCENT = "Error: The Percent must be higher than 0 and lower/equal of 100";
 
 /* ------------ PLACEHOLDERS ------------ */
 

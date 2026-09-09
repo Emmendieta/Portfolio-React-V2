@@ -28,7 +28,6 @@ export const fetGetAllResponsibilitiesPaginate = async ({ page = 1, limit = 10, 
         if (searchName) filter[`name.${language}`] = { $regex: searchName, $options: "i" };
         const url = "responsibilities";
         const data = await getDataPopulate(url, { page, limit, filter, sort: { [`name.${language}`]: 1 } });
-        console.log("LOGIC", data.response.docs)
         if (!data) throw new Error("Error in fetch get all responsibilities paginate or no data available!");
         return data;
     } catch (error) {

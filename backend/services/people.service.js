@@ -31,7 +31,7 @@ class PeopleService extends Service {
             const imagesToDelete = currentImages.filter(img => !imagesTokeep.some(keep => keep.publicId === img.publicId));
             for(const img of imagesToDelete) {
                 await deleteImageFromCloudinary(img.publicId);
-                console.log("Image delted from Cloudinary: ", img.publicId);
+                console.warn("Image delted from Cloudinary: ", img.publicId);
             };
             let finalImages = currentImages.filter(img => imagesTokeep.some(keep => keep.publicId === img.publicId)).map(img => {
                 const updated = imagesTokeep.find(keep => keep.publicId === img.publicId);

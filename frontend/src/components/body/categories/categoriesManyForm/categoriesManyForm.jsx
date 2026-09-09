@@ -139,8 +139,8 @@ function CategoriesManyForm() {
                                 <Inputs textH2={`${TEXT.NAME} (${secondaryLang.toUpperCase()})`} type="text" name={`name_${secondaryLang}_${index}`} value={category.name?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.NAME_OF_THE_CATEGORY)}
                                     onChange={(e) => handleChange(index, secondaryLang, e.target.value)} error={errors[index]?.[secondaryLang]}
                                     className="genFormInput" cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                                <button type="button" className="btn btn-outline-primary" onClick={() => moveCategoryUp(index)} disabled={index === 0} title="FALTA TEXTO MOVE CATEGORY UP">↑</button>
-                                <button type="button" className="btn btn-outline-primary" onClick={() => moveCategoryDown(index)} disabled={index === categories.length - 1} title="FALTA TEXTO MOVE CATEGORY DOWN">↓</button>
+                                <button type="button" className="btn btn-outline-primary" onClick={() => moveCategoryUp(index)} disabled={index === 0} title={TEXT.MOVE_UP}>↑</button>
+                                <button type="button" className="btn btn-outline-primary" onClick={() => moveCategoryDown(index)} disabled={index === categories.length - 1} title={TEXT.MOVE_DOWN}>↓</button>
                                 <button type="button" className="btn btn-outline-danger catManyDeleteBtn" onClick={() => removeCategory(index)} disabled={categories.length === 1} >
                                     ×
                                 </button>

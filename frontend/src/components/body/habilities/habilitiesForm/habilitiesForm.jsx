@@ -34,8 +34,8 @@ function HabilitiesForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorName(data.name?.[primaryLang], "FALTA TEXTO ERROR OLNY WORDS MAX MIN") } catch (error) { errors.primaryName = error.messsage; };
-        if (showOtherLang) { try { validatorName(data.name?.[secondaryLang], "FALTA TEXTO ERROR ONLY WORDS MAX MIN") } catch (error) { errors.secondaryName = error.messsage; }; };
+        try { validatorName(data.name?.[primaryLang], TEXT.ERROR_NAME) } catch (error) { errors.primaryName = error.messsage; };
+        if (showOtherLang) { try { validatorName(data.name?.[secondaryLang], TEXT.ERROR_NAME) } catch (error) { errors.secondaryName = error.messsage; }; };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 
@@ -46,7 +46,6 @@ function HabilitiesForm() {
                 let result;
                 setLoading(true);
                 startLoading();
-                console.log("DATA", id)
                 if (isEdit) result = await fetchUpdateHabilityById(id, data);
                 else result = await fetchCreateHability(data);
                 if (result?.error) await errorSweet(`${TEXT.ERROR}: ${result?.error?.messsage}` || TEXT.TEXT_ERROR_OOPS);

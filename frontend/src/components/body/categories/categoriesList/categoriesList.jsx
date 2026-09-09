@@ -34,7 +34,7 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                 const result = await fetchGetAllCategories();
                 if (result?.error) {
                     setCategories([]);
-                    await errorSweet(result?.error.message || "FALTA TEXTO ERROR");
+                    await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                     return;
                 };
                 const categories = result.response || [];
@@ -42,8 +42,8 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                 setCategories(sortedCategories);
             } catch (error) {
                 setCategories([]);
-                console.error("Error: ", error.message);
-                await errorSweet(error.message);
+                console.error(`${TEXT.ERROR}: ${erro.message}` || TEXT.TEXT_ERROR_OOPS);
+                await errorSweet(`${TEXT.ERROR}: ${erro.message}` || TEXT.TEXT_ERROR_OOPS);
             } finally {
                 setLoading(false);
                 stopLoading();

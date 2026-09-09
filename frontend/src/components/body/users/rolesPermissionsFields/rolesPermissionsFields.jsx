@@ -66,9 +66,6 @@ function RolesPermissionsFields({ roles = [], setRoles, extraPermission = [], se
     // Permisos disponibles: los que no están asignados
     const availableExtraPermissions = allPermissions.filter(p => !assignedExtraPermissions.some(ap => ap._id === p._id));
 
-    console.log("ROLES PERMISSION FIELDS ROLES ASSIGNED", assignedRoles)
-    console.log("ROLES PERMISSIONS FIELDS EXTRA PERMISSIONS ASSIGNED", assignedExtraPermissions)
-
     return (
         <>
             <div className="userFormRolPerDivCont">

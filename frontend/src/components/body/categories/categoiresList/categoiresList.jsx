@@ -100,7 +100,7 @@ function CategoriesList() {
     return (
         <div className="catsListCont">
             <section id="catsListTitle">
-                <H2Fields label = {"FALTA TEXTO CATEGORY LIST LABEL"} value={"FALTA TEXTO CATEGORY LIST VALUE"}/>
+                <H2Fields value={TEXT.CATEGORIES_LIST}/>
                 { user?.role === "admin" && (
                     <div className="catsListAddCont">
                         <Link to="categories/form/new" className="btn btn-outline-success" id="catsListAddBtn">
