@@ -206,3 +206,50 @@
     width: 100%;
     margin-bottom: 15px;
 }
+
+
+/* --------------- SOCIALS - CONTACTS --------------- */
+
+.socialsListCont,
+.socialsListUl,
+.socialsListLi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.socialsListUl {
+    padding: 0;
+    margin: 0;
+}
+
+.socialsListLi {
+    padding-bottom: 10px;
+}
+
+
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

@@ -155,6 +155,32 @@
     font-size: large;
 }
 
+@media(max-width:576px) {
+    .ftBottomH2Text {
+        font-size: medium;
+        text-align: center;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}
+
+
 /* ------------------------ ERROR DARK ------------------------ */
 
 .genListErrDark {

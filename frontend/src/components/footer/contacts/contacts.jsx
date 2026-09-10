@@ -49,7 +49,7 @@ function Contacts({ contacts }) {
             {contacts.length > 0 ? (
                 <Uls list={contacts} language={language} renderItem={(contact) => (
                     <SocialsCard key={contact._id} social={contact} language={language} onDelete={handleDelete} />
-                )} />
+                )} className="socialsListCont" classNameUl="socialsListUl" classnameli="socialsListLi" />
             ) : (
                 <div className="genListErrContDark">
                     <H2Fields value={`${TEXT.CONTACTS_NOT_FOUND}!`} className="genListErrDark" classNameH2="genListErrH2Dark" language={language} />
