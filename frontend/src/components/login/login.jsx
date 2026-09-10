@@ -59,7 +59,7 @@ function Login() {
     return (
         <div className="loginDivCont">
             <section className="loginSectCont">
-                <Forms d="loginForm" idForm="" textTitle={`${TEXT.LOGIN}:`} onSubmit={handleLogin} >
+                <Forms id="loginForm" textTitle={`${TEXT.LOGIN}:`} onSubmit={handleLogin} >
                     <div className="loginFormInputsCont">
                         <Inputs textH2={TEXT.EMAIL} type="email" placeHolder={TEXT.inputsText("m", TEXT.EMAIL)} value={email} onChange={(e) => setEmail(e.target.value)} onKeyPress={handleKeyPress} 
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
@@ -67,8 +67,8 @@ function Login() {
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     </div>
                     <div className="loginFormBtnCont">
-                        <a className="btn btn-outline-danger" href="/">{TEXT.HOME}</a>
-                        <button type="submit" className="btn btn-outline-success" onSubmit={handleLogin}>{TEXT.LOGIN}</button>
+                        <a className="btn btn-outline-danger" id="btnLoginHome" href="/">{TEXT.HOME}</a>
+                        <button type="submit" className="btn btn-outline-success" id="btnLoginLog" onSubmit={handleLogin}>{TEXT.LOGIN}</button>
                     </div>
                 </Forms>
             </section>

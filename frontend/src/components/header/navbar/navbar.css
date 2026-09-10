@@ -21,3 +21,34 @@
     box-sizing: border-box;
     justify-content: space-evenly;
 }
+
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+
+    #navbar {
+        padding-top: 5px;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+
+    #navbar {
+        padding-top: 10px;
+    }
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

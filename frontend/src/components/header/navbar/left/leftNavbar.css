@@ -1,7 +1,7 @@
 .leftNavCont {
     display:  flex;
     box-sizing: border-box;
-    width: 33%;
+    width: 100%;
 }
 
 .leftNavHomeCont {
@@ -21,3 +21,38 @@
     justify-content: center;
     align-items: center;
 }
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+
+    .leftNavCont{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .leftNavHomeCont {
+        margin: 0;
+    }
+
+    #iconHome {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

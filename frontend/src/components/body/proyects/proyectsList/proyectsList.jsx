@@ -6,12 +6,13 @@ import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchDeleteProyectById, fetchGetAllProyectsPopulate, fetchGetAllProyectsPopulateFilter, fetchGetAllProyectsPopulatePaginate } from "../proyectsLogic";
+import Inputs from "../../generalFields/Inputs/inputs";
+import Uls from "../../generalFields/Uls/Uls";
 import ProyectsCard from "../proyectsCard/proyectsCard";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import CarouselGeneric from "../../generalFields/carouselGeneric/carouselGeneric";
-import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
-import H1Fields from "../../generalFields/h1Fields/h1fields";
 import "./proyectsList.css";
+import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
 
 function ProyectsList({ selectedCategory }) {
     const { user } = useContext(UserContext);
@@ -92,9 +93,6 @@ function ProyectsList({ selectedCategory }) {
 
     return (
         <div className="proyListDivCont">
-            <section className="proListTitleCont">
-                <H1Fields value={`${TEXT.PROYECTS}:`} language={language} clH1Cont="proListH1Cont" clH1Text="proListH1Text" />
-            </section>
             {canCreate && (
                 <section className="proyListSectAddCont">
                     <Link to={"/proyects/form/new"}>

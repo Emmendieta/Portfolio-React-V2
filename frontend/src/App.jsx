@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { UserContext, UserProvider } from './context/User.Context'
 import Layout from './Layout'
 import Home from './components/home/home'

@@ -1,15 +1,120 @@
 .rightNavCont {
-    display:  flex;
+    display: flex;
     flex-direction: row;
-    width: 33%;
+    width: 100%;
     justify-content: flex-end;
     align-items: center;
     margin-right: 20px;
 }
 
-#btnNavbarSignOut,  #btnNavbarLogin{
+#btnNavbarProfile,
+#btnNavbarSignOut,
+#btnNavbarLogin {
     margin-left: 10px;
 }
-#btnNavbarProfile {
-    margin-left: 10px;
+
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+    .rightNavCont {
+        margin: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rightNavLoginCont {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #btnNavbarCurriculum,
+    #btnNavbarLogin,
+    #btnNavbarSignOut,
+    #btnNavbarProfile {
+        font-size: medium;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: fit-content;
+        padding: 2px 5px !important;
+    }
+
+    #btnNavbarCurriculum,
+    #btnNavbarSignOut, 
+    #btnNavbarProfile,
+    #btnNavbarLogin {
+        margin-right: 5px !important;
+        margin-top: 5px !important;
+    }
 }
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+
+    .rightNavCont {
+        margin: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rightNavLoginCont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #btnNavbarCurriculum,
+    #btnNavbarLogin,
+    #btnNavbarSignOut,
+    #btnNavbarProfile {
+        font-size: large;
+        margin: 0 !important;
+        padding: 2px 5px !important;
+        width: fit-content;
+    }
+
+    #btnNavbarLogin,
+    #btnNavbarSignOut,
+    #btnNavbarProfile {
+        margin-top: 4px !important;
+    }
+
+    #btnNavbarLogin {
+        margin-top: 7px;
+    }
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {
+    .rightNavCont {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    #btnNavbarCurriculum,
+    #btnNavbarLogin,
+    #btnNavbarSignOut,
+    #btnNavbarProfile {
+        margin-top: 4px;
+        margin-left: 0;
+    }
+    #btnNavbarProfile {
+        margin-right: 10px;
+    }
+}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

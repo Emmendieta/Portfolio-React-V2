@@ -1,4 +1,6 @@
-.loginDivCont, .loginSectCont, #loginForm {
+.loginDivCont,
+.loginSectCont,
+#loginForm {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -12,6 +14,12 @@
 }
 
 .loginFormInputsCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -26,3 +34,49 @@
     margin-top: 20px;
     margin-bottom: 30px;
 }
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+
+    .loginFormBtnCont {
+        flex-direction: column;
+    }
+
+    #btnLoginHome {
+        margin-bottom: 10px;
+    }
+
+    #btnLoginLog {
+        margin-bottom: 10px;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+    
+    .loginFormBtnCont {
+        flex-direction: column;
+    }
+
+    #btnLoginHome {
+        margin-bottom: 10px;
+    }
+
+    #btnLoginLog {
+        margin-bottom: 10px;
+    }
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

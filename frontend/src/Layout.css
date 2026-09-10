@@ -1,9 +1,5 @@
-html {
-    scroll-behavior: smooth;
-}
-
 section {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 80px;
 }
 
 #layoutDiv {
@@ -21,6 +17,15 @@ section {
     height: 75px;
 }
 
+#body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 43px;
+    padding-bottom: 50px;
+    background-color: #E6E4D8;
+}
+
 #footer {
     background-color: rgba(226, 220, 220, 0.61);
     padding-top: 15px;
@@ -29,10 +34,3 @@ section {
     flex-direction: column;
 }
 
-#body {
-    flex: 1;
-    width: 100%;
-    margin-top: 40px;
-    padding-bottom: 50px;
-    background-color: #E6E4D8;
-}

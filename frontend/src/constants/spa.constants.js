@@ -293,7 +293,6 @@ export const ERROR_SIGN_OUT = "Error: No se pudo procesar el cierre de sesión!"
 /* ------------ SWEET ALERT ------------ */
 
 export const ARE_YOU_SURE = "¿Estás seguro?";
-export const SUCCESS = "Exitoso";
 
 /* ------------ ERRORS ------------ */
 

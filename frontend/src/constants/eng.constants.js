@@ -293,7 +293,6 @@ export const ERROR_SIGN_OUT = "Error: Couldn't Sign out!";
 /* ------------ SWEET ALERT ------------ */
 
 export const ARE_YOU_SURE = "Are you sure?";
-export const SUCCESS = "Success";
 
 /* ------------ ERRORS ------------ */
 

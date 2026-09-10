@@ -2,15 +2,11 @@ import { useContext } from "react";
 import { createContext } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useLanguage } from "./Language.Context";
-import { LANG_CONST } from "../constants/SelectLang.Constant";
 
 const confirmContext = createContext();
 const MySwal = withReactContent(Swal);
 
 export const ConfirmProvider = ({ children }) => {
-    const { language } = useLanguage();
-    const TEXT = LANG_CONST[language];
     //CONFIRM:
     const confirmSweet = async ({
         title = "Are you sure?",
@@ -41,7 +37,7 @@ export const ConfirmProvider = ({ children }) => {
     const successSweet = async (text = "Action Completed!") =>
         await MySwal.fire({
             icon: "success",
-            title: TEXT.SUCCESS,
+            title: "Success",
             text,
             confirmButtonText: "Ok",
             returnFocus: false,

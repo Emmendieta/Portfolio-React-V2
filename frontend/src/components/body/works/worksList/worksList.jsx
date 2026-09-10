@@ -5,13 +5,14 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { Link, useNavigate } from "react-router-dom";
+import Inputs from "../../generalFields/Inputs/inputs";
+import Uls from "../../generalFields/Uls/Uls";
 import WorksCard from "../worksCard/worksCard";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import { fetchDeleteWorkById, fetchGetAllWorksPaginatePopulate } from "../worksLogis";
 import CarouselGeneric from "../../generalFields/carouselGeneric/carouselGeneric";
-import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
-import H1Fields from "../../generalFields/h1Fields/h1fields";
 import "./worksList.css";
+import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
 
 function WorksList() {
     const { user } = useContext(UserContext);
@@ -95,9 +96,6 @@ function WorksList() {
 
     return (
         <div className="workListDivCont">
-            <section className="workListTitleCont">
-                <H1Fields value={`${TEXT.WORKS}:`} language={language} clH1Cont="workListH1Cont" clH1Text="workListH1Text"/>
-            </section>
             {canCreate && (
                 <section className="workListSectAddCont">
                     <Link to={"/works/form/new"}>
