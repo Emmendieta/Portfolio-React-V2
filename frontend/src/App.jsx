@@ -82,9 +82,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path='/cities/form/:id' element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_cities" : "update_cities"}>
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_cities" : "update_cities"}>*/
             <CitiesForm />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
 
         <Route path="/provinces" element={
@@ -93,9 +93,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path="/provinces/form/:id" element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_provinces" : "update_provinces"}>
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_provinces" : "update_provinces"}>*/
             <ProvincesForm />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
 
         <Route path="/countries" element={
@@ -104,9 +104,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path="/countries/form/:id" element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_countries" : "update_countries"} >
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_countries" : "update_countries"} >*/
             <CountriesForm />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
 
         <Route path="/continents" element={
@@ -115,9 +115,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path="/continents/form/:id" element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_continents" : "update_continents"}>
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_continents" : "update_continents"}>*/
             <ContinentsForm />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
 
         <Route path="/permissions" element={
@@ -220,9 +220,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path='/socials/form/:id' element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_socials" : "update_socials"}>
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_socials" : "update_socials"}> */
             <SocialsForm />
-          </ProtectedRoutes>
+          /* </ProtectedRoutes> */
         } />
         <Route path='/socials/reorder' element={<SocialOrder /> } />
 
