@@ -7,7 +7,7 @@ export const fetchCreateProyectWithImages = async (data) => {
         const formData = new FormData();
         //Simple fields:
         Object.keys(data).forEach((key) => { if (key !== "images" && typeof data[key] !== "object") formData.append(key, data[key]); });
-        if(data.dateEnd) formData.append("dateEnd", data.dateEnd);
+        ///if(data.dateEnd) formData.append("dateEnd", data.dateEnd);
         //Objects -> stringify:
         formData.append("name", JSON.stringify(data.name));
         formData.append("company", JSON.stringify(data.company));
