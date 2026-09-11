@@ -67,8 +67,13 @@ function ContinentsList() {
                 setCanCreate(false);
                 return;
             };
-            const allowed = await verifyPrivileges(user, "create_continents");
-            setCanCreate(allowed);
+            try {
+                const allowed = await verifyPrivileges(user, "create_continents");
+                setCanCreate(allowed);
+            } catch (error) {
+                console.error("Error verifying privileges:", error);
+                setCanCreate(false);
+            }
         };
         checkPrivileges();
     }, [user, verifyPrivileges]);

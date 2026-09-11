@@ -59,17 +59,22 @@ function CountriesList() {
     }, [page, language, searchNameFilter, searchProvinceFilter]);
 
     //Verify Privileges:
-    useEffect(() => {
-        const checkPrivileges = async () => {
-            if (!user) {
-                setCanCreate(false);
-                return;
-            };
+useEffect(() => {
+    const checkPrivileges = async () => {
+        if (!user) {
+            setCanCreate(false);
+            return;
+        };
+        try {
             const allowed = await verifyPrivileges(user, "create_countries");
             setCanCreate(allowed);
-        };
-        checkPrivileges();
-    }, [user, verifyPrivileges]);
+        } catch (error) {
+            console.error("Error verifying privileges:", error);
+            setCanCreate(false);
+        }
+    };
+    checkPrivileges();
+}, [user, verifyPrivileges]);
 
     const handleDelete = async (id) => {
         try {
