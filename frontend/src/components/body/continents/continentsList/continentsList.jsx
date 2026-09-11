@@ -71,7 +71,7 @@ function ContinentsList() {
             setCanCreate(allowed);
         };
         checkPrivileges();
-    }, [user.verifyPrivileges]);
+    }, [user, verifyPrivileges]);
 
     const handleDelete = async (id) => {
         try {
