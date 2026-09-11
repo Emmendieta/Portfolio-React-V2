@@ -77,9 +77,9 @@ function AppRoutes() {
         } />
 
         <Route path='/cities' element={
-          <ProtectedRoutes permissionResolver={() => "read_all_cities"}>
+          /*<ProtectedRoutes permissionResolver={() => "read_all_cities"}>*/
             <CitiesList />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
         <Route path='/cities/form/:id' element={
           /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_cities" : "update_cities"}>*/
