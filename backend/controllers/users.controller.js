@@ -12,8 +12,8 @@ class UsersController {
     };
 
     createUser = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const body = req.body;
             const files = req.files || [];
@@ -49,18 +49,20 @@ class UsersController {
             user.roles = body.roles ? JSON.parse(body.roles) : [];
             user.extraPermission = body.extraPermission ? JSON.parse(body.extraPermission) : [];
             const personFolder = "people";
-            const createPerson = await this.pService.createOneWithImages(person, files, personFolder, session);
+            //const createPerson = await this.pService.createOneWithImages(person, files, personFolder, session);
+            const createPerson = await this.pService.createOneWithImages(person, files, personFolder);
             if (!createPerson) throw new Error("Error: Couldn't create the person!");
             user.people = createPerson._id;
-            const newUser = await this.uService.createOne(user, session);
+            //const newUser = await this.uService.createOne(user, session);
+            const newUser = await this.uService.createOne(user);
             if (!newUser) throw new Error("Error: Couldn't create the user!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(newUser)
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
