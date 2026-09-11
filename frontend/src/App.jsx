@@ -137,9 +137,9 @@ function AppRoutes() {
           </ProtectedRoutes>
         } />
         <Route path="/roles/form/:id" element={
-          <ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_roles" : "update_roles"}>
+          /*<ProtectedRoutes permissionResolver={({ id }) => id === "new" ? "create_roles" : "update_roles"}>*/
             <RoleForm />
-          </ProtectedRoutes>
+          /*</ProtectedRoutes>*/
         } />
 
         <Route path='/habilities' element={
