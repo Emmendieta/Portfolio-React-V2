@@ -2,12 +2,16 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useLoading } from "../context/Loading.Context";
 import { useEffect, useRef } from "react";
+import { useLanguage } from "../context/Language.Context";
+import { LANG_CONST } from "../constants/SelectLang.Constant";
 
 const MySwal = withReactContent(Swal);
 const MIN_VISIBLE_TIME_MS = 1000;
 
 function GloablLoader() {
     const { isLoading } = useLoading();
+    const { language } = useLanguage();
+    const TEXT = LANG_CONST[language];
     const openTimeRef = useRef(null);
     const timeoutRef = useRef(null);
     const isShownRef = useRef(false);
@@ -17,7 +21,7 @@ function GloablLoader() {
             isShownRef.current = true;
             openTimeRef.current = Date.now();
             MySwal.fire({
-                title: "CAMBIAR TEXTO Cargando...",
+                title: `${TEXT.LOADING}...`,
                 icon: "info",
                 theme: "dark",
                 allowOutsideClick: false,
