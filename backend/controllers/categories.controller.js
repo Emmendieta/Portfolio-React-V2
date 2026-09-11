@@ -3,72 +3,74 @@ import categoriesService from "../services/categories.service.js";
 import proyectsService from "../services/proyects.service.js";
 
 class CategoriesController {
-    constructor() { 
-        this.cService = categoriesService; 
+    constructor() {
+        this.cService = categoriesService;
         this.pService = proyectsService;
     };
 
     createCategory = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             const files = req.files;
             const categoryPath = "categories";
-            if(!data || !data.name) throw new Error("Error: Missing the information to create the Category!");
-            if(!files) throw new Error("Error: No image sent to upload!");
+            if (!data || !data.name) throw new Error("Error: Missing the information to create the Category!");
+            if (!files) throw new Error("Error: No image sent to upload!");
             data.name = JSON.parse(data.name);
             let verify = await this.verifyName(data.name);
-            if(verify === 1) throw new Error("Error: The name of the Category alredy exist!");
+            if (verify === 1) throw new Error("Error: The name of the Category alredy exist!");
             const totalElements = await this.cService.totalElements();
             data.order = totalElements + 1;
-            const category = await this.cService.createOneWithImages(data, files, categoryPath, session);
-            if(!category) throw new Error("Error: Couldn't create the Category!");
-            await session.commitTransaction();
+            //const category = await this.cService.createOneWithImages(data, files, categoryPath, session);
+            const category = await this.cService.createOneWithImages(data, files, categoryPath);
+            if (!category) throw new Error("Error: Couldn't create the Category!");
+            //await session.commitTransaction();
             return res.json201(category);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     createManyCategories = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
-            if(!Array.isArray(data) || data.length === 0) throw new Error("Error: Missing the information to create many Categories!");
+            if (!Array.isArray(data) || data.length === 0) throw new Error("Error: Missing the information to create many Categories!");
             //Verify names:
             const names = data.map(category => category.name?.es);
-            if(names.some(name => !name)) throw new Error("Error: Missing some Name of some category to create!");
+            if (names.some(name => !name)) throw new Error("Error: Missing some Name of some category to create!");
             //Verify duplicate names:
             const uniqueNames = new Set(names.map(name => name.trim().toLowerCase()));
-            if(uniqueNames.size !== names.length) throw new Error("Error: There are duplicated Categories names!");
+            if (uniqueNames.size !== names.length) throw new Error("Error: There are duplicated Categories names!");
             //Verify names on DB:
             const existingCategories = await this.cService.readIfExistMany("name.es", names);
-            if(existingCategories.length > 0){
+            if (existingCategories.length > 0) {
                 const existingNames = existingCategories.map(category => category.name.get("es"));
                 throw new Error(`Error: These Categories already exist: ${existingNames.join(", ")}`);
             };
             const categoriesData = data.map((category, index) => ({ ...category, order: index + 1 }));
-            const categories = await this.cService.createMany(categoriesData, { session });
-            if(!categories || categories.length === 0) throw new Error("Error: Couldn't create many Categories!");
-            await session.commitTransaction();
+            //const categories = await this.cService.createMany(categoriesData, { session });
+            const categories = await this.cService.createMany(categoriesData);
+            if (!categories || categories.length === 0) throw new Error("Error: Couldn't create many Categories!");
+            //await session.commitTransaction();
             return res.json200(categories);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     getAllCategories = async (req, res) => {
         try {
             const categories = await this.cService.readAll();
-            if(!categories || categories.length === 0) return res.json404("Error: No Categories found!");
+            if (!categories || categories.length === 0) return res.json404("Error: No Categories found!");
             return res.json200(categories);
         } catch (error) {
             return res.json500(error.message);
@@ -78,9 +80,9 @@ class CategoriesController {
     getCategoriesByFilter = async (req, res) => {
         try {
             const filter = req.query || {};
-            if(Object.keys(filter).length === 0) return res.json400("Error: Filter is needed to get the Categories!");
+            if (Object.keys(filter).length === 0) return res.json400("Error: Filter is needed to get the Categories!");
             const categories = await this.cService.readByFilter(filter);
-            if(!categories || categories.length === 0) return res.json404("Error: No Categories found!");
+            if (!categories || categories.length === 0) return res.json404("Error: No Categories found!");
             return res.json200(categories);
         } catch (error) {
             return res.json500(error.message);
@@ -90,10 +92,10 @@ class CategoriesController {
     getCategoryById = async (req, res) => {
         try {
             const { id } = req.params;
-            if(!id) return res.json400("Error: Id is needed!");
-            if(!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
+            if (!id) return res.json400("Error: Id is needed!");
+            if (!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
             const category = await this.cService.readById(id);
-            if(!category) return res.json404("Error: No category found!");
+            if (!category) return res.json404("Error: No category found!");
             return res.json200(category);
         } catch (error) {
             return res.json500(error.message);
@@ -103,10 +105,10 @@ class CategoriesController {
     getCategoryByFilter = async (req, res) => {
         try {
             const filter = req.query || {};
-            if(!filter || filter.length === 0) return res.json400("Error: Filter is needed!");
-            if(Object.keys(filter).length === 0) return res.json400("Error: Filter is needed!");
+            if (!filter || filter.length === 0) return res.json400("Error: Filter is needed!");
+            if (Object.keys(filter).length === 0) return res.json400("Error: Filter is needed!");
             const category = await this.cService.readOneByFilter(filter);
-            if(!category) return res.json404("Error: No Category was found!");
+            if (!category) return res.json404("Error: No Category was found!");
             return res.json200(category);
         } catch (error) {
             return res.json500(error.message);
@@ -114,86 +116,90 @@ class CategoriesController {
     };
 
     updateCategoryById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
-            if(!id) return res.json400("Error: Id is needed!");
-            if(!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
+            if (!id) return res.json400("Error: Id is needed!");
+            if (!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
             const data = req.body;
-            if(!data || !data.name) return res.json400("Error: Missing information to update the Category!");
+            if (!data || !data.name) return res.json400("Error: Missing information to update the Category!");
             const files = req.files;
-            if(data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
+            if (data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
             const category = await this.cService.readById(id);
-            if(!category) return res.json404("Error: Category not found!");
+            if (!category) return res.json404("Error: Category not found!");
             let verify;
-            if(data.name) {
+            if (data.name) {
                 verify = await this.verifyName(data.name, id);
-                if(verify === 1) return res.json400("Error: The name of the Category alredy Exist!");
+                if (verify === 1) return res.json400("Error: The name of the Category alredy Exist!");
             };
             data.name = JSON.parse(data.name);
             const folder = `categories/${id.toString()}`;
-            const categoryUpdated = await this.cService.updateOneWithImages(category, data, files, folder, session);
-            if(!categoryUpdated) return res.json404("Error: Couldn't update the Category!");
-            await session.commitTransaction();
+            //const categoryUpdated = await this.cService.updateOneWithImages(category, data, files, folder, session);
+            const categoryUpdated = await this.cService.updateOneWithImages(category, data, files, folder);
+            if (!categoryUpdated) return res.json404("Error: Couldn't update the Category!");
+            //await session.commitTransaction();
             return res.json200(categoryUpdated);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     updateCategoriesOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
-            if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered categories was provided!");
+            if (!Array.isArray(data) || data.length === 0) return res.json400("No ordered categories was provided!");
             const categoriesOrderUpdate = await this.cService.updateOrderDragDrop(data);
-            if(!categoriesOrderUpdate) return res.json500("Error in updating the order of the categories");
-            await session.commitTransaction();
+            if (!categoriesOrderUpdate) return res.json500("Error in updating the order of the categories");
+            //await session.commitTransaction();
             return res.json200(categoriesOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            session.endSession();
+            //session.endSession();
         }
     };
 
     deleteCategoryById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
-            if(!id) return res.json400("Error: Id is missing!");
-            if(!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
+            if (!id) return res.json400("Error: Id is missing!");
+            if (!isValidObjectId(id)) return res.json400("Error: Invalid Id!");
             const category = await this.cService.readById(id);
-            if(!category) return res.json404("Error: Category not found!");
+            if (!category) return res.json404("Error: Category not found!");
             const categoryObjectId = new mongoose.Types.ObjectId(id);
             const proyects = await this.pService.readByFilter({ categories: categoryObjectId });
-            if(proyects && proyects.length > 0 ){
-                for(const proyect of proyects) {
+            if (proyects && proyects.length > 0) {
+                for (const proyect of proyects) {
                     const categories = proyect.categories.filter(category => category._id.toString() !== id);
                     proyect.categories = categories;
-                    await this.pService.updateById(proyect._id, proyect, { session });
+                    //await this.pService.updateById(proyect._id, proyect, { session });
+                    await this.pService.updateById(proyect._id, proyect);
                 };
             };
             const folder = "categories";
             const deleteFolder = await this.cService.destroyFolder(id, folder);
-            if(!deleteFolder) return res.json404("Error: Couldn't deleted the Folder from Cloudinary!");
-            const categoryDeleted = await this.cService.destroyById(id, { session });
-            if(!categoryDeleted) return res.json400("Error: Couldn't delete the Category!");
-            await this.cService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            if (!deleteFolder) return res.json404("Error: Couldn't deleted the Folder from Cloudinary!");
+            //const categoryDeleted = await this.cService.destroyById(id, { session });
+            const categoryDeleted = await this.cService.destroyById(id);
+            if (!categoryDeleted) return res.json400("Error: Couldn't delete the Category!");
+            //await this.cService.reorderAfterDelete(session);
+            await this.cService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(categoryDeleted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -202,8 +208,8 @@ class CategoriesController {
             'name.en': name?.en || name,
         };
         const verify = await this.cService.readOneByFilter(query);
-        if(!verify) return 0;
-        if(id && verify._id.toString() === id.toString()) return 0;
+        if (!verify) return 0;
+        if (id && verify._id.toString() === id.toString()) return 0;
         return 1;
     };
 };

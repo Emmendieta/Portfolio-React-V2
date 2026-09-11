@@ -12,8 +12,8 @@ class ResponsibilitiesController {
     };
 
     createResponsibility = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!data || !data.name) throw new Error("Error: Missing the information to create the responsibility!");
@@ -21,13 +21,13 @@ class ResponsibilitiesController {
             if(verify === 1) throw new Error("Error: The name of the responsibility alredy exist!");
             const responsibility = await this.rService.createOne(data);
             if(!responsibility) throw new Error("Error: Couldn't create the responsibilty!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(responsibility);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -94,8 +94,8 @@ class ResponsibilitiesController {
     };
 
     updateResponsibilityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the responsibility!");
@@ -106,21 +106,22 @@ class ResponsibilitiesController {
             if(verify === 1) throw new Error("Error: The name of the responsibility alredy exist!");
             const responsibility = await this.rService.readById(id);
             if(!responsibility) throw new Error("Error: Responsibity not found!");
-            const updatedResponsibility = await this.rService.updateById(id, data, { session });
+            //const updatedResponsibility = await this.rService.updateById(id, data, { session });
+            const updatedResponsibility = await this.rService.updateById(id, data);
             if(!updatedResponsibility) throw new Error("Error: Couldn't update the responsilibity!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedResponsibility);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteResponsibilityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the responsibility!");
@@ -133,7 +134,8 @@ class ResponsibilitiesController {
                 for(const work of works) {
                     const responsibilities = work.responsibilities.filter(responsibity => responsibility._id.toString() !== id);
                     work.responsibilities = responsibilities;
-                    await this.wService.updateById(work._id, work, { session });
+                    //await this.wService.updateById(work._id, work, { session });
+                    await this.wService.updateById(work._id, work);
                 };
             };
             const proyects = await this.pService.readByFilter({ responsibilities: responsibilityObjectId });
@@ -141,18 +143,20 @@ class ResponsibilitiesController {
                 for(const proyect of proyects) {
                     const responsibilities = proyect.responsibilities.filter(responsibility => responsibility._id.toString() !== id);
                     proyect.responsibilities = responsibilities;
-                    await this.pService.updateById(proyect._id, proyect, { session });
+                    //await this.pService.updateById(proyect._id, proyect, { session });
+                    await this.pService.updateById(proyect._id, proyect);
                 };
             };
-            const deletedResponsibility = await this.rService.destroyById(id, { session });
+            //const deletedResponsibility = await this.rService.destroyById(id, { session });
+            const deletedResponsibility = await this.rService.destroyById(id);
             if(!deletedResponsibility) throw new Error("Error: Couldn't delete the responsibility!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(deletedResponsibility);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

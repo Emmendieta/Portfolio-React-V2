@@ -11,8 +11,8 @@ class ProyectsController {
     };
 
     createProyect = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             const files = req.files || [];
@@ -29,15 +29,16 @@ class ProyectsController {
             if (verifiy === 1) throw new Error("Error: The name of the proyect alredy Exist!");
             const totalElements = await this.pService.totalElements();
             data.order = totalElements  + 1;
-            const proyect = await this.pService.createOneWithImages(data, files, proyectsPath, session);
+            //const proyect = await this.pService.createOneWithImages(data, files, proyectsPath, session);
+            const proyect = await this.pService.createOneWithImages(data, files, proyectsPath);
             if (!proyect) throw new Error("Error: Couldn't create the proyect!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(proyect);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -157,8 +158,8 @@ class ProyectsController {
     };
 
     updateProyectById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing the Id of the proyect!");
@@ -179,39 +180,40 @@ class ProyectsController {
             const verify = await this.verifyNameProyect(data.name, id);
             if (verify === 1) throw new Error("Error: The name of the proyect alredy Exist!");
             const folder = `proyects/${id.toString()}`;
-            const updatedProyect = await this.pService.updateOneWithImages(proyect, data, files, folder, session);
+            //const updatedProyect = await this.pService.updateOneWithImages(proyect, data, files, folder, session);
+            const updatedProyect = await this.pService.updateOneWithImages(proyect, data, files, folder);
             if (!updatedProyect) throw new Error("Error: Couldn't update the proyect!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedProyect);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     updateProyectsOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) return res.json400("Error: No ordered Proyects was provided!");
             const proyectsOrderUpdate = await this.pService.updateOrderDragDrop(data);
             if(!proyectsOrderUpdate) return res.json500("Error in updating the order of the proyects!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(proyectsOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteProyectById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing the Id of the proyect!");
@@ -222,14 +224,15 @@ class ProyectsController {
             const deleteFolder = await this.pService.destroyFolder(id, folder);
             const deletedProyect = await this.pService.destroyById(id);
             if (!deletedProyect) throw new Error("Error: Couldn't delete the proyect!");
-            await this.pService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            //await this.pService.reorderAfterDelete(session);
+            await this.pService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(deletedProyect);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

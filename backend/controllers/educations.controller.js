@@ -11,8 +11,8 @@ class EducationsController {
     };
 
     createEducation = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             const files = req.files || [];
@@ -26,15 +26,16 @@ class EducationsController {
             if(verify === 1) throw new Error("Error: The Title for the institution alredy exist!");
             const totalElements = await this.edService.totalElements();
             data.order = totalElements + 1;
-            const education = await this.edService.createOneWithImages(data, files, educationsPath, session);
+            //const education = await this.edService.createOneWithImages(data, files, educationsPath, session);
+            const education = await this.edService.createOneWithImages(data, files, educationsPath);
             if(!education) throw new Error("Error: Couldn't create the Education!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(education);            
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -138,8 +139,8 @@ class EducationsController {
     };
 
     updateEducationById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the education!");
@@ -156,39 +157,40 @@ class EducationsController {
             const verifiy = await this.verifiyNameEducationAndTitle(data.institutionName, data.title, id);
             if(verifiy === 1) throw new Error("Error: The Title for the Education alredy exist!");
             const folder = `educations/${id.toString()}`;
-            const updatedEducation = await this.edService.updateOneWithImages(education, data, files, folder, session);
+            //const updatedEducation = await this.edService.updateOneWithImages(education, data, files, folder, session);
+            const updatedEducation = await this.edService.updateOneWithImages(education, data, files, folder);
             if(!updatedEducation) throw new Error("Error: Couldn't update the Education!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedEducation);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     updateEducationsOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) return res.json400("Error: No ordered educations was provided!");
             const educationsOrderUpdate = await this.edService.updateOrderDragDrop(data);
             if(!educationsOrderUpdate) return res.json500("Error in updating the order of the Educations!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(educationsOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteEducationById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Education!");
@@ -200,14 +202,15 @@ class EducationsController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedEducation = await this.edService.destroyById(id);
             if(!deletedEducation) throw new Error("Error: Couldn't delete the education!");
-            await this.edService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            //await this.edService.reorderAfterDelete(session);
+            await this.edService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(education);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally { 
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

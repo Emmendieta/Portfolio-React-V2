@@ -13,22 +13,23 @@ class ProvincesController {
     };
 
     createProvince = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if (!data || !data.name) throw new Error("Error: Missing information to create the Province!");
             const verify = await this.verifyNameProvince(data.name);
             if (verify === 1) throw new Error("Error: The Name of the Province alredy Exist!");
-            const province = await this.proService.createOne(data, { session });
+            //const province = await this.proService.createOne(data, { session });
+            const province = await this.proService.createOne(data);
             if (!province) throw new Error("Error: Couldn't create the Province!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(province);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -151,8 +152,8 @@ class ProvincesController {
     };
 
     updateProvinceById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing Id of the Province!");
@@ -163,21 +164,22 @@ class ProvincesController {
             if (verify === 1) return res.json400("Error: The Name of the Province alredy Exist!");
             const province = await this.proService.readById(id);
             if (!province) throw new Error("Error: Province not Found!");
-            const provinceUpdated = await this.proService.updateById(id, data, { session });
+            //const provinceUpdated = await this.proService.updateById(id, data, { session });
+            const provinceUpdated = await this.proService.updateById(id, data);
             if (!provinceUpdated) throw new Error("Error: Coudn't update the Province!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(provinceUpdated);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteProvinceById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing Id of the Province!");
@@ -189,24 +191,27 @@ class ProvincesController {
             if(country) {
                 const provinces = country.provinces.filter(province => province._id.toString() !== id);
                 country.provinces = provinces;
-                await this.counService.updateById(country._id, country, { session });
+                //await this.counService.updateById(country._id, country, { session });
+                await this.counService.updateById(country._id, country);
             };
             const people = await this.peoService.readByFilter({ provinces: provinceObjectId });
             if(people && people.length > 0) {
                 for(const person of people) {
                     person.provinces = null;
-                    await this.peoService.updateById(person._id, person, { session });
+                    //await this.peoService.updateById(person._id, person, { session });
+                    await this.peoService.updateById(person._id, person);
                 };
             };
-            const provinceDeleted = await this.proService.destroyById(id, { session });
+            //const provinceDeleted = await this.proService.destroyById(id, { session });
+            const provinceDeleted = await this.proService.destroyById(id);
             if (!provinceDeleted) throw new Error("Error: Couldn't delete the Province!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(provinceDeleted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

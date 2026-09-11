@@ -11,8 +11,8 @@ class RolesController {
     };
 
     createRole = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!data || !data.role) throw new Error("Error: Missing information to create the role!");
@@ -20,13 +20,13 @@ class RolesController {
             if(verify === 1) throw new Error("Error: The role alredy exist!");
             const role = await this.rService.createOne(data);
             if(!role) throw new Error("Error: Coulnd't create the role!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(role);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -142,8 +142,8 @@ class RolesController {
     };
 
     updateRoleById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the id of the role!");
@@ -156,19 +156,19 @@ class RolesController {
             if(verify === 1) throw new Error("Error: The name of the role alredy exist in another!");
             const updatedRole = await this.rService.updateById(id, data);
             if(!updatedRole) throw new Error("Error: Couldn't update the role!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedRole);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteRoleById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the role!");
@@ -181,18 +181,20 @@ class RolesController {
                 for(const user of users) {
                     const roles = user.roles.filter(role => role._id.toString() !== id);
                     user.roles = roles;
-                    await this.uService.updateById(user._id, user, { session });
+                    //await this.uService.updateById(user._id, user, { session });
+                    await this.uService.updateById(user._id, user);
                 };
             };
-            const deletedRole = await this.rService.destroyById(id, { session });
+            //const deletedRole = await this.rService.destroyById(id, { session });
+            const deletedRole = await this.rService.destroyById(id);
             if(!deletedRole) throw new Error("Error: Coulnd't delete the role!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(deletedRole);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

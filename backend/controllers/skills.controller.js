@@ -9,8 +9,8 @@ class SkillsController {
     };
 
     createSkill = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             const files = req.files;
@@ -22,15 +22,16 @@ class SkillsController {
             if(verify === 1) throw new Error("Error: The name of the Skill alredy exist!");
             const totalElements = await this.sService.totalElements();
             data.order = totalElements + 1;
-            const skill = await this.sService.createOneWithImages(data, files, skillPath, session)
+            //const skill = await this.sService.createOneWithImages(data, files, skillPath, session)
+            const skill = await this.sService.createOneWithImages(data, files, skillPath);
             if(!skill) throw new Error("Error: Cound't create the Skill!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(skill);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -82,8 +83,8 @@ class SkillsController {
     };
 
     updateSocialMediaById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Skill!");
@@ -100,7 +101,8 @@ class SkillsController {
                 if(verify === 1) throw new Error("Error: The name of the Skills alredy Exist!");
             };
             const folder = `skills/${id.toString()}`;
-            const skillUpdated = await this.sService.updateOneWithImages(skill, data, files, folder, session);
+            //const skillUpdated = await this.sService.updateOneWithImages(skill, data, files, folder, session);
+            const skillUpdated = await this.sService.updateOneWithImages(skill, data, files, folder);
             if(!skillUpdated) throw new Error("Error: Couldn't update the Skill!");
             await session.commitTransaction();
             return res.json200(skillUpdated);
@@ -113,26 +115,26 @@ class SkillsController {
     };
 
     updateSkillsOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered Skills was provided!");
             const socialsOrderUpdate = await this.sService.updateOrderDragDrop(data);
             if(!socialsOrderUpdate) return res.json500("Error in updating the order of the Socials!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(socialsOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteSkill = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: The Id is missing!");
@@ -145,22 +147,25 @@ class SkillsController {
                 for(const proyect of proyects) {
                     const skills = proyect.skills.filter(skill => skill._id.toString() !== id);
                     proyect.skills = skills;
-                    await this.pService.updateById(proyect._id, proyect, { session });
+                    //await this.pService.updateById(proyect._id, proyect, { session });
+                    await this.pService.updateById(proyect._id, proyect);
                 };
             };
             const folder = "skills";
             const deleteFolder = await this.sService.destroyFolder(id, folder);
             if(!deleteFolder) throw new Error("Error: Couldn't deleted the Folder from Cloudinary!");
-            const skillDeleted = await this.sService.destroyById(id, { session });
+            //const skillDeleted = await this.sService.destroyById(id, { session });
+            const skillDeleted = await this.sService.destroyById(id);
             if(!skillDeleted) throw new Error("Error: Couldn't delete the Skill!");
-            await this.sService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            //await this.sService.reorderAfterDelete(session);
+            await this.sService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(skillDeleted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

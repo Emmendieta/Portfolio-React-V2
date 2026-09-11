@@ -10,8 +10,8 @@ class HabilitiesController {
     };
 
     createHability = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!data || !data.name) throw new Error("Error: Missing information to create the hability!");
@@ -20,13 +20,13 @@ class HabilitiesController {
             if(verify === 1) throw new Error("Error: The name of the hability alredy exist!");
             const hability = await this.hService.createOne(data);
             if(!hability) throw new Error("Error: Couldn't create the hability!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(hability);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -93,8 +93,8 @@ class HabilitiesController {
     };
 
     updateHabilityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the hability!");
@@ -105,21 +105,22 @@ class HabilitiesController {
             if(!hability) throw new Error("Error: Hability not found!");
             const verify = await this.verifyName(data.name, id);
             if(verify === 1) throw new Error("Error: The name of the hability alredy exist!");
-            const updatedHability = await this.hService.updateById(id, data, { session });
+            //const updatedHability = await this.hService.updateById(id, data, { session });
+            const updatedHability = await this.hService.updateById(id, data);
             if(!updatedHability) throw new Error("Error: Couldn't update the hability!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedHability);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteHabilityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the hability!");
@@ -132,18 +133,20 @@ class HabilitiesController {
                 for(const education of educations) {
                     const habilities = education.habilities.filter(hability => hability._id.toString() !== id);
                     educations.habilites = habilities;
-                    await this.eService.updateById(education._id, education, { session });
+                    //await this.eService.updateById(education._id, education, { session });
+                    await this.eService.updateById(education._id, education);
                 };
             };
-            const deletedHability = await this.hService.destroyById(id, { session });
+            //const deletedHability = await this.hService.destroyById(id, { session });
+            const deletedHability = await this.hService.destroyById(id);
             if(!deletedHability) throw new Error("Error: Couldn't delete the hability!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(deletedHability);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

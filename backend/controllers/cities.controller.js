@@ -12,23 +12,24 @@ class CitiesController {
     };
 
     createCity = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if (!data || !data.name || !data.zipCode) throw new Error("Error: Missing information to create the City!");
             const cityData = { name: { es: data.name?.es || "", en: data.name?.en || "" }, zipCode: data.zipCode };
             const verify = await this.verifyZipCode(data.zipCode);
             if (verify === 1) throw new Error("Error: The Zip Code aldredy exist in an other City!");
-            const city = await this.ciService.createOne(cityData, session);
+            //const city = await this.ciService.createOne(cityData, session);
+            const city = await this.ciService.createOne(cityData);
             if (!city) throw new Error("Error: Couldn't create the City!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(city);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -97,8 +98,8 @@ class CitiesController {
     };
 
     updateCityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Id of the City is missing!");
@@ -111,21 +112,22 @@ class CitiesController {
                 const verifyZipCode = await this.verifyZipCode(data.zipCode, id);
                 if (verifyZipCode === 1) throw new Error("Error: The Zip Code Alredy exist in an other City!");
             };
-            const cityUpdated = await this.ciService.updateById(id, data, { session });
-            await session.commitTransaction();
+            //const cityUpdated = await this.ciService.updateById(id, data, { session });
+            const cityUpdated = await this.ciService.updateById(id, data);
             if (!cityUpdated) throw new Error("Error: Couldn't Update the City!");
+            //await session.commitTransaction();
             return res.json200(cityUpdated);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteCityById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Id of the City is missing!");
@@ -137,24 +139,27 @@ class CitiesController {
             if(province) {
                 const cities = province.cities.filter(city => city._id.toString() !== id);
                 province.cities = cities;
-                await this.provService.updateById(province._id, province, { session });
+                //await this.provService.updateById(province._id, province, { session });
+                await this.provService.updateById(province._id, province);
             };
             const people = await this.peoService.readByFilter({ cities: cityObjectId });
             if(people && people.length > 0) {
                 for(const person of people) {
                     person.cities = null;
-                    await this.peoService.updateById(person._id, person, { session });
+                    //await this.peoService.updateById(person._id, person, { session });
+                    await this.peoService.updateById(person._id, person);
                 };
             };
-            const cityDeleted = await this.ciService.destroyById(id, { session });
+            //const cityDeleted = await this.ciService.destroyById(id, { session });
+            const cityDeleted = await this.ciService.destroyById(id);
             if (!cityDeleted) throw new Error("Error: Coulnd't Delete the City!"); 
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(cityDeleted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

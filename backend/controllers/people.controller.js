@@ -11,8 +11,8 @@ class PeopleController {
     };
 
     createPersonWithImages = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = { ...req.body };
             const files = req.files || [];
@@ -26,21 +26,22 @@ class PeopleController {
             data.phone = Number(data.phone);
             if (data.address?.number) data.address.number = Number(data.address.number);
             if (data.address?.floor) data.address.floor = Number(data.address.floor);
-            if(data.legalAddress?.number) data.legalAddress.number = Number(data.legalAddress.number);
-            if(data.legalAddress?.floor) data.legalAddress.floor = Number(data.legalAddress.floor);
+            if (data.legalAddress?.number) data.legalAddress.number = Number(data.legalAddress.number);
+            if (data.legalAddress?.floor) data.legalAddress.floor = Number(data.legalAddress.floor);
             if (!data || !data.firstName || !data.lastName || !data.dni || !data.cuil || !data.birthday) throw new Error("Error: Missing infomation to create the person!");
             if (Number.isNaN(data.dni)) throw new Error("Error: Invalid DNI!");
             const verify = await this.verifyDNI(data.dni);
             if (verify === 1) throw new Error("Error: The DNI alredy exist in an other person!");
-            const person = await this.pService.createOneWithImages(data, files, peoplePath, session);
+            //            const person = await this.pService.createOneWithImages(data, files, peoplePath, session);
+            const person = await this.pService.createOneWithImages(data, files, peoplePath);
             if (!person) throw new Error("Error: Couldn't create the person!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(person);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -62,7 +63,7 @@ class PeopleController {
             const pipeline = [];
             //Full name:
             if (searchPerson) {
-                pipeline.push({ $addFields: { fullName: { $concat: [{ $toLower: "$lastName" }, " ", { $toLower: "$firstName" }] }}},
+                pipeline.push({ $addFields: { fullName: { $concat: [{ $toLower: "$lastName" }, " ", { $toLower: "$firstName" }] } } },
                     { $match: { fullName: { $regex: searchPerson.toLowerCase(), $options: "i" } } }
                 );
             };
@@ -94,9 +95,9 @@ class PeopleController {
     getPeoplePopulate = async (req, res) => {
         try {
             const populateFields = parsePopulateQuery(req.query.populate);
-            if(populateFields.length === 0) throw new Error("Error: Missing information to populate people!");
+            if (populateFields.length === 0) throw new Error("Error: Missing information to populate people!");
             const people = await this.pService.readAllAndPopulate(populateFields);
-            if(!people || people.length === 0) throw new Error("Error: People not found!");
+            if (!people || people.length === 0) throw new Error("Error: People not found!");
             return res.json200(people);
         } catch (error) {
             return res.json500(error.message);
@@ -106,9 +107,9 @@ class PeopleController {
     getPeopleByFilter = async (req, res) => {
         try {
             const filter = req.query || {};
-            if(Object.keys(filter).length === 0) throw new Error("Error: Filter/s is missing!");
+            if (Object.keys(filter).length === 0) throw new Error("Error: Filter/s is missing!");
             const people = await this.pService.readByFilter(filter);
-            if(!people || people.length === 0) throw new Error("Error: People not found!");
+            if (!people || people.length === 0) throw new Error("Error: People not found!");
             return res.json200(people);
         } catch (error) {
             return res.json500(error.message);
@@ -131,9 +132,9 @@ class PeopleController {
     getPersonByFilter = async (req, res) => {
         try {
             const filter = req.query || {};
-            if(Object.keys(filter).length === 0) throw new Error("Error: Missing filter/s!");
+            if (Object.keys(filter).length === 0) throw new Error("Error: Missing filter/s!");
             const person = await this.pService.readOneByFilter(filter);
-            if(!person) throw new Error("Error: Person not found!");
+            if (!person) throw new Error("Error: Person not found!");
             return res.json200(person);
         } catch (error) {
             return res.json200(error.message);
@@ -143,13 +144,13 @@ class PeopleController {
     getPersonByIdPopulate = async (req, res) => {
         try {
             const { id } = req.params;
-            if(!id) throw new Error("Error: Missing the Id of the person!");
-            if(!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
+            if (!id) throw new Error("Error: Missing the Id of the person!");
+            if (!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
             let populateFields = [];
-            if(req.query.populate) { populateFields = Array.isArray(req.query.populate) ? req.query.populate: [req.query.populate]; };
-            if(populateFields.length === 0) throw new Error("Error: Missing information to populate the person!");
+            if (req.query.populate) { populateFields = Array.isArray(req.query.populate) ? req.query.populate : [req.query.populate]; };
+            if (populateFields.length === 0) throw new Error("Error: Missing information to populate the person!");
             const person = await this.pService.readByIdAndPopulate(id, populateFields);
-            if(!person) throw new Error("Error: Person populate not found!");
+            if (!person) throw new Error("Error: Person populate not found!");
             return res.json200(person);
         } catch (error) {
             return res.json500(error.message);
@@ -157,72 +158,75 @@ class PeopleController {
     };
 
     updatePersonById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
-            if(!id) throw new Error("Error: Missing Id the person!");
-            if(!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
+            if (!id) throw new Error("Error: Missing Id the person!");
+            if (!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
             const data = req.body;
             const files = req.files || [];
-            if(data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
-            if(data.jobTitle) data.jobTitle = JSON.parse(data.jobTitle);
-            if(data.address) data.address = JSON.parse(data.address);
-            if(data.legalAddress) data.legalAddress = JSON.parse(data.legalAddress);
-            if(data.aboutMe) data.aboutMe = JSON.parse(data.aboutMe);
+            if (data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
+            if (data.jobTitle) data.jobTitle = JSON.parse(data.jobTitle);
+            if (data.address) data.address = JSON.parse(data.address);
+            if (data.legalAddress) data.legalAddress = JSON.parse(data.legalAddress);
+            if (data.aboutMe) data.aboutMe = JSON.parse(data.aboutMe);
             data.dni = Number(data.dni);
             data.cuil = Number(data.cuil);
             data.phone = Number(data.phone);
-            if(data.address?.number) data.address.number = Number(data.address.number);
-            if(data.address?.floor) data.address.floor = Number(data.address.floor);
-            if(data.legalAddress?.number) data.legalAddress.number = Number(data.legalAddress.number);
-            if(data.legalAddress?.floor) data.legalAddress.floor = Number(data.legalAddress.floor);
+            if (data.address?.number) data.address.number = Number(data.address.number);
+            if (data.address?.floor) data.address.floor = Number(data.address.floor);
+            if (data.legalAddress?.number) data.legalAddress.number = Number(data.legalAddress.number);
+            if (data.legalAddress?.floor) data.legalAddress.floor = Number(data.legalAddress.floor);
             const person = await this.pService.readById(id);
-            if(!person) throw new Error("Error: Person not found!");
+            if (!person) throw new Error("Error: Person not found!");
             const verify = await this.verifyDNI(data.dni, id);
-            if(verify === 1) throw new Error("Error: The DNI alredy exist in an other person!");
+            if (verify === 1) throw new Error("Error: The DNI alredy exist in an other person!");
             const folder = `people/${id.toString()}`;
-            const updatedPerson = await this.pService.updateOneWithImages(person, data, files, folder, session);
-            if(!updatedPerson) throw new Error("Error: Couldn't update the person!");
-            await session.commitTransaction();
+            //const updatedPerson = await this.pService.updateOneWithImages(person, data, files, folder, session);
+            const updatedPerson = await this.pService.updateOneWithImages(person, data, files, folder);
+            if (!updatedPerson) throw new Error("Error: Couldn't update the person!");
+            //await session.commitTransaction();
             return res.json200(updatedPerson);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deletePersonById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
-            if(!id) throw new Error("Error: Missing the Id of the person!");
-            if(!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
+            if (!id) throw new Error("Error: Missing the Id of the person!");
+            if (!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
             const person = await this.pService.readById(id);
-            if(!person) throw new Error("Error: Person not found!");
+            if (!person) throw new Error("Error: Person not found!");
             const personObjectId = new mongoose.Types.ObjectId(id);
             const users = await this.uService.readByFilter({ people: personObjectId });
-            if(users && users.length > 0) {
-                for(const user of users) {
+            if (users && users.length > 0) {
+                for (const user of users) {
                     user.people = null;
-                    await this.uService.updateById(user._id, user, { session });
+                    //await this.uService.updateById(user._id, user, { session });
+                    await this.uService.updateById(user._id, user);
                 };
             };
             const folder = "people";
             const deleteFolder = await this.pService.destroyFolder(id, folder);
-            if(!deleteFolder) throw new Error("Error: Couldn't delete the Folder from Cloudinary!");
-            const deletedPerson = await this.pService.destroyById(id, { session });
-            if(!deletedPerson) throw new Error("Error: Couldn't delete the person!");
-            await session.commitTransaction();
+            if (!deleteFolder) throw new Error("Error: Couldn't delete the Folder from Cloudinary!");
+            //const deletedPerson = await this.pService.destroyById(id, { session });
+            const deletedPerson = await this.pService.destroyById(id);
+            if (!deletedPerson) throw new Error("Error: Couldn't delete the person!");
+            //await session.commitTransaction();
             return res.json200(deletedPerson);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

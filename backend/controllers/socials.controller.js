@@ -7,8 +7,8 @@ class SocialsController {
     };
 
     createSocial = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!data || !data.name || !data.url) throw new Error("Error: Missing information to create the social network!");
@@ -18,15 +18,16 @@ class SocialsController {
             if(verify === 1) throw new Error("Error: The name of the social network alredy exist!");
             const totalElements = await this.sService.totalElements();
             data.order = totalElements + 1;
-            const social = await this.sService.createOneWithImages(data, files, socialPath, session);
+            //const social = await this.sService.createOneWithImages(data, files, socialPath, session);
+            const social = await this.sService.createOneWithImages(data, files, socialPath);
             if(!social) throw new Error("Error: Couldn't create the social network!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(social);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -86,8 +87,8 @@ class SocialsController {
     };
 
     updateSocialById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Social!");
@@ -101,39 +102,40 @@ class SocialsController {
             const verify = await this.verifyName(data.name, id);
             if(verify === 1) throw new Error("Error: The name of the social network alredy exist!");
             const socialsPath = `socials/${id.toString()}`;
-            const updatedSocial = await this.sService.updateOneWithImages(social, data, files, socialsPath, session);
+            //const updatedSocial = await this.sService.updateOneWithImages(social, data, files, socialsPath, session);
+            const updatedSocial = await this.sService.updateOneWithImages(social, data, files, socialsPath);
             if(!updatedSocial) throw new Error("Error: Couldn't update the social network!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedSocial);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally { 
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     updateSocialsOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) return res.json400("No ordered socials was provided!");
             const socialesOrderUpdate = await this.sService.updateOrderDragDrop(data);
             if(!socialesOrderUpdate) return res.json500("Error in updating the order of the Socials!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(socialesOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteSocialById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Social network!");
@@ -145,14 +147,15 @@ class SocialsController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedSocial = await this.sService.destroyById(id);
             if(!deletedSocial) throw new Error("Error: Couldn't delete the social network!");
-            await this.sService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            //await this.sService.reorderAfterDelete(session);
+            await this.sService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(deletedSocial);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally { 
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

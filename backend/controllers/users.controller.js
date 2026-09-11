@@ -21,7 +21,7 @@ class UsersController {
             const person = {
                 firstName: body.firstName, lastName: body.lastName, dni: body.dni, cuil: body.cuil, birthday: body.birthday, phone: body.phone,
                 jobTitle: body.jobTitle ? JSON.parse(body.jobTitle) : undefined, address: body.address ? JSON.parse(body.address) : undefined,
-                legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined, aboutMe: body.aboutMe ? JSON.parse(body.aboutMe): undefined, 
+                legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined, aboutMe: body.aboutMe ? JSON.parse(body.aboutMe) : undefined,
                 continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
             };
             if (!user.user || !user.email || !user.password || !user.active === undefined) throw new Error("Error: Missing information of the User to create!");
@@ -202,8 +202,8 @@ class UsersController {
     };
 
     updateUserById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing the Id of the user!");
@@ -215,7 +215,7 @@ class UsersController {
             const person = {
                 _id: body.personId, firstName: body.firstName, lastName: body.lastName, dni: body.dni, cuil: body.cuil, birthday: body.birthday, phone: body.phone,
                 jobTitle: body.jobTitle ? JSON.parse(body.jobTitle) : undefined, address: body.address ? JSON.parse(body.address) : undefined, legalAddress: body.legalAddress ? JSON.parse(body.legalAddress) : undefined,
-                aboutMe: body.aboutMe ? JSON.parse(body.aboutMe): undefined, continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
+                aboutMe: body.aboutMe ? JSON.parse(body.aboutMe) : undefined, continents: body.continents, countries: body.countries, provinces: body.provinces, cities: body.cities
             };
             if (person.dni) person.dni = Number(person.dni);
             if (person.cuil) person.cuil = Number(person.cuil);
@@ -238,47 +238,51 @@ class UsersController {
             verify = await this.verifyPersonDNI(person.dni, person._id);
             if (verify === 1) throw new Error("Error: The DNI alredy exist!");
             const folder = `people/${id.toString()}`;
-            const updatedPerson = await this.pService.updateOneWithImages(existingPerson, { ...person, existingImages }, files, folder, session);
+            //const updatedPerson = await this.pService.updateOneWithImages(existingPerson, { ...person, existingImages }, files, folder, session);
+            const updatedPerson = await this.pService.updateOneWithImages(existingPerson, { ...person, existingImages }, files, folder);
             if (!updatedPerson) throw new Error("Error: Couldn't update the information of the Person!");
-            const updatedUser = await this.uService.updateById(id, user, { session });
+            //const updatedUser = await this.uService.updateById(id, user, { session });
+            const updatedUser = await this.uService.updateById(id, user);
             if (!updatedUser) throw new Error("Error: Couldn't update the information of the user!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedUser);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteUserById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing the Id of the user!");
             if (!isValidObjectId(id)) throw new Error("Error: Invalid Id of the user!");
             const user = await this.uService.readById(id);
             if (!user) throw new Error("Error: User not found!");
-            if(user.people) {
+            if (user.people) {
                 const personId = new mongoose.Types.ObjectId(user.people._id);
                 const person = await this.pService.readById(personId);
                 if (!person) throw new Error("Error: Person not found to delete the user!");
                 const folder = `people`;
                 const deleteFolder = await this.pService.destroyFolder(personId.toString(), folder);
-                const deletedPerson = await this.pService.destroyById(personId, { session });
+                //const deletedPerson = await this.pService.destroyById(personId, { session });
+                const deletedPerson = await this.pService.destroyById(personId);
                 if (!deletedPerson) throw new Error("Error: Couldn't delete the person!");
             };
-            const deletedUser = await this.uService.destroyById(id, { session });
+            //const deletedUser = await this.uService.destroyById(id, { session });
+            const deletedUser = await this.uService.destroyById(id);
             if (!deletedUser) throw new Error("Error: Couldn't delete the user!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(deletedUser);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

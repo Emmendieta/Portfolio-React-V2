@@ -9,8 +9,8 @@ class WorksController {
     };
 
     createWork = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!data || !data.jobTitle || !data.dateStart || !data.company || !data.description) throw new Error("Error: Missing information to create the Work!");
@@ -24,15 +24,16 @@ class WorksController {
             if(verify === 1) throw new Error("Error: The Job for the Company alredy exist!");
             const totalElements = await this.wService.totalElements();
             data.order = totalElements + 1;
-            const work = await this.wService.createOneWithImages(data, files, worksPath, session);
+            //const work = await this.wService.createOneWithImages(data, files, worksPath, session);
+            const work = await this.wService.createOneWithImages(data, files, worksPath);
             if(!work) throw new Error("Error: Couldn't create the work!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(work);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -135,8 +136,8 @@ class WorksController {
     };
 
     updateWorkById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Work!");
@@ -158,39 +159,40 @@ class WorksController {
             const verify = await this.verifyJobTitleCompany(data.JobTitle, data.company, id);
             if(verify === 1) throw new Error("Error: The Job for the Company alredy Exist!");
             const worksPath = `works/${id.toString()}`;
-            const updatedWork = await this.wService.updateOneWithImages(work, data, files, worksPath, session);
+            //const updatedWork = await this.wService.updateOneWithImages(work, data, files, worksPath, session);
+            const updatedWork = await this.wService.updateOneWithImages(work, data, files, worksPath);
             if(!updatedWork) throw new Error("Error: Couldn't update the Work!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(work);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally { 
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     updateWorksOrder = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if(!Array.isArray(data) || data.length === 0) return res.json400("No otdered works was provided!");
             const worksOrderUpdate = await this.wService.updateOrderDragDrop(data);
             if(!worksOrderUpdate) return res.json500("Error in updting the order of the works!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(worksOrderUpdate);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            session.endSession();
+            //session.endSession();
         }
     }
 
     deleteWorkById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the Work!");
@@ -202,14 +204,15 @@ class WorksController {
             if(!deleteFolder) throw new Error("Error: Couldn't delete the folder from Cloudinary!");
             const deletedWork = await this.wService.destroyById(id);
             if(!deletedWork) throw new Error("Error: Couldn't delete the work!");
-            await this.wService.reorderAfterDelete(session);
-            await session.commitTransaction();
+            //await this.wService.reorderAfterDelete(session);
+            await this.wService.reorderAfterDelete();
+            //await session.commitTransaction();
             return res.json200(deletedWork);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally { 
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

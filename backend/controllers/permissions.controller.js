@@ -12,22 +12,23 @@ class PermissionsController {
     };
 
     createPermission = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if (!data || !data.key || !data.name) throw new Error("Error: Missing information to create the permission!");
             const verifyKey = await this.verifyPermissionKey(data.key);
             if (verifyKey === 1) throw new Error("Error: The key of the permission alredy exist!");
-            const permission = await this.pService.createOne(data, { session });
+            //const permission = await this.pService.createOne(data, { session });
+            const permission = await this.pService.createOne(data);
             if (!permission) throw new Error("Error: Couldn't create the permission!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(permission);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -94,8 +95,8 @@ class PermissionsController {
     };
 
     updatePermissionById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the permission!");
@@ -106,21 +107,22 @@ class PermissionsController {
             if(!permission) throw new Error("Error: Permission not found!");
             const verify = await this.verifyPermissionKey(data.key, id);
             if(verify === 1) throw new Error("Error: The key alredy exist in an another permission!");
-            const updatedPermission = await this.pService.updateById(id, data, { session });
+            //const updatedPermission = await this.pService.updateById(id, data, { session });
+            const updatedPermission = await this.pService.updateById(id, data);
             if(!updatedPermission) throw new Error("Error: Couldn't update the permission!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(updatedPermission);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deletePermissionById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if(!id) throw new Error("Error: Missing the Id of the permission!");
@@ -133,7 +135,8 @@ class PermissionsController {
                 for(const role of roles) {
                     const permissions = role.permissions.filter(permission => permission._id.toString() !== id);
                     role.permissions = permissions;
-                    await this.rService.updateById(role._id, role, { session });
+                    //await this.rService.updateById(role._id, role, { session });
+                    await this.rService.updateById(role._id, role);
                 };
             };
             const users = await this.uService.readByFilter({ extraPermission: permissionObjectId });
@@ -141,18 +144,20 @@ class PermissionsController {
                 for(const user of users) {
                     const extraPermission = user.extraPermission.filter(permission => permission._id.toString() !== id);
                     user.extraPermission = extraPermission;
-                    await this.uService.updateById(user._id, user, { session });
+                    //await this.uService.updateById(user._id, user, { session });
+                    await this.uService.updateById(user._id, user);
                 };
             };
-            const deletedPermission = await this.pService.destroyById(id, { session });
+            //const deletedPermission = await this.pService.destroyById(id, { session });
+            const deletedPermission = await this.pService.destroyById(id);
             if(!deletedPermission) throw new Error("Error: Coulnd't delete the permission!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(deletedPermission);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

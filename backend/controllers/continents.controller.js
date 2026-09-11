@@ -13,22 +13,23 @@ class ContinentsController {
     };
 
     createContinent = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if (!data || !data.name) throw new Error("Missing the information to create a Continent!");
             const verifyContinent = await this.verifyNameContient(data.name);
             if (verifyContinent === 1) throw new Error("Continent alredy Exist!");
-            const continent = await this.conService.createOne(data,{ session });
+            //const continent = await this.conService.createOne(data,{ session });
+            const continent = await this.conService.createOne(data);
             if (!continent) throw new Error("Error: Couldn't create the Continent!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(continent);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -140,8 +141,8 @@ class ContinentsController {
     };
 
     updateContinentById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Id of the Continent is missing!");
@@ -152,21 +153,22 @@ class ContinentsController {
                 const verifyContinent = await this.verifyNameContient(data.name, id);
                 if (verifyContinent === 1) throw new Error("Error: The name of the Continent alredy Exist!");
             };
-            const continent = await this.conService.updateById(id, data, { session });
+            //const continent = await this.conService.updateById(id, data, { session });
+            const continent = await this.conService.updateById(id, data);
             if (!continent) throw new Error("Error: Continent not Found!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(continent);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteContinentById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Id of the Contient is missing!");
@@ -178,18 +180,20 @@ class ContinentsController {
             if(people && people.length > 0) {
                 for(const person of people) {
                     person.continents = null;
-                    await this.peoService.updateById(person._id, person, { session });
+                    //await this.peoService.updateById(person._id, person, { session });
+                    await this.peoService.updateById(person._id, person);
                 };
             };
-            const continentDelted = await this.conService.destroyById(id,{ session });
+            //const continentDelted = await this.conService.destroyById(id,{ session });
+            const continentDelted = await this.conService.destroyById(id);
             if (!continentDelted) throw new Error("Error: Couldn't delete the Continent!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(continentDelted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 

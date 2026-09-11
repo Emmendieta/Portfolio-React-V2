@@ -13,22 +13,23 @@ class CountriesController {
     };
 
     createCountry = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const data = req.body;
             if (!data || !data.name || !data.provinces || !data.provinces.length === 0) throw new Error("Error: Missing infomation to create the Country!");
             const verify = await this.verifyNameCountry(data.name);
             if (verify === 1) throw new Error("Error: The Name of the Country alredy Exist!");
-            const country = await this.counService.createOne(data, { session });
+            //const country = await this.counService.createOne(data, { session });
+            const country = await this.counService.createOne(data);
             if (!country) throw new Error("Error: Couldn't create the Country!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json201(country);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -134,8 +135,8 @@ class CountriesController {
     };
 
     updateCountryById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing Id of the Country!");
@@ -146,21 +147,22 @@ class CountriesController {
                 const verify = await this.verifyNameCountry(data.name, data._id);
                 if (verify === 1) throw new Error("Error: The Name of the Country alredy Exist!");
             };
-            const countryUpdated = await this.counService.updateById(id, data, { session });
+            //const countryUpdated = await this.counService.updateById(id, data, { session });
+            const countryUpdated = await this.counService.updateById(id, data);
             if(!countryUpdated) throw new Error("Error: Couldn't update de Country!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(countryUpdated);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
     deleteCountryById = async (req, res) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
+        //const session = await mongoose.startSession();
+        //session.startTransaction();
         try {
             const { id } = req.params;
             if (!id) throw new Error("Error: Missing Id of the Country!");
@@ -172,24 +174,27 @@ class CountriesController {
             if(continent) {
                 const countries = continent.countries.filter(country => country._id.toString() !== id);
                 continent.countries = countries;
-                await this.contService.updateById(continent._id, continent, { session });
+                //await this.contService.updateById(continent._id, continent, { session });
+                await this.contService.updateById(continent._id, continent);
             };
             const people = await this.peoService.readByFilter({ countries: countryObjectId });
             if(people && people.length > 0) {
                 for(const person of people) {
                     person.countries = null;
-                    await this.peoService.updateById(person._id, person, { session });
+                    //await this.peoService.updateById(person._id, person, { session });
+                    await this.peoService.updateById(person._id, person);
                 };
             };
-            const countryDeleted = await this.counService.destroyById(id, { session });
+            //const countryDeleted = await this.counService.destroyById(id, { session });
+            const countryDeleted = await this.counService.destroyById(id);
             if (!countryDeleted) throw new Error("Error: Couldn't delete the Country!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(countryDeleted);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
