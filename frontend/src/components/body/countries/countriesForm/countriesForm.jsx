@@ -106,7 +106,7 @@ function CountriesForm() {
             }
         };
         loadCountry();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     const getProvinceLabel = (province) => {
         return province.name?.[language] || province.name?.es || province.name?.en || "";

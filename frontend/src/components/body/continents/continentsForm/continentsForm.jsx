@@ -105,7 +105,7 @@ function ContinentsForm() {
             }
         };
         loadContinent();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     const getCountryLabel = (country) => { return country.name?.[language] || country.name?.es || country.name?.en || ""; };
 
