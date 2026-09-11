@@ -29,8 +29,7 @@ const allowedOirigins = [
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:4173",
-    "https://frontend-production-594c.up.railway.app",
-    "frontend-production-c23e.up.railway.app"
+    "https://frontend-production-c23e.up.railway.app",
 ];
 
 APP.use(cors({
