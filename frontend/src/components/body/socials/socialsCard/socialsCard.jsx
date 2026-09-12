@@ -46,7 +46,7 @@ function SocialsCard({ social, onDelete }) {
     return (
         <div key={social._id} className="socialCard">
             <section className="socialCardCarouselCont">
-                <Carousel type="social" id={social._id} images={social.images?.map(img => img.url) || []} width={75} height={75} showNextPrev={false}
+                <Carousel type="social" id={social._id} images={social.images?.map(img => img.url) || []} width={45} height={45} showNextPrev={false}
                     clCont="" clImgCont="" clImg="socialCardImg" clDivImgCont="" clBtnPrev="" clBtnNext="" />
             </section>
             <section className="socialCardBodyCont">

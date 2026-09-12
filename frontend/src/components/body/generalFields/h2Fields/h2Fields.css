@@ -32,9 +32,8 @@
 }
 
 .lightCardH2Text {
-    font-size: x-large;
+    font-size: large;
     padding: 0;
-    padding-left: 10px;
     text-align: justify;
 }
 
@@ -47,9 +46,10 @@
 }
 
 .lightCardH2Label {
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     padding: 0;
+    padding-right: 10px;
 }
 
 /* ----- LISTS ----- */
@@ -96,15 +96,20 @@
     align-items: center;
 }
 
+.darkCardH2FieldContColumn {
+    display: flex;
+    flex-direction: column;
+}
+
 .darkCCardH2Text {
-    font-size: x-large;
+    font-size: large;
     padding: 0;
-    padding-left: 10px;
     color: rgba(240, 248, 255, 0.746);
+    text-align: justify;
 }
 
 .darkCCardH2TextNoLabel {
-    font-size: x-large;
+    font-size: large;
     padding: 0;
     color: rgba(240, 248, 255, 0.746);
 }
@@ -117,9 +122,10 @@
 }
 
 .darkCardH2Label {
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     padding: 0;
+    padding-right: 10px;
     color: rgba(240, 248, 255, 0.746);
 }
 
@@ -164,9 +170,7 @@
 
 /* ---- Medium ---- */
 
-@media(min-width:577px) and (max-width: 768px) {
-
-}
+@media(min-width:577px) and (max-width: 768px) {}
 
 /* ---- Large ---- */
 

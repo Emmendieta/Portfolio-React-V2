@@ -99,7 +99,7 @@ function WorksCard({ work, onDelete }) {
                                 className="darkCardH2FieldCont" classNameH2="darkCCardH2Text" classNameLabel="darkCardH2Label" language={language} />
                         )}
                         <H2Fields label={TEXT.DESCRIPTION} value={work.description?.[language] || ""} language={language}
-                            className="darkCardH2FieldCont" classNameH2="darkCCardH2Text" classNameLabel="darkCardH2Label" />
+                            className="darkCardH2FieldContColumn" classNameH2="darkCCardH2Text" classNameLabel="darkCardH2Label" />
                     </div>
                 </section>
                 <section className="workCardBodyBottom">

@@ -92,7 +92,7 @@ function WorksForm() {
         const loadWork = async () => {
             try {
                 if(!user) return;
-                const permission = isEdit ? "update_work": "create_work";
+                const permission = isEdit ? "update_works": "create_works";
                 const allowed = await verifyPrivileges(user, permission);
                 if(!allowed) return;
                 startLoading();
@@ -103,6 +103,7 @@ function WorksForm() {
                     return;
                 };
                 const responsibilities = responsibilitiesRes.response || [];
+                console.log("RESPONSIBILITIES WORK CARD", responsibilities)
                 setAllResponsibilities(responsibilities);
                 if (!isEdit) {
                     //FALTA PARA UN NUEVO WORK
@@ -142,7 +143,7 @@ function WorksForm() {
                     <div className="workFormCheckCont">
                         <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         {isEdit && (
-                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true} className={""}
+                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                         <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}

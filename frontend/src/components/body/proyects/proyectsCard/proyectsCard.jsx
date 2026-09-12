@@ -94,7 +94,7 @@ function ProyectsCard({ proyect, onDelete }) {
                                 className="lightCardH2FieldCont" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
                         )}
                         <H2Fields label={TEXT.DESCRIPTION} value={proyect.description?.[language] || ""} language={language}
-                            className="lightCardH2FieldCont" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
+                            className="lightCardH2FieldContColumn" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
                     </div>
                 </section>
                 <section className="proyCardBodyBottom">
