@@ -104,13 +104,13 @@ class SkillsController {
             //const skillUpdated = await this.sService.updateOneWithImages(skill, data, files, folder, session);
             const skillUpdated = await this.sService.updateOneWithImages(skill, data, files, folder);
             if(!skillUpdated) throw new Error("Error: Couldn't update the Skill!");
-            await session.commitTransaction();
+            //await session.commitTransaction();
             return res.json200(skillUpdated);
         } catch (error) {
-            await session.abortTransaction();
+            //await session.abortTransaction();
             return res.json500(error.message);
         } finally {
-            await session.endSession();
+            //await session.endSession();
         }
     };
 
@@ -170,13 +170,18 @@ class SkillsController {
     };
 
     verifyName = async (name, id = null) => {
-        const query = {
+        const nameToVerify = name?.en || name;
+        const verify = await this.sService.readOneByFilter({ 'name.es': nameToVerify });
+        if(!verify) return 0;
+        if(verify.name?.en === nameToVerify && (!id || verify._id.toString() === id.toString())) return 1;
+        return 0;
+/*         const query = {
             'name.en': name?.en || name,
         };
         const verify = await this.sService.readOneByFilter(query);
         if(!verify) return 0;
         if(id && verify._id.toString() === id.toString()) return 0;
-        return 1;
+        return 1; */
     };
 };
 

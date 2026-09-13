@@ -5,7 +5,7 @@ import { useLoading } from "../../../../context/Loading.Context";
 import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
-import { validatorAlphaNumeric, validatorNumber, validatorPercent } from "../../../../helpers/validators.helper";
+import { validatorPercent, validatorShortText } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import { fetchCreateSkillWithImages, fetchGetSkillById, fetchUpdateSkillByIdWithImages } from "../skillsLogic";
 import H1Fields from "../../generalFields/h1Fields/h1fields";
@@ -35,8 +35,8 @@ function SkillsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorAlphaNumeric(data.name?.[primaryLang], TEXT.ERROR_NAME_ALPHANUMERIC); } catch (error) { errors.skillNamePrimary = error.message; };
-        if (showOtherLang) try { validatorAlphaNumeric(data.name?.[secondaryLang], TEXT.ERROR_NAME_ALPHANUMERIC); } catch (error) { errors.skillsNameSecondary = error.message; };
+        try { validatorShortText(data.name?.[primaryLang], TEXT.ERROR_NAME_ALPHANUMERIC); } catch (error) { errors.skillNamePrimary = error.message; };
+        if (showOtherLang) try { validatorShortText(data.name?.[secondaryLang], TEXT.ERROR_NAME_ALPHANUMERIC); } catch (error) { errors.skillsNameSecondary = error.message; };
         try { validatorPercent(data.percent, TEXT.ERROR_PERCENT ) } catch (error) { errors.percent = error.message };
         if (!data.type) { errors.type = TEXT.ERROR_TYPE };
         return errors;
@@ -108,7 +108,7 @@ function SkillsForm() {
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={((e) => setShowOtherLang(e.target.checked))} />
                         </div>
                         {isEdit && (
-                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} readOnly disabled className={""} language={language}
+                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} readOnly disabled language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
 
                         )}

@@ -173,14 +173,7 @@
     align-items: center;
 }
 
-.proyCardUlsDivCont {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
+
 
 /* --------------- CATEGORIES --------------- */
 

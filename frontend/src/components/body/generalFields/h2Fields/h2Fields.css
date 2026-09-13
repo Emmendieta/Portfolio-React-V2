@@ -52,6 +52,35 @@
     padding-right: 10px;
 }
 
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+    .lightCardH2FieldCont {
+        flex-direction: column;
+    }
+
+    .lightCardH2Label {
+        text-align: center;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {}
+
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}
+
 /* ----- LISTS ----- */
 
 .lightTitleH2FieldCont {
@@ -84,6 +113,12 @@
     margin-top: 30px;
     margin-bottom: 30px;
     font-weight: bold;
+    font-size: larger;
+}
+
+.lightCardImgNotFound {
+    width: 75px;
+    height: 75px;
 }
 
 /* ------------------------ H2 DARK ------------------------ */

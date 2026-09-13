@@ -163,9 +163,18 @@ export function validatorDNI(value, textErr) {
 export function validatorAlphaNumeric(value, textErr) {
     if(typeof value !== "string") throw new Error(textErr);
     const trimmed = value.trim();
-    if(trimmed.length <= 2 || trimmed.length >= 50) throw new Error(textErr);
+    if(trimmed.length < 2 || trimmed.length >= 50) throw new Error(textErr);
     const regex = /^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]+)*$/;
     if(!regex.test(trimmed)) throw new Error(textErr);
+    return true;
+};
+
+//ALPHA NUMERIC:
+
+export function validatorShortText(value, textErr) {
+    if(typeof value !== "string") throw new Error(textErr);
+    const trimmed = value.trim();
+    if(trimmed.length < 2 || trimmed.length >= 50) throw new Error(textErr);
     return true;
 };
 

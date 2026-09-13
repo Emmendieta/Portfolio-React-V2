@@ -10,7 +10,7 @@ import { FaPen } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { formatDate } from "../../../../helpers/formatDate.helper";
-import "./educationsCard.css";
+import "../../generalFields/lightCards.css";
 import Uls from "../../generalFields/Uls/Uls";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
 
@@ -84,15 +84,15 @@ function EducationsCard({ education, onDelete }) {
     }, []);
 
     return (
-        <div key={education._id} className={`educationCard ${visible ? 'fade-in' : ""}`}>
+        <div key={education._id} className={`lightCard ${visible ? 'fade-in' : ""}`}>
             {(canEdit || canDetails || canDelete) && (
-            <div className="eduCardBtnCont">
-                <section className="eduCardSectBtn">
+            <div className="lightCardBtnCont">
+                <section className="lightCardSectBtn">
                     {canDetails && (
                         <button className="btn btn-outline-success btn-sm" id="eduCardDetail" onClick={() => navigate(`/educations/details/${education._id}`, { state: { education } })}><BiSolidUserDetail className="iconEduDetail" /></button>
                     )}
                     {canEdit && (
-                        <Link to={`educations/form/${education._id}`} id="eduCardEdit" className="btn btn-outline-primary btn-sm">
+                        <Link to={`/educations/form/${education._id}`} id="eduCardEdit" className="btn btn-outline-primary btn-sm">
                             <FaPen />
                         </Link>
                     )}
@@ -104,13 +104,13 @@ function EducationsCard({ education, onDelete }) {
                 </section>
             </div>
             )}
-            <div className="eduCardBody">
-                <section className="eduCardBodyTop">
-                    <div className="eduCardCarouselCont">
+            <div className="lightCardBody">
+                <section className="lightCardBodyTop">
+                    <div className="lightCardCarouselCont">
                         <Carousel type="education" id={education._id} images={education.images?.map(img => img.url) || []} width={350} height={350}
                         /* clCont="" clImgCont="" clDivImgCont="" clBtnPrev="" clBtnNext="" */ />
                     </div>
-                    <div className="eduCardBodyInfo">
+                    <div className="lightCardBodyInfo">
                         <H2Fields label={TEXT.INSTITUTION} value={`${education.institutionName?.[language] || ""}`} language={language}
                             className="lightCardH2FieldCont" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
                         <H2Fields label={TEXT.TITLE} value={`${education.title?.[language] || ""}`} language={language}
@@ -131,18 +131,18 @@ function EducationsCard({ education, onDelete }) {
                             className="lightCardH2FieldContColumn" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
                     </div>
                 </section>
-                <section className="eduCardBodyBotom">
+                <section className="lightCardBodyBotom">
                     {education?.habilities?.length > 0 ? (
                         <Uls list={education.habilities} valueH1Field={`${TEXT.HABILITIES}:`} language={language} renderItem={(hability) => (
                             <H2Fields value={hability.name?.[language] || ""}
                                 className="lightCardH2FieldCont" classNameH2="lightCardH2Text" classNameLabel="lightCardH2Label" />
                         )}
-                            className="eduCardUlCont" classNameUl="eduCardUl" classnameli="eduCardLi" clH1TextDisp="eduCardTitle" />
+                            className="eduCardUlCont" classNameUl="eduCardUl" classnameli="eduCardLi" clH1TextDisp="lightCardTitle" />
                     ) : (
-                        <div className="genListErrContDark">
+                        <div className="genListErr">
                             <H2Fields value={`${TEXT.RESPONSIBILITIES_NOT_FOUND}!`} language={language}
-                                className="darkCardH2FieldCont" classNameH2="darkCCardH2Text" classNameLabel="darkCardH2Label" />
-                            <img src="/img/not-found.png" className="eduCardImgNotFound" />
+                                className="" classNameH2="genListErrH2" classNameLabel="" />
+                            <img src="/img/not-found.png" className="lightCardImgNotFound" />
                         </div>
                     )}
                 </section>
