@@ -92,6 +92,7 @@
     box-sizing: border-box;
     justify-content: flex-start;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .lightCardUl {
@@ -199,6 +200,7 @@
 
     .lightCardBodyBotom {
         flex-direction: column;
+        padding-bottom: 30px;
     }
 
     .lightCardUlCont {
@@ -235,6 +237,7 @@
 
     .lightCardBodyBotom {
         flex-direction: column;
+        padding-bottom: 30px;
     }
 
     .lightCardUlCont {
