@@ -177,6 +177,12 @@
     .lightCardImgNotFound {
         margin-bottom: 60px;
     }
+
+    .darkCCardH2TextTitle {
+        text-align: center;
+        font-size: x-large;
+        
+    }
 }
 
 /* ---- Medium ---- */
