@@ -91,9 +91,9 @@ function PeoplePresentation() {
             </section>
             <section className="peoPresentBtnCont">
                 {canEdit && (
-                    <button type="button" className="btn btn-outline-primary" onClick={() => navigate(`/people/form/${people._id}`)}><FaUserEdit /></button>
+                    <button type="button" className="btn btn-outline-primary" id="peoPresentEditBtn" onClick={() => navigate(`/people/form/${people._id}`)}><FaUserEdit /></button>
                 )}
-                <button type="button" className="btn btn-outline-success" onClick={() => navigate(`/people/details/${people._id}`)}>{TEXT.MORE_ABOUT_ME }</button>
+                <button type="button" className="btn btn-outline-success" id="peoPresentDetailBtn" onClick={() => navigate(`/people/details/${people._id}`)}>{TEXT.MORE_ABOUT_ME }</button>
             </section>
         </div>
     );

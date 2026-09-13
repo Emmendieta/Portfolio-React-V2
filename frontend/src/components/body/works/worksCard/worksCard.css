@@ -93,7 +93,7 @@
         flex-direction: column;
     }
 
-        .workBodyInfo {
+    .workBodyInfo {
         margin-left: 50px;
         margin-right: 50px;
     }
@@ -101,7 +101,38 @@
 
 /* ---- Large ---- */
 
-@media(min-width:769px) and (max-width: 992px) {}
+@media(min-width:769px) and (max-width: 992px) {
+    .workCardBodyTop {
+        flex-direction: column;
+    }
+
+    .workCardCarouselCont {
+        margin-bottom: 20px;
+    }
+
+    .workBodyInfo {
+        margin: 10px 40px 10px 40px;
+    }
+
+    .workCardBodyBotom {
+        flex-direction: column;
+    }
+
+    .workCardUlCont {
+        flex-direction: column;
+        width: 100%;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .workCardUl {
+        flex-direction: row;
+    }
+
+    .workCardLi {
+        margin-right: 5px;
+    }
+}
 
 /* ---- X-Large ---- */
 
