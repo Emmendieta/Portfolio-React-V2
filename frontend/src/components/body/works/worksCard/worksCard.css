@@ -63,3 +63,50 @@
     width: 75px;
     height: 75px;
 }
+
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+    .workCardBodyTop {
+        flex-direction: column;
+    }
+
+    .workBodyInfo {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .workCardUl {
+        flex-direction: column;
+    }
+
+    .workCardLi {
+        margin-top: 7px;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {
+    .workCardBodyTop {
+        flex-direction: column;
+    }
+
+        .workBodyInfo {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}

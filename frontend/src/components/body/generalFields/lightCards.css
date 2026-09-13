@@ -62,6 +62,8 @@
     align-items: flex-start;
     width: 100%;
     box-sizing: border-box;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .lightCardBodyBottomDiv {

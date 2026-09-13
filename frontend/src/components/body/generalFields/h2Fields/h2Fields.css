@@ -119,6 +119,7 @@
 .lightCardImgNotFound {
     width: 75px;
     height: 75px;
+    margin-bottom: 30px;
 }
 
 /* ------------------------ H2 DARK ------------------------ */
@@ -163,6 +164,33 @@
     padding-right: 10px;
     color: rgba(240, 248, 255, 0.746);
 }
+
+/* ---- Mobile ---- */
+
+@media(max-width:576px) {
+    .darkCardH2FieldCont, .darkCardH2FieldContColumn {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ---- Medium ---- */
+
+@media(min-width:577px) and (max-width: 768px) {}
+
+
+/* ---- Large ---- */
+
+@media(min-width:769px) and (max-width: 992px) {}
+
+/* ---- X-Large ---- */
+
+@media(min-width:993px) and (max-width: 1200px) {}
+
+/* ---- XX-Large ---- */
+
+@media(min-width:1401px) {}
 
 /* ----- LISTS ----- */
 
