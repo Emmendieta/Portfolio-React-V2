@@ -173,6 +173,10 @@
         justify-content: center;
         align-items: center;
     }
+
+    .lightCardImgNotFound {
+        margin-bottom: 40px;
+    }
 }
 
 /* ---- Medium ---- */
