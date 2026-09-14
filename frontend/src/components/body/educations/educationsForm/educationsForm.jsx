@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useLanguage } from "../../../../context/Language.Context";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
-import { validatorAlphaNumeric, validatorDate, validatorLongText, validatorName, validatorURL } from "../../../../helpers/validators.helper";
+import { validatorAlphaNumeric, validatorDate, validatorLongText, validatorLongTextMax, validatorName, validatorURL } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import { useLoading } from "../../../../context/Loading.Context";
 import H1Fields from "../../generalFields/h1Fields/h1fields";
@@ -56,8 +56,8 @@ function EducationsForm() {
         try { validatorAlphaNumeric(data.certificate), TEXT.ERROR_CERTIFICATE } catch (error) { errors.certificate = error.message; };
         try { validatorURL(data.linkCertificate), TEXT.ERROR_URL } catch (error) { errors.linkCertificate = error.message; };
         //FALTA VALIDAR typeEducation
-        try { validatorLongText(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionPrimary = error.message; };
-        if (showOtherLang) try { validatorLongText(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionSecondary = error.message; };
+        try { validatorLongTextMax(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) try { validatorLongTextMax(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionSecondary = error.message; };
         if (!data.typeEducation) { errors.typeEducation = `${TEXT.ERROR}: ${TEXT.ERROR_TYPE_EDUCATION}!` };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);

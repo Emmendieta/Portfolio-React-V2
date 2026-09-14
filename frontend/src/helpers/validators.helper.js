@@ -228,3 +228,13 @@ export function validatorLongText(value, textErr) {
     return true;
 };
 
+
+//LONG TEXT WITH MAX 255:
+
+export function validatorLongTextMax(value, textErr) {
+    if(typeof value !== "string") throw new Error(textErr);
+    const trimmed = value.trim();
+    if(trimmed.length <= 2 || trimmed.length > 255) throw new Error(textErr);
+    return true;
+};
+

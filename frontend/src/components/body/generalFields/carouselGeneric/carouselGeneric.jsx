@@ -58,86 +58,25 @@ function CarouselGeneric({ items = [], renderItem, width = "100%", height = "aut
 
     const viewportHeight = height !== "auto" ? height: carouselHeight > 0 ? `${carouselHeight}px`: "auto";
 
-    /*return (
-        <div className={`genCarousel ${className}`} style={{ width, height: viewPortHeight }} >
-            {showButtons && (
-                <button type="button" className="genCarousel_button genCarousel_button--prev" onClick={handlePrev} disabled={!loop && isFirst}
-                    aria-label={TEXT.PREV_ELEMENT}>&#10094;</button>
-            )}
-            <div className="genCarousel_viewport" style={{ height: height !== "auto" ? height : carouselHeight ? `${carouselHeight}px` : "auto" }}>
-                <div className="genCarousel_track" style={{ transform: `translateX( -${currentIndex * 100}%)` }} >
-                    {items.map((item, index) => (
-                        <div className="genCarousel_slide" key={item?._id || index} ref={(element) => { slideRefs.current[index] = element }}>
-                            {renderItem(item, index)}
-                        </div>
-                    ))}
-                </div>
-            </div>
-            {showButtons && (
-                <button type="button" className="genCarousel_button genCarousel_button--next" onClick={handleNext} disabled={!loop && isLast}
-                    aria-label={TEXT.NEXT_ELEMENT}>&#10095;</button>
-            )}
-            {showCounter && (
-                <div className="genCarousel_counter">
-                    {currentIndex + 1} / {items.length}
-                </div>
-            )}
-        </div>
-    );*/
-
     return (
         <div
-            className={`genCarousel ${className}`}
-            style={{
-                width,
-                height: viewportHeight
-            }}
-        >
-            <div
-                className="genCarousel_viewport"
-                style={{
-                    height: viewportHeight
-                }}
-            >
-                <div
-                    className="genCarousel_track"
-                    style={{
-                        transform: `translateX(-${currentIndex * 100}%)`
-                    }}
-                >
+            className={`genCarousel ${className}`} style={{ width, height: viewportHeight }} >
+            <div className="genCarousel_viewport" style={{ height: viewportHeight }} >
+                <div className="genCarousel_track" style={{ transform: `translateX(-${currentIndex * 100}%)` }} >
                     {items.map((item, index) => (
-                        <div
-                            className="genCarousel_slide"
-                            key={item?._id || index}
-                            ref={(element) => {
-                                slideRefs.current[index] = element;
-                            }}
-                        >
+                        <div className="genCarousel_slide" key={item?._id || index} ref={(element) => { slideRefs.current[index] = element; }} >
                             {renderItem(item, index)}
                         </div>
                     ))}
                 </div>
             </div>
-
             {showButtons && (
                 <>
-                    <button
-                        type="button"
-                        className="genCarousel_button genCarousel_button--prev"
-                        onClick={handlePrev}
-                        disabled={!loop && isFirst}
-                        aria-label={TEXT.PREV_ELEMENT}
-                    >
+                    <button type="button" className="genCarousel_button genCarousel_button--prev" onClick={handlePrev} disabled={!loop && isFirst} aria-label={TEXT.PREV_ELEMENT} >
                         &#10094;
                     </button>
 
-                    <button
-                        type="button"
-                        className="genCarousel_button genCarousel_button--next"
-                        onClick={handleNext}
-                        disabled={!loop && isLast}
-                        aria-label={TEXT.NEXT_ELEMENT}
-                    >
+                    <button type="button" className="genCarousel_button genCarousel_button--next" onClick={handleNext} disabled={!loop && isLast} aria-label={TEXT.NEXT_ELEMENT} >
                         &#10095;
                     </button>
                 </>
