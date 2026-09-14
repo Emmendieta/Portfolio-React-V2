@@ -47,8 +47,8 @@ function EducationsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorAlphaNumeric(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNamePrimary = error.message; };
-        if (showOtherLang) try { validatorAlphaNumeric(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNameSencondary = error.message; };
+        try { validatorLongText(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNamePrimary = error.message; };
+        if (showOtherLang) try { validatorLongText(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNameSencondary = error.message; };
         try { validatorName(data.title?.[primaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titlePrimary = error.message; };
         if (showOtherLang) try { validatorName(data.title?.[secondaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titleSecondary = error.message; };
         try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE ) } catch (error) { errors.dateStart = error.message; };
