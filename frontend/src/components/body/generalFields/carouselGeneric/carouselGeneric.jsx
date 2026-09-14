@@ -12,20 +12,20 @@ function CarouselGeneric({ items = [], renderItem, width = "100%", height = "aut
     const [carouselHeight, setCarouselHeight] = useState(null);
     const slideRefs = useRef([]);
     //if there are not element, don't show nothing:
-    if(!items || items.length === 0) { return null; };
+    if (!items || items.length === 0) { return null; };
 
     const handlePrev = () => {
         setCurrentIndex((prev) => {
-            if(prev === 0) {
-                return loop ? items.length -1 : 0;
+            if (prev === 0) {
+                return loop ? items.length - 1 : 0;
             };
-            return prev -1;
+            return prev - 1;
         });
     };
 
     const handleNext = () => {
         setCurrentIndex((prev) => {
-            if(prev === items.length - 1) {
+            if (prev === items.length - 1) {
                 return loop ? 0 : prev;
             };
             return prev + 1;
@@ -36,41 +36,45 @@ function CarouselGeneric({ items = [], renderItem, width = "100%", height = "aut
     const isLast = currentIndex === items.length - 1;
 
     useEffect(() => {
+        const currentSlide = slideRefs.current[currentIndex];
+        if (!currentSlide) return;
         const updateHeight = () => {
-            const currentSlide = slideRefs.current[currentIndex];
-            if(currentSlide) {
-                setCarouselHeight(currentSlide.offsetHeight);
-            };
+            setCarouselHeight(currentSlide.offsetHeight);
         };
         updateHeight();
+        const resizeObserver = new ResizeObserver(() => {
+            updateHeight();
+        });
+        resizeObserver.observe(currentSlide);
         window.addEventListener("resize", updateHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight)
+            resizeObserver.disconnect();
+            window.removeEventListener("resize", updateHeight);
         };
     }, [currentIndex, items, language]);
 
     return (
-        <div className={`genCarousel ${className}`} style={{ width, height: height !== "auto" ? height: "auto"}} > 
+        <div className={`genCarousel ${className}`} style={{ width, height: height !== "auto" ? height : "auto" }} >
             {showButtons && (
                 <button type="button" className="genCarousel_button genCarousel_button--prev" onClick={handlePrev} disabled={!loop && isFirst}
                     aria-label={TEXT.PREV_ELEMENT}>&#10094;</button>
             )}
-            <div className="genCarousel_viewport">
-                <div className="genCarousel_track" style={{ transform: `translateX( -${currentIndex * 100}%)`}} >
+            <div className="genCarousel_viewport" style={{ height: height !== "auto" ? height : carouselHeight ? `${carouselHeight}px` : "auto" }}>
+                <div className="genCarousel_track" style={{ transform: `translateX( -${currentIndex * 100}%)` }} >
                     {items.map((item, index) => (
-                        <div className="genCarousel_slide" key={ item?._id || index } >
-                            { renderItem(item, index) }
+                        <div className="genCarousel_slide" key={item?._id || index} ref={(element) => { slideRefs.current[index] = element }}>
+                            {renderItem(item, index)}
                         </div>
                     ))}
                 </div>
             </div>
             {showButtons && (
-                <button type="button" className="genCarousel_button genCarousel_button--next" onClick={handleNext} disabled={ !loop && isLast } 
+                <button type="button" className="genCarousel_button genCarousel_button--next" onClick={handleNext} disabled={!loop && isLast}
                     aria-label={TEXT.NEXT_ELEMENT}>&#10095;</button>
             )}
             {showCounter && (
                 <div className="genCarousel_counter">
-                    { currentIndex + 1 } / { items.length }
+                    {currentIndex + 1} / {items.length}
                 </div>
             )}
         </div>
