@@ -109,34 +109,6 @@ function EduactionsList() {
         }
     };
 
-    // SIN EL CAROUSEL:
-
-    /*return (
-        <div className="eduListDivCont">
-            <section className="eduListSectAddCont">
-                <Link to={"/educations/form/new"}>
-                    <button type="button" className="btn btn-outline-success" id="btnAddEdu">{`${TEXT.NEW_F} ${TEXT.EDUCATION}`}</button>
-                </Link>
-            </section>
-            VER SI PONGO BUSCADORES (HAY QUE EDITAR EL METODO DEL FETCH)
-            <section>
-                <div>
-                    {educations.length > 0 ? (
-                        <Uls list={educations} classNameUl="" classnameli="" valueH1Field={`${TEXT.EDUCATIONS_LIST}`} language={language} renderItem={(education) => (
-                            <EducationsCard key={education._id} education={education} onDelete={handleDelete} />
-                        )} />
-                    ): (
-                        <div className="genListErrCont">
-                            <H2Fields value={`${TEXT.EDUCATIONS_NOT_FOUND}!`} className="genListErr" classNameH2="genListErrH2" language={language} />
-                            <img src="/img/not-found.jpg"/>
-                        </div>
-                    )}
-                </div>
-            </section>
-        </div>
-    );*/
-
-    // CON EL CAROUSEL:
     return (
         <div className="eduListDivCont">
             {canCreate && (
