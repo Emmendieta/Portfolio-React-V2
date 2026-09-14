@@ -124,7 +124,7 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                         </Link>
                     </section>
                 )}
-                <section >
+                <section className="catListSectUlsCont">
                     {categories.length > 0 ? (
                         <Uls list={categories} language={language} renderItem={(category) => (
                             <CategoriesCard key={category._id} category={category} onDelete={handleDelete} onClick={handleCategoryClick} 
