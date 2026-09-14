@@ -49,8 +49,8 @@ function EducationsForm() {
         const errors = {};
         try { validatorLongText(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNamePrimary = error.message; };
         if (showOtherLang) try { validatorLongText(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNameSencondary = error.message; };
-        try { validatorName(data.title?.[primaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titlePrimary = error.message; };
-        if (showOtherLang) try { validatorName(data.title?.[secondaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titleSecondary = error.message; };
+        try { validatorLongText(data.title?.[primaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titlePrimary = error.message; };
+        if (showOtherLang) try { validatorLongText(data.title?.[secondaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titleSecondary = error.message; };
         try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE ) } catch (error) { errors.dateStart = error.message; };
         try { validatorURL(data.linkInstitution), TEXT.ERROR_URL } catch (error) { errors.linkInstitution = error.message; };
         try { validatorAlphaNumeric(data.certificate), TEXT.ERROR_CERTIFICATE } catch (error) { errors.certificate = error.message; };
