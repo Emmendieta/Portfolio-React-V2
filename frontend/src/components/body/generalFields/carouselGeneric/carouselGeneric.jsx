@@ -56,7 +56,7 @@ function CarouselGeneric({ items = [], renderItem, width = "100%", height = "aut
         };
     }, [currentIndex, items, language]);
 
-    const viewPortHeight = height !== "auto" ? height: carouselHeight > 0 ? `${carouselHeight}px`: "auto";
+    const viewportHeight = height !== "auto" ? height: carouselHeight > 0 ? `${carouselHeight}px`: "auto";
 
     /*return (
         <div className={`genCarousel ${className}`} style={{ width, height: viewPortHeight }} >
