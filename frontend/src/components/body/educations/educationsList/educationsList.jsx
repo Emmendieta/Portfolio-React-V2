@@ -151,7 +151,7 @@ function EduactionsList() {
                     <div>
                         {courses.length > 0 ? (
                             <div>
-                                <H2Fields value={`${TEXT.CORSES}:`} language={language}
+                                <H2Fields value={`${TEXT.COURSES}:`} language={language}
                                     className="lightTitleH2FieldCont" classNameH2="lightTitleH2Text" />
                                 <CarouselGeneric items={courses} renderItem={(education) => (
                                     <EducationsCard key={education._id} education={education} onDelete={handleDelete} />
