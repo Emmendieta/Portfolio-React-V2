@@ -40,7 +40,7 @@ function HabilitiesCard({ hability, onDelete }) {
             };
             const [editAllowed, deleteAllowed] = await Promise.all([
                 verifyPrivileges(user, "update_habilities"),
-                verifyPrivileges(user, "delete_privileges")
+                verifyPrivileges(user, "delete_habilities")
             ]);
             setCanEdit(editAllowed);
             setCanDelete(deleteAllowed);
