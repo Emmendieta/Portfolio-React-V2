@@ -38,10 +38,10 @@ export const createHandleBlur = ({ setFormData, setTouched }) => {
         };
 
         //Anidate Fields:
-        if(name.includes(".")) {
+        /*if(name.includes(".")) {
             setFormData(prev => setNestedValue(prev, name, normalizeName(value)) );
             return;
-        };
+        };*/
 
         //Default:
         setFormData(prev => ({ ...prev, [name]: value }) );
