@@ -113,6 +113,7 @@ function EducationsForm() {
                     return;
                 };
                 const habilities = habilitiesRes.response || [];
+                habilities.sort((a, b) => (a.name?.[language] || "").localCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
                 setAllHabilities(habilities);
                 if (!isEdit) {
                     setFormData({ institutionName: { es: "", en: "" }, title: { es: "", en: "" }, dateStart: "", dateEnd: "", linkInstitution: "", images: [], certificate: "", linkCertificate: "", finished: false, typeEducation: "Course", description: { es: "", en: "" }, habilities: [] });
