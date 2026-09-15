@@ -84,7 +84,8 @@ function EducationsForm() {
 
     const availablesHabilities = useMemo(() => {
         const assignedIds = new Set(formData.habilities.map(hab => hab._id));
-        return allHabilities.filter(hability => !assignedIds.has(hability._id));
+        return allHabilities.filter(hability => !assignedIds.has(hability._id)).
+            sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
     }, [allHabilities, formData.habilities]);
 
     const assignedHabilities = formData.habilities;
