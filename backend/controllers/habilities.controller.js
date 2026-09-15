@@ -151,13 +151,11 @@ class HabilitiesController {
     };
 
     verifyName = async (name, id = null )=> {
-        const query =  {
-            "name.en": name?.en || name,
-        };
-        const verify = await this.hService.readOneByFilter(query);
+        const nameToVerify = name?.en || name;
+        const verify = await this.hService.readOneByFilter({ 'name.en': nameToVerify });
         if(!verify) return 0;
-        if(id && verify._id.toString() === id.toString()) return 0;
-        return 1;
+        if(verify.name?.en === nameToVerify && (!id || verify._id.toString() == id.toString())) return 1;
+        return 0;
     };
 };
 
