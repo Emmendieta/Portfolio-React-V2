@@ -18,10 +18,11 @@ export const createHandleBlur = ({ setFormData, setTouched }) => {
             });
             return;
         };
-
+        
+        const noNormalizedFields = ["description"];
         //Fields wuith language:
         if(lang) {
-            setFormData(prev => ({ ...prev, [name]: { ...prev[name], [lang]: normalizeName(value)} }));
+            setFormData(prev => ({ ...prev, [name]: { ...prev[name], [lang]: noNormalizedFields.includes(name) ? value:  normalizeName(value)} }));
             return;
         };
 
