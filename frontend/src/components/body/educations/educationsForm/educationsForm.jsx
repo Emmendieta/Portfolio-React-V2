@@ -47,17 +47,17 @@ function EducationsForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorLongText(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNamePrimary = error.message; };
-        if (showOtherLang) try { validatorLongText(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME ); } catch (error) { errors.institutionNameSencondary = error.message; };
-        try { validatorLongText(data.title?.[primaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titlePrimary = error.message; };
-        if (showOtherLang) try { validatorLongText(data.title?.[secondaryLang], TEXT.ERROR_TITLE ); } catch (error) { errors.titleSecondary = error.message; };
-        try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE ) } catch (error) { errors.dateStart = error.message; };
+        try { validatorLongText(data.institutionName?.[primaryLang], TEXT.ERROR_INSTITUTION_NAME); } catch (error) { errors.institutionNamePrimary = error.message; };
+        if (showOtherLang) try { validatorLongText(data.institutionName?.[secondaryLang], TEXT.ERROR_INSTITUTION_NAME); } catch (error) { errors.institutionNameSencondary = error.message; };
+        try { validatorLongText(data.title?.[primaryLang], TEXT.ERROR_TITLE); } catch (error) { errors.titlePrimary = error.message; };
+        if (showOtherLang) try { validatorLongText(data.title?.[secondaryLang], TEXT.ERROR_TITLE); } catch (error) { errors.titleSecondary = error.message; };
+        try { validatorDate(data.dateStart, { allowsFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE) } catch (error) { errors.dateStart = error.message; };
         try { validatorURL(data.linkInstitution), TEXT.ERROR_URL } catch (error) { errors.linkInstitution = error.message; };
         try { validatorAlphaNumeric(data.certificate), TEXT.ERROR_CERTIFICATE } catch (error) { errors.certificate = error.message; };
         try { validatorURL(data.linkCertificate), TEXT.ERROR_URL } catch (error) { errors.linkCertificate = error.message; };
         //FALTA VALIDAR typeEducation
-        try { validatorLongTextMax(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionPrimary = error.message; };
-        if (showOtherLang) try { validatorLongTextMax(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT ); } catch (error) { errors.descriptionSecondary = error.message; };
+        try { validatorLongTextMax(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) try { validatorLongTextMax(data.description?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.descriptionSecondary = error.message; };
         if (!data.typeEducation) { errors.typeEducation = `${TEXT.ERROR}: ${TEXT.ERROR_TYPE_EDUCATION}!` };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
@@ -88,7 +88,15 @@ function EducationsForm() {
             sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
     }, [allHabilities, formData.habilities]);
 
-    const assignedHabilities = formData.habilities;
+    const assignedHabilities = useMemo(() => {
+        return [...formData.habilities].sort((a, b) =>
+            (a.name?.[language] || "").localeCompare(
+                b.name?.[language] || "",
+                language,
+                { sensitivity: "base" }
+            )
+        );
+    }, [formData.habilities, language]);
 
     const addHability = (hability) => {
         if (!hability) return;
@@ -103,9 +111,9 @@ function EducationsForm() {
     useEffect(() => {
         const loadEducation = async () => {
             try {
-                const permission = isEdit ? "update_educations": "create_educations";
+                const permission = isEdit ? "update_educations" : "create_educations";
                 const allowed = await verifyPrivileges(user, permission);
-                if(!allowed) return;
+                if (!allowed) return;
                 startLoading();
                 await new Promise(resolve => setTimeout(resolve, 600));
                 const habilitiesRes = await fetchGetAllHabilities();
@@ -118,7 +126,7 @@ function EducationsForm() {
                 setAllHabilities(habilities);
                 if (!isEdit) {
                     setFormData({ institutionName: { es: "", en: "" }, title: { es: "", en: "" }, dateStart: "", dateEnd: "", linkInstitution: "", images: [], certificate: "", linkCertificate: "", finished: false, typeEducation: "Course", description: { es: "", en: "" }, habilities: [] });
-                } else { 
+                } else {
                     const result = await fetchGetEduactionPopulateById(id);
                     if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                     const education = result.response || [];
@@ -177,7 +185,7 @@ function EducationsForm() {
                         <Inputs textH2={TEXT.DATE_END} type="date" name="dateEnd" value={formData.dateEnd ? formData.dateEnd.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_END)}
                             onChange={handleChange} onBlur={(e) => handleBlur} error={(touched.dateEnd || isSubmitted) && errors.dateEnd}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <CheckBoxs name="finished" textH2={`${TEXT.FINISHED}?`} checked={formData.finished} onChange={(e) => handleChange(e)}  />
+                        <CheckBoxs name="finished" textH2={`${TEXT.FINISHED}?`} checked={formData.finished} onChange={(e) => handleChange(e)} />
                         <Inputs textH2={TEXT.LINK_INSTITUTION} type="text" name="linkInstitution" value={formData.linkInstitution} placeHolder={TEXT.inputsText("m", TEXT.LINK_INSTITUTION)}
                             onChange={handleChange} onBlur={handleBlur} error={(touched.linkInstitution || isSubmitted) && errors.linkInstitution}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
@@ -206,7 +214,7 @@ function EducationsForm() {
                             <Uls list={availablesHabilities} valueH1Field={`${TEXT.HABILITIES_AVAILABLES}:`} language={language} /* idH1Field={""} className={""}
                                 classnameli="" classNameUl="" classNameSect="" idList={""} */ renderItem={(hability) => (
                                     <button type="button" onClick={() => addHability(hability)} className="btn btn-outline-success btnAddAssignedUls" >
-                                        <H2Fields value={hability.name?.[language]} className="clBtnAddAssigned" classNameH2="clBtnAddAssignedH2"/>
+                                        <H2Fields value={hability.name?.[language]} className="clBtnAddAssigned" classNameH2="clBtnAddAssignedH2" />
                                     </button>
                                 )} />
                             <Uls list={assignedHabilities} valueH1Field={`${TEXT.HABILITIES_ASSIGNED}:`} language={language} /* idH1Field={""} className={""}
