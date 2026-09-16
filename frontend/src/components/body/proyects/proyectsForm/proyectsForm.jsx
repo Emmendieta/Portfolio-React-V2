@@ -140,7 +140,7 @@ function ProyectsForm() {
 
     const sortByName = useCallback((a, b) => {
         const nameA = String(a?.name?.[language] ?? "").trim();
-        const nameB = Strin(b?.name?.[language] ?? "").trim();
+        const nameB = String(b?.name?.[language] ?? "").trim();
         const locale = language === "es" ? "es-ES": "en-US";
         return nameA.localeCompare(nameB, locale, { sensitivity: "base", numeric: true, ignorePunctuation: true });
     }, [language]);

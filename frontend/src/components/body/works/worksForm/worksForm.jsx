@@ -205,13 +205,13 @@ function WorksForm() {
                     <div className="workFormUlsCont">
                         <Uls list={availableResponsibilities} valueH1Field={TEXT.RESPONSIBILITIES_AVAILABLE} language={language} idH1Field={""} className={""}
                             classnameli="" classNameSect="" idList={""} renderItem={(responsibility) => (
-                                <button type="button" onClick={() => addResponsibility(responsibility)} className="">
+                                <button type="button" onClick={() => addResponsibility(responsibility)} className="btn btn-outline-success">
                                     <H2Fields value={responsibility.name?.[language]} className="" />
                                 </button>
                             )} />
                         <Uls list={assignedResponsibilities} valueH1Field={TEXT.RESPONSIBILITIES_ASSIGNED} language={language} idH1Field={""}
                             classnameli="" classNameSect="" idList={""} renderItem={(responsibility) => (
-                                <button type="button" onClick={() => removeResponsibility(responsibility._id)} className="">
+                                <button type="button" onClick={() => removeResponsibility(responsibility._id)} className="btn btn-outilne-danger">
                                     <H2Fields value={responsibility.name?.[language]} className="" />
                                 </button>
                             )} />
