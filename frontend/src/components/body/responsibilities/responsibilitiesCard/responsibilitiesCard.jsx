@@ -36,7 +36,7 @@ function ResponsibilitiesCard({ responsibility, onDelete }) {
                 return;
             };
             const [editAllowed, deleteAllowed] = await Promise.all([
-                verifyPrivileges(user, "update_responsibilites"),
+                verifyPrivileges(user, "update_responsibilities"),
                 verifyPrivileges(user, "create_responsibilities")
             ]);
             setCanEdit(editAllowed);

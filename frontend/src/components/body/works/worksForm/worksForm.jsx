@@ -211,7 +211,7 @@ function WorksForm() {
                             )} />
                         <Uls list={assignedResponsibilities} valueH1Field={TEXT.RESPONSIBILITIES_ASSIGNED} language={language} idH1Field={""}
                             classnameli="" classNameSect="" idList={""} renderItem={(responsibility) => (
-                                <button type="button" onClick={() => removeResponsibility(responsibility._id)} className="btn btn-outilne-danger">
+                                <button type="button" onClick={() => removeResponsibility(responsibility._id)} className="btn btn-outline-danger">
                                     <H2Fields value={responsibility.name?.[language]} className="" />
                                 </button>
                             )} />
