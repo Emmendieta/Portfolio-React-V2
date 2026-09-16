@@ -217,8 +217,11 @@ class ProvincesController {
 
     verifyNameProvince = async (name, id = null) => {
         try {
-            if (!name) return res.json400("Error: Missing the Name of the Province to verify if alredy Exist!");
-            const verify = await this.proService.readOneByFilter({ name });
+            const nameEs = name?.es;
+            const nameEn = name?.en;
+            const filters = [];
+            if(!filters.length) return 0;
+            const verify = await this.proService.readOneByFilter({ $or: filters });
             if (!verify) return 0;
             if (id && verify._id.toString() === id.toString()) { return 0; }
             else return 1;

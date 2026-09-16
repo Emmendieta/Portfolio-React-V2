@@ -238,8 +238,13 @@ class ProyectsController {
 
     verifyNameProyect = async (name, id = null) => {
         try {
-            if (!name) return res.json400("Error: Missing the Name of the Proyect to verify!");
-            const verifiy = await this.pService.readOneByFilter({ name });
+            const nameEs = name?.es;
+            const nameEn = name?.en;
+            const filters = [];
+            if(nameEs) filters.push({ 'name.es': nameEs });
+            if(nameEn) filters.push({ 'name.en': nameEn });
+            if(!filters.length) return 0;
+            const verifiy = await this.pService.readOneByFilter({ $or: filters });
             if (!verifiy) return 0;
             if (id && verifiy._id.toString() === id.toString()) return 0;
             return 1;

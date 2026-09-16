@@ -161,10 +161,13 @@ class ResponsibilitiesController {
     };
 
     verifyName = async (name, id = null) => {
-        const query = {
-            "name.en": name?.en || name,
-        };
-        const verify = await this.rService.readOneByFilter(query);
+        const nameEs = name?.es;
+        const nameEn = name?.en;
+        const filters = [];
+        if(nameEs) filters.push({ 'name.es': nameEs });
+        if(nameEn) filters.push({ 'name.en': nameEn });
+        if(!filters.length) return 0;
+        const verify = await this.rService.readOneByFilter({ $or: filters });
         if(!verify) return 0;
         if(id && verify._id.toString() === id.toString()) return 0;
         return 1;

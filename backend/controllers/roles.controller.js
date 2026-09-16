@@ -200,8 +200,13 @@ class RolesController {
 
     verifyRole =  async (role, id = null) => {
         try {
-            if(!role) return res.json400("Error: Missing the information to verify if the role exist!");
-            const verify = await this.rService.readOneByFilter({ role });
+            const roleEs = role?.es;
+            const roleEn = role?.en;
+            const filters = [];
+            if(roleEs) filters.push({ 'role.es': roleEs });
+            if(roleEn) filters.push({ 'role.en': roleEn });
+            if(!filters.length) return 0;
+            const verify = await this.rService.readOneByFilter({ $or: filters });
             if(!verify) return 0;
             if(id && verify._id.toString() === id.toString()) return 0;
             return 1;

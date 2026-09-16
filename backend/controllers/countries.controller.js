@@ -200,17 +200,16 @@ class CountriesController {
 
     verifyNameCountry = async (name, id = null) => {
         try {
-            if (!name) throw new Error("Missing the name of the Country!");
-            for (const lang in name) {
-                if (name.hasOwnProperty(lang)) {
-                    const verify = await this.counService.readByFilter({ [`name.${lang}`]: name[lang] });
-                    if (verify && verify.length > 0) {
-                        if (id && verify[0]._id.toString() === id.toString()) { return 0; };
-                        return 1;
-                    };
-                };
-            };
-            return 0;
+            const nameEs = name?.es;
+            const nameEn = name?.en;
+            const filters = [];
+            if(nameEs) filters.push({ 'name.es': nameEs });
+            if(nameEn) filters.push({ 'name.en': filters });
+            if(!filters.length) return 0;
+            const verify = await this.counService.readOneByFilter({ $or: filters });
+            if(!verify) return 0;
+            if(id && verify._id.toString() === id.toString()) return 0;
+            return 1;
         } catch (error) {
             return res.json500(error.message);
         }

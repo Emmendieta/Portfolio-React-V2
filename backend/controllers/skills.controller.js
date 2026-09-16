@@ -170,11 +170,16 @@ class SkillsController {
     };
 
     verifyName = async (name, id = null) => {
-        const nameToVerify = name?.en || name;
-        const verify = await this.sService.readOneByFilter({ 'name.en': nameToVerify });
+        const nameEs = name?.es;
+        const nameEn = name?.en;
+        const filters = [];
+        if(nameEs) filters.push({ 'name.es': nameEs });
+        if(nameEn) filters.push({ 'name.en': nameEn });
+        if(!filters.length) return 0;
+        const verify = await this.sService.readOneByFilter({ $or: filters });
         if(!verify) return 0;
-        if(verify.name?.en === nameToVerify && (!id || verify._id.toString() === id.toString())) return 1;
-        return 0;
+        if(id || verify._id.toString() === id.toString()) return 0;
+        return 1;
     };
 };
 

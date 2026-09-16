@@ -157,7 +157,7 @@ class HabilitiesController {
         if(nameEs) filters.push({ 'name.es': nameEs });
         if(nameEn) filters.push({ 'name.en': nameEn });
         if(!filters.length) return 0;
-        const verify = await this.hService.readOneByFilter({ $or:filters });
+        const verify = await this.hService.readOneByFilter({ $or: filters });
         if(!verify) return 0;
         if(id && verify._id.toString() === id.toString()) return 0;
         return 1;
