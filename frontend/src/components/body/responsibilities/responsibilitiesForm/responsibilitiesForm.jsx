@@ -58,7 +58,7 @@ function ResponsibilitiesForm() {
     useEffect(() => {
         const loadResponsibility = async () => {
             try {
-                const permission = isEdit ? "update_responsibilites": "create_responsibilities";
+                const permission = isEdit ? "update_responsibilities": "create_responsibilities";
                 const allowed = await verifyPrivileges(user, permission);
                 if(!allowed) return;
                 startLoading();
