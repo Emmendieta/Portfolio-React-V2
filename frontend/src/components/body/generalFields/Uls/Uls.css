@@ -109,6 +109,8 @@
     gap: 20px;
     width: 100%;
     padding: 0;
+    padding-left: 2%;
+    padding-right: 2%;
     list-style: none;
 }
 
