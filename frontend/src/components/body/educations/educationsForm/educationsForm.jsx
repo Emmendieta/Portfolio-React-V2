@@ -82,13 +82,26 @@ function EducationsForm() {
         }
     );
 
+    const sortByName = useCallback((a, b) => {
+        const nameA = String(a?.name?.[language] ?? "").trim();
+        const nameB = String(b?.name?.[language] ?? "").trim();
+
+        const locale = language === "es" ? "es-ES": "en-US";
+        return nameA.localeCompare(nameB, locale, { sensitivity: "base", numeric: true , ignorePunctuation: true });
+    }, [language]);
+
     const availablesHabilities = useMemo(() => {
+        const assignedIds = new Set(formData.habilities.map(hab => hab._id));
+        return allHabilities.filter(hability => !assignedIds.has(hability._id)).sort(sortByName);
+    }, [allHabilities, formData.habilities, sortByName]);
+
+    /*const availablesHabilities = useMemo(() => {
         const assignedIds = new Set(formData.habilities.map(hab => hab._id));
         return allHabilities.filter(hability => !assignedIds.has(hability._id)).
             sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
-    }, [allHabilities, formData.habilities]);
+    }, [allHabilities, formData.habilities]);*/
 
-    const assignedHabilities = useMemo(() => {
+    /*const assignedHabilities = useMemo(() => {
         return [...formData.habilities].sort((a, b) =>
             (a.name?.[language] || "").localeCompare(
                 b.name?.[language] || "",
@@ -96,7 +109,11 @@ function EducationsForm() {
                 { sensitivity: "base" }
             )
         );
-    }, [formData.habilities, language]);
+    }, [formData.habilities, language]);*/
+
+    const assignedHabilities = useMemo(() => {
+        return [...formData.habilities].sort(sortByName);
+    }, [formData.habilities, sortByName]);
 
     const addHability = (hability) => {
         if (!hability) return;
@@ -122,7 +139,7 @@ function EducationsForm() {
                     return;
                 };
                 const habilities = habilitiesRes.response || [];
-                habilities.sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
+                /*habilities.sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));*/
                 setAllHabilities(habilities);
                 if (!isEdit) {
                     setFormData({ institutionName: { es: "", en: "" }, title: { es: "", en: "" }, dateStart: "", dateEnd: "", linkInstitution: "", images: [], certificate: "", linkCertificate: "", finished: false, typeEducation: "Course", description: { es: "", en: "" }, habilities: [] });
