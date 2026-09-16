@@ -40,11 +40,11 @@ function WorksForm() {
         try { validatorAlphaNumeric((data.jobTitle?.[primaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitlePrimary = error.message; };
         if (showOtherLang) { try { validatorAlphaNumeric((data.jobTitle?.[secondaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitleSecondary = error.message; } };
         try { validatorDate(data.dateStart), TEXT.ERROR_DATE } catch (error) { errors.dateStart = error.message; };
-        try { validatorAlphaNumeric((data.company?.[primaryLang]), TEXT.ERROR_COMPANY ) } catch (error) { errors.companyPrimary = error.message; };
-        if (showOtherLang) { try { validatorAlphaNumeric((data.company?.[secondaryLang]), TEXT.ERROR_COMPANY ) } catch (error) { errors.companySecondary = error.message; } };
+        try { validatorAlphaNumeric((data.company?.[primaryLang]), TEXT.ERROR_COMPANY) } catch (error) { errors.companyPrimary = error.message; };
+        if (showOtherLang) { try { validatorAlphaNumeric((data.company?.[secondaryLang]), TEXT.ERROR_COMPANY) } catch (error) { errors.companySecondary = error.message; } };
         try { validatorURL(data.linkCompany), TEXT.ERROR_URL } catch (error) { errors.linkCompany = error.message; };
-        try { validatorLongText(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT )} catch(error) { errors.descriptionPrimary = error.message; };
-        if(showOtherLang) { try { validatorLongText(data.description?.[secondaryLang]), TEXT.ERROR_LONG_TEXT } catch (error) { errors.descriptionSecondary = error.message; }};
+        try { validatorLongText(data.description?.[primaryLang], TEXT.ERROR_LONG_TEXT) } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) { try { validatorLongText(data.description?.[secondaryLang]), TEXT.ERROR_LONG_TEXT } catch (error) { errors.descriptionSecondary = error.message; } };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 
@@ -71,30 +71,14 @@ function WorksForm() {
         }
     );
 
-    const availableResponsibilities = useMemo(() => {
-        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
-        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
-    }, [allResponsibilities, formData.responsibilities]);
-
-    const assignedResponsibilities = formData.responsibilities;
-
-    const addResponsibility = (responsibility) => {
-        if (!responsibility) return;
-        setFormData(prev => ({ ...prev, responsibilities: [...prev.responsibilities, responsibility] }));
-    };
-
-    const removeResponsibility = (id) => {
-        setFormData(prev => ({ ...prev, responsibilities: prev.responsibilities.filter(resp => resp._id !== id) }));
-    };
-
     //Load Work if is Edit:
     useEffect(() => {
         const loadWork = async () => {
             try {
-                if(!user) return;
-                const permission = isEdit ? "update_works": "create_works";
+                if (!user) return;
+                const permission = isEdit ? "update_works" : "create_works";
                 const allowed = await verifyPrivileges(user, permission);
-                if(!allowed) return;
+                if (!allowed) return;
                 startLoading();
                 await new Promise(resolve => setTimeout(resolve, 600));
                 const responsibilitiesRes = await fetchGetAllResponsibilities();
@@ -103,12 +87,11 @@ function WorksForm() {
                     return;
                 };
                 const responsibilities = responsibilitiesRes.response || [];
-                console.log("RESPONSIBILITIES WORK CARD", responsibilities)
                 setAllResponsibilities(responsibilities);
                 if (!isEdit) {
                     //FALTA PARA UN NUEVO WORK
                     return;
-                } else { 
+                } else {
                     const result = await fetchGetWorkByIdPopulate(id);
                     if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
                     const work = result.response || [];
@@ -131,6 +114,37 @@ function WorksForm() {
         loadWork();
     }, [id, isEdit, user, language]);
 
+    const sortByName = useCallback((a, b) => {
+        const nameA = String(a?.name?.[language] ?? "").trim();
+        const nameB = String(b?.name?.[language] ?? "").trim();
+        const locale = language === "es" ? "es-ES" : "en-US";
+        return nameA.localeCompare(nameB, locale, { sensitivity: "base", numeric: true, ignorePunctuation: true });
+    }, [language]);
+
+    /*const availableResponsibilities = useMemo(() => {
+        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
+        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
+    }, [allResponsibilities, formData.responsibilities]);*/
+
+    const availableResponsibilities = useMemo(()=> {
+        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
+        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id)).sort(sortByName);
+    }, [allResponsibilities, formData.responsibilities, sortByName]);
+
+    //const assignedResponsibilities = formData.responsibilities;
+    const assignedResponsibilities = useMemo(() => {
+        return [...formData.responsibilities].sort(sortByName);
+    }, [formData.responsibilities, sortByName]);
+
+    const addResponsibility = (responsibility) => {
+        if (!responsibility) return;
+        setFormData(prev => ({ ...prev, responsibilities: [...prev.responsibilities, responsibility] }));
+    };
+
+    const removeResponsibility = (id) => {
+        setFormData(prev => ({ ...prev, responsibilities: prev.responsibilities.filter(resp => resp._id !== id) }));
+    };
+
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
@@ -148,7 +162,7 @@ function WorksForm() {
                         )}
                         <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`jobTitle_${primaryLang}`] || isSubmitted) && errors.jobTitlePrimary} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         {showOtherLang && (
                             <Inputs textH2={`${TEXT.JOB_TITLE} (${secondaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`jobTitle_${secondaryLang}`] || isSubmitted) && errors.jobTitleSecondary} language={language}
@@ -156,13 +170,13 @@ function WorksForm() {
                         )}
                         <Inputs textH2={TEXT.DATE_START} type="date" name="dateStart" value={formData.dateStart ? formData.dateStart.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_START)}
                             onChange={handleChange} onBlur={handleBlur} error={(touched.dateStart || isSubmitted) && errors.dateStart} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <Inputs textH2={TEXT.DATE_END} type="date" name="dateEnd" value={formData.dateEnd ? formData.dateEnd.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_END)}
                             onChange={handleChange} onBlur={handleBlur} error={(touched.dateEnd || isSubmitted) && errors.dateEnd} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <Inputs textH2={`${TEXT.COMPANY} (${primaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`company_${primaryLang}`] || isSubmitted) && errors.companyPrimary} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         {showOtherLang && (
                             <Inputs textH2={`${TEXT.COMPANY} (${secondaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`company_${secondaryLang}`] || isSubmitted) && errors.companySecondary} language={language}
@@ -170,11 +184,11 @@ function WorksForm() {
                         )}
                         <Inputs textH2={TEXT.LINK_COMPANY} type="text" name="linkCompany" value={formData.linkCompany} placeHolder={TEXT.inputsText("m", TEXT.LINK_COMPANY)}
                             onChange={handleChange} onBlur={handleBlur} error={(touched.linkCompany || isSubmitted) && errors.linkCompany} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         //FALTA CHECKBOX FINISHED
                         <Inputs textH2={`${TEXT.DESCRIPTION} (${primaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`description_${primaryLang}`] || isSubmitted) && errors.descriptionPrimary} language={language}
-                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         {showOtherLang && (
                             <Inputs textH2={`${TEXT.DESCRIPTION} (${secondaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted) && errors.descriptionSecondary} language={language}

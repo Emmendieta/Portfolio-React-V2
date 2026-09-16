@@ -83,56 +83,6 @@ function ProyectsForm() {
         }
     );
 
-    //Responsibilities:
-    const availablesResponsibilities = useMemo(() => {
-        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
-        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
-    }, [allResponsibilities, formData.responsibilities]);
-
-    const assignedResponsibilities = formData.responsibilities;
-
-    const addResponsibility = (responsibility) => {
-        if (!responsibility) return;
-        setFormData(prev => ({ ...prev, responsibilities: [...prev.responsibilities, responsibility] }));
-    };
-    const removeResponsibility = (id) => {
-        setFormData(prev => ({ ...prev, responsibilities: prev.responsibilities.filter(resp => resp._id !== id) }));
-    };
-
-    //Skills:
-    const availablesSkills = useMemo(() => {
-        const assignedIds = new Set(formData.skills.map(skill => skill._id));
-        return allSkills.filter(skill => !assignedIds.has(skill._id));
-    }, [allSkills, formData.skills]);
-
-    const assignedSkills = formData.skills;
-
-    const addSkill = (skill) => {
-        if (!skill) return;
-        setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }));
-    };
-
-    const removeSkill = (id) => {
-        setFormData(prev => ({ ...prev, skills: prev.skills.filter(skill => skill._id !== id) }));
-    };
-
-    //Categories:
-    const availableCategories = useMemo(() => {
-        const assignedIds = new Set(formData.categories.map(cat => cat._id));
-        return allCategories.filter(category => !assignedIds.has(category._id));
-    }, [allCategories, formData.categories]);
-
-    const assignedCategories = formData.categories;
-
-    const addCategory = (category) => {
-        if (!category) return;
-        setFormData(prev => ({ ...prev, categories: [...prev.categories, category] }));
-    };
-
-    const removeCategory = (id) => {
-        setFormData(prev => ({ ...prev, categories: prev.categories.filter(category => category._id !== id) }))
-    };
-
     //Load Proyect if is Edit:
     useEffect(() => {
         const loadProyect = async () => {
@@ -187,6 +137,90 @@ function ProyectsForm() {
         };
         loadProyect();
     }, [id, isEdit, user, language]);
+
+    const sortByName = useCallback((a, b) => {
+        const nameA = String(a?.name?.[language] ?? "").trim();
+        const nameB = Strin(b?.name?.[language] ?? "").trim();
+        const locale = language === "es" ? "es-ES": "en-US";
+        return nameA.localeCompare(nameB, locale, { sensitivity: "base", numeric: true, ignorePunctuation: true });
+    }, [language]);
+
+    //Responsibilities:
+    /*const availablesResponsibilities = useMemo(() => {
+        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
+        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
+    }, [allResponsibilities, formData.responsibilities]);
+
+    const assignedResponsibilities = formData.responsibilities;*/
+
+    const availablesResponsibilities = useMemo(() => {
+        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
+        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id)).sort(sortByName);
+    }, [allResponsibilities, formData.responsibilities, sortByName]);
+
+    const assignedResponsibilities = useMemo(() => {
+        return [...formData.responsibilities].sort(sortByName);
+    }, [formData.responsibilities, sortByName]);
+
+    const addResponsibility = (responsibility) => {
+        if (!responsibility) return;
+        setFormData(prev => ({ ...prev, responsibilities: [...prev.responsibilities, responsibility] }));
+    };
+    const removeResponsibility = (id) => {
+        setFormData(prev => ({ ...prev, responsibilities: prev.responsibilities.filter(resp => resp._id !== id) }));
+    };
+
+    //Skills:
+    /*const availablesSkills = useMemo(() => {
+        const assignedIds = new Set(formData.skills.map(skill => skill._id));
+        return allSkills.filter(skill => !assignedIds.has(skill._id));
+    }, [allSkills, formData.skills]);
+
+    const assignedSkills = formData.skills;*/
+
+        const availablesSkills = useMemo(() => {
+        const assignedIds = new Set(formData.skills.map(skill => skill._id));
+        return allSkills.filter(skill => !assignedIds.has(skill._id)).sort(sortByName);
+    }, [allSkills, formData.skills, sortByName]);
+
+    const assignedSkills = useMemo(() => {
+        return [...formData.skills].sort(sortByName);
+    }, [formData.skills, sortByName]);
+
+    const addSkill = (skill) => {
+        if (!skill) return;
+        setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }));
+    };
+
+    const removeSkill = (id) => {
+        setFormData(prev => ({ ...prev, skills: prev.skills.filter(skill => skill._id !== id) }));
+    };
+
+    //Categories:
+    /*const availableCategories = useMemo(() => {
+        const assignedIds = new Set(formData.categories.map(cat => cat._id));
+        return allCategories.filter(category => !assignedIds.has(category._id));
+    }, [allCategories, formData.categories]);
+
+    const assignedCategories = formData.categories;*/
+
+    const availableCategories = useMemo(() => {
+        const assignedIds = new Set(formData.categories.map(cat => cat._id));
+        return allCategories.filter(category => !assignedIds.has(category._id)).sort(sortByName);
+    }, [allCategories, formData.categories, sortByName]);
+
+    const assignedCategories = useMemo(() => {
+        return [...formData.categories].sort(sortByName);
+    }, [formData.categories, sortByName]);
+
+    const addCategory = (category) => {
+        if (!category) return;
+        setFormData(prev => ({ ...prev, categories: [...prev.categories, category] }));
+    };
+
+    const removeCategory = (id) => {
+        setFormData(prev => ({ ...prev, categories: prev.categories.filter(category => category._id !== id) }))
+    };
 
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
