@@ -47,10 +47,21 @@ import ProyectsOrder from './components/body/proyects/proyectsOrder/proyectsOrde
 import SkillsOrder from './components/body/skills/skillsOrder/skillsOrder'
 import SocialOrder from './components/body/socials/socialsOrder/socialsOrder'
 import WorksOrder from './components/body/works/worksOrder/worksOrder'
+import H1Fields from './components/body/generalFields/h1Fields/h1fields'
+import { useLanguage } from './context/Language.Context'
+import { LANG_CONST } from './constants/SelectLang.Constant'
+import "./App.css";
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
-  if (loadingUser) { return <div>"Loading USER (DESPUES CAMBIAR)"</div> };
+  const { language } = useLanguage();
+  const TEXT = LANG_CONST[language];
+  if (loadingUser) { 
+    return 
+      <div className='loadingCont'>
+          <H1Fields value={`${TEXT.LOADING}... ${TEXT.PLEASE_WAIT}...`} clH1Cont='loadingH1TextCont' clH1Text='loadingH1Text' />
+      </div> 
+  };
 
   return (
     <Routes>

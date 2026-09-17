@@ -48,6 +48,7 @@ export const UPDATE_ORDER = "Update Order";
 export const MOVE_UP = "Move up";
 export const MOVE_DOWN = "Move down";
 export const LOADING = "Loading";
+export const PLEASE_WAIT = "Please, wait";
 
 /* ------------ SEARCHS ------------ */
 

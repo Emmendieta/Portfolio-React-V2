@@ -1,0 +1,14 @@
+.loadingCont {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6E4D8;
+}
+
+.loadingH1TextCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
