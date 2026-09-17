@@ -95,7 +95,7 @@
 .lightTitleH2Text {
     font-weight: bold;
     text-decoration: underline;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 /* ------------------------ ERROR LIGHT ------------------------ */
@@ -155,6 +155,8 @@
     text-decoration: underline;
     padding: 0;
     color: rgba(240, 248, 255, 0.746);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .darkCardH2Label {
