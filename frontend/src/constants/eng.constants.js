@@ -325,4 +325,87 @@ export const inputsText = (article = "", text) => {
     return `Type here the ${text}`;
 };
 
+/* ------------ TERMS AND CONDITIONS ------------ */
+
+export const TERM_COND = "Terms and Conditions:";
+export const ACCEPT_COND = "You must accept the Terms and Conditions, the Privacy Policy, the use of cookies, and local storage in order to access this website.";
+export const ACCEPT = "Accept";
+export const REJECT = "Reject";
+export const VIEW_TERM_COND = "View Term and Conditions";
+export const TERM_COND_USE = "Terms and Conditions of Use:";
+export const LAST_UPDATE = "Last Updated:";
+export const DATE_UPDATE = "June 25, 2026.";
+export const WELCOME_TO = "Welcome to";
+export const ACCEPTING_WEB = "By accessing and using this Website, you agree to these Terms and Conditions of Use. If you do not agree with them, you should not use this Website.";
+export const PURPOSE = "1. Purpose";
+export const PUPROSE_EXP = "The purpose of this Website is to showcase the owner's professional information, projects, work experience, skills, content, and contact information.";
+export const INTELLECTUAL_PROPERTY = "2. Intellectual Property";
+export const INTELLECTUAL_PROPERTY_EXP_1 = "All content published on this Website, including but not limited to text, images, designs, logos, graphics, projects, source code, documents, and other materials, is the property of the Website owner or is used with the appropriate authorization.";
+export const INTELLECTUAL_PROPERTY_EXP_2 = "Any reproduction, distribution, modification, or use of such content without the prior written consent of the owner is prohibited, except where permitted by applicable law.";
+export const ACCEPTABLE_USE = "3. Acceptable Use";
+export const ACCEPTABLE_USE_EXP = "Users agree to use the Website lawfully and respectfully and shall not:";
+export const ACCEPTABLE_USE_LI_1 = "Engage in activities that may disrupt or interfere with the operation of the Website.";
+export const ACCEPTALBE_USE_LI_2 = "Attempt to access restricted areas or related systems without authorization.";
+export const ACCEPTABLE_USE_LI_3 = "Use the Website's content for unlawful or fraudulent purposes."
+export const ACCEPTABLE_USE_LI_4 = "Introduce viruses, malware, or any other harmful software or materials.";
+export const ACCURACY_INFO = "4. Accuracy of Information";
+export const ACCURACY_INFO_EXP_1 = "While every effort is made to keep the information accurate and up to date, the Website owner does not guarantee that all content is complete, accurate, or continuously updated.";
+export const ACCURACY_INFO_EXP_2 = "The information provided on this Website is for informational and professional purposes only.";
+export const THIRD_PARTY = "5. Third-Party Links";
+export const THIRD_PARTY_EXP = "This Website may contain links to third-party websites. The Website owner has no control over and assumes no responsibility for the content, privacy policies, or practices of any third-party websites.";
+export const LIMITATION_LIABILITY = "6. Limitation of Liability";
+export const LIMITATION_LIABILITY_EXP = "The Website owner shall not be liable for any direct or indirect damages arising from the access to, use of, or inability to use this Website, including but not limited to service interruptions, technical errors, or loss of data.";
+export const CONTACT_FORM = "7. Contact Forms";
+export const CONTACT_FORM_EXP_1 = "If this Website includes contact forms, users agree to provide accurate and up-to-date information.";
+export const CONTACT_FORM_EXP_2 = "Any information submitted through these forms will be used solely to respond to inquiries or communications related to the Website owner's professional activities.";
+export const PRIVACY = "8. Privacy";
+export const PRIVACY_EXP = "Any personal data provided by users will be processed in accordance with the Website's current Privacy Policy.";
+export const CHANGE_TERMS = "9. Changes to These Terms";
+export const CHANGE_TERMS_EXP = "The Website owner reserves the right to modify these Terms and Conditions at any time. Any changes will become effective upon their publication on this Website.";
+export const GOV_LAW = "10. Governing Law";
+export const GOV_LAW_EXP = "These Terms and Conditions shall be governed by and construed in accordance with the laws of the Republic of Argentina. Any disputes arising from these Terms shall be subject to the jurisdiction of the competent courts of Argentina.";
+export const CONTACT_TERMS = "11. Contact";
+export const CONTACT_EXP_1 = "If you have any questions regarding these Terms and Conditions, you may contact the Website owner at:";
+
+export const PRIVACY_2 = "Privacy Policy:"
+export const VIEW_PRIVACY_COND = "View the Privacy Policy";
+export const THE_WEBSITE = "the Website";
+export const PRIVACY_POL_EXP = "This Privacy Policy explains how your personal information is collected, used, and protected when you visit this Website.";
+export const INFO_COLLECT = "1. Information We Collect";
+export const INFO_COLLECT_EXP = "If you contact us through the Website's contact form, we may collect the following information:";
+export const INFO_COLLECT_EXP_2 = "Providing this information is voluntary.";
+export const INFO_COLLECT_EXP_LI_1 = "Your name";
+export const INFO_COLLECT_EXP_LI_2 = "Your email address";
+export const INFO_COLLECT_EXP_LI_3 = "The content of your message";
+export const HOW_USE_INFO = "2. How We Use Your Information";
+export const HOW_USE_INFO_EXP = "The information you provide is used solely to:";
+export const HOW_USE_INFO_EXP_2 = "Your personal information will not be sold, rented, or shared with third parties for marketing purposes."
+export const HOW_USE_INFO_EXP_LI_1 = "Respond to your inquiries.";
+export const HOW_USE_INFO_EXP_LI_2 = "Communicate with you regarding your message.";
+export const HOW_USE_INFO_EXP_LI_3 = "Improve the Website and its functionality.";
+export const CONTACT_FORM_PRO = "3. Contact Form Processing";
+export const CONTACT_FORM_PRO_EXP = "Messages submitted through the contact form are processed using third-party services that help deliver your message securely.";
+export const CONTACT_FORM_PRO_EXP_2 = "These service providers process your information only to facilitate communication and operate their services in accordance with their own privacy policies.";
+export const THIRD_PARTY_SER = "4. Third-Party Services";
+export const THIRD_PARTY_SER_EXP = "This Website may use trusted third-party services to provide its functionality, including but not limited to:";
+export const THIRD_PARTY_SER_EXP_2 = "These providers may process technical information such as your IP address, browser type, operating system, and device information as required to provide their services.";
+export const THIRD_PARTY_SER_EXP_LI_1 = "Hosting and website infrastructure.";
+export const THIRD_PARTY_SER_EXP_LI_2 = "Email delivery services for the contact form.";
+export const THIRD_PARTY_SER_EXP_LI_3 = "Security and performance services";
+export const THIRD_PARTY_SER_EXP_LI_4 = "Analytics services to understand Website usage.";
+export const COOKIES = "5. Cookies";
+export const COOKIES_EXP = "This Website may use cookies or similar technologies to improve functionality, security, and user experience.";
+export const COOKIES_EXP_2 = "You can configure your browser to reject cookies, although some features of the Website may not function properly.";
+export const THIRD_PARTY_LINKS = "6. Third-Party Links";
+export const THIRD_PARTY_LINKS_EXP = "This Website may contain links to third-party websites. We are not responsible for the privacy practices or content of those websites.";
+export const DATA_SECURITY = "7. Data Security";
+export const DATA_SECURITY_EXP = "Reasonable technical and organizational measures are taken to protect the information submitted through this Website. However, no method of transmission over the Internet or electronic storage is completely secure, and absolute security cannot be guaranteed.";
+export const YOUR_RIGHTS = "8. Your Rights";
+export const YOUR_RIGHTS_EXP = "Depending on the laws applicable in your jurisdiction, you may have the right to request access to, correction of, or deletion of your personal information.";
+export const YOUR_RIGHTS_EXP_1 = "To exercise these rights, please contact us using the email address below.";
+export const CHANGE_PRIVACY = "9. Changes to This Privacy Policy";
+export const CHANGE_PRIVACY_EXP = "This Privacy Policy may be updated from time to time. Any changes will become effective immediately upon publication on this Website.";
+export const CONTACT_PRIVACY = "10. Contact";
+export const CONTACT_PRIVACY_EXP = "If you have any questions regarding this Privacy Policy or the processing of your personal information, you may contact us at:";
+export const ERROR_TERM_COND = "You must accept the terms and conditions to continue using this website";
 

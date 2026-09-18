@@ -57,7 +57,7 @@ export const ConfirmProvider = ({ children }) => {
             returnFocus: false,
             theme: 'dark',
             customClass: {
-                popup: 'custom-swl-popup'
+                popup: 'custom-swal-popup'
             },
         });
 
@@ -75,7 +75,26 @@ export const ConfirmProvider = ({ children }) => {
             },
         });
 
-    return ( <confirmContext.Provider value={{ confirmSweet, successSweet, errorSweet, infoSweet }}>{children}</confirmContext.Provider> );
+    //TERMS AND CONDITIONS:
+    const termsSweet = async ({ title = "Terms and Conditions", html = "", confirmButtonText = "Accept", denyButtonText = "Decline" }) => {
+        const result = await MySwal.fire({
+            icon: "info",
+            title,
+            html, 
+            showDenyButton: true,
+            confirmButtonText,
+            denyButtonText,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            theme: 'dark',
+            customClass: {
+                popup: 'custom-swal-popup'
+            },
+        });
+        return result;
+    };
+
+    return ( <confirmContext.Provider value={{ confirmSweet, successSweet, errorSweet, infoSweet, termsSweet }}>{children}</confirmContext.Provider> );
 };
 
 export const useSweetAlert = () => useContext(confirmContext);

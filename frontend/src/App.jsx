@@ -51,16 +51,19 @@ import H1Fields from './components/body/generalFields/h1Fields/h1fields'
 import { useLanguage } from './context/Language.Context'
 import { LANG_CONST } from './constants/SelectLang.Constant'
 import "./App.css";
+import Terms from './components/body/terms/terms'
+import Privacy from './components/body/privacy/privacy'
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
   const { language } = useLanguage();
   const TEXT = LANG_CONST[language];
   if (loadingUser) { 
-    return 
+    return (
       <div className='loadingCont'>
           <H1Fields value={`${TEXT.LOADING}... ${TEXT.PLEASE_WAIT}...`} clH1Cont='loadingH1TextCont' clH1Text='loadingH1Text' />
       </div> 
+    );
   };
 
   return (
@@ -251,6 +254,8 @@ function AppRoutes() {
 
         <Route path='/forbidden' element={<Forbidden />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='/terms' element={<Terms /> } />
+        <Route path='/privacy-policy' element={<Privacy /> } />
 
       </Route>
     </Routes>
