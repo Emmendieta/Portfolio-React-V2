@@ -1,22 +1,25 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deleteCookie, getCookie, setCookie } from "../../../helpers/Cookies.helper";
 import { useLanguage } from "../../../context/Language.Context";
 import { LANG_CONST } from "../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../context/SweetAlert2.Context";
 import { UserContext } from "../../../context/User.Context";
 
-function TermsAndCond() {
-
-    const { loadingUser } = useContext(UserContext);
+function TermsAndCond({ children }) {
+    const [hasAccepted, sethasAccepted] = useState(false);
+    const [isChecking, setIsChecking] = useState(true);
     const { language } = useLanguage();
     const TEXT = LANG_CONST[language];
     const { errorSweet, termsSweet } = useSweetAlert();
 
     useEffect(() => {
-        if(loadingUser) return;
         const checkTerms = async() => {
             const termsAccepted = getCookie('PortfolioEMMTerms');
-            if(termsAccepted === "accepted") return;
+            if(termsAccepted === "accepted") {
+                sethasAccepted(true);
+                setIsChecking(false);
+                return;
+            };
             const result = await termsSweet({
                 title: TEXT.TERM_COND,
                 html: `
@@ -40,19 +43,23 @@ function TermsAndCond() {
             });
             if(result.isConfirmed) {
                 setCookie("PortfolioEMMTerms", "accepted");
-                return;
+                sethasAccepted(true);
             };
             if(result.isDenied) {
                 deleteCookie("PortfolioEMMLang");
                 await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_TERM_COND}`);
                 // Opción B: Redirigir fuera o recargar la página si los términos son obligatorios
                 // window.location.href = "https://google.com";
+                window.location.reload();
             };
+            setIsChecking(false);
         };
         checkTerms();
-    }, [loadingUser]);
+    }, []);
 
-    return null;
+    if(isChecking || !hasAccepted) return null;
+
+    return children;
 };
 
 export default TermsAndCond;

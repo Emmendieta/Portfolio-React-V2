@@ -53,7 +53,6 @@ import { LANG_CONST } from './constants/SelectLang.Constant'
 import "./App.css";
 import Terms from './components/body/terms/terms'
 import Privacy from './components/body/privacy/privacy'
-import TermsAndCond from './components/body/termsAndCond/termsAndCond'
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
@@ -268,7 +267,6 @@ function App() {
     <UserProvider>
       <BrowserRouter>
         <RefreshProvider>
-          <TermsAndCond />
           <AppRoutes />
         </RefreshProvider>
       </BrowserRouter>
