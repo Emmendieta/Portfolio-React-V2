@@ -1,16 +1,19 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { deleteCookie, getCookie, setCookie } from "../../../helpers/Cookies.helper";
 import { useLanguage } from "../../../context/Language.Context";
 import { LANG_CONST } from "../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../context/SweetAlert2.Context";
+import { UserContext } from "../../../context/User.Context";
 
 function TermsAndCond() {
 
+    const { loadingUser } = useContext(UserContext);
     const { language } = useLanguage();
     const TEXT = LANG_CONST[language];
     const { errorSweet, termsSweet } = useSweetAlert();
 
     useEffect(() => {
+        if(loadingUser) return;
         const checkTerms = async() => {
             const termsAccepted = getCookie('PortfolioEMMTerms');
             if(termsAccepted === "accepted") return;
@@ -47,7 +50,7 @@ function TermsAndCond() {
             };
         };
         checkTerms();
-    }, []);
+    }, [loadingUser]);
 
     return null;
 };

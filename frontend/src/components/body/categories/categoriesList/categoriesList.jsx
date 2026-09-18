@@ -42,8 +42,8 @@ function CategoriesList({ selectedCategory, onCategorySelect }) {
                 setCategories(sortedCategories);
             } catch (error) {
                 setCategories([]);
-                console.error(`${TEXT.ERROR}: ${erro.message}` || TEXT.TEXT_ERROR_OOPS);
-                await errorSweet(`${TEXT.ERROR}: ${erro.message}` || TEXT.TEXT_ERROR_OOPS);
+                console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+                await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
             } finally {
                 setLoading(false);
                 stopLoading();
