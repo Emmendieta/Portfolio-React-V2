@@ -157,11 +157,11 @@ function WorksForm() {
                     <div className="genFormDivCont">
                         <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
-                            {isEdit && (
-                                <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
-                                    className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                            )}
                         </div>
+                        {isEdit && (
+                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
+                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                        )}
                         <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`jobTitle_${primaryLang}`] || isSubmitted) && errors.jobTitlePrimary} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
