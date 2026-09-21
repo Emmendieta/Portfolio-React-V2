@@ -14,7 +14,7 @@ import CategoriesCard from "../categoriesCard/categoriesCard.jsx";
 
 function CategoriesList() {
     const { user } = useContext(UserContext);
-    const [categories, setCategories] = useState("");
+    const [categories, setCategories] = useState([]);
     //FALTAN LOS BUSCADORES;
     const [loading, setLoading] = useState(true);
     const { startLoading, stopLoading } = useLoading();
@@ -34,8 +34,8 @@ function CategoriesList() {
                     await errorSweet(`${TEXT.ERROR}: ${result?.error.message}` || `${TEXT.TEXT_ERROR_OOPS}`);
                     return;
                 };
-                const caegories = result.response || [];
-                setCategories(categories);
+                const categoriesResp = result.response || [];
+                setCategories(categoriesResp);
             } catch (error) {
                 setCategories([]);
                 console.error(`${TEXT.ERROR}:`, error.message);
@@ -45,7 +45,7 @@ function CategoriesList() {
                 stopLoading();
             }
         };
-        loadCategories;
+        loadCategories();
     }, [language, user, /* FALTAN LOS BUSCADORES (SI PONGO) */ ]);
 
     const handleCategoryClick = (id) => {

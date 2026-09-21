@@ -28,8 +28,8 @@ function CategoriesOrder() {
                     const errorMsg = result?.error?.message || TEXT.TEXT_ERROR_OOPS;
                     return await errorSweet(`${TEXT.ERROR || "Error"}: ${errorMsg}`);
                 };
-                const categories = result.response || [];
-                setCategories(categories);
+                const categoriesRes = result.response || [];
+                setCategories(categoriesRes);
             } catch (error) {
                 setCategories([]);
                 console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
