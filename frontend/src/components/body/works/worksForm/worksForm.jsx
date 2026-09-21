@@ -126,7 +126,7 @@ function WorksForm() {
         return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
     }, [allResponsibilities, formData.responsibilities]);*/
 
-    const availableResponsibilities = useMemo(()=> {
+    const availableResponsibilities = useMemo(() => {
         const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
         return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id)).sort(sortByName);
     }, [allResponsibilities, formData.responsibilities, sortByName]);
@@ -154,46 +154,48 @@ function WorksForm() {
             </section>
             <section className="genFormSectForm">
                 <form id="workForm" onSubmit={handleSubmit}>
-                    <div className="genFormCheckCont">
-                        <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
-                        {isEdit && (
-                            <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
+                            <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
+                            {isEdit && (
+                                <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
+                                    className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            )}
+                            <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
+                                onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`jobTitle_${primaryLang}`] || isSubmitted) && errors.jobTitlePrimary} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        )}
-                        <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
-                            onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`jobTitle_${primaryLang}`] || isSubmitted) && errors.jobTitlePrimary} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        {showOtherLang && (
-                            <Inputs textH2={`${TEXT.JOB_TITLE} (${secondaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
-                                onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`jobTitle_${secondaryLang}`] || isSubmitted) && errors.jobTitleSecondary} language={language}
+                            {showOtherLang && (
+                                <Inputs textH2={`${TEXT.JOB_TITLE} (${secondaryLang.toUpperCase()})`} type="text" name="jobTitle" value={formData.jobTitle?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}
+                                    onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`jobTitle_${secondaryLang}`] || isSubmitted) && errors.jobTitleSecondary} language={language}
+                                    className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            )}
+                            <Inputs textH2={TEXT.DATE_START} type="date" name="dateStart" value={formData.dateStart ? formData.dateStart.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_START)}
+                                onChange={handleChange} onBlur={handleBlur} error={(touched.dateStart || isSubmitted) && errors.dateStart} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        )}
-                        <Inputs textH2={TEXT.DATE_START} type="date" name="dateStart" value={formData.dateStart ? formData.dateStart.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_START)}
-                            onChange={handleChange} onBlur={handleBlur} error={(touched.dateStart || isSubmitted) && errors.dateStart} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.DATE_END} type="date" name="dateEnd" value={formData.dateEnd ? formData.dateEnd.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_END)}
-                            onChange={handleChange} onBlur={handleBlur} error={(touched.dateEnd || isSubmitted) && errors.dateEnd} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={`${TEXT.COMPANY} (${primaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
-                            onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`company_${primaryLang}`] || isSubmitted) && errors.companyPrimary} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        {showOtherLang && (
-                            <Inputs textH2={`${TEXT.COMPANY} (${secondaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
-                                onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`company_${secondaryLang}`] || isSubmitted) && errors.companySecondary} language={language}
+                            <Inputs textH2={TEXT.DATE_END} type="date" name="dateEnd" value={formData.dateEnd ? formData.dateEnd.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_END)}
+                                onChange={handleChange} onBlur={handleBlur} error={(touched.dateEnd || isSubmitted) && errors.dateEnd} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        )}
-                        <Inputs textH2={TEXT.LINK_COMPANY} type="text" name="linkCompany" value={formData.linkCompany} placeHolder={TEXT.inputsText("m", TEXT.LINK_COMPANY)}
-                            onChange={handleChange} onBlur={handleBlur} error={(touched.linkCompany || isSubmitted) && errors.linkCompany} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            <Inputs textH2={`${TEXT.COMPANY} (${primaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
+                                onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`company_${primaryLang}`] || isSubmitted) && errors.companyPrimary} language={language}
+                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            {showOtherLang && (
+                                <Inputs textH2={`${TEXT.COMPANY} (${secondaryLang.toUpperCase()})`} type="text" name="company" value={formData.company?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.COMPANY)}
+                                    onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`company_${secondaryLang}`] || isSubmitted) && errors.companySecondary} language={language}
+                                    className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            )}
+                            <Inputs textH2={TEXT.LINK_COMPANY} type="text" name="linkCompany" value={formData.linkCompany} placeHolder={TEXT.inputsText("m", TEXT.LINK_COMPANY)}
+                                onChange={handleChange} onBlur={handleBlur} error={(touched.linkCompany || isSubmitted) && errors.linkCompany} language={language}
+                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         //FALTA CHECKBOX FINISHED
-                        <Inputs textH2={`${TEXT.DESCRIPTION} (${primaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
-                            onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`description_${primaryLang}`] || isSubmitted) && errors.descriptionPrimary} language={language}
-                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        {showOtherLang && (
-                            <Inputs textH2={`${TEXT.DESCRIPTION} (${secondaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
-                                onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted) && errors.descriptionSecondary} language={language}
+                            <Inputs textH2={`${TEXT.DESCRIPTION} (${primaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
+                                onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`description_${primaryLang}`] || isSubmitted) && errors.descriptionPrimary} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        )}
+                            {showOtherLang && (
+                                <Inputs textH2={`${TEXT.DESCRIPTION} (${secondaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
+                                    onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted) && errors.descriptionSecondary} language={language}
+                                    className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                            )}
+                        </div>
                     </div>
                     <div className="genFormImgCont">
                         <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO IMAGES" genderInput="m"
