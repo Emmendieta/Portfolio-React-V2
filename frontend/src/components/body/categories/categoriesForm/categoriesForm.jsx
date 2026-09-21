@@ -11,7 +11,7 @@ import H1Fields from "../../generalFields/h1Fields/h1fields";
 import CheckBoxs from "../../generalFields/checkboxs/checkboxs";
 import Inputs from "../../generalFields/Inputs/inputs";
 import { fetchCreateCategory, fetchCreateCategoryWithImages, fetchGetCategoryById, fetchUpdateCategoryById, fetchUpdateCategoryByIdWithImages } from "../categoriesLogic";
-import "./categoriesForm.css";
+import "../../generalFields/generalForms.css";
 import ImagesManager from "../../generalFields/imagesMananger/imagesManager";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
 
@@ -87,14 +87,14 @@ function CategoriesForm() {
 
 
     return (
-        <div className="catFormCont">
-            <section className="catFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.CATEGORY}:` : `${TEXT.CREATE} ${TEXT.CATEGORY}:`} language={language} />
             </section>
-            <section className="catFormSectForm">
+            <section className="genFormSectForm">
                 <form id="catForm" onSubmit={handleSubmit}>
-                    <div className="catFormDivCont">
-                        <div className="catFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={((e) => setShowOtherLang(e.target.checked))} />
                         </div>
                         {isEdit && (
@@ -114,7 +114,7 @@ function CategoriesForm() {
                             /*cThumbPrevContainer=""  cThumbPrevImg="" cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
                             cImgDisplay="" idThumbBtnAdd={""} */ />
                     </div>
-                    <div className="catFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/categories">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

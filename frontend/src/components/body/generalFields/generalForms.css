@@ -1,13 +1,15 @@
-.catFormCont {
+.genFormCont {
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
+    min-height: 90vh;
 }
 
-.catFormSectTitle {
+.genFormSectTitle {
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -16,9 +18,16 @@
     justify-content: center;
 } 
 
+.genFormSectForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* --------------- FORM --------------- */
 
-#catForm {
+#genForm {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -26,14 +35,14 @@
     box-sizing: border-box;
 }
 
-.catFormDivCont {
+.genFormDivCont {
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
 }
 
-.catFormCheckCont {
+.genFormCheckCont {
     display: flex;
     width: 100%;
     box-sizing: border-box;
@@ -44,7 +53,7 @@
 
 /* --------------- FORM BUTTONS --------------- */
 
-.catFormDivContBottom {
+.genFormDivContBottom {
     display: flex;
     flex-direction: row;
     width: 100%;
