@@ -52,6 +52,10 @@
     padding-right: 10px;
 }
 
+.h2FieldsValue {
+    font-size: larger;
+}
+
 /* ---- Mobile ---- */
 
 @media(max-width:576px) {
