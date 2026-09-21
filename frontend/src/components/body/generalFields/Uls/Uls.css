@@ -16,6 +16,10 @@
     padding: 0;
 }
 
+.ulGeneraLi {
+    margin: 5px;
+}
+
 .clH1TextDisp {
     font-size: large;
     font-weight: bold;
