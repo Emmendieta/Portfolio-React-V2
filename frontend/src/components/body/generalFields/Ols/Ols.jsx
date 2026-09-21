@@ -1,6 +1,11 @@
+import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
+import { useLanguage } from "../../../../context/Language.Context";
+
 function Ols( { items = [], setItems, renderItem, getId= (item) => item._id, orderField="order",
     clOl="ols", clLi="olsItem", clItemCont="olsContent", clButtonsCont="olsActions", clButtons="olsButton"
 }) {
+    const { language } = useLanguage();
+    const TEXT = LANG_CONST[language];
     
     const sortedItems = [...items].sort((a, b) => Number(a[orderField] || 0) - Number(b[orderField] || 0));
     const updateItems = (newItems) => {

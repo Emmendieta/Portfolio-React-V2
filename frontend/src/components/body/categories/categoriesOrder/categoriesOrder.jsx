@@ -21,6 +21,7 @@ function CategoriesOrder() {
     useEffect(() => {
         const loadCategories = async () => {
             try {
+                console.log("TEXT", TEXT.TEXT_ERROR_OOPS)
                 startLoading();
                 const result = await fetchGetAllCategories();
                 if(result?.error) {
