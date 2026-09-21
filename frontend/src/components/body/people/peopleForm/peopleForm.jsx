@@ -14,9 +14,9 @@ import SelectsV2 from "../../generalFields/selects/selectsV2/selectsV2";
 import { validatorAlphaNumeric, validatorCUILCUIT, validatorDate, validatorDNI, validatorLongText, validatorName, validatorNumber, validatorPhone } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import ImageManager from "../../generalFields/imagesMananger/imagesManager";
-import "./peopleForm.css";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function PeopleForm() {
     const { user } = useContext(UserContext);
@@ -171,14 +171,14 @@ function PeopleForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="peoFormCont">
-            <section className="peoFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.PERSON}:` : `${TEXT.CREATE} ${TEXT.PERSON}:`} language={language} />
             </section>
-            <section className="peoFormSectForm">
+            <section className="genFormSectForm">
                 <form id="peoForm" onSubmit={handleSubmit}>
-                    <div className="peoFormDivCont">
-                        <div className="peoFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -245,7 +245,7 @@ function PeopleForm() {
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
-                    <div className="peoFormSelectCont">
+                    <div className="genFormSelectCont">
                         <SelectsV2 label={`${TEXT.CONTINENT}:`} options={continentsList} value={formData.continents._id || ""} placeholder={TEXT.SELECT_CONTINENT} language={language} placeholder={TEXT.SELECT_OPTION}
                             onChange={(e) => handleSelectChange("continents", continentsList.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
@@ -264,14 +264,14 @@ function PeopleForm() {
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
                     </div>
-                    <div className="peoFormImgCont">
+                    <div className="genFormImgCont">
                         <ImageManager images={formData.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
                             /* cThumbCont={"thumbnailsContainerDetails"} cThumbAddCont={"thumbnailsAddContainerDetails"} 
                             cThumbPrevContainer={"thumnailsPreviewImgContainerDetails"} labelH2={""} valueH2={""} cThumbPrevImg={"thumbnailsImgPreviewDetails"}
                             cThumbImgContainer={"thumbnailsImgsContainerDetails"} cThumbImgBody={"thumbnailsImgBodyDetails"} cThumbImgBodyCont={"thumbnailsImgBodyContainerDetails"}
                             cImgDisplay={"thumbnailImageDisplayDetails"} idThumbBtnAdd={"thumbnailsImageBtnAdd"} */ />
                     </div>
-                    <div className="peoFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" id="btnGoBack" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" id="btnCancel" href="/people">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

@@ -13,8 +13,8 @@ import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import CheckBox from "../../generalFields/checkboxs/checkboxs";
 import { validatorName } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
-import "./provincesForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function ProvincesForm() {
     const { user } = useContext(UserContext);
@@ -141,14 +141,14 @@ function ProvincesForm() {
     };
 
     return (
-        <div className="proFormCont">
-            <section className="proFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.PROVINCE}:` : `${TEXT.CREATE} ${TEXT.PROVINCE}:`} language={language} />
             </section>
-            <section className="proFormSectForm">
+            <section className="genFormSectForm">
                 <form id="proForm" onSubmit={handleSubmit}>
-                    <div className="proFormDivCont">
-                        <div className="proFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -164,7 +164,7 @@ function ProvincesForm() {
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
-                    <div className="proFormSelectCont">
+                    <div className="genFormSelectCont">
                         <SelectsV1 titleAvailable={`${TEXT.CITIES_AVAILABLES}:`} titleSelected={`${TEXT.CITIES_ASSOCIATED}`} availableItems={citiesAvailable} selectedItems={formData.cities} valueDefault={TEXT.SELECT_A_CITY} valueDefualtNo={`${TEXT.NO_CITIES_ASSOCIATED}!`}
                             selectedItemId={selectedCityId} onChangeSelect={setSelectedCityId} onAdd={handleAddCity} onRemove={handleRemoveCity} getLabel={getCityLabel} language={language}
                             /* cclassCont={"genFormSelectContainer"} classContTitle={"genFormSelectTitle"} idH1FieldTitle={"genFormSelectH1"} classContBody={"genFormSelectBodyContainer"} classBodySelectItems={"genFormSelectSelectItemsContainer"}
@@ -172,7 +172,7 @@ function ProvincesForm() {
                             selectListUlLiDiv={"genFormSelectUlLiDiv"} selectListUlLiDivH2={"genormSelectUlLiDivH2"} idH1FieldTitleSelect={"genFormSelectH1TitleSelect"} */
                         />
                     </div>
-                    <div className="proFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" id="btnGoBack" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" id="btnCancel" href="/provinces">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

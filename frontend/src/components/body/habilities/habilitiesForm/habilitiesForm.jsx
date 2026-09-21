@@ -14,8 +14,8 @@ import H1Fields from "../../generalFields/h1Fields/h1fields";
 import CheckBoxs from "../../generalFields/checkboxs/checkboxs";
 import Inputs from "../../generalFields/Inputs/inputs";
 import { fetchCreateHability, fetchHabilityById, fetchUpdateHabilityById } from "../habilitiesLogic";
-import "./habilitiesForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function HabilitiesForm() {
     const { user } = useContext(UserContext);
@@ -89,14 +89,14 @@ function HabilitiesForm() {
     }, [id, isEdit, user, language]);
 
     return (
-        <div className="habFormCont">
-            <section className="habFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.HABILITY}:` : `${TEXT.CREATE} ${TEXT.HABILITY}:`} language={language} />
             </section>
-            <section>
+            <section className="genFormSectForm">
                 <form id="habForm" onSubmit={handleSubmit}>
-                    <div className="habFormDivCont">
-                        <div className="habFormCheckForm">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckForm">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -112,7 +112,7 @@ function HabilitiesForm() {
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
-                    <div className="habFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/habilites">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

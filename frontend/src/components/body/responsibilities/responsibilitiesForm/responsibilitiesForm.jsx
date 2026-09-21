@@ -84,14 +84,14 @@ function ResponsibilitiesForm() {
     }, [id, isEdit, user, language]);
 
     return (
-        <div className="respFormCont">
-            <section className="respFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.RESPONSIBILITY}:`: `${TEXT.CREATE} ${TEXT.RESPONSIBILITY}:`} language={language}/>
             </section>
-            <section className="respFormSectForm">
+            <section className="genFormSectForm">
                 <form id="respForm" onSubmit={handleSubmit}>
-                    <div className="respFormDivCont">
-                        <div className="respFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -107,7 +107,7 @@ function ResponsibilitiesForm() {
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
-                    <div className="respFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/responsibilities">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE: TEXT.CREATE}</button>

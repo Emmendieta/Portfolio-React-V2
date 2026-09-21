@@ -15,8 +15,8 @@ import { fetchCreateWorkWithImages, fetchGetWorkByIdPopulate, fetchUpdateWorkByI
 import { fetchGetAllResponsibilities } from "../../responsibilities/responsibilitiesLogic";
 import Uls from "../../generalFields/Uls/Uls";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
-import "./worksForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function WorksForm() {
     const { user } = useContext(UserContext);
@@ -148,13 +148,13 @@ function WorksForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="workFormCont">
-            <section className="workFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.WORK}:` : `${TEXT.CREATE} ${TEXT.WORK}:`} language={language} />
             </section>
-            <section className="workFormSectForm">
+            <section className="genFormSectForm">
                 <form id="workForm" onSubmit={handleSubmit}>
-                    <div className="workFormCheckCont">
+                    <div className="genFormCheckCont">
                         <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         {isEdit && (
                             <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} language={language} readOnly={true} disabled={true}
@@ -195,14 +195,14 @@ function WorksForm() {
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
-                    <div className="workFormImgCont">
+                    <div className="genFormImgCont">
                         <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO IMAGES" genderInput="m"
                             cThumbCont="" cThumbAddCont="" cThumbInput={TEXT.SELECT_IMAGES_ADD}
                             cThumbPrevContainer="" labelH2="" valueH2="" cThumbPrevImg=""
                             cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
                             cImgDisplay="" idThumbBtnAdd={""} />
                     </div>
-                    <div className="workFormUlsCont">
+                    <div className="genFormUlsCont">
                         <Uls list={availableResponsibilities} valueH1Field={TEXT.RESPONSIBILITIES_AVAILABLE} language={language} idH1Field={""} className={""}
                             classnameli="" classNameSect="" idList={""} renderItem={(responsibility) => (
                                 <button type="button" onClick={() => addResponsibility(responsibility)} className="btn btn-outline-success">
@@ -216,7 +216,7 @@ function WorksForm() {
                                 </button>
                             )} />
                     </div>
-                    <div className="workFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/works">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

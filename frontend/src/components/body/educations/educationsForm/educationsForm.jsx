@@ -16,8 +16,8 @@ import SelectsV2 from "../../generalFields/selects/selectsV2/selectsV2";
 import Uls from "../../generalFields/Uls/Uls";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import { fetchGetAllHabilities } from "../../habilities/habilitiesLogic";
-import "./educationsForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function EducationsForm() {
     const { user } = useContext(UserContext);
@@ -166,14 +166,14 @@ function EducationsForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="eduFormCont">
-            <section className="eduFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.EDUCATION}:` : `${TEXT.CREATE} ${TEXT.EDUCATION}:`} language={language} />
             </section>
-            <section className="eduFormSectForm">
+            <section className="genFormSectForm">
                 <form id="eduForm" onSubmit={handleSubmit} >
-                    <div className="eduFormDivCont">
-                        <div className="eduFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -220,14 +220,14 @@ function EducationsForm() {
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted && errors.descriptionSecondary)}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
-                        <div className="eduFormImgCont">
+                        <div className="genFormImgCont">
                             <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO INPUT" genderInput="f" cThumbInput={TEXT.SELECT_IMAGES_ADD}
                                 /*cThumbCont="" cThumbAddCont="" 
                                 cThumbPrevContainer="" labelH2="" valueH2="" cThumbPrevImg=""
                                 cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
                                 cImgDisplay="" idThumbBtnAdd={""}*/ />
                         </div>
-                        <div className="eduFormUlsCont">
+                        <div className="genFormUlsCont">
                             <Uls list={availablesHabilities} valueH1Field={`${TEXT.HABILITIES_AVAILABLES}:`} language={language} /* idH1Field={""} className={""}
                                 classnameli="" classNameUl="" classNameSect="" idList={""} */ renderItem={(hability) => (
                                     <button type="button" onClick={() => addHability(hability)} className="btn btn-outline-success btnAddAssignedUls" >
@@ -241,7 +241,7 @@ function EducationsForm() {
                                     </button>
                                 )} />
                         </div>
-                        <div className="eduFormDivContBottom">
+                        <div className="genFormDivContBottom">
                             <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                             <a className="btn btn-outline-danger" href="/educations">{TEXT.CANCEL}</a>
                             <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

@@ -14,8 +14,8 @@ import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import CheckBox from "../../generalFields/checkboxs/checkboxs";
 import { validatorName } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
-import "./rolesForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function RoleForm() {
     const { user } = useContext(UserContext);
@@ -108,14 +108,14 @@ function RoleForm() {
     const removePermission = (permissionId) => { setFormData(prev => ({ ...prev, permissions: prev.permissions.filter(per => per._id !== permissionId) })); };
 
     return (
-        <div className="rolFormCont">
-            <section className="rolFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.ROLE}:` : `${TEXT.CREATE} ${TEXT.ROLE}:`} language={language} />
             </section>
-            <section className="rolFormSectForm">
+            <section className="genFormSectForm">
                 <form id="rolForm" onSubmit={handleSubmit}>
-                    <div className="rolFormDivCont">
-                        <div className="rolFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="rgenormCheckCont">
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -143,7 +143,7 @@ function RoleForm() {
                                 </button>
                             )} />
                         </div>
-                        <div className="rolFormDivContBottom">
+                        <div className="genFormDivContBottom">
                             <a className="btn btn-outline-primary" id="btnGoBack" href="/">{TEXT.HOME}</a>
                             <a className="btn btn-outline-danger" id="btnCancel" href="/roles">{TEXT.CANCEL}</a>
                             <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

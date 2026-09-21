@@ -12,8 +12,8 @@ import H1Fields from "../../generalFields/h1Fields/h1fields";
 import Inputs from "../../generalFields/Inputs/inputs";
 import SelectsV2 from "../../generalFields/selects/selectsV2/selectsV2";
 import ImagesManager from "../../generalFields/imagesMananger/imagesManager";
-import "./socialsForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function SocialsForm() {
     const { user } = useContext(UserContext);
@@ -97,13 +97,13 @@ function SocialsForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="socFormCont">
-            <section className="socFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.SOCIAL}` : `${TEXT.CREATE} ${TEXT.SOCIAL}:`} language={language} />
             </section>
-            <section className="socFormSectForm">
+            <section className="genFormSectForm">
                 <form id="socForm" onSubmit={handleSubmit} >
-                    <div className="socFormDivCont">
+                    <div className="genFormDivCont">
                         {isEdit && (
                             <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} readOnly disabled
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
@@ -121,19 +121,15 @@ function SocialsForm() {
                             onChange={handleChange} onBlur={handleBlur} error={(touched.password || isSubmitted) && errors.password}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     </div>
-                    <div className="socFormSelectCont">
+                    <div className="genFormSelectCont">
                         <SelectsV2 label={TEXT.TYPE_SOCIAL} name={"typeSocial"} options={socialsTranslations} value={formData.typeSocial || ""} placeholder={TEXT.SELECT_TYPE_SOCIAL}
                             language={language} getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur}
                             error={(touched.typeSocial || isSubmitted) && errors.typeSocial} className="" cNContainer="" cNSecTop="" cnSectBottom="" />
                     </div>
-                    <div className="socFormImgCont">
-                        <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO INPUT" genderInput="f" cThumbInput={TEXT.SELECT_IMAGES_ADD}
-                            /* cThumbCont="" cThumbAddCont="" 
-                            cThumbPrevContainer="" labelH2="" valueH2="" cThumbPrevImg=""
-                            cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
-                            cImgDisplay="" idThumbBtnAdd={""} */ />
+                    <div className="genFormImgCont">
+                        <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO INPUT" genderInput="f" cThumbInput={TEXT.SELECT_IMAGES_ADD} />
                     </div>
-                    <div className="socFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/socials">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

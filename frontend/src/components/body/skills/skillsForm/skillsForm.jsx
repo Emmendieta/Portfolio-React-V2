@@ -13,8 +13,8 @@ import CheckBoxs from "../../generalFields/checkboxs/checkboxs";
 import Inputs from "../../generalFields/Inputs/inputs";
 import SelectsV2 from "../../generalFields/selects/selectsV2/selectsV2";
 import ImagesManager from "../../generalFields/imagesMananger/imagesManager";
-import "./skillsForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function SkillsForm() {
     const { user } = useContext(UserContext);
@@ -97,14 +97,14 @@ function SkillsForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="skillFormCont">
-            <section className="skillFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.SKILL}:` : `${TEXT.CREATE} ${TEXT.SKILL}:`} language={language} />
             </section>
-            <section className="skillSectForm">
+            <section className="genSectForm">
                 <form id="skillForm" onSubmit={handleSubmit}>
-                    <div className="skillFormDivCont">
-                        <div className="skillFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={((e) => setShowOtherLang(e.target.checked))} />
                         </div>
                         {isEdit && (
@@ -124,19 +124,19 @@ function SkillsForm() {
                             onChange={handleChange} onBlur={handleBlur} error={(touched.percent || isSubmitted) && errors.percent}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     </div>
-                    <div className="skillFormSelectCont">
+                    <div className="genFormSelectCont">
                         <SelectsV2 label={TEXT.TYPE} name={"type"} options={skillsTranslations} value={formData.type || ""} language={language} placeholder={TEXT.SELECT_A_TYPE}
                             getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur} error={(touched.type || isSubmitted) && errors.type}
                             className={""} cNContainer="" cNSecTop="" cnSectBottom="" />
                     </div>
-                    <div className="skillFormImgCont">
+                    <div className="genFormImgCont">
                         <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO INPUT" genderInput="f" cThumbInput={TEXT.SELECT_IMAGES_ADD}
                             /* cThumbCont="" cThumbAddCont="" 
                             cThumbPrevContainer="" labelH2="" valueH2="" cThumbPrevImg=""
                             cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
                             cImgDisplay="" idThumbBtnAdd={""} */ />
                     </div>
-                    <div className="skillFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/skills">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

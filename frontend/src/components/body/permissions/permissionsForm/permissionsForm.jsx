@@ -12,8 +12,8 @@ import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import CheckBox from "../../generalFields/checkboxs/checkboxs";
 import { validatorKey, validatorLongText, validatorName } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
-import "./permissionsForm.css";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "../../generalFields/generalForms.css";
 
 function PermissionsForm() {
     const { user } = useContext(UserContext);
@@ -94,14 +94,14 @@ function PermissionsForm() {
     }, [id, isEdit, user, language]);
 
     return (
-        <div className="permFormCont">
-            <section className="permFormSectTitle">
+        <div className="genFormCont">
+            <section className="genormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.PERMISSION}:` : `${TEXT.CREATE} ${TEXT.PERMISSION}:`} language={language} />
             </section>
-            <section className="permFormSectForm">
+            <section className="genFormSectForm">
                 <form id="permForm" onSubmit={handleSubmit}>
-                    <div className="permFormDivCont">
-                        <div className="permFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -127,7 +127,7 @@ function PermissionsForm() {
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted) && errors.descriptionSecondary} language={secondaryLang} />
                         )}
                     </div>
-                    <div className="permFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" id="btnGoBack" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" id="btnCancel" href="/permissions">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

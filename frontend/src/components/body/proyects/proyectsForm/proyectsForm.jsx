@@ -18,7 +18,7 @@ import Uls from "../../generalFields/Uls/Uls";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import ImagesManager from "../../generalFields/imagesMananger/imagesManager";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
-import "./proyectsForm.css";
+import "../../generalFields/generalForms.css";
 
 function ProyectsForm() {
     const { user } = useContext(UserContext);
@@ -50,11 +50,8 @@ function ProyectsForm() {
         if (showOtherLang) try { validatorAlphaNumeric(data.company?.[secondaryLang]), TEXT.ERROR_COMPANY } catch (error) { errors.companySecondary = error.message; };
         try { validatorURL((data.linkCompany)), TEXT.ERROR_URL } catch (error) { errors.linkCompany = error.message; };
         try { validatorURL((data.linkProyect)), TEXT.ERROR_URL } catch (error) { errors.linkCompany = error.message; };
-        try { validatorLongText((data.description?.[primaryLang]), TEXT.ERROR_LONG_TEXT ) } catch (error) { errors.descriptionPrimary = error.message; };
-        if (showOtherLang) try { validatorLongText((data.description?.[secondaryLang]), TEXT.ERROR_LONG_TEXT ) } catch (error) { errors.descriptionSecondary = error.message; };
-        //FALTA VALIDAR SKILLS
-        //FALTA VALIDAR CATEGORIES
-        //FALTA VALIDAR RESPONSIBILITIES
+        try { validatorLongText((data.description?.[primaryLang]), TEXT.ERROR_LONG_TEXT) } catch (error) { errors.descriptionPrimary = error.message; };
+        if (showOtherLang) try { validatorLongText((data.description?.[secondaryLang]), TEXT.ERROR_LONG_TEXT) } catch (error) { errors.descriptionSecondary = error.message; };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 
@@ -87,9 +84,9 @@ function ProyectsForm() {
     useEffect(() => {
         const loadProyect = async () => {
             try {
-                const permission = isEdit ? "update_proyects": "create_proyects";
+                const permission = isEdit ? "update_proyects" : "create_proyects";
                 const allowded = await verifyPrivileges(user, permission);
-                if(!allowded) return;
+                if (!allowded) return;
                 startLoading();
                 await new Promise(resolve => setTimeout(resolve, 600));
                 const responsibilitiesRes = await fetchGetAllResponsibilities();
@@ -141,17 +138,9 @@ function ProyectsForm() {
     const sortByName = useCallback((a, b) => {
         const nameA = String(a?.name?.[language] ?? "").trim();
         const nameB = String(b?.name?.[language] ?? "").trim();
-        const locale = language === "es" ? "es-ES": "en-US";
+        const locale = language === "es" ? "es-ES" : "en-US";
         return nameA.localeCompare(nameB, locale, { sensitivity: "base", numeric: true, ignorePunctuation: true });
     }, [language]);
-
-    //Responsibilities:
-    /*const availablesResponsibilities = useMemo(() => {
-        const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
-        return allResponsibilities.filter(responsibility => !assignedIds.has(responsibility._id));
-    }, [allResponsibilities, formData.responsibilities]);
-
-    const assignedResponsibilities = formData.responsibilities;*/
 
     const availablesResponsibilities = useMemo(() => {
         const assignedIds = new Set(formData.responsibilities.map(resp => resp._id));
@@ -170,15 +159,7 @@ function ProyectsForm() {
         setFormData(prev => ({ ...prev, responsibilities: prev.responsibilities.filter(resp => resp._id !== id) }));
     };
 
-    //Skills:
-    /*const availablesSkills = useMemo(() => {
-        const assignedIds = new Set(formData.skills.map(skill => skill._id));
-        return allSkills.filter(skill => !assignedIds.has(skill._id));
-    }, [allSkills, formData.skills]);
-
-    const assignedSkills = formData.skills;*/
-
-        const availablesSkills = useMemo(() => {
+    const availablesSkills = useMemo(() => {
         const assignedIds = new Set(formData.skills.map(skill => skill._id));
         return allSkills.filter(skill => !assignedIds.has(skill._id)).sort(sortByName);
     }, [allSkills, formData.skills, sortByName]);
@@ -195,14 +176,6 @@ function ProyectsForm() {
     const removeSkill = (id) => {
         setFormData(prev => ({ ...prev, skills: prev.skills.filter(skill => skill._id !== id) }));
     };
-
-    //Categories:
-    /*const availableCategories = useMemo(() => {
-        const assignedIds = new Set(formData.categories.map(cat => cat._id));
-        return allCategories.filter(category => !assignedIds.has(category._id));
-    }, [allCategories, formData.categories]);
-
-    const assignedCategories = formData.categories;*/
 
     const availableCategories = useMemo(() => {
         const assignedIds = new Set(formData.categories.map(cat => cat._id));
@@ -225,19 +198,19 @@ function ProyectsForm() {
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
     return (
-        <div className="proyFormCont">
-            <section className="proyFormSectTitle">
+        <div className="genFormCont">
+            <section className="genFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.PROYECT}:` : `${TEXT.CREATE} ${TEXT.PROYECT}:`} language={language} />
             </section>
-            <section className="proyFormSectForm">
+            <section className="genFormSectForm">
                 <form id="proyForm" onSubmit={handleSubmit}>
-                    <div className="proyFormDivCont">
-                        <div className="proyFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div className="genFormCheckCont">
                             <CheckBoxs name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} language={language} />
                         </div>
                         {isEdit && (
                             <Inputs textH2={TEXT.ID} type="text" name="_id" value={formData._id} readOnly disabled
-                            className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
+                                className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
                         )}
                         <Inputs textH2={`${TEXT.NAME} (${primaryLang.toUpperCase()})`} type="text" name="name" value={formData.name?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.NAME)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`name_${primaryLang}`] || isSubmitted && errors.namePrimary)}
@@ -245,7 +218,7 @@ function ProyectsForm() {
                         {showOtherLang && (
                             <Inputs textH2={`${TEXT.NAME} (${secondaryLang.toUpperCase()})`} type="text" name="name" value={formData.name?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.NAME)}
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`name_${secondaryLang}`] || isSubmitted && errors.nameSecondary)}
-                            className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
+                                className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
                         )}
                         <Inputs textH2={TEXT.DATE_START} type="date" name="dateStart" value={formData.dateStart ? formData.dateStart.slice(0, 10) : ""} placeHolder={TEXT.inputsText("f", TEXT.DATE_START)}
                             onChange={handleChange} onBlur={handleBlur} error={touched.dateStart || isSubmitted && errors.dateStart}
@@ -268,11 +241,11 @@ function ProyectsForm() {
                             onChange={handleChange} onBlur={handleBlur} error={(touched.linkProyect || isSubmitted && errors.linkProyect)}
                             className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
                         <Inputs textH2={`${TEXT.DESCRIPTION} (${primaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[primaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
-                            onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`description_${primaryLang}`] || isSubmitted ) && errors.descriptionPrimary }
+                            onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`description_${primaryLang}`] || isSubmitted) && errors.descriptionPrimary}
                             className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
                         {showOtherLang && (
                             <Inputs textH2={`${TEXT.DESCRIPTION} (${secondaryLang.toUpperCase()})`} type="text" name="description" value={formData.description?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("f", TEXT.DESCRIPTION)}
-                                onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted ) && errors.descriptionSecondary } 
+                                onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`description_${secondaryLang}`] || isSubmitted) && errors.descriptionSecondary}
                                 className={"genFormInput"} cNContainer={"genFormInputCont"} cNSecTop={"genFormInputTopCont"} cNSectBottom={"genFormInputBottomCont"} />
                         )}
                         <div className="proyFormUlsCont">
@@ -319,14 +292,14 @@ function ProyectsForm() {
                                     )} />
                             </div>
                         </div>
-                        <div className="proyFormImgCont">
+                        <div className="genFormImgCont">
                             <ImagesManager images={formData.images} setImages={setImages} editable={true} textInput="FALTA TEXTO INPUT" genderInput="f" cThumbInput={TEXT.SELECT_IMAGES_ADD}
                                 /*cThumbCont="" cThumbAddCont="" 
                                 cThumbPrevContainer="" labelH2="" valueH2="" cThumbPrevImg=""
                                 cThumbImgContainer="" cThumbImgBody="" cThumbImgBodyCont=""
                                 cImgDisplay="" idThumbBtnAdd={""}*/ />
                         </div>
-                        <div className="proyFormDivContBottom">
+                        <div className="genFormDivContBottom">
                             <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                             <a className="btn btn-outline-danger" href="/proyects">{TEXT.CANCEL}</a>
                             <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>

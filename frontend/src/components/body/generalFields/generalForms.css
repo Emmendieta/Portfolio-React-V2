@@ -27,14 +27,6 @@
 
 /* --------------- FORM --------------- */
 
-#genForm {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
 .genFormDivCont {
     display: flex;
     flex-direction: column;
@@ -51,6 +43,37 @@
     align-items: center;
 }
 
+/* --------------- FORM SELECT --------------- */
+
+.genFormSelectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* --------------- FORM IMG --------------- */
+
+.genFormImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------- FORM ULS --------------- */
+
+.genFormUlsCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
 /* --------------- FORM BUTTONS --------------- */
 
 .genFormDivContBottom {
@@ -61,3 +84,50 @@
     justify-content: space-evenly;
     margin: 30px;
 }
+
+/* --------------- CATEGORIES, CITIES, CONTINENTS, COUNTRIES, EDUCATIONS, HABILITIES, PERMISSIONS
+                    PROVINCES, PROYECTS, RESPONSIBILTIES, ROLES, SKILLS, SOCIALS; WORKS FORM --------------- */
+
+#catForm, #countForm, #contForm, #eduForm, #habForm, #permForm, #proForm, #proyForm, #respForm, #rolForm, 
+#skillForm, #socForm, #workForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+/* ---------------  PROYECTS FORM ULS --------------- */
+
+.proyFormUlsCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.proyFormUlsDivCont {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+/* --------------- ROLES FORM ULS --------------- */
+
+.rolFormUlsCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+

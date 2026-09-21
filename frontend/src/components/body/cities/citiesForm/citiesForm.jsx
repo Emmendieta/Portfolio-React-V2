@@ -85,14 +85,14 @@ function CitiesForm() {
     }, [id, isEdit, user, language, verifyPrivileges]);
 
     return (
-        <div className="citFormCont">
+        <div className="genFormCont">
             <section className="citFormSectTitle">
                 <H1Fields value={isEdit ? `${TEXT.UPDATE} ${TEXT.CITY}:` : `${TEXT.CREATE} ${TEXT.CITY}:`} language={language} />
             </section>
-            <section className="citFormSectForm">
+            <section className="genFormSectForm">
                 <form id="citForm" onSubmit={handleSubmit}>
-                    <div className="citFormDivCont">
-                        <div id="citFormCheckCont">
+                    <div className="genFormDivCont">
+                        <div id="genFormCheckCont">
                             <CheckBox name="showOtherLang" textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
@@ -110,7 +110,7 @@ function CitiesForm() {
                         <Inputs textH2={TEXT.ZIP_CODE} type="text" name="zipCode" value={formData.zipCode} placeHolder= {TEXT.inputsText("m", TEXT.ZIP_CODE)} /* {TEXT.inputsText("m", TEXT.ZIP_CODE_OF_THE_CITY)} */ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.zipCode || isSubmitted) && errors.zipCode} className="genFormInput" cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cNSectBottom="genFormInputBottomCont" />
                     </div>
-                    <div className="citFormDivContBottom">
+                    <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" href="/">{TEXT.HOME}</a>
                         <a className="btn btn-outline-danger" href="/cities">{TEXT.CANCEL}</a>
                         <button type="submit" className="btn btn-outline-success" disabled={!isFormValid}>{isEdit ? TEXT.UPDATE : TEXT.CREATE}</button>
