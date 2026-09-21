@@ -15,7 +15,7 @@ function CategoriesOrder() {
     const [loading, setLoading] = useState(true);
     const { startLoading, stopLoading } = useLoading();
     const { language } = useLanguage();
-    const TEXT = LANG_CONST[language];
+    const TEXT = LANG_CONST[language] || LANG_CONST.es;
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,8 @@ function CategoriesOrder() {
                 const result = await fetchGetAllCategories();
                 if(result?.error) {
                     setCategories([]);
-                    return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || TEXT.TEXT_ERROR_OOPS);
+                    const errorMsg = result?.error?.message || TEXT.TEXT_ERROR_OOPS;
+                    return await errorSweet(`${TEXT.ERROR || "Error"}: ${errorMsg}`);
                 };
                 const categories = result.response || [];
                 setCategories(categories);
@@ -47,8 +48,9 @@ function CategoriesOrder() {
             startLoading();
             const result = await fetchUpdateCategoriesOrder(categories);
             if(result?.error) {
-                console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
-                return await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+                const errorMsg = result?.error?.message || TEXT.TEXT_ERROR_OOPS;
+                console.error(`${TEXT.ERROR || "Error"}: ${errorMsg}`);
+                return await errorSweet(`${TEXT.ERROR || "Error"}: ${errorMsg}`);
             };
             await successSweet(`${TEXT.CATEGORIES} ${TEXT.UPDATE_SUCCESS}!`);
         } catch (error) {
