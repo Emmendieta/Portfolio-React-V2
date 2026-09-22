@@ -59,6 +59,7 @@
     justify-content: center;
     align-items: center;
     padding: 0;
+    margin-top: 30px;
 }
 
 .olReorderLi {
@@ -86,16 +87,4 @@
 
 .olReorderBtn {
     margin-left: 10px;
-}
-
-
-/* -------------------- H2 -------------------- */
-
-.olReroderH2 {
-    margin-left: 10px;
-}
-
-.olReorderH2Text {
-    padding: 0;
-    margin: 0;
 }

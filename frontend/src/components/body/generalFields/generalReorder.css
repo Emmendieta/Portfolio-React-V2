@@ -20,6 +20,8 @@
     flex-direction: row;
     width: 100%;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 
 .genReorderSectBottom {
@@ -29,4 +31,16 @@
     justify-content: flex-end;
     padding-right: 30px;
     margin-top: 20px;
+}
+
+/* -------------------- H2 -------------------- */
+
+.olReroderH2 {
+    margin-left: 10px;
+}
+
+.olReorderH2Text {
+    padding: 0;
+    margin: 0;
+    font-size: large;
 }
