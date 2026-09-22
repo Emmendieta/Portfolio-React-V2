@@ -50,9 +50,9 @@ import WorksOrder from './components/body/works/worksOrder/worksOrder'
 import H1Fields from './components/body/generalFields/h1Fields/h1fields'
 import { useLanguage } from './context/Language.Context'
 import { LANG_CONST } from './constants/SelectLang.Constant'
-import "./App.css";
 import Terms from './components/body/terms/terms'
 import Privacy from './components/body/privacy/privacy'
+import "./App.css";
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
