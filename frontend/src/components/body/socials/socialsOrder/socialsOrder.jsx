@@ -6,6 +6,8 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { fetchGetAllSocials, fetchUpdateSocialsOrder } from "../socialsLogic";
 import Ols from "../../generalFields/Ols/Ols";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function SocialOrder() {
     const { user } = useContext(UserContext);
@@ -58,17 +60,22 @@ function SocialOrder() {
     };
 
     return (
-        <div>
-            <section>
-                <Ols items={socials} setItems={setSocials} renderItem={(social) => (
-                    <div>
-                        {social.order}
-                        {social.name}
-                        {social.typeSocial}
+        <div className="olReorderCont">
+            <section className="olReorderSectTop">
+                <Ols items={socials} setItems={setSocials} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(social) => (
+                    <div className="genReorderUlDiv">
+                        <H2Fields value={social.order} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={social.name} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={social.typeSocial} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )} />
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>

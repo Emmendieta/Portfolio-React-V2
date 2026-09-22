@@ -7,6 +7,7 @@ import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { fetchGetAllSkills, fetchUpdateSkillsOrder } from "../skillsLogic";
 import Ols from "../../generalFields/Ols/Ols";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function SkillsOrder() {
     const { user } = useContext(UserContext);
