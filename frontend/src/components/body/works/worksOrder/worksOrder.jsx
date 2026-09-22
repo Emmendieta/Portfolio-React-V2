@@ -6,6 +6,8 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { fetchGetAllWorks, fetchUpdateWorksOrder } from "../worksLogis";
 import Ols from "../../generalFields/Ols/Ols";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function WorksOrder() {
     const { user } = useContext(UserContext);
@@ -59,17 +61,22 @@ function WorksOrder() {
     };
 
     return (
-        <div>
-            <section>
-                <Ols items={works} setItems={setWorks} renderItem={(work) => (
-                    <div>
-                        {work.order}
-                        {work.jobTitle?.[language]}
-                        {work.componay?.[language]}
+        <div className="genReorderCont">
+            <section className="genReorderSectTop">
+                <Ols items={works} setItems={setWorks} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(work) => (
+                    <div className="genReorderUlDiv">
+                        <H2Fields value={work.order} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={work.jobTitle?.[language]} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={work.company?.[language]} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )}/>
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>

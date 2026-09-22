@@ -8,6 +8,8 @@ import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useEffect } from "react";
 import { fetchGetAllEducations, fetchUpdateEducationsOrder } from "../educationsLogic";
 import Ols from "../../generalFields/Ols/Ols";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function EducationsOrder() {
     const { user } = useContext(UserContext);
@@ -61,18 +63,24 @@ function EducationsOrder() {
     };
 
     return (
-        <div>
-            <section>
-                <Ols items={educations} setItems={setEducations} renderItem={(education) => (
-                    <div>
-                        {education.order}
-                        {education.institutionName?.[language]}
-                        {education.title?.[language]}
-                        {education.typeEducation}
+        <div className="olReorderCont">
+            <section className="olReorderSectTop">
+                <Ols items={educations} setItems={setEducations} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(education) => (
+                    <div className="genReorderUlDiv">
+                        <H2Fields value={education.order} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={education.institutionName?.[language]}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={education.title?.[language]}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={education.typeEducation}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )} />
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>

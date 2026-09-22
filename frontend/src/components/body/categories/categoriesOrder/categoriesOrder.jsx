@@ -8,8 +8,8 @@ import { useLoading } from "../../../../context/Loading.Context";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { fetchGetAllCategories, fetchUpdateCategoriesOrder } from "../categoriesLogic";
 import Ols from "../../generalFields/Ols/Ols";
-import "../../generalFields/generalReorder.css";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function CategoriesOrder() {
     const { user } = useContext(UserContext);

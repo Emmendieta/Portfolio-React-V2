@@ -6,6 +6,8 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { fetchGetAllProyects, fetchUpdateProyecsOrder } from "../proyectsLogic";
 import Ols from "../../generalFields/Ols/Ols";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
+import "../../generalFields/generalReorder.css";
 
 function ProyectsOrder() {
     const { user } = useContext(UserContext);
@@ -59,16 +61,20 @@ function ProyectsOrder() {
     };
 
     return (
-        <div>
-            <section>
-                <Ols items={proyects} setItems={setProyects} renderItem={(proyect) => (
-                    <div>
-                        {proyect.order}
-                        {proyect.name?.[language]}
+        <div className="genReorderCont">
+            <section className="genReorderSectTop">
+                <Ols items={proyects} setItems={setProyects} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(proyect) => (
+                    <div className="genReorderUlDiv">
+                        <H2Fields value={proyect.order} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={proyect.name?.[language]} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )} />
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>
