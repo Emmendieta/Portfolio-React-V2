@@ -48,3 +48,38 @@
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+/* ----------------- REORDER OLS ----------------- */
+
+.olReorderCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.olReorderLi {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.olReorderLiCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.olReorderButtonCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    padding-left: 20px;
+}
+
+.olReorderBtn {
+    margin-left: 10px;
+}

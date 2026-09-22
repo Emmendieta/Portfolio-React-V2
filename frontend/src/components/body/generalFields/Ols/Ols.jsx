@@ -1,5 +1,6 @@
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { useLanguage } from "../../../../context/Language.Context";
+import "./Ols.css";
 
 function Ols( { items = [], setItems, renderItem, getId= (item) => item._id, orderField="order",
     clOl="ols", clLi="olsItem", clItemCont="olsContent", clButtonsCont="olsActions", clButtons="olsButton"

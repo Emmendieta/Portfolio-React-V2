@@ -67,7 +67,9 @@ function CategoriesOrder() {
     return(
         <div className="genReorderCont">
             <section className="genReorderSectTop">
-                <Ols items={categories} setItems={setCategories} renderItem={(category) => (
+                <Ols items={categories} setItems={setCategories} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(category) => (
                     <div className="genReorderUlDiv">
                         {category.order}
                         {category.name?.[language]}

@@ -4,6 +4,7 @@
     width: 100%;
     box-sizing: border-box;
     min-height: 100vh;
+    justify-content: center;
 }
 
 .genReorderSectTop {
@@ -27,4 +28,5 @@
     box-sizing: border-box;
     justify-content: flex-end;
     padding-right: 30px;
+    margin-top: 20px;
 }
