@@ -1,0 +1,30 @@
+.genReorderCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.genReorderSectTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.genReorderUlDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.genReorderSectBottom {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    padding-right: 30px;
+}

@@ -8,6 +8,7 @@ import { useLoading } from "../../../../context/Loading.Context";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { fetchGetAllCategories, fetchUpdateCategoriesOrder } from "../categoriesLogic";
 import Ols from "../../generalFields/Ols/Ols";
+import "../../generalFields/generalReorder.css";
 
 function CategoriesOrder() {
     const { user } = useContext(UserContext);
@@ -64,16 +65,16 @@ function CategoriesOrder() {
     };
 
     return(
-        <div>
-            <section>
+        <div className="genReorderCont">
+            <section className="genReorderSectTop">
                 <Ols items={categories} setItems={setCategories} renderItem={(category) => (
-                    <div>
+                    <div className="genReorderUlDiv">
                         {category.order}
                         {category.name?.[language]}
                     </div>
                 )} />
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>
