@@ -6,6 +6,7 @@ import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
 import { fetchGetAllSkills, fetchUpdateSkillsOrder } from "../skillsLogic";
 import Ols from "../../generalFields/Ols/Ols";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
 
 function SkillsOrder() {
     const { user } = useContext(UserContext);
@@ -59,17 +60,22 @@ function SkillsOrder() {
     };
 
     return (
-        <div>
-            <section>
-                <Ols items={skills} setItems={setSkills} renderItem={(skill) => (
-                    <div>
-                        {skill.order}
-                        {skill.name?.[language]}
-                        {skill.type}
+        <div className="genReorderCont">
+            <section className="genReorderSectTop">
+                <Ols items={skills} setItems={setSkills} clOl="olReorderCont" clLi="olReorderLi"
+                    clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
+                    renderItem={(skill) => (
+                    <div className="genReorderUlDiv">
+                        <H2Fields value={skill.order} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={skill.name?.[language]} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={skill.type} language={language}
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )} />
             </section>
-            <section>
+            <section className="genReorderSectBottom">
                 <button type="button" className="btn btn-outline-success" onClick={handleSaveOrder}>{TEXT.UPDATE_ORDER}</button>
             </section>
         </div>
