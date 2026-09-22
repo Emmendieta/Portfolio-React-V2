@@ -36,12 +36,12 @@ function Ols( { items = [], setItems, renderItem, getId= (item) => item._id, ord
         <ol className={clOl}>
             {sortedItems.map((item, index) => (
                 <li key={getId(item)} className={clLi}>
-                    <div className={clItemCont}>
-                        {renderItem(item, index)}
-                    </div>
                     <div className={clButtonsCont}>
                         <button type="button" onClick={() => hanldeMoveUp(index)} disabled={index === 0} title={TEXT.MOVE_UP} className={`btn btn-outline-success ${clButtons}`}>↑</button>
                         <button type="button" onClick={() => handleMoveDown(index)} disabled={ index === sortedItems.length - 1} title={TEXT.MOVE_DOWN} className={`btn btn-outline-danger ${clButtons}`}>↓</button>
+                    </div>
+                    <div className={clItemCont}>
+                        {renderItem(item, index)}
                     </div>
                 </li>
             ))}

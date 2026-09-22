@@ -9,6 +9,7 @@ import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { fetchGetAllCategories, fetchUpdateCategoriesOrder } from "../categoriesLogic";
 import Ols from "../../generalFields/Ols/Ols";
 import "../../generalFields/generalReorder.css";
+import H2Fields from "../../generalFields/h2Fields/h2Fields";
 
 function CategoriesOrder() {
     const { user } = useContext(UserContext);
@@ -71,8 +72,10 @@ function CategoriesOrder() {
                     clItemCont="olReorderLiCont" clButtons="olReorderButtonCont" clButtons="olReorderBtn"
                     renderItem={(category) => (
                     <div className="genReorderUlDiv">
-                        {category.order}
-                        {category.name?.[language]}
+                        <H2Fields value={category.order} language={language} 
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
+                        <H2Fields value={category?.name?.[language]} language={language} 
+                            className="olReroderH2" classNameH2="olReorderH2Text"/>
                     </div>
                 )} />
             </section>

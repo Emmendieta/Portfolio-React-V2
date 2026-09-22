@@ -53,15 +53,18 @@
 
 .olReorderCont {
     display: flex;
+    flex-direction: column;
     width: 100%;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 
 .olReorderLi {
     display: flex;
     flex-direction: row;
-    width: 100%;
     box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .olReorderLiCont {
@@ -82,4 +85,16 @@
 
 .olReorderBtn {
     margin-left: 10px;
+}
+
+
+/* -------------------- H2 -------------------- */
+
+.olReroderH2 {
+    margin-left: 10px;
+}
+
+.olReorderH2Text {
+    padding: 0;
+    margin: 0;
 }
