@@ -53,6 +53,7 @@ import { LANG_CONST } from './constants/SelectLang.Constant'
 import Terms from './components/body/terms/terms'
 import Privacy from './components/body/privacy/privacy'
 import "./App.css";
+import Curriculum from './components/body/curriculum/curriculum'
 
 function AppRoutes() {
   const { loadingUser } = useContext(UserContext);
@@ -130,6 +131,7 @@ function AppRoutes() {
         <Route path='*' element={<NotFound />} />
         <Route path='/terms' element={<Terms /> } />
         <Route path='/privacy-policy' element={<Privacy /> } />
+        <Route path='/curriculum' element={<Curriculum /> } />
 
       </Route>
     </Routes>
