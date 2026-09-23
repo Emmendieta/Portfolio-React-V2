@@ -1,0 +1,77 @@
+.termsCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 50px;
+}
+
+.termsSectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ------------------- UL ------------------- */
+
+.termsUl {
+    padding: 0;
+    margin: 0;
+}
+
+.termsLi {
+    font-size: larger;
+    margin-bottom: 10px;
+}
+
+/* ------------------- H1 ------------------- */
+
+.termsH1Cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.termsH1 {
+    font-size: xx-large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* ------------------- H2 ------------------- */
+
+.termsH2Cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.termsH2Title {
+    font-size: x-large;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.termsH2 {
+    font-size: larger;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+/* ------------------- P ------------------- */
+
+.termsP {
+    font-size: larger;
+    margin-bottom: 10px;
+    text-align: justify;
+}
