@@ -1,0 +1,77 @@
+.privCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 50px;
+}
+
+.privSectCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ------------------- UL ------------------- */
+
+.privUl {
+    padding: 0;
+    margin: 0;
+}
+
+.privLi {
+    font-size: larger;
+    margin-bottom: 10px;
+}
+
+/* ------------------- H1 ------------------- */
+
+.privH1Cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.privH1 {
+    font-size: xx-large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* ------------------- H2 ------------------- */
+
+.privH2Cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.privH2Title {
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.privH2 {
+    font-size: larger;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+/* ------------------- P ------------------- */
+
+.privP {
+    font-size: larger;
+    margin-bottom: 10px;
+    text-align: justify;
+}
