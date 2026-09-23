@@ -20,17 +20,14 @@ function TermsAndCond({ children }) {
     const isTermsRoute = publicTermsRoutes.includes(location.pathname);
 
     useEffect(() => {
-        if(isTermsRoute) {
-            setIsChecking(false);
-            sethasAccepted(true);
-            return;
-        }
-    })
-
-    useEffect(() => {
-        const checkTerms = async() => {
+        const checkTerms = async () => {
+            if (isTermsRoute) {
+                setIsChecking(false);
+                sethasAccepted(true);
+                return;
+            };
             const termsAccepted = getCookie('PortfolioEMMTerms');
-            if(termsAccepted === "accepted") {
+            if (termsAccepted === "accepted") {
                 sethasAccepted(true);
                 setIsChecking(false);
                 return;
@@ -56,11 +53,11 @@ function TermsAndCond({ children }) {
                 confirmButtonText: TEXT.ACCEPT,
                 denyButtonText: TEXT.REJECT
             });
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
                 setCookie("PortfolioEMMTerms", "accepted");
                 sethasAccepted(true);
             };
-            if(result.isDenied) {
+            if (result.isDenied) {
                 deleteCookie("PortfolioEMMLang");
                 await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_TERM_COND}`);
                 // Opción B: Redirigir fuera o recargar la página si los términos son obligatorios
@@ -70,9 +67,9 @@ function TermsAndCond({ children }) {
             setIsChecking(false);
         };
         checkTerms();
-    }, []);
+    }, [isTermsRoute, termsSweet, errorSweet]);
 
-    if(isChecking || !hasAccepted) return null;
+    if (isChecking || !hasAccepted) return null;
 
     return children;
 };
