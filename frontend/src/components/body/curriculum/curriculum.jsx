@@ -45,7 +45,7 @@ function Curriculum() {
                 const { docs = [], totalPages = 1 } = result.response;
                 setData(docs);
                 setTotalPages(totalPages);
-                console.log("CURRICULUM DATA", docs)
+                console.log("CURRICULUM DATA DOCS", docs)
             } catch (error) {
                 setData([]);
                 setTotalPages(1);
