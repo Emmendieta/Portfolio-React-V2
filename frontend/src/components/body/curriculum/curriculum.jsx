@@ -70,9 +70,9 @@ function Curriculum() {
         return acc;
     }, {});
 
-
-
-
+    return (
+        <></>
+    );
 };
 
 export default Curriculum;
