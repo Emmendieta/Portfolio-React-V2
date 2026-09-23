@@ -5,6 +5,7 @@ import { LANG_CONST } from "../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../context/SweetAlert2.Context";
 import { UserContext } from "../../../context/User.Context";
 import "./termsAndCond.css";
+import { useLocation } from "react-router-dom";
 
 function TermsAndCond({ children }) {
     const [hasAccepted, sethasAccepted] = useState(false);
@@ -12,6 +13,19 @@ function TermsAndCond({ children }) {
     const { language } = useLanguage();
     const TEXT = LANG_CONST[language];
     const { errorSweet, termsSweet } = useSweetAlert();
+    const location = useLocation();
+
+    //public routes:
+    const publicTermsRoutes = ["/terms", "/privacy-policy"];
+    const isTermsRoute = publicTermsRoutes.includes(location.pathname);
+
+    useEffect(() => {
+        if(isTermsRoute) {
+            setIsChecking(false);
+            sethasAccepted(true);
+            return;
+        }
+    })
 
     useEffect(() => {
         const checkTerms = async() => {
@@ -21,7 +35,6 @@ function TermsAndCond({ children }) {
                 setIsChecking(false);
                 return;
             };
-            /*style="text-align: left; max-height: 300px; overflow-y: auto; padding-left: 8px;"*/
             const result = await termsSweet({
                 title: TEXT.TERM_COND,
                 html: `

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { UserContext, UserProvider } from './context/User.Context'
 import Layout from './Layout'
 import Home from './components/home/home'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Login from './components/login/login'
 import CitiesList from './components/body/cities/citiesList/citiesList'
 import CitiesForm from './components/body/cities/citiesForm/citiesForm'
@@ -139,11 +139,9 @@ function AppRoutes() {
 function App() {
   return (
     <UserProvider>
-      <BrowserRouter>
         <RefreshProvider>
           <AppRoutes />
         </RefreshProvider>
-      </BrowserRouter>
     </UserProvider>
   );
 };

@@ -6,14 +6,17 @@ import { LoadingProvider } from './context/Loading.Context.jsx'
 import { ConfirmProvider } from './context/SweetAlert2.Context.jsx'
 import "./main.css";
 import TermsAndCond from './components/body/termsAndCond/termsAndCond.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
     <LanguageProvider>
         <LoadingProvider>
-            <ConfirmProvider> 
-                <TermsAndCond>
-                    <App />
-                </TermsAndCond>              
+            <ConfirmProvider>
+                <BrowserRouter>
+                    <TermsAndCond>
+                        <App />
+                    </TermsAndCond>
+                </BrowserRouter>
             </ConfirmProvider>
         </LoadingProvider>
     </LanguageProvider>
