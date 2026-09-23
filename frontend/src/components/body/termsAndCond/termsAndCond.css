@@ -1,0 +1,18 @@
+.termsCondH2Cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.termsCondLink {
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+.termsCondH1 {
+    font-size: xx-large;
+}
+
+.termsCondP {
+    font-size: large;
+    text-align: justify;
+}

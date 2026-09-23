@@ -4,6 +4,7 @@ import { useLanguage } from "../../../context/Language.Context";
 import { LANG_CONST } from "../../../constants/SelectLang.Constant";
 import { useSweetAlert } from "../../../context/SweetAlert2.Context";
 import { UserContext } from "../../../context/User.Context";
+import "./termsAndCond.css";
 
 function TermsAndCond({ children }) {
     const [hasAccepted, sethasAccepted] = useState(false);
@@ -20,10 +21,11 @@ function TermsAndCond({ children }) {
                 setIsChecking(false);
                 return;
             };
+            /*style="text-align: left; max-height: 300px; overflow-y: auto; padding-left: 8px;"*/
             const result = await termsSweet({
                 title: TEXT.TERM_COND,
                 html: `
-                    <div style="text-align: left; max-height: 300px; overflow-y: auto; padding-left: 8px;">
+                    <div class="termsCondH2Cont">
                         <h2 class="termsCondH2Cont">
                             <a href="/terms" target="_blank" rel="noopener noreferrer" class="termsCondLink">
                                 ${TEXT.VIEW_TERM_COND}
