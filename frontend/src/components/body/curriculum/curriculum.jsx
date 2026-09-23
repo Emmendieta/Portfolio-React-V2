@@ -60,7 +60,7 @@ function Curriculum() {
     }, [user, language]);
 
     const EDUCATIONS_ORDER = { "Course": 1, "University": 2, "High School": 3, "Primary School": 4, "Conference": 5, "Other": 6 };
-    const sortedEducations = [...Curriculum(data?.educations || [])].sort((a, b) => {
+    const sortedEducations = [...(data?.educations || [])].sort((a, b) => {
         return (EDUCATIONS_ORDER[a.type] || 99) - (EDUCATIONS_ORDER[b.type] || 99);
     });
     const groupedEducations = sortedEducations.reduce((acc, edu) => {
