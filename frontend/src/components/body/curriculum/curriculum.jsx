@@ -191,7 +191,7 @@ function Curriculum() {
                         className="" classNameH2="" classNameLabel="" />
                     <H2Fields value={data?.birthday} label={`BIRTDAY`} language={language}
                         className="" classNameH2="" classNameLabel="" />
-                    <H2Fields value={ } label={`FALTA TRAER AL USUARIO QUE TIENE EL EMAIL`} language={language}
+                    <H2Fields value={`EMIAL`} label={`FALTA TRAER AL USUARIO QUE TIENE EL EMAIL`} language={language}
                         className="" classNameH2="" classNameLabel="" />
                 </div>
             </section>
