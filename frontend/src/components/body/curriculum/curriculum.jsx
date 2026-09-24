@@ -11,6 +11,7 @@ import { fetchGetAllProyectsPopulate } from "../proyects/proyectsLogic";
 import H1Fields from "../generalFields/h1Fields/h1fields";
 import H2Fields from "../generalFields/h2Fields/h2Fields";
 import { formatDate } from "../../../helpers/formatDate.helper";
+import { fetchGetAllSkills } from "../skills/skillsLogic";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
@@ -22,6 +23,9 @@ function Curriculum() {
     const [courses, setCourses] = useState([]);
     const [conferences, setConferences] = useState([]);
     const [others, setOthers] = useState([]);
+    const [skills, setSkills] = useState([]);
+    const [hardSkills, setHardSkills] = useState([]);
+    const [softSkills, setSoftSkills] = useState([]);
     const [proyects, setProyects] = useState([]);
     const [works, setWorks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -74,7 +78,6 @@ function Curriculum() {
         loadData();
     }, [user, language]);
 
-
     //Educations:
     useEffect(() => {
         const loadEducations = async () => {
@@ -112,6 +115,35 @@ function Curriculum() {
             }
         };
         loadEducations();
+    }, [user, language]);
+
+    //SKills;
+    useEffect(() => {
+        const loadSkills = async () => {
+            try {
+                startLoading();
+                const result = await fetchGetAllSkills();
+                if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                const skillsResp = result.response || [];
+                const hard = skillsResp.filter(skill => skill.type === "Hard") || [];
+                const sortedHard = [...hard].sort((a, b) => Number(a.order || 0) - Number(b.roder || 0));
+                const soft = skillsResp.filter(skill => skill.type === "Soft") || [];
+                const sortedSoft = [...soft].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setSkills(skillsResp);
+                setHardSkills(sortedHard);
+                setSoftSkills(sortedSoft);
+            } catch (error) {
+                setSkills([]);
+                setHardSkills([]);
+                setSoftSkills([]);
+                console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                await errorSweet(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+            } finally {
+                setLoading(false);
+                stopLoading();
+            }
+        };
+        loadSkills();
     }, [user, language]);
 
     //Works:
@@ -155,22 +187,6 @@ function Curriculum() {
         };
         loadProyects();
     }, [user, language]);
-
-    /*const EDUCATIONS_ORDER = { "Course": 1, "University": 2, "High School": 3, "Primary School": 4, "Conference": 5, "Other": 6 };
-    const sortedEducations = [...(data?.educations || [])].sort((a, b) => {
-        return (EDUCATIONS_ORDER[a.typeEducation] || 99) - (EDUCATIONS_ORDER[b.typeEducation] || 99);
-    });
-    const groupedEducations = sortedEducations.reduce((acc, edu) => {
-        const type = edu.typeEducation;
-        if (!acc[type]) acc[type] = [];
-        acc[type].push(edu);
-        return acc;
-    }, {});*/
-
-    console.log("DATA CURRICULUM", data);
-    console.log("EDUCATIONS CURRICULUM", educations);
-    console.log("PROYECTS CURRICULUM", proyects);
-    console.log("WORKS CURRICULUM", works);
 
     return (
         <div>
@@ -316,7 +332,32 @@ function Curriculum() {
                     ) : (<></>)}
                 </div>
                 <div>
-                    //SKILLS
+                    <H1Fields value={TEXT.SKILLS} language={language}
+                        clH1Cont="" clH1Text="" />
+                    {hardSkills.length > 0 ? (
+                        <div>
+                            <H2Fields value={"TEXT.HARD_SKILLS"} language={language}
+                                className="" classNameH2="" />
+                            {hardSkills.map((hard) => (
+                                <div>
+                                    <H2Fields value={hard.name?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${hard.percent}%`} language={language}
+                                        className="" classNameH2=""/>
+                                </div>
+                            ))}
+                        </div>
+                    ): (<></>)}
+                    {softSkills.length > 0 ? (
+                        <div>
+                            <H2Fields value={`TEXT.SOFT_SKILLS`} language={language}
+                                className="" classNameH2="" />
+                            {softSkills.map((soft)=> (
+                                <H2Fields value={soft.name?.[language] || ""} language={language}
+                                    className="" classNameH2="" />
+                            ))}
+                        </div>
+                    ): (<></>)}
                 </div>
                 <div>
                     {proyects.length > 0 ? (
