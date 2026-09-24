@@ -144,8 +144,8 @@ function Curriculum() {
     return (
         <div>
             <section>
-                <H1Fields value={`${data.lastName} ${data.firstName}`} label={TEXT.FULL_NAME} language={language}
-                    clH1Cont="" clH1Text=""/>
+                {/*<H1Fields value={`${data.lastName} ${data.firstName}`} label={TEXT.FULL_NAME} language={language}
+                    clH1Cont="" clH1Text=""/>*/}
             </section>
         </div>
     );
