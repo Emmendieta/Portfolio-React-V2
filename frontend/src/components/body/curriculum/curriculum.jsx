@@ -181,7 +181,7 @@ function Curriculum() {
                         className="" classNameH2="" />
                 </div>
                 <div>
-                    <img src={data?.images?.[0]?.url || "/img/imagen-no-disponible.png"} alt={data._id} onError={(e) => { e.currentTarget.src = "/img/imagen-no-disponible.png" }}
+                    <img src={data?.images?.[0]?.url || "/img/imagen-no-disponible.png"} alt={data?._id ?? "ID"} onError={(e) => { e.currentTarget.src = "/img/imagen-no-disponible.png" }}
                         className="" />
                 </div>
                 <div>
