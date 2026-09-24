@@ -197,130 +197,145 @@ function Curriculum() {
             </section>
             <section>
                 <div>
-                    //PROFESSIONAL EXPERIENCE:
+                    <H1Fields value={`PROFESSIONAL EXPERIENCE`} language={language}
+                        clH1Cont="" clH1Text="" />
+                    {works.length > 0 ? (
+                        <div>
+                            {works.map((work) => (
+                                <div>
+                                    <H2Fields value={work.jobTitle?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={work.company?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${work.dateStart} - ${work.dateEnd ?? "ACTUAL"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
                 </div>
                 <div>
                     <H1Fields value={`ACADEMIC BACKGROUND`} language={language}
                         clH1Cont="" clH1Text="" />
-                    <div>
-                        {courses.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.COURSES}:`} language={language}
-                                    className="" classNameH2="" />
-                                {courses.map((course) => (
-                                    <div>
-                                        <H2Fields value={course.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={course.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${course.dateStart} - ${course.dateEnd ?? "INCOCLUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<></>)}
-                        {universities.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.UNIVERSITIES}:`} language={language}
-                                    className="" classNameH2="" />
-                                {universities.map((uni) => (
-                                    <div>
-                                        <H2Fields value={uni.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={uni.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${uni.dateStart} - ${uni.dateEnd ?? "INCONCLUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<> </>)}
-                        {highSchools.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.HIGH_SCHOOLS}:`} language={language}
-                                    className="" classNameH2="" />
-                                {highSchools.map((high) => (
-                                    <div>
-                                        <H2Fields value={high.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={high.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${high.dateStart} - ${high.dateEnd ?? "INCONCULUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<></>)}
-                        {primarySchools.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.PRIMARY_SCHOOLS}:`} language={language}
-                                    className="" classNameH2="" />
-                                {primarySchools.map((primary) => (
-                                    <div>
-                                        <H2Fields value={primary.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={primary.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${primary.dateStart} - ${primary.dateEnd ?? "INCONCULUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<></>)}
-                        {conferences.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.CONFERENCES}:`} language={language}
-                                    className="" classNameH2="" />
-                                {conferences.map((conf) => (
-                                    <div>
-                                        <H2Fields value={conf.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={conf.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${conf.dateStart} - ${conf.dateEnd ?? "INCONCULUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<></>)}
-                        {others.length > 0 ? (
-                            <div>
-                                <H2Fields value={`${TEXT.OTHERS}:`} language={language}
-                                    className="" classNameH2="" />
-                                {others.map((other) => (
-                                    <div>
-                                        <H2Fields value={other.institutionName?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={other.title?.[language] || ""} language={language}
-                                            className="" classNameH2="" />
-                                        <H2Fields value={`${other.dateStart} - ${other.dateEnd ?? "INCONCULUSO"}`} language={language}
-                                            className="" classNameH2="" />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (<></>)}
-                    </div>
-                    <div>
-                        //UNIVERSITIES
-                    </div>
-                    <div>
-                        // HIGH SCHOOLS
-                    </div>
-                    <div>
-                        //PRIMARY SCHOOLS
-                    </div>
-                    <div>
-                        //CONFERENCES
-                    </div>
-                    <div>
-                        //OTHERS
-                    </div>
+                    {courses.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.COURSES}:`} language={language}
+                                className="" classNameH2="" />
+                            {courses.map((course) => (
+                                <div>
+                                    <H2Fields value={course.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={course.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${course.dateStart} - ${course.dateEnd ?? "INCOCLUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
+                    {universities.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.UNIVERSITIES}:`} language={language}
+                                className="" classNameH2="" />
+                            {universities.map((uni) => (
+                                <div>
+                                    <H2Fields value={uni.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={uni.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${uni.dateStart} - ${uni.dateEnd ?? "INCONCLUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<> </>)}
+                    {highSchools.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.HIGH_SCHOOLS}:`} language={language}
+                                className="" classNameH2="" />
+                            {highSchools.map((high) => (
+                                <div>
+                                    <H2Fields value={high.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={high.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${high.dateStart} - ${high.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
+                    {primarySchools.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.PRIMARY_SCHOOLS}:`} language={language}
+                                className="" classNameH2="" />
+                            {primarySchools.map((primary) => (
+                                <div>
+                                    <H2Fields value={primary.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={primary.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${primary.dateStart} - ${primary.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
+                    {conferences.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.CONFERENCES}:`} language={language}
+                                className="" classNameH2="" />
+                            {conferences.map((conf) => (
+                                <div>
+                                    <H2Fields value={conf.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={conf.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${conf.dateStart} - ${conf.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
+                    {others.length > 0 ? (
+                        <div>
+                            <H2Fields value={`${TEXT.OTHERS}:`} language={language}
+                                className="" classNameH2="" />
+                            {others.map((other) => (
+                                <div>
+                                    <H2Fields value={other.institutionName?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={other.title?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${other.dateStart} - ${other.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                        className="" classNameH2="" />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
                 </div>
                 <div>
                     //SKILLS
                 </div>
                 <div>
-                    //PROYECTS
+                    {proyects.length > 0 ? (
+                        <div>
+                            <H1Fields value={`PROYECTS`} language={language}
+                                clH1Cont="" clH1Text="" />
+                            {proyects.map((proy) => (
+                                <div>
+                                    <H2Fields value={proy.name?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={`${proy.dateStart} - ${proyects.dateEnd ?? "ACTUAL"}`} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={proy.description?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    //FALTA CATEGORIES de PROYECT
+                                    //FALTA SKILLS DE PROYECT
+                                </div>
+                            ))}
+                        </div>
+                    ) : (<></>)}
                 </div>
             </section>
             <section>
