@@ -366,14 +366,43 @@ function Curriculum() {
                                 clH1Cont="" clH1Text="" />
                             {proyects.map((proy) => (
                                 <div>
-                                    <H2Fields value={proy.name?.[language] || ""} language={language}
+                                    <div>
+                                        <H2Fields value={proy.name?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                    <H2Fields value={proy.company?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : "ACTUAL"}`} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={proy.description?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    //FALTA CATEGORIES de PROYECT
-                                    //FALTA SKILLS DE PROYECT
+                                    </div>
+                                    <div>
+                                        <H2Fields value={`${TEXT.CATEGORIES}:`} language={language}
+                                        className="" classNameH2="" />
+                                        {proy.categories.length > 0 ? (
+                                            <div>
+                                                {proy.categories.map((category) => (
+                                                    <H2Fields value={category.name?.[language]} language={language}
+                                                    className="" classNameH2="" />
+                                                ))}
+                                            </div>
+                                        ): (<></>)}
+                                    </div>
+                                    <div>
+                                        <H2Fields value={`${TEXT.SKILLS}:`} language={language}
+                                        className="" classNameH2="" />
+                                        {proy.skills.length > 0 ? (
+                                            <div>
+                                                {proy.skills.map((skill) => (
+                                                    <H2Fields value={skill.name?.[language] || ""} language={language}
+                                                        className="" classNameH2="" />
+                                                ))}
+                                            </div>
+                                        ): (<></>)}
+                                    </div>
+                                    <div>
+                                        //PODRIA PONER UN QR POR CADA PROYECT
+                                    </div>
                                 </div>
                             ))}
                         </div>
