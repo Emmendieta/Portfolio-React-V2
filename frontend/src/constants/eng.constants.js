@@ -49,6 +49,7 @@ export const MOVE_UP = "Move up";
 export const MOVE_DOWN = "Move down";
 export const LOADING = "Loading";
 export const PLEASE_WAIT = "Please, wait";
+export const PROFESSIONAL_EXP = "Professional Experience";
 
 /* ------------ SEARCHS ------------ */
 

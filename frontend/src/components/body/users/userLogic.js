@@ -1,4 +1,4 @@
-import { createData, createDataWithImages, deleteData, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, updateDataById, updateDataByIdWithImages } from "../../../helpers/crud.helper";
+import { createData, createDataWithImages, deleteData, getData, getDataByIdPopulate, getDataPagintePopulate, getDataPopulate, updateDataById, updateDataByIdWithImages } from "../../../helpers/crud.helper";
 
 export const fetchCreateUser = async (data) => {
     try {
@@ -62,6 +62,15 @@ export const fetchUserByIdPopulate = async (id) => {
         const data = await getDataByIdPopulate(url, populateFields);
         if(!data) throw new Error("Error: Couldn't get the information of the User by Id populate!");
         return data;
+    } catch (error) { throw error; }
+};
+
+export const fetchGetUsers = async () => {
+    try {
+        const url = "users";
+        const dataResponse = await getData(url);
+        if(!dataResponse) throw new Error("Error in fetch get all users or no data recibed!");
+        return dataResponse;
     } catch (error) { throw error; }
 };
 

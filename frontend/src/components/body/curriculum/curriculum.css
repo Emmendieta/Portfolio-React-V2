@@ -1,0 +1,151 @@
+.currCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --------------------- TOP --------------------- */
+
+.currSectTopCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(
+        to right,
+        #9e9e9e 0%,
+        #c4c4c4 15%,
+        #e5e5e5 30%,
+        #ffffff 45%,
+        #ffffff 55%,
+        #e5e5e5 70%,
+        #c4c4c4 85%,
+        #9e9e9e 100%
+    );
+}
+
+/* ----- LEFT ----- */
+
+.currTopPersonalCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- H1 LEFT ----- */
+
+.currH1NameCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.currH1Name {
+    font-size: x-large;
+    font-weight: bold;
+    color: rgba(36, 36, 36, 0.785);
+}
+
+/* ----- H2 LEFT ----- */
+
+.currH2JobCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.currH2Job {
+    font-size: larger;
+    text-align: center;
+    color: rgb(240, 248, 255);
+}
+
+/* ----- CENTER ----- */
+
+.currTopImgCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* ----- IMG CENTER ----- */
+
+.currImg {
+    max-width: 300px;
+}
+
+/* ----- RIGHT ----- */
+
+.currTopDetailsCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ----- H2 RIGHT ----- */
+
+.currTopH2Cont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.currTopH2 {
+    font-size: large;
+    margin-left: 5px;
+}
+
+.currTopH2Label {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* --------------------- MIDDLE --------------------- */
+
+.currSectMiddleCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ----- PROFESSIONAL EXPERIENCE ----- */
+
+.currMidDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ----- H1 ----- */
+
+.currMidH1Cont {
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.currMidH1 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* --------------------- BOTTOM --------------------- */

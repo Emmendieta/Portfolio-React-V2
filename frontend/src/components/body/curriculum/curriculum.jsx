@@ -12,11 +12,14 @@ import H1Fields from "../generalFields/h1Fields/h1fields";
 import H2Fields from "../generalFields/h2Fields/h2Fields";
 import { formatDate } from "../../../helpers/formatDate.helper";
 import { fetchGetAllSkills } from "../skills/skillsLogic";
+import "./curriculum.css";
+import { fetchGetUsers } from "../users/userLogic";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
     const [data, setData] = useState(null);
     const [educations, setEducations] = useState([]);
+    const [dataUser, setDataUser] = useState([]);
     const [universities, setUniversities] = useState([]);
     const [highSchools, setHighSchools] = useState([]);
     const [primarySchools, setPrimarySchools] = useState([]);
@@ -76,6 +79,27 @@ function Curriculum() {
             }
         };
         loadData();
+    }, [user, language]);
+
+    //User:
+    useEffect(() => {
+        const loadUsers = async () => {
+            try {
+                startLoading();
+                const result = await fetchGetUsers()
+                if(result?.error) return errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                const userResponse = result.response[0] || [];
+                setDataUser(userResponse);
+            } catch (error) {
+                setDataUser([]);
+                console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                await errorSweet(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+            } finally {
+                setLoading(false);
+                stopLoading();
+            }
+        };
+        loadUsers();
     }, [user, language]);
 
     //Educations:
@@ -188,38 +212,40 @@ function Curriculum() {
         loadProyects();
     }, [user, language]);
 
+    console.log("USER", dataUser)
+
     return (
-        <div>
-            <section>
-                <div>
+        <div className="currCont">
+            <section className="currSectTopCont">
+                <div className="currTopPersonalCont">
                     <H1Fields value={`${data?.lastName ?? ""} ${data?.firstName || ""}`} language={language}
-                        clH1Cont="" clH1Text="" />
+                        clH1Cont="currH1NameCont" clH1Text="currH1Name" />
                     <H2Fields value={data?.jobTitle?.[language] || ""} language={language}
-                        className="" classNameH2="" />
+                        className="currH2JobCont" classNameH2="currH2Job" />
                 </div>
-                <div>
+                <div className="currTopImgCont">
                     <img src={data?.images?.[0]?.url || "/img/imagen-no-disponible.png"} alt={data?._id ?? "ID"} onError={(e) => { e.currentTarget.src = "/img/imagen-no-disponible.png" }}
-                        className="" />
+                        className="currImg" />
                 </div>
-                <div>
-                    <H2Fields value={`${data?.address?.street} ${data?.address?.number}`} label={`LOCAL ADDRESS`} language={language}
-                        className="" classNameH2="" classNameLabel="" />
-                    <H2Fields value={`${data?.legalAddress?.street} ${data?.legalAddress?.number}`} label={`LEGAL ADDRESS`} language={language}
-                        className="" classNameH2="" classNameLabel="" />
-                    <H2Fields value={data?.birthday} label={`BIRTDAY`} language={language}
-                        className="" classNameH2="" classNameLabel="" />
-                    <H2Fields value={`EMIAL`} label={`FALTA TRAER AL USUARIO QUE TIENE EL EMAIL`} language={language}
-                        className="" classNameH2="" classNameLabel="" />
+                <div className="currTopDetailsCont">
+                    <H2Fields value={`${data?.address?.street} ${data?.address?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.PERSONAL_ADDRESS} language={language}
+                        className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
+                    <H2Fields value={`${data?.legalAddress?.street} ${data?.legalAddress?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.LEGAL_ADDRESS} language={language}
+                        className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
+                    <H2Fields value={formatDate(data?.birthday)} label={TEXT.BIRTHDAY} language={language}
+                        className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
+                    <H2Fields value={dataUser?.email} label={TEXT.EMAIL} language={language}
+                        className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
                 </div>
             </section>
-            <section>
-                <div>
-                    <H1Fields value={`PROFESSIONAL EXPERIENCE`} language={language}
-                        clH1Cont="" clH1Text="" />
+            <section className="currSectMiddleCont">
+                <div className="currMidDivCont">
+                    <H1Fields value={`${TEXT.PROFESSIONAL_EXP}:`} language={language}
+                        clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {works.length > 0 ? (
                         <div>
                             {works.map((work) => (
-                                <div>
+                                <div key={work._id}>
                                     <H2Fields value={work.jobTitle?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
@@ -233,13 +259,13 @@ function Curriculum() {
                 </div>
                 <div>
                     <H1Fields value={`ACADEMIC BACKGROUND`} language={language}
-                        clH1Cont="" clH1Text="" />
+                        clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {courses.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.COURSES}:`} language={language}
                                 className="" classNameH2="" />
                             {courses.map((course) => (
-                                <div>
+                                <div key={course._id}>
                                     <H2Fields value={course.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={course.title?.[language] || ""} language={language}
@@ -255,7 +281,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.UNIVERSITIES}:`} language={language}
                                 className="" classNameH2="" />
                             {universities.map((uni) => (
-                                <div>
+                                <div key={uni._id}>
                                     <H2Fields value={uni.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={uni.title?.[language] || ""} language={language}
@@ -271,7 +297,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.HIGH_SCHOOLS}:`} language={language}
                                 className="" classNameH2="" />
                             {highSchools.map((high) => (
-                                <div>
+                                <div key={high._id}>
                                     <H2Fields value={high.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={high.title?.[language] || ""} language={language}
@@ -287,7 +313,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.PRIMARY_SCHOOLS}:`} language={language}
                                 className="" classNameH2="" />
                             {primarySchools.map((primary) => (
-                                <div>
+                                <div key={primary._id}>
                                     <H2Fields value={primary.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={primary.title?.[language] || ""} language={language}
@@ -303,7 +329,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.CONFERENCES}:`} language={language}
                                 className="" classNameH2="" />
                             {conferences.map((conf) => (
-                                <div>
+                                <div key={conf._id}>
                                     <H2Fields value={conf.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={conf.title?.[language] || ""} language={language}
@@ -319,7 +345,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.OTHERS}:`} language={language}
                                 className="" classNameH2="" />
                             {others.map((other) => (
-                                <div>
+                                <div key={other._id}>
                                     <H2Fields value={other.institutionName?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={other.title?.[language] || ""} language={language}
@@ -333,13 +359,13 @@ function Curriculum() {
                 </div>
                 <div>
                     <H1Fields value={TEXT.SKILLS} language={language}
-                        clH1Cont="" clH1Text="" />
+                        clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
                     {hardSkills.length > 0 ? (
                         <div>
                             <H2Fields value={"TEXT.HARD_SKILLS"} language={language}
                                 className="" classNameH2="" />
                             {hardSkills.map((hard) => (
-                                <div>
+                                <div key={hard._id}>
                                     <H2Fields value={hard.name?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
@@ -353,8 +379,10 @@ function Curriculum() {
                             <H2Fields value={`TEXT.SOFT_SKILLS`} language={language}
                                 className="" classNameH2="" />
                             {softSkills.map((soft)=> (
-                                <H2Fields value={soft.name?.[language] || ""} language={language}
-                                    className="" classNameH2="" />
+                                <div key={soft._id}>
+                                    <H2Fields value={soft.name?.[language] || ""} language={language}
+                                        className="" classNameH2="" />
+                                </div>
                             ))}
                         </div>
                     ): (<></>)}
@@ -363,9 +391,9 @@ function Curriculum() {
                     {proyects.length > 0 ? (
                         <div>
                             <H1Fields value={`PROYECTS`} language={language}
-                                clH1Cont="" clH1Text="" />
+                                clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
                             {proyects.map((proy) => (
-                                <div>
+                                <div key={proy._id}>
                                     <div>
                                         <H2Fields value={proy.name?.[language] || ""} language={language}
                                         className="" classNameH2="" />
@@ -382,8 +410,10 @@ function Curriculum() {
                                         {proy.categories.length > 0 ? (
                                             <div>
                                                 {proy.categories.map((category) => (
-                                                    <H2Fields value={category.name?.[language]} language={language}
-                                                    className="" classNameH2="" />
+                                                    <div key={category._id}>
+                                                        <H2Fields value={category.name?.[language]} language={language}
+                                                        className="" classNameH2="" />
+                                                    </div>
                                                 ))}
                                             </div>
                                         ): (<></>)}
@@ -394,8 +424,10 @@ function Curriculum() {
                                         {proy.skills.length > 0 ? (
                                             <div>
                                                 {proy.skills.map((skill) => (
-                                                    <H2Fields value={skill.name?.[language] || ""} language={language}
-                                                        className="" classNameH2="" />
+                                                    <div key={skill._id}>
+                                                        <H2Fields value={skill.name?.[language] || ""} language={language}
+                                                            className="" classNameH2="" />
+                                                    </div>
                                                 ))}
                                             </div>
                                         ): (<></>)}

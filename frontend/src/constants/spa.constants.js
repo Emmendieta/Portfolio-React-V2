@@ -50,6 +50,7 @@ export const MOVE_UP = "Mover hacia arriba";
 export const MOVE_DOWN = "Mover hacia abajo";
 export const LOADING = "Cargando";
 export const PLEASE_WAIT = "Por favor, espere";
+export const PROFESSIONAL_EXP = "Experiencia Profesional";
 
 /* ------------ SEARCHS ------------ */
 
