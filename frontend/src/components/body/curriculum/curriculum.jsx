@@ -9,11 +9,18 @@ import { fetchGetAllEducationsPopulate } from "../educations/educationsLogic";
 import { fetchGetAllWorksPopulate } from "../works/worksLogis";
 import { fetchGetAllProyectsPopulate } from "../proyects/proyectsLogic";
 import H1Fields from "../generalFields/h1Fields/h1fields";
+import H2Fields from "../generalFields/h2Fields/h2Fields";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
     const [data, setData] = useState(null);
     const [educations, setEducations] = useState([]);
+    const [universities, setUniversities] = useState([]);
+    const [highSchools, setHighSchools] = useState([]);
+    const [primarySchools, setPrimarySchools] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [conferences, setConferences] = useState([]);
+    const [others, setOthers] = useState([]);
     const [proyects, setProyects] = useState([]);
     const [works, setWorks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -36,6 +43,7 @@ function Curriculum() {
         "Other": { en: "Other", es: "Otro" }
     };
 
+    //Person
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -72,8 +80,26 @@ function Curriculum() {
             try {
                 startLoading();
                 const result = await fetchGetAllEducationsPopulate();
-                if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const educationsRes = result.response || [];
+                const universities = educations.filter(education => education.typeEducation === "University") || [];
+                const sortedUniversities = [...universities].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setUniversities(sortedUniversities);
+                const highSchools = educations.filter(education => education.typeEducation === "High School") || [];
+                const sortedHighSchools = [...highSchools].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setHighSchools(sortedHighSchools);
+                const primarySchools = educations.filter(education => education.typeEducation === "Primary School") || [];
+                const sortedPrimarySchools = [...primarySchools].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setPrimarySchools(sortedPrimarySchools);
+                const courses = educations.filter(education => education.typeEducation === "Course") || [];
+                const sortedCourse = [...courses].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setCourses(sortedCourse);
+                const conferences = educations.filter(education => education.typeEducation === "Conference") || [];
+                const sortedConferences = [...conferences].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setConferences(sortedConferences);
+                const others = educations.filter(education => education.typeEducation === "Other") || [];
+                const sortedOthers = [...others].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setOthers(sortedOthers);
                 setEducations(educationsRes);
             } catch (error) {
                 setEducations([]);
@@ -93,7 +119,7 @@ function Curriculum() {
             try {
                 startLoading();
                 const result = await fetchGetAllWorksPopulate();
-                if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const worksRes = result.response || [];
                 setWorks(worksRes);
             } catch (error) {
@@ -114,7 +140,7 @@ function Curriculum() {
             try {
                 startLoading();
                 const result = await fetchGetAllProyectsPopulate();
-                if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const proyectRes = result.response || [];
                 setProyects(proyectRes);
             } catch (error) {
@@ -129,16 +155,16 @@ function Curriculum() {
         loadProyects();
     }, [user, language]);
 
-    const EDUCATIONS_ORDER = { "Course": 1, "University": 2, "High School": 3, "Primary School": 4, "Conference": 5, "Other": 6 };
+    /*const EDUCATIONS_ORDER = { "Course": 1, "University": 2, "High School": 3, "Primary School": 4, "Conference": 5, "Other": 6 };
     const sortedEducations = [...(data?.educations || [])].sort((a, b) => {
-        return (EDUCATIONS_ORDER[a.type] || 99) - (EDUCATIONS_ORDER[b.type] || 99);
+        return (EDUCATIONS_ORDER[a.typeEducation] || 99) - (EDUCATIONS_ORDER[b.typeEducation] || 99);
     });
     const groupedEducations = sortedEducations.reduce((acc, edu) => {
         const type = edu.typeEducation;
         if (!acc[type]) acc[type] = [];
         acc[type].push(edu);
         return acc;
-    }, {});
+    }, {});*/
 
     console.log("DATA CURRICULUM", data);
     console.log("EDUCATIONS CURRICULUM", educations);
@@ -148,8 +174,157 @@ function Curriculum() {
     return (
         <div>
             <section>
-                <H1Fields value={`${data?.lastName ?? ""} ${data?.firstName || ""}`} label={TEXT.FULL_NAME} language={language}
-                    clH1Cont="" clH1Text=""/>
+                <div>
+                    <H1Fields value={`${data?.lastName ?? ""} ${data?.firstName || ""}`} language={language}
+                        clH1Cont="" clH1Text="" />
+                    <H2Fields value={data?.jobTitle?.[language] || ""} language={language}
+                        className="" classNameH2="" />
+                </div>
+                <div>
+                    <img src={data?.images?.[0]?.url || "/img/imagen-no-disponible.png"} alt={data._id} onError={(e) => { e.currentTarget.src = "/img/imagen-no-disponible.png" }}
+                        className="" />
+                </div>
+                <div>
+                    <H2Fields value={`${data?.address?.street} ${data?.address?.number}`} label={`LOCAL ADDRESS`} language={language}
+                        className="" classNameH2="" classNameLabel="" />
+                    <H2Fields value={`${data?.legalAddress?.street} ${data?.legalAddress?.number}`} label={`LEGAL ADDRESS`} language={language}
+                        className="" classNameH2="" classNameLabel="" />
+                    <H2Fields value={data?.birthday} label={`BIRTDAY`} language={language}
+                        className="" classNameH2="" classNameLabel="" />
+                    <H2Fields value={ } label={`FALTA TRAER AL USUARIO QUE TIENE EL EMAIL`} language={language}
+                        className="" classNameH2="" classNameLabel="" />
+                </div>
+            </section>
+            <section>
+                <div>
+                    //PROFESSIONAL EXPERIENCE:
+                </div>
+                <div>
+                    <H1Fields value={`ACADEMIC BACKGROUND`} language={language}
+                        clH1Cont="" clH1Text="" />
+                    <div>
+                        {courses.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.COURSES}:`} language={language}
+                                    className="" classNameH2="" />
+                                {courses.map((course) => (
+                                    <div>
+                                        <H2Fields value={course.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={course.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${course.dateStart} - ${course.dateEnd ?? "INCOCLUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<></>)}
+                        {universities.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.UNIVERSITIES}:`} language={language}
+                                    className="" classNameH2="" />
+                                {universities.map((uni) => (
+                                    <div>
+                                        <H2Fields value={uni.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={uni.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${uni.dateStart} - ${uni.dateEnd ?? "INCONCLUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<> </>)}
+                        {highSchools.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.HIGH_SCHOOLS}:`} language={language}
+                                    className="" classNameH2="" />
+                                {highSchools.map((high) => (
+                                    <div>
+                                        <H2Fields value={high.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={high.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${high.dateStart} - ${high.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<></>)}
+                        {primarySchools.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.PRIMARY_SCHOOLS}:`} language={language}
+                                    className="" classNameH2="" />
+                                {primarySchools.map((primary) => (
+                                    <div>
+                                        <H2Fields value={primary.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={primary.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${primary.dateStart} - ${primary.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<></>)}
+                        {conferences.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.CONFERENCES}:`} language={language}
+                                    className="" classNameH2="" />
+                                {conferences.map((conf) => (
+                                    <div>
+                                        <H2Fields value={conf.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={conf.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${conf.dateStart} - ${conf.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<></>)}
+                        {others.length > 0 ? (
+                            <div>
+                                <H2Fields value={`${TEXT.OTHERS}:`} language={language}
+                                    className="" classNameH2="" />
+                                {others.map((other) => (
+                                    <div>
+                                        <H2Fields value={other.institutionName?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={other.title?.[language] || ""} language={language}
+                                            className="" classNameH2="" />
+                                        <H2Fields value={`${other.dateStart} - ${other.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                            className="" classNameH2="" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (<></>)}
+                    </div>
+                    <div>
+                        //UNIVERSITIES
+                    </div>
+                    <div>
+                        // HIGH SCHOOLS
+                    </div>
+                    <div>
+                        //PRIMARY SCHOOLS
+                    </div>
+                    <div>
+                        //CONFERENCES
+                    </div>
+                    <div>
+                        //OTHERS
+                    </div>
+                </div>
+                <div>
+                    //SKILLS
+                </div>
+                <div>
+                    //PROYECTS
+                </div>
+            </section>
+            <section>
+                //QR
             </section>
         </div>
     );
