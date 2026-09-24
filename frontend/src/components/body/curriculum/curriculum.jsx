@@ -52,7 +52,6 @@ function Curriculum() {
                 const { docs = [], totalPages = 1 } = result.response;
                 setData(docs[0]);
                 setTotalPages(totalPages);
-                console.log("CURRICULUM DATA DOCS", docs[0])
             } catch (error) {
                 setData([]);
                 setTotalPages(1);
@@ -141,11 +140,16 @@ function Curriculum() {
         return acc;
     }, {});
 
+    console.log("DATA CURRICULUM", data);
+    console.log("EDUCATIONS CURRICULUM", educations);
+    console.log("PROYECTS CURRICULUM", proyects);
+    console.log("WORKS CURRICULUM", works);
+
     return (
         <div>
             <section>
-                {/*<H1Fields value={`${data.lastName} ${data.firstName}`} label={TEXT.FULL_NAME} language={language}
-                    clH1Cont="" clH1Text=""/>*/}
+                <H1Fields value={`${data?.lastName ?? ""} ${data?.firstName || ""}`} label={TEXT.FULL_NAME} language={language}
+                    clH1Cont="" clH1Text=""/>
             </section>
         </div>
     );

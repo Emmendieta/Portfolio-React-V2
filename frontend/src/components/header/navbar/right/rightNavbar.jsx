@@ -30,7 +30,7 @@ function RightNavbar () {
 
     return (
         <div className="rightNavCont">
-            <Link to="/pdf/export-view" className="btn btn-outline-success" id="btnNavbarCurriculum">{TEXT.CURRICULUM}</Link>
+            <Link to="/curriculum" className="btn btn-outline-success" id="btnNavbarCurriculum">{TEXT.CURRICULUM}</Link>
             {!loadingUser && (
                 user ? (
                     <div className="rightNavLoginCont">
