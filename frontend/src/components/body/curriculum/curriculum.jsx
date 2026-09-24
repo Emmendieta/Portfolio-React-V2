@@ -10,6 +10,7 @@ import { fetchGetAllWorksPopulate } from "../works/worksLogis";
 import { fetchGetAllProyectsPopulate } from "../proyects/proyectsLogic";
 import H1Fields from "../generalFields/h1Fields/h1fields";
 import H2Fields from "../generalFields/h2Fields/h2Fields";
+import { formatDate } from "../../../helpers/formatDate.helper";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
@@ -207,7 +208,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${work.dateStart} - ${work.dateEnd ?? "ACTUAL"}`} language={language}
+                                    <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): "ACTUAL"}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -227,7 +228,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={course.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${course.dateStart} - ${course.dateEnd ?? "INCOCLUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(course.dateStart)} - ${course.dateEnd ? formatDate(course.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -243,7 +244,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={uni.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${uni.dateStart} - ${uni.dateEnd ?? "INCONCLUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(uni.dateStart)} - ${uni.dateEnd ? formatDate(uni.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -259,7 +260,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={high.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${high.dateStart} - ${high.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(high.dateStart)} - ${high.dateEnd ? formatDate(high.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -275,7 +276,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={primary.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${primary.dateStart} - ${primary.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(primary.dateStart)} - ${primary.dateEnd ? formatDate(primary.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -291,7 +292,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={conf.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${conf.dateStart} - ${conf.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(conf.dateStart)} - ${conf.dateEnd ? formatDate(conf.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -307,7 +308,7 @@ function Curriculum() {
                                         className="" classNameH2="" />
                                     <H2Fields value={other.title?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${other.dateStart} - ${other.dateEnd ?? "INCONCULUSO"}`} language={language}
+                                    <H2Fields value={`${formatDate(other.dateStart)} - ${other.dateEnd ? formatDate(other.dateEnd) : TEXT.ONGOING}`} language={language}
                                         className="" classNameH2="" />
                                 </div>
                             ))}
@@ -326,7 +327,7 @@ function Curriculum() {
                                 <div>
                                     <H2Fields value={proy.name?.[language] || ""} language={language}
                                         className="" classNameH2="" />
-                                    <H2Fields value={`${proy.dateStart} - ${proyects.dateEnd ?? "ACTUAL"}`} language={language}
+                                    <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : "ACTUAL"}`} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={proy.description?.[language] || ""} language={language}
                                         className="" classNameH2="" />
