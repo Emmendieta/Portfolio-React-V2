@@ -183,12 +183,13 @@
 
 .currFieldH2TitleCont,
 .currFieldH2SubtitleCont,
-.currFieldH2Cont {
+.currFieldH2Cont, .currFieldSubCont {
     display: flex;
     flex-direction: row;
     width: 100%;
     box-sizing: border-box;
 }
+
 
 .currFieldH2Title {
     font-size: larger;

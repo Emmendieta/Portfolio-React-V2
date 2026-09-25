@@ -380,7 +380,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {softSkills.map((soft)=> (
                                 <div key={soft._id} className="currFieldDetailContRow">
-                                    <H2Fields value={`${soft.name?.[language] || ""}:`} language={language}
+                                    <H2Fields value={`${soft.name?.[language] || ""}`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
@@ -389,9 +389,9 @@ function Curriculum() {
                 </div>
                 <div className="currMidDivCont">
                     {proyects.length > 0 ? (
-                        <div>
+                        <div className="currFieldCont">
                             <H1Fields value={`${TEXT.PROYECTS}:`} language={language}
-                                clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
+                                clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
                                     <div className="currFieldSubDetailCont">
@@ -404,29 +404,29 @@ function Curriculum() {
                                     <H2Fields value={proy.description?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Desc" />
                                     </div>
-                                    <div>
+                                    <div className="currFieldSubCont">
                                         <H2Fields value={`${TEXT.CATEGORIES}:`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.categories.length > 0 ? (
-                                            <div>
+                                            <div className="currFieldCont">
                                                 {proy.categories.map((category) => (
-                                                    <div key={category._id}>
+                                                    <div key={category._id} className="currFieldDetailContRow">
                                                         <H2Fields value={category.name?.[language]} language={language}
-                                                        className="" classNameH2="" />
+                                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                                     </div>
                                                 ))}
                                             </div>
                                         ): (<></>)}
                                     </div>
-                                    <div>
+                                    <div className="currFieldSubCont">
                                         <H2Fields value={`${TEXT.SKILLS}:`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.skills.length > 0 ? (
-                                            <div>
+                                            <div className="currFieldCont">
                                                 {proy.skills.map((skill) => (
-                                                    <div key={skill._id}>
+                                                    <div key={skill._id} className="currFieldDetailContRow">
                                                         <H2Fields value={skill.name?.[language] || ""} language={language}
-                                                            className="" classNameH2="" />
+                                                            className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                                     </div>
                                                 ))}
                                             </div>
