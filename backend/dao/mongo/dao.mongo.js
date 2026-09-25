@@ -121,8 +121,7 @@ class DaoMongo {
             throw error;
         }
     };
-
-    updateById = async (id, data, options = {}) => await this.model.findByIdAndUpdate(id, data, { new: true, ...options });
+    updateById = async (id, data, options = {}) => await this.model.findByIdAndUpdate(id, data, { ...options, returnDocument: "after" });
     updateManyByFilter = async (filter = {}, update = {}, options = {}) => {
         try {
             if (!filter || typeof filter !== "object" || Array.isArray(filter)) throw new Error("Error: Invalid filter object to update many!");

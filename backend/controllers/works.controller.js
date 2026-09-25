@@ -143,8 +143,8 @@ class WorksController {
             if(!id) throw new Error("Error: Missing the Id of the Work!");
             if(!isValidObjectId(id)) throw new Error("Error: Invalid Id of the work!");
             const data = req.body;
-            if(!data || !data.JobTitle || !data.company || !data.description) throw new Error("Error: Missing information to update the Work!");
-            data.JobTitle = JSON.parse(data.JobTitle);
+            if(!data || !data.jobTitle || !data.company || !data.description) throw new Error("Error: Missing information to update the Work!");
+            data.jobTitle = JSON.parse(data.jobTitle);
             data.company = JSON.parse(data.company);
             data.description = JSON.parse(data.description);
             if(data.dateEnd === "null" || data.dateEnd === "") data.dateEnd = null;
@@ -156,14 +156,14 @@ class WorksController {
             if(data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
             const work = await this.wService.readById(id);
             if(!work) throw new Error("Error: Work not found!");
-            const verify = await this.verifyJobTitleCompany(data.JobTitle, data.company, id);
+            const verify = await this.verifyJobTitleCompany(data.jobTitle, data.company, id);
             if(verify === 1) throw new Error("Error: The Job for the Company alredy Exist!");
             const worksPath = `works/${id.toString()}`;
             //const updatedWork = await this.wService.updateOneWithImages(work, data, files, worksPath, session);
             const updatedWork = await this.wService.updateOneWithImages(work, data, files, worksPath);
             if(!updatedWork) throw new Error("Error: Couldn't update the Work!");
             //await session.commitTransaction();
-            return res.json200(work);
+            return res.json200(updatedWork);
         } catch (error) {
             //await session.abortTransaction();
             return res.json500(error.message);

@@ -83,7 +83,7 @@ export const fetchUpdateWorkByIdWithImages = async (id, data) => {
         const simpleFields = ["dateStart", "dateEnd", "linkCompany", "finished"];
         simpleFields.forEach(key => { if (data[key] !== undefined) formData.append(key, data[key]); });
         //Objects -> stringify:
-        if (data.jobTitle) formData.append("JobTitle", JSON.stringify(data.jobTitle));
+        if (data.jobTitle) formData.append("jobTitle", JSON.stringify(data.jobTitle));
         if (data.company) formData.append("company", JSON.stringify(data.company));
         if (data.description) formData.append("description", JSON.stringify(data.description));
         //Responsibilities:

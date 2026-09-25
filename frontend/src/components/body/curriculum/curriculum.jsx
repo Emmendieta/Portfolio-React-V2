@@ -213,8 +213,6 @@ function Curriculum() {
         loadProyects();
     }, [user, language]);
 
-    console.log("USER", dataUser)
-
     return (
         <div className="currCont">
             <section className="currSectTopCont">
@@ -420,7 +418,7 @@ function Curriculum() {
                                         ): (<></>)}
                                     </div>
                                     <div className="currFieldSubCont">
-                                        <H2Fields value={`${TEXT.SKILLS}:`} language={language}
+                                        <H2Fields value={`${TEXT.LANGUAGES}:`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.skills.length > 0 ? (
                                             <div className="currFieldContRow">
