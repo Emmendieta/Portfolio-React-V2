@@ -358,30 +358,30 @@ function Curriculum() {
                     ) : (<></>)}
                 </div>
                 <div>
-                    <H1Fields value={TEXT.SKILLS} language={language}
+                    <H1Fields value={`${TEXT.SKILLS}:`} language={language}
                         clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
                     {hardSkills.length > 0 ? (
-                        <div>
-                            <H2Fields value={"TEXT.HARD_SKILLS"} language={language}
-                                className="" classNameH2="" />
+                        <div className="currFieldCont">
+                            <H2Fields value={`${TEXT.HARD_SKILLS}:`} language={language}
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
                             {hardSkills.map((hard) => (
                                 <div key={hard._id}>
                                     <H2Fields value={hard.name?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
-                                        className="" classNameH2=""/>
+                                        className="currFieldH2Cont" classNameH2="currFieldH2"/>
                                 </div>
                             ))}
                         </div>
                     ): (<></>)}
                     {softSkills.length > 0 ? (
-                        <div>
-                            <H2Fields value={`TEXT.SOFT_SKILLS`} language={language}
-                                className="" classNameH2="" />
+                        <div className="currFieldCont">
+                            <H2Fields value={`${TEXT.SOFT_SKILLS}:`} language={language}
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
                             {softSkills.map((soft)=> (
                                 <div key={soft._id}>
                                     <H2Fields value={soft.name?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
                         </div>
