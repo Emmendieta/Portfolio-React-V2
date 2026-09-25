@@ -246,7 +246,7 @@ function Curriculum() {
                         <div className="currFieldCont">
                             {works.map((work) => (
                                 <div key={work._id} className="currFieldDetailCont">
-                                    <H2Fields value={work.jobTitle?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${work.jobTitle?.[language] || ""}`} language={language}
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -266,7 +266,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {courses.map((course) => (
                                 <div key={course._id} className="currFieldDetailCont">
-                                    <H2Fields value={course.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${course.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={course.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -282,7 +282,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {universities.map((uni) => (
                                 <div key={uni._id} className="currFieldDetailCont">
-                                    <H2Fields value={uni.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${uni.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={uni.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -298,7 +298,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {highSchools.map((high) => (
                                 <div key={high._id} className="currFieldDetailCont">
-                                    <H2Fields value={high.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${high.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={high.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -314,7 +314,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {primarySchools.map((primary) => (
                                 <div key={primary._id} className="currFieldDetailCont">
-                                    <H2Fields value={primary.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${primary.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={primary.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -330,7 +330,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {conferences.map((conf) => (
                                 <div key={conf._id} className="currFieldDetailCont">
-                                    <H2Fields value={conf.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${conf.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={conf.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -346,7 +346,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {others.map((other) => (
                                 <div key={other._id} className="currFieldDetailCont">
-                                    <H2Fields value={other.institutionName?.[language] || ""} language={language}
+                                    <H2Fields value={`• ${other.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={other.title?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
@@ -366,7 +366,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {hardSkills.map((hard) => (
                                 <div key={hard._id} className="currFieldDetailContRow">
-                                    <H2Fields value={`${hard.name?.[language] || ""}:`} language={language}
+                                    <H2Fields value={`• ${hard.name?.[language] || ""}:`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2BoldRow" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2"/>
@@ -380,7 +380,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {softSkills.map((soft)=> (
                                 <div key={soft._id} className="currFieldDetailContRow">
-                                    <H2Fields value={`${soft.name?.[language] || ""}`} language={language}
+                                    <H2Fields value={`• ${soft.name?.[language] || ""}`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
@@ -395,7 +395,7 @@ function Curriculum() {
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
                                     <div className="currFieldCont">
-                                        <H2Fields value={proy.name?.[language] || ""} language={language}
+                                        <H2Fields value={`• ${proy.name?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={proy.company?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
