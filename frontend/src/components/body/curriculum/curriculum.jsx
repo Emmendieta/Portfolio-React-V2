@@ -243,11 +243,11 @@ function Curriculum() {
                     <H1Fields value={`${TEXT.PROFESSIONAL_EXP}:`} language={language}
                         clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {works.length > 0 ? (
-                        <div>
+                        <div className="currWorksCont">
                             {works.map((work) => (
-                                <div key={work._id}>
+                                <div key={work._id} className="currWorkDetailCont">
                                     <H2Fields value={work.jobTitle?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="fieldH2TitleCont" classNameH2="fieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
                                         className="" classNameH2="" />
                                     <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): "ACTUAL"}`} language={language}

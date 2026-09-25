@@ -148,4 +148,40 @@
     text-decoration: underline;
 }
 
+/* ----- WORKS ----- */
+
+.currWorksCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
+.currWorkDetailCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ----- H2 ----- */
+
+.currFieldH2TitleCont, .currFieldH2Cont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.currFieldH2Title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.currFieldH2 {
+    font-size: large;
+}
+
+
 /* --------------------- BOTTOM --------------------- */
