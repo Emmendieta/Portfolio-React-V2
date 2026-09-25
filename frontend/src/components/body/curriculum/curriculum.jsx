@@ -178,7 +178,8 @@ function Curriculum() {
                 const result = await fetchGetAllWorksPopulate();
                 if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const worksRes = result.response || [];
-                setWorks(worksRes);
+                const sortedWorks = [...worksRes].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+                setWorks(sortedWorks);
             } catch (error) {
                 setWorks([]);
                 console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
