@@ -50,6 +50,7 @@ export const MOVE_DOWN = "Move down";
 export const LOADING = "Loading";
 export const PLEASE_WAIT = "Please, wait";
 export const PROFESSIONAL_EXP = "Professional Experience";
+export const ACADEMIC_BACKGROUND = "Academic Background";
 
 /* ------------ SEARCHS ------------ */
 

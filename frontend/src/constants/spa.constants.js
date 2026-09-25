@@ -51,6 +51,7 @@ export const MOVE_DOWN = "Mover hacia abajo";
 export const LOADING = "Cargando";
 export const PLEASE_WAIT = "Por favor, espere";
 export const PROFESSIONAL_EXP = "Experiencia Profesional";
+export const ACADEMIC_BACKGROUND = "Formación Académica";
 
 /* ------------ SEARCHS ------------ */
 

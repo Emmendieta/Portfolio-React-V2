@@ -243,9 +243,9 @@ function Curriculum() {
                     <H1Fields value={`${TEXT.PROFESSIONAL_EXP}:`} language={language}
                         clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {works.length > 0 ? (
-                        <div className="currWorksCont">
+                        <div className="currFieldCont">
                             {works.map((work) => (
-                                <div key={work._id} className="currWorkDetailCont">
+                                <div key={work._id} className="currFieldDetailCont">
                                     <H2Fields value={work.jobTitle?.[language] || ""} language={language}
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
@@ -257,21 +257,21 @@ function Curriculum() {
                         </div>
                     ) : (<></>)}
                 </div>
-                <div>
-                    <H1Fields value={`ACADEMIC BACKGROUND`} language={language}
+                <div className="currMidDivCont">
+                    <H1Fields value={`{${TEXT.ACADEMIC_BACKGROUND}:`} language={language}
                         clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {courses.length > 0 ? (
-                        <div>
+                        <div className="currFieldCont">
                             <H2Fields value={`${TEXT.COURSES}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {courses.map((course) => (
                                 <div key={course._id}>
                                     <H2Fields value={course.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={course.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(course.dateStart)} - ${course.dateEnd ? formatDate(course.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
@@ -279,15 +279,15 @@ function Curriculum() {
                     {universities.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.UNIVERSITIES}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {universities.map((uni) => (
                                 <div key={uni._id}>
                                     <H2Fields value={uni.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={uni.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(uni.dateStart)} - ${uni.dateEnd ? formatDate(uni.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
@@ -295,15 +295,15 @@ function Curriculum() {
                     {highSchools.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.HIGH_SCHOOLS}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {highSchools.map((high) => (
                                 <div key={high._id}>
                                     <H2Fields value={high.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={high.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(high.dateStart)} - ${high.dateEnd ? formatDate(high.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
@@ -311,15 +311,15 @@ function Curriculum() {
                     {primarySchools.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.PRIMARY_SCHOOLS}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {primarySchools.map((primary) => (
                                 <div key={primary._id}>
                                     <H2Fields value={primary.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={primary.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(primary.dateStart)} - ${primary.dateEnd ? formatDate(primary.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
@@ -327,15 +327,15 @@ function Curriculum() {
                     {conferences.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.CONFERENCES}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {conferences.map((conf) => (
                                 <div key={conf._id}>
                                     <H2Fields value={conf.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={conf.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(conf.dateStart)} - ${conf.dateEnd ? formatDate(conf.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
@@ -343,15 +343,15 @@ function Curriculum() {
                     {others.length > 0 ? (
                         <div>
                             <H2Fields value={`${TEXT.OTHERS}:`} language={language}
-                                className="" classNameH2="" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
                             {others.map((other) => (
                                 <div key={other._id}>
                                     <H2Fields value={other.institutionName?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={other.title?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(other.dateStart)} - ${other.dateEnd ? formatDate(other.dateEnd) : TEXT.ONGOING}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
