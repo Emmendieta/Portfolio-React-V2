@@ -158,15 +158,15 @@ function PeopleForm() {
                     }));
                 }
             } catch (error) {
-                console.error(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
-                await errorSweet(`${TEXT.ERROR}: ${error.message}` || TEXT.TEXT_ERROR_OOPS);
+                console.error(`${TEXT.ERROR}: ${error.message}`);
+                await errorSweet(`${TEXT.ERROR}: ${error.message}`);
             } finally {
                 setLoading(false);
                 stopLoading();
             }
         };
         loadPerson();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     const setImages = (newImages) => setFormData(prev => ({ ...prev, images: newImages }));
 
@@ -182,90 +182,90 @@ function PeopleForm() {
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
-                            <Inputs textH2={TEXT.ID} type="text" name={"_id"} value={formData._id} language={language} readOnly={true} disabled={true} className={"formInputRow"} cNContainer={"formInputRowContainter"} cNSecTop={"formInputRowTop"} cNSectBottom={"forInputRowBottom"} />
+                            <Inputs textH2={TEXT.ID} type="text" name={"_id"} value={formData?._id} language={language} readOnly={true} disabled={true} className={"formInputRow"} cNContainer={"formInputRowContainter"} cNSecTop={"formInputRowTop"} cNSectBottom={"forInputRowBottom"} />
                         )}
-                        <Inputs textH2={TEXT.DNI} type="number" name={"dni"} value={formData.dni} placeHolder={TEXT.inputsText("m", TEXT.DNI)}/*{TEXT.inputsText("m", TEXT.DNI_OF_THE_USER)}*/ language={language} onChange={handleChange}
+                        <Inputs textH2={TEXT.DNI} type="number" name={"dni"} value={formData?.dni} placeHolder={TEXT.inputsText("m", TEXT.DNI)}/*{TEXT.inputsText("m", TEXT.DNI_OF_THE_USER)}*/ language={language} onChange={handleChange}
                             onBlur={handleBlur} error={(touched.dni || isSubmitted) && errors.dni}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.FIRST_NAME} type="text" name={"firstName"} value={formData.firstName} placeHolder={TEXT.inputsText("m", TEXT.FIRST_NAME)}/*{TEXT.inputsText("m", TEXT.FIRST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
+                        <Inputs textH2={TEXT.FIRST_NAME} type="text" name={"firstName"} value={formData?.firstName} placeHolder={TEXT.inputsText("m", TEXT.FIRST_NAME)}/*{TEXT.inputsText("m", TEXT.FIRST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.firstName || isSubmitted) && errors.firstName} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.LAST_NAME} type="text" name={"lastName"} value={formData.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/*{TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
+                        <Inputs textH2={TEXT.LAST_NAME} type="text" name={"lastName"} value={formData?.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/*{TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.lastName || isSubmitted) && errors.lastName} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.CUIL} type="number" name={"cuil"} value={formData.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/*{TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
+                        <Inputs textH2={TEXT.CUIL} type="number" name={"cuil"} value={formData?.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/*{TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.cuil || isSubmitted) && errors.cuil} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.BIRTHDAY} type="date" name={"birthday"} value={formData.birthday ? formData.birthday.slice(0, 10) : ""} placeholder={TEXT.inputsText("m", TEXT.BIRTHDAY)}/*{TEXT.inputsText("m", TEXT.BIRTHDAY_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
+                        <Inputs textH2={TEXT.BIRTHDAY} type="date" name={"birthday"} value={formData?.birthday ? formData?.birthday.slice(0, 10) : ""} placeholder={TEXT.inputsText("m", TEXT.BIRTHDAY)}/*{TEXT.inputsText("m", TEXT.BIRTHDAY_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.birthday || isSubmitted) && errors.birthday} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.PHONE} type="number" name={"phone"} value={formData.phone} placeHolder={TEXT.inputsText("m", TEXT.PHONE)}/*{TEXT.inputsText("m", TEXT.PHONE_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
+                        <Inputs textH2={TEXT.PHONE} type="number" name={"phone"} value={formData?.phone} placeHolder={TEXT.inputsText("m", TEXT.PHONE)}/*{TEXT.inputsText("m", TEXT.PHONE_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.phone || isSubmitted) && errors.phone} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name={`jobTitle`} value={formData.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}/*{TEXT.inputsText("m", `${TEXT.JOB_TITLE_OF_THE_PERSON} (${primaryLang.toUpperCase()})`)}*/
+                        <Inputs textH2={`${TEXT.JOB_TITLE} (${primaryLang.toUpperCase()})`} type="text" name={`jobTitle`} value={formData?.jobTitle?.[primaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}/*{TEXT.inputsText("m", `${TEXT.JOB_TITLE_OF_THE_PERSON} (${primaryLang.toUpperCase()})`)}*/
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`jobTitle_${primaryLang}`] || isSubmitted) && errors.jobTitlePrimary} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         {showOtherLang && (
-                            <Inputs textH2={`${TEXT.JOB_TITLE} (${secondaryLang.toUpperCase()})`} type="text" name={`jobTitle`} value={formData.jobTitle?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}/*{TEXT.inputsText("m", `${TEXT.JOB_TITLE_OF_THE_PERSON} (${secondaryLang.toUpperCase()})`)}*/
+                            <Inputs textH2={`${TEXT.JOB_TITLE} (${secondaryLang.toUpperCase()})`} type="text" name={`jobTitle`} value={formData?.jobTitle?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.JOB_TITLE)}/*{TEXT.inputsText("m", `${TEXT.JOB_TITLE_OF_THE_PERSON} (${secondaryLang.toUpperCase()})`)}*/
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`jobTitle_${secondaryLang}`] || isSubmitted) && errors.jobTitleSecondary} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                         <H2Fields value={`${TEXT.PERSONAL_ADDRESS}:`} language={language} className="genFormH2TitleCont" classNameH2="genFormH2TextTitle" />
-                        <Inputs textH2={TEXT.STREET_ADDRESS} type="text" name={"address.street"} value={formData.address?.street} placeHolder={TEXT.inputsText("f", TEXT.STREET_ADDRESS)}/*{TEXT.inputsText("m", TEXT.STREET_ADDRESS_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.STREET_ADDRESS} type="text" name={"address.street"} value={formData?.address?.street} placeHolder={TEXT.inputsText("f", TEXT.STREET_ADDRESS)}/*{TEXT.inputsText("m", TEXT.STREET_ADDRESS_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["address.street"] || isSubmitted) && errors.address?.street} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.NUMBER} type="number" name={"address.number"} value={formData.address?.number} placeHolder={TEXT.inputsText("m", TEXT.NUMBER)}/*{TEXT.inputsText("m", TEXT.STREET_NUMBER_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.NUMBER} type="number" name={"address.number"} value={formData?.address?.number} placeHolder={TEXT.inputsText("m", TEXT.NUMBER)}/*{TEXT.inputsText("m", TEXT.STREET_NUMBER_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["address.number"] || isSubmitted) && errors.address?.number} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.FLOOR} type="number" name={"address.floor"} value={formData.address?.floor} placeHolder={TEXT.inputsText("m", TEXT.FLOOR)}/*{TEXT.inputsText("m", TEXT.FLOOR_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.FLOOR} type="number" name={"address.floor"} value={formData?.address?.floor} placeHolder={TEXT.inputsText("m", TEXT.FLOOR)}/*{TEXT.inputsText("m", TEXT.FLOOR_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["address.floor"] || isSubmitted) && errors.address?.floor} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.APARMENT} type="text" name={"address.aparment"} value={formData.address?.aparment} placeHolder={TEXT.inputsText("m", TEXT.APARMENT)}/*{TEXT.inputsText("m", TEXT.APARMENT_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.APARMENT} type="text" name={"address.aparment"} value={formData?.address?.aparment} placeHolder={TEXT.inputsText("m", TEXT.APARMENT)}/*{TEXT.inputsText("m", TEXT.APARMENT_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <H2Fields value={`${TEXT.LEGAL_ADDRESS}:`} language={language} className="genFormH2TitleCont" classNameH2="genFormH2TextTitle" />
-                        <Inputs textH2={TEXT.STREET_ADDRESS} type="text" name={"legalAddress.street"} value={formData.legalAddress?.street} placeHolder={TEXT.inputsText("f", TEXT.STREET_ADDRESS)}/*{TEXT.inputsText("m", TEXT.STREET_ADDRESS_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.STREET_ADDRESS} type="text" name={"legalAddress.street"} value={formData?.legalAddress?.street} placeHolder={TEXT.inputsText("f", TEXT.STREET_ADDRESS)}/*{TEXT.inputsText("m", TEXT.STREET_ADDRESS_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["legalAddress.street"] || isSubmitted) && errors.legalAddress?.street} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.NUMBER} type="number" name={"legalAddress.number"} value={formData.legalAddress?.number} placeHolder={TEXT.inputsText("m", TEXT.NUMBER)}/*{TEXT.inputsText("m", TEXT.STREET_NUMBER_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.NUMBER} type="number" name={"legalAddress.number"} value={formData?.legalAddress?.number} placeHolder={TEXT.inputsText("m", TEXT.NUMBER)}/*{TEXT.inputsText("m", TEXT.STREET_NUMBER_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["legalAddress.number"] || isSubmitted) && errors.legalAddress?.number} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.FLOOR} type="number" name={"legalAddress.floor"} value={formData.legalAddress?.floor} placeHolder={TEXT.inputsText("m", TEXT.FLOOR)}/*{TEXT.inputsText("m", TEXT.FLOOR_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.FLOOR} type="number" name={"legalAddress.floor"} value={formData?.legalAddress?.floor} placeHolder={TEXT.inputsText("m", TEXT.FLOOR)}/*{TEXT.inputsText("m", TEXT.FLOOR_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} error={(touched["legalAddress.floor"] || isSubmitted) && errors.legalAddress?.floor} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={TEXT.APARMENT} type="text" name={"legalAddress.aparment"} value={formData.legalAddress?.aparment} placeHolder={TEXT.inputsText("m", TEXT.APARMENT)}/*{TEXT.inputsText("m", TEXT.APARMENT_OF_THE_PERSON)}*/
+                        <Inputs textH2={TEXT.APARMENT} type="text" name={"legalAddress.aparment"} value={formData?.legalAddress?.aparment} placeHolder={TEXT.inputsText("m", TEXT.APARMENT)}/*{TEXT.inputsText("m", TEXT.APARMENT_OF_THE_PERSON)}*/
                             onChange={handleChange} onBlur={handleBlur} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <Inputs textH2={`${TEXT.ABOUT_ME} (${primaryLang.toUpperCase()})`} type="text" name={"aboutMe"} value={formData.aboutMe?.[primaryLang] || ""} placeHolder={TEXT.inputsText("no", TEXT.ABOUT_ME)}
+                        <Inputs textH2={`${TEXT.ABOUT_ME} (${primaryLang.toUpperCase()})`} type="text" name={"aboutMe"} value={formData?.aboutMe?.[primaryLang] || ""} placeHolder={TEXT.inputsText("no", TEXT.ABOUT_ME)}
                             onChange={(e) => handleChange(e, primaryLang)} onBlur={(e) => handleBlur(e, primaryLang)} error={(touched[`aboutMe_${primaryLang}`] || isSubmitted) && errors.aboutMePrimary} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         {showOtherLang && (
-                            <Inputs textH2={`${TEXT.ABOUT_ME} (${secondaryLang.toUpperCase()})`} type="text" name={"aboutMe"} value={formData.aboutMe?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("no", TEXT.ABOUT_ME)}
+                            <Inputs textH2={`${TEXT.ABOUT_ME} (${secondaryLang.toUpperCase()})`} type="text" name={"aboutMe"} value={formData?.aboutMe?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("no", TEXT.ABOUT_ME)}
                                 onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`aboutMe_${secondaryLang}`] || isSubmitted) && errors.aboutMeSecondary} language={language}
                                 className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                     </div>
                     <div className="genFormSelectCont">
-                        <SelectsV2 label={`${TEXT.CONTINENT}:`} options={continentsList} value={formData.continents._id || ""} placeholder={TEXT.SELECT_CONTINENT} language={language} placeholder={TEXT.SELECT_OPTION}
+                        <SelectsV2 label={`${TEXT.CONTINENT}:`} options={continentsList} value={formData?.continents?._id || ""} placeholder={TEXT.SELECT_CONTINENT} language={language}
                             onChange={(e) => handleSelectChange("continents", continentsList.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
 
                         />
-                        <SelectsV2 label={`${TEXT.COUNTRY}:`} options={filteredCountries} value={formData.countries._id || ""} placeholder={TEXT.SELECT_COUNTRY} language={language} placeholder={TEXT.SELECT_OPTION}
-                            disabled={!formData.continents._id} onChange={(e) => handleSelectChange("countries", filteredCountries.find(c => c._id === e.target.value))}
+                        <SelectsV2 label={`${TEXT.COUNTRY}:`} options={filteredCountries} value={formData?.countries?._id || ""} placeholder={TEXT.SELECT_COUNTRY} language={language} 
+                            disabled={!formData?.continents?._id} onChange={(e) => handleSelectChange("countries", filteredCountries.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
-                        <SelectsV2 label={`${TEXT.PROVINCE}:`} options={filteredProvinces} value={formData.provinces._id || ""} placeholder={TEXT.SELECT_PROVINCE} language={language} placeholder={TEXT.SELECT_OPTION}
-                            disabled={!formData.countries._id} onChange={(e) => handleSelectChange("provinces", filteredProvinces.find(p => p._id === e.target.value))}
+                        <SelectsV2 label={`${TEXT.PROVINCE}:`} options={filteredProvinces} value={formData?.provinces?._id || ""} placeholder={TEXT.SELECT_PROVINCE} language={language}
+                            disabled={!formData?.countries?._id} onChange={(e) => handleSelectChange("provinces", filteredProvinces.find(p => p._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
-                        <SelectsV2 label={`${TEXT.CITY}:`} options={filteredCities} value={formData.cities._id || ""} placeholder={TEXT.SELECT_CITY} language={language} placeholder={TEXT.SELECT_OPTION}
-                            disabled={!formData.provinces._id} onChange={(e) => handleSelectChange("cities", filteredCities.find(c => c._id === e.target.value))}
+                        <SelectsV2 label={`${TEXT.CITY}:`} options={filteredCities} value={formData?.cities?._id || ""} placeholder={TEXT.SELECT_CITY} language={language} 
+                            disabled={!formData?.provinces?._id} onChange={(e) => handleSelectChange("cities", filteredCities.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
                     </div>
                     <div className="genFormImgCont">
-                        <ImageManager images={formData.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
+                    <ImageManager images={formData?.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
                             /* cThumbCont={"thumbnailsContainerDetails"} cThumbAddCont={"thumbnailsAddContainerDetails"} 
                             cThumbPrevContainer={"thumnailsPreviewImgContainerDetails"} labelH2={""} valueH2={""} cThumbPrevImg={"thumbnailsImgPreviewDetails"}
                             cThumbImgContainer={"thumbnailsImgsContainerDetails"} cThumbImgBody={"thumbnailsImgBodyDetails"} cThumbImgBodyCont={"thumbnailsImgBodyContainerDetails"}

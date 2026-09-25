@@ -82,7 +82,7 @@ function CitiesForm() {
             }
         };
         loadCity();
-    }, [id, isEdit, user, language, verifyPrivileges]);
+    }, [id, isEdit, user, language]);
 
     return (
         <div className="genFormCont">
