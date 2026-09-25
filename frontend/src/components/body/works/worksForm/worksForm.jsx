@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLoading } from "../../../../context/Loading.Context";
 import { useLanguage } from "../../../../context/Language.Context";
 import { LANG_CONST } from "../../../../constants/SelectLang.Constant";
-import { validatorAlphaNumeric, validatorDate, validatorLongText, validatorURL } from "../../../../helpers/validators.helper";
+import { validatorAlphaNumeric, validatorDate, validatorLongText, validatorLongTextMax, validatorURL } from "../../../../helpers/validators.helper";
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import H1Fields from "../../generalFields/h1Fields/h1fields";
@@ -37,8 +37,8 @@ function WorksForm() {
 
     const validate = useCallback((data) => {
         const errors = {};
-        try { validatorAlphaNumeric((data.jobTitle?.[primaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitlePrimary = error.message; };
-        if (showOtherLang) { try { validatorAlphaNumeric((data.jobTitle?.[secondaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitleSecondary = error.message; } };
+        try { validatorLongTextMax((data.jobTitle?.[primaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitlePrimary = error.message; };
+        if (showOtherLang) { try { validatorLongTextMax((data.jobTitle?.[secondaryLang]), TEXT.ERROR_JOB_TITLE) } catch (error) { errors.jobTitleSecondary = error.message; } };
         try { validatorDate(data.dateStart), TEXT.ERROR_DATE } catch (error) { errors.dateStart = error.message; };
         try { validatorAlphaNumeric((data.company?.[primaryLang]), TEXT.ERROR_COMPANY) } catch (error) { errors.companyPrimary = error.message; };
         if (showOtherLang) { try { validatorAlphaNumeric((data.company?.[secondaryLang]), TEXT.ERROR_COMPANY) } catch (error) { errors.companySecondary = error.message; } };
