@@ -389,7 +389,7 @@ function Curriculum() {
                 </div>
                 <div className="currMidDivCont">
                     {proyects.length > 0 ? (
-                        <div className="currFieldCont">
+                        <div className="currMidDivCont">
                             <H1Fields value={`${TEXT.PROYECTS}:`} language={language}
                                 clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                             {proyects.map((proy) => (

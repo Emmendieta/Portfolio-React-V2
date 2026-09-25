@@ -190,6 +190,10 @@
     box-sizing: border-box;
 }
 
+.currFieldSubCont {
+    flex-direction: column;
+}
+
 
 .currFieldH2Title {
     font-size: larger;
@@ -213,6 +217,8 @@
 .currFieldH2Desc {
     font-size: large;
     text-align: justify;
+    width: 100%;
+    padding-right: 90px;
 }
 
 .currFieldH2ContRow {
