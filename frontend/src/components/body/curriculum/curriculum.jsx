@@ -247,11 +247,11 @@ function Curriculum() {
                             {works.map((work) => (
                                 <div key={work._id} className="currWorkDetailCont">
                                     <H2Fields value={work.jobTitle?.[language] || ""} language={language}
-                                        className="fieldH2TitleCont" classNameH2="fieldH2Title" />
+                                        className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): "ACTUAL"}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
