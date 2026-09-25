@@ -394,7 +394,7 @@ function Curriculum() {
                                 clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
-                                    <div className="currFieldSubDetailCont">
+                                    <div className="currFieldCont">
                                         <H2Fields value={proy.name?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={proy.company?.[language] || ""} language={language}
