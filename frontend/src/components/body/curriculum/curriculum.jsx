@@ -357,7 +357,7 @@ function Curriculum() {
                         </div>
                     ) : (<></>)}
                 </div>
-                <div>
+                <div className="currMidDivCont">
                     <H1Fields value={`${TEXT.SKILLS}:`} language={language}
                         clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
                     {hardSkills.length > 0 ? (
@@ -365,7 +365,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.HARD_SKILLS}:`} language={language}
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
                             {hardSkills.map((hard) => (
-                                <div key={hard._id}>
+                                <div key={hard._id} className="currFieldDetailContRow">
                                     <H2Fields value={hard.name?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
@@ -379,7 +379,7 @@ function Curriculum() {
                             <H2Fields value={`${TEXT.SOFT_SKILLS}:`} language={language}
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
                             {softSkills.map((soft)=> (
-                                <div key={soft._id}>
+                                <div key={soft._id} className="currFieldDetailContRow">
                                     <H2Fields value={soft.name?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                 </div>
@@ -387,7 +387,7 @@ function Curriculum() {
                         </div>
                     ): (<></>)}
                 </div>
-                <div>
+                <div className="currMidDivCont">
                     {proyects.length > 0 ? (
                         <div>
                             <H1Fields value={`PROYECTS`} language={language}

@@ -166,6 +166,14 @@
     margin-left: 15px;
 }
 
+.currFieldDetailContRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+}
+
 /* ----- H2 ----- */
 
 .currFieldH2TitleCont, .currFieldH2SubtitleCont, .currFieldH2Cont {
