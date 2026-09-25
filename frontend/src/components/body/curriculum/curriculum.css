@@ -12,17 +12,15 @@
     flex-direction: row;
     width: 100%;
     box-sizing: border-box;
-    background: linear-gradient(
-        to right,
-        #9e9e9e 0%,
-        #c4c4c4 15%,
-        #e5e5e5 30%,
-        #ffffff 45%,
-        #ffffff 55%,
-        #e5e5e5 70%,
-        #c4c4c4 85%,
-        #9e9e9e 100%
-    );
+    background: linear-gradient(to right,
+            #9e9e9e 0%,
+            #c4c4c4 15%,
+            #e5e5e5 30%,
+            #ffffff 45%,
+            #ffffff 55%,
+            #e5e5e5 70%,
+            #c4c4c4 85%,
+            #9e9e9e 100%);
 }
 
 /* ----- LEFT ----- */
@@ -176,7 +174,9 @@
 
 /* ----- H2 ----- */
 
-.currFieldH2TitleCont, .currFieldH2SubtitleCont, .currFieldH2Cont {
+.currFieldH2TitleCont,
+.currFieldH2SubtitleCont,
+.currFieldH2Cont {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -200,6 +200,18 @@
 
 .currFieldH2 {
     font-size: large;
+}
+
+.currFieldH2ContRow {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.currFieldH2BoldRow {
+    font-size: large;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 

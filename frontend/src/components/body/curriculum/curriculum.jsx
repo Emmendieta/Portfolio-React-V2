@@ -367,9 +367,9 @@ function Curriculum() {
                             {hardSkills.map((hard) => (
                                 <div key={hard._id} className="currFieldDetailContRow">
                                     <H2Fields value={hard.name?.[language] || ""} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
+                                        className="currFieldH2ContRow" classNameH2="currFieldH2BoldRow" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2"/>
+                                        className="currFieldH2ContRow" classNameH2="currFieldH2"/>
                                 </div>
                             ))}
                         </div>
@@ -381,7 +381,7 @@ function Curriculum() {
                             {softSkills.map((soft)=> (
                                 <div key={soft._id} className="currFieldDetailContRow">
                                     <H2Fields value={soft.name?.[language] || ""} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
+                                        className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
                         </div>
