@@ -11,7 +11,7 @@ import { fetchGetAllContinentsPopulate } from "../../continents/continentsLogic"
 import { useSweetAlert } from "../../../../context/SweetAlert2.Context";
 import CheckBox from "../../generalFields/checkboxs/checkboxs";
 import SelectsV2 from "../../generalFields/selects/selectsV2/selectsV2";
-import { validatorAlphaNumeric, validatorCUILCUIT, validatorDate, validatorDNI, validatorLongText, validatorName, validatorNumber, validatorPhone } from "../../../../helpers/validators.helper";
+import { validatorAlphaNumeric, validatorCUILCUIT, validatorDate, validatorDNI, validatorLongText, validatorLongTextMax, validatorName, validatorNumber, validatorPhone } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import ImageManager from "../../generalFields/imagesMananger/imagesManager";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
@@ -44,8 +44,8 @@ function PeopleForm() {
             validatorDate(data.birthday, { allowFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE_EMPTY, TEXT.ERROR_DATE_FORMAT, TEXT.ERROR_DATE_INVALID, TEXT.ERROR_DATE_FUTURE, TEXT.ERROR_DATE_TOO_OLD);
         } catch (error) { errors.birthday = error.message; };
         try { validatorPhone(data.phone, TEXT.ERROR_PHONE); } catch (error) { errors.phone = error.message; };
-        try { validatorName(data.jobTitle?.[primaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.jobTitlePrimary = error.message; };
-        if (showOtherLang) { try { validatorName(data.jobTitle?.[secondaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.jobTitleSecondary = error.message; }; };
+        try { validatorLongTextMax(data.jobTitle?.[primaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.jobTitlePrimary = error.message; };
+        if (showOtherLang) { try { validatorLongTextMax(data.jobTitle?.[secondaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.jobTitleSecondary = error.message; }; };
         try { validatorAlphaNumeric(data.address?.street, TEXT.ERROR_ONLY_ALPHANUMERICS); } catch (error) {
             if (!errors.address) errors.address = {};
             errors.address.street = error.message;

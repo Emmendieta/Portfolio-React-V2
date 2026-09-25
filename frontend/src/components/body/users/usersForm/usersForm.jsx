@@ -13,7 +13,7 @@ import { fetchGetAllContinentsPopulate } from "../../continents/continentsLogic"
 import { fetchGetAllRolesPopulate } from "../../roles/rolesLogic";
 import { fetchGetAllPermissions } from "../../permissions/permissionsLogic";
 import H1Fields from "../../generalFields/h1Fields/h1fields";
-import { validatorAlphaNumeric, validatorCUILCUIT, validatorDate, validatorDNI, validatorEmail, validatorLongText, validatorName, validatorNumber, validatorPassword, validatorPhone, validatorUser } from "../../../../helpers/validators.helper";
+import { validatorAlphaNumeric, validatorCUILCUIT, validatorDate, validatorDNI, validatorEmail, validatorLongText, validatorLongTextMax, validatorName, validatorNumber, validatorPassword, validatorPhone, validatorUser } from "../../../../helpers/validators.helper";
 import { FormValidation } from "../../../../hooks/formValidation.hook";
 import "./usersForm.css";
 import { hasPrivilege } from "../../../../helpers/privileges.helper";
@@ -59,9 +59,9 @@ function UsersForm() {
             validatorDate(data.person?.birthday, { allowFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE_EMPTY, TEXT.ERROR_DATE_FORMAT, TEXT.ERROR_DATE_INVALID, TEXT.ERROR_DATE_FUTURE, TEXT.ERROR_DATE_TOO_OLD);
         } catch (error) { errors.person.birthday = error.message; };
         try { validatorPhone(data.person?.phone, TEXT.ERROR_PHONE); } catch (error) { errors.person.phone = error.message; };
-        try { validatorName(data.person?.jobTitle?.[primaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.person.jobTitlePrimary = error.message; };
+        try { validatorLongTextMax(data.person?.jobTitle?.[primaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.person.jobTitlePrimary = error.message; };
         if (showOtherLang) {
-            try { validatorName(data.person?.jobTitle?.[secondaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.person.jobTitleSecondary = error.message; };
+            try { validatorLongTextMax(data.person?.jobTitle?.[secondaryLang], TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.person.jobTitleSecondary = error.message; };
         };
         try { validatorAlphaNumeric(data.person?.address?.street, TEXT.ERROR_ONLY_ALPHANUMERICS); } catch (error) { errors.address.street = error.message; };
         try { validatorNumber(data.person?.address?.number, TEXT.ERROR_NUMBERS_MIN); } catch (error) { errors.address.number = error.message; };
