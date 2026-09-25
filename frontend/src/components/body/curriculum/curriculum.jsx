@@ -250,7 +250,7 @@ function Curriculum() {
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
-                                    <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): "ACTUAL"}`} language={language}
+                                    <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): TEXT.CURRENT}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
@@ -399,7 +399,7 @@ function Curriculum() {
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={proy.company?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
-                                    <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : "ACTUAL"}`} language={language}
+                                    <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : TEXT.CURRENT}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={proy.description?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Desc" />
@@ -408,7 +408,7 @@ function Curriculum() {
                                         <H2Fields value={`${TEXT.CATEGORIES}:`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.categories.length > 0 ? (
-                                            <div className="currFieldCont">
+                                            <div className="currFieldContRow">
                                                 {proy.categories.map((category) => (
                                                     <div key={category._id} className="currFieldDetailContRow">
                                                         <H2Fields value={category.name?.[language]} language={language}
@@ -422,7 +422,7 @@ function Curriculum() {
                                         <H2Fields value={`${TEXT.SKILLS}:`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.skills.length > 0 ? (
-                                            <div className="currFieldCont">
+                                            <div className="currFieldContRow">
                                                 {proy.skills.map((skill) => (
                                                     <div key={skill._id} className="currFieldDetailContRow">
                                                         <H2Fields value={skill.name?.[language] || ""} language={language}

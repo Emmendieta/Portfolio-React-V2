@@ -156,6 +156,15 @@
     margin-left: 30px;
 }
 
+.currFieldContRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 90px;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
 .currFieldDetailCont {
     display: flex;
     flex-direction: column;
