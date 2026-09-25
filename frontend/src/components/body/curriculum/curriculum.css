@@ -172,6 +172,13 @@
     margin-left: 15px;
 }
 
+.currFieldSubDetailCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* ----- H2 ----- */
 
 .currFieldH2TitleCont,
@@ -200,6 +207,11 @@
 
 .currFieldH2 {
     font-size: large;
+}
+
+.currFieldH2Desc {
+    font-size: large;
+    text-align: justify;
 }
 
 .currFieldH2ContRow {

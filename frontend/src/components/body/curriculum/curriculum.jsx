@@ -343,7 +343,7 @@ function Curriculum() {
                     {others.length > 0 ? (
                         <div className="currFieldCont">
                             <H2Fields value={`${TEXT.OTHERS}:`} language={language}
-                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {others.map((other) => (
                                 <div key={other._id} className="currFieldDetailCont">
                                     <H2Fields value={other.institutionName?.[language] || ""} language={language}
@@ -359,14 +359,14 @@ function Curriculum() {
                 </div>
                 <div className="currMidDivCont">
                     <H1Fields value={`${TEXT.SKILLS}:`} language={language}
-                        clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
+                        clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                     {hardSkills.length > 0 ? (
                         <div className="currFieldCont">
                             <H2Fields value={`${TEXT.HARD_SKILLS}:`} language={language}
-                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {hardSkills.map((hard) => (
                                 <div key={hard._id} className="currFieldDetailContRow">
-                                    <H2Fields value={hard.name?.[language] || ""} language={language}
+                                    <H2Fields value={`${hard.name?.[language] || ""}:`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2BoldRow" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2"/>
@@ -377,10 +377,10 @@ function Curriculum() {
                     {softSkills.length > 0 ? (
                         <div className="currFieldCont">
                             <H2Fields value={`${TEXT.SOFT_SKILLS}:`} language={language}
-                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2SubtitlecurrFieldH2" />
+                                className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {softSkills.map((soft)=> (
                                 <div key={soft._id} className="currFieldDetailContRow">
-                                    <H2Fields value={soft.name?.[language] || ""} language={language}
+                                    <H2Fields value={`${soft.name?.[language] || ""}:`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
@@ -390,19 +390,19 @@ function Curriculum() {
                 <div className="currMidDivCont">
                     {proyects.length > 0 ? (
                         <div>
-                            <H1Fields value={`PROYECTS`} language={language}
+                            <H1Fields value={`${TEXT.PROYECTS}:`} language={language}
                                 clH1Cont="currMidH1Cont" clH1Text="currMidH1Cont" />
                             {proyects.map((proy) => (
-                                <div key={proy._id}>
-                                    <div>
+                                <div key={proy._id} className="currFieldDetailCont">
+                                    <div className="currFieldSubDetailCont">
                                         <H2Fields value={proy.name?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={proy.company?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : "ACTUAL"}`} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
                                     <H2Fields value={proy.description?.[language] || ""} language={language}
-                                        className="" classNameH2="" />
+                                        className="currFieldH2Cont" classNameH2="currFieldH2Desc" />
                                     </div>
                                     <div>
                                         <H2Fields value={`${TEXT.CATEGORIES}:`} language={language}
