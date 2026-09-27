@@ -12,3 +12,16 @@ export function generateCUILFromDNI(dni, prefix = 20) {
     if (calculateDigit === 10) calculateDigit = 9;
     return `${prefix}${dniStr}${calculateDigit}`;
 };
+
+export function getCUILPrefixByGender(gender) {
+    switch (gender) {
+        case "male":
+            return 20;
+        case "female":
+            return 27;
+        case "other":
+            return 23;
+        default:
+            return null;
+    };
+};

@@ -33,13 +33,18 @@ function PeopleForm() {
     const secondaryLang = language === "es" ? "en" : "es";
     const [continentsList, setContinentsList] = useState([]);
     const { verifyPrivileges } = userVerifyPrivileges();
+    const genderTranslations = [
+        { value: "male", label: { es: "Masculino", en: "Male" } },
+        { value: "female", label: { es: "Femenino", en: "Female" } },
+        { value: "other", label: { es: "Otro", en: "Other" } }
+    ];
 
     const validate = useCallback((data) => {
         const errors = {};
         try { validatorDNI((data.dni), TEXT.ERROR_DNI_MIN_MAX); } catch (error) { errors.dni = error.message; };
         try { validatorName(data.firstName, TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.firstName = error.message; };
         try { validatorName(data.lastName, TEXT.ERROR_ONLY_WORD_MAX_MIN); } catch (error) { errors.lastName = error.message; };
-        try { validatorCUILCUIT(data.cuil, TEXT.ERROR_CUIL_CUIT); } catch (error) { errors.cuit = error.message; };
+        try { validatorCUILCUIT(data.cuil, TEXT.ERROR_CUIL_CUIT); } catch (error) { errors.cuil = error.message; };
         try {
             validatorDate(data.birthday, { allowFuture: false, maxYearsAgo: 120 }, TEXT.ERROR_DATE_EMPTY, TEXT.ERROR_DATE_FORMAT, TEXT.ERROR_DATE_INVALID, TEXT.ERROR_DATE_FUTURE, TEXT.ERROR_DATE_TOO_OLD);
         } catch (error) { errors.birthday = error.message; };
@@ -58,9 +63,9 @@ function PeopleForm() {
             if (!errors.address) errors.address = {};
             errors.address.floor = error.message;
         };
-        try { validatorLongText(data.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch(error) { errors.aboutMePrimary = error.message; };
-        if(showOtherLang) { try { validatorLongText(data.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch(error) { error.aboutMeSecondary = error.message; }; };
-        //FALTA VALIDAR CONTINENTES; COUNTRY; PROVINCE; CITY y LEGAL ADDRESS
+        try { validatorLongText(data.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.aboutMePrimary = error.message; };
+        if (showOtherLang) { try { validatorLongText(data.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { error.aboutMeSecondary = error.message; }; };
+        if (!data.gender) { errors.gender = `${TEXT.ERROR}: FALTA TEXTO ERROR GENDER!!` };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 
@@ -70,12 +75,21 @@ function PeopleForm() {
             _id: "", firstName: "", lastName: "", dni: "", cuil: "", birthday: "", phone: "", jobTitle: { es: "", en: "" }, address: { street: "", number: "", floor: "", aparment: "", },
             legalAddress: { street: "", number: "", floor: "", aparment: "" }, images: [], continents: { _id: "", name: { es: "", en: "" }, countries: [] },
             countries: { _id: "", name: { es: "", en: "" }, provinces: [] }, provinces: { _id: "", name: { es: "", en: "" }, cities: [] },
-            cities: { _id: "", name: { es: "", en: "" } }
+            cities: { _id: "", name: { es: "", en: "" } }, gender: ""
         }, validate, async (data) => {
             try {
                 let result;
                 setLoading(true);
                 startLoading();
+
+                const dataToSubmit = {
+            ...data,
+            cuil: data.cuil
+        };
+
+        console.log("DATA FINAL A ENVIAR:", dataToSubmit);
+
+
                 if (isEdit) result = await fetchUpdatePersonByIdWithImages(id, data);
                 else result = await fetchCreatePersonWithImages(data);
                 if (result?.error) return errorSweet(result?.error.message || TEXT.TEXT_ERROR_OOPS);
@@ -124,9 +138,9 @@ function PeopleForm() {
     useEffect(() => {
         const loadPerson = async () => {
             try {
-                const permission = isEdit ? "update_people": "create_people";
+                const permission = isEdit ? "update_people" : "create_people";
                 const allowed = await verifyPrivileges(user, permission);
-                if(!allowed) return;
+                if (!allowed) return;
                 startLoading();
                 await new Promise(resolve => setTimeout(resolve, 600));
                 const allContinents = await fetchGetAllContinentsPopulate();
@@ -149,7 +163,7 @@ function PeopleForm() {
                     const selectedCity = selectedProvince?.cities.find(ci => ci._id === person?.cities?._id) || { _id: "", name: { es: "", en: "" } };
                     setFormData(prev => ({
                         ...prev, _id: person._id, firstName: person.firstName, lastName: person.lastName, dni: person.dni, cuil: person.cuil, birthday: person.birthday,
-                        phone: person.phone, jobTitle: { es: person.jobTitle?.es || "", en: person.jobTitle?.en || "" },
+                        phone: person.phone, jobTitle: { es: person.jobTitle?.es || "", en: person.jobTitle?.en || "" }, gender: person.gender || "", aboutMe: { es: person.aboutMe?.es || "", en: person.aboutMe?.en || "" },
                         address: { street: person.address?.street || "", number: person.address?.number || "", floor: person.address?.floor || "", aparment: person.address?.aparment || "" },
                         legalAddress: { street: person.legalAddress?.street, number: person.legalAddress?.number, floor: person.legalAddress?.floor, aparment: person.legalAddress?.aparment }, images: person.images?.length ?
                             person.images.map(img => ({ publicId: img.publicId, url: img.url, hash: img.hash, width: img.width, height: img.height, isMain: img.isMain || false, })) : [],
@@ -182,7 +196,8 @@ function PeopleForm() {
                             <CheckBox name={"showOtherLang"} textH2={`${TEXT.SHOW} (${secondaryLang.toUpperCase()})`} checked={showOtherLang} onChange={(e) => setShowOtherLang(e.target.checked)} />
                         </div>
                         {isEdit && (
-                            <Inputs textH2={TEXT.ID} type="text" name={"_id"} value={formData?._id} language={language} readOnly={true} disabled={true} className={"formInputRow"} cNContainer={"formInputRowContainter"} cNSecTop={"formInputRowTop"} cNSectBottom={"forInputRowBottom"} />
+                            <Inputs textH2={TEXT.ID} type="text" name={"_id"} value={formData?._id} language={language} readOnly={true} disabled={true}
+                                className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         )}
                         <Inputs textH2={TEXT.DNI} type="number" name={"dni"} value={formData?.dni} placeHolder={TEXT.inputsText("m", TEXT.DNI)}/*{TEXT.inputsText("m", TEXT.DNI_OF_THE_USER)}*/ language={language} onChange={handleChange}
                             onBlur={handleBlur} error={(touched.dni || isSubmitted) && errors.dni}
@@ -192,6 +207,9 @@ function PeopleForm() {
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <Inputs textH2={TEXT.LAST_NAME} type="text" name={"lastName"} value={formData?.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/*{TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.lastName || isSubmitted) && errors.lastName} language={language}
+                            className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                        <SelectsV2 label={`FALTA LABEL GENDER`} name={`gender`} options={genderTranslations} value={formData.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
+                            getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur} error={(touched.gender || isSubmitted) && errors.gender}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <Inputs textH2={TEXT.CUIL} type="number" name={"cuil"} value={formData?.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/*{TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.cuil || isSubmitted) && errors.cuil} language={language}
@@ -251,7 +269,7 @@ function PeopleForm() {
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
 
                         />
-                        <SelectsV2 label={`${TEXT.COUNTRY}:`} options={filteredCountries} value={formData?.countries?._id || ""} placeholder={TEXT.SELECT_COUNTRY} language={language} 
+                        <SelectsV2 label={`${TEXT.COUNTRY}:`} options={filteredCountries} value={formData?.countries?._id || ""} placeholder={TEXT.SELECT_COUNTRY} language={language}
                             disabled={!formData?.continents?._id} onChange={(e) => handleSelectChange("countries", filteredCountries.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
@@ -259,13 +277,13 @@ function PeopleForm() {
                             disabled={!formData?.countries?._id} onChange={(e) => handleSelectChange("provinces", filteredProvinces.find(p => p._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
-                        <SelectsV2 label={`${TEXT.CITY}:`} options={filteredCities} value={formData?.cities?._id || ""} placeholder={TEXT.SELECT_CITY} language={language} 
+                        <SelectsV2 label={`${TEXT.CITY}:`} options={filteredCities} value={formData?.cities?._id || ""} placeholder={TEXT.SELECT_CITY} language={language}
                             disabled={!formData?.provinces?._id} onChange={(e) => handleSelectChange("cities", filteredCities.find(c => c._id === e.target.value))}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont"
                         />
                     </div>
                     <div className="genFormImgCont">
-                    <ImageManager images={formData?.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
+                        <ImageManager images={formData?.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
                             /* cThumbCont={"thumbnailsContainerDetails"} cThumbAddCont={"thumbnailsAddContainerDetails"} 
                             cThumbPrevContainer={"thumnailsPreviewImgContainerDetails"} labelH2={""} valueH2={""} cThumbPrevImg={"thumbnailsImgPreviewDetails"}
                             cThumbImgContainer={"thumbnailsImgsContainerDetails"} cThumbImgBody={"thumbnailsImgBodyDetails"} cThumbImgBodyCont={"thumbnailsImgBodyContainerDetails"}

@@ -20,6 +20,11 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
     const provincesList = data.countries?._id ? countriesList.find(c => c._id === data.countries._id)?.provinces || [] : [];
     const citiesList = data.provinces?._id ? provincesList.find(p => p._id === data.provinces._id)?.cities || [] : [];
     const setImages = (newImages) => setFormData(prev => ({ ...prev, person: { ...prev.person, images: newImages } }));
+    const genderTranslations = [
+        { value: "male", label: { es: "Masculino", en: "Male" } },
+        { value: "female", label: { es: "Femenino", en: "Female" } },
+        { value: "other", label: { es: "Otro", en: "Other" } }
+    ];
 
     const handleSelectChange = (level, selectedObj) => {
         setFormData(prev => {
@@ -49,6 +54,9 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
         });
     };
 
+
+    console.log("PERSON USER STEP", data)
+
     return (
         <>
             <section className="perFieldSectTop">
@@ -72,6 +80,9 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
                     <Inputs textH2={TEXT.LAST_NAME} type="text" name={"person.lastName"} value={data.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/* {TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)} */ language={language}
                         onChange={handleChange} onBlur={handleBlur} error={(touched[`person.lastName`] || isSubmitted) && errors.person?.lastName}
                         className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
+                    <SelectsV2 label={`FALTA LABEL GENDER`} name={`person.gender`} options={genderTranslations} value={data.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
+                        getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur} error={(touched[`person.gender`] || isSubmitted) && errors.person?.gender}
+                        className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     <Inputs textH2={TEXT.CUIL} type="number" name={"person.cuil"} value={data.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/* {TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)} */ language={language}
                         onChange={handleChange} error={(touched[`person.cuil`] || isSubmitted) && errors.person?.cuil} disabled={true} readOnly={true}
                         className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
@@ -94,7 +105,7 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
                         className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     {showOtherLang && (
                         <Inputs textH2={`${TEXT.ABOUT_ME} (${secondaryLang.toUpperCase()})`} type="text" name={"person.aboutMe"} value={data.aboutMe?.[secondaryLang] || ""} placeHolder={TEXT.inputsText("m", TEXT.ABOUT_ME)}
-                            onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`person.aboutMe_${secondaryLang}`] || isSubmitted) && errors.person?.aboutMeSecondary }
+                            onChange={(e) => handleChange(e, secondaryLang)} onBlur={(e) => handleBlur(e, secondaryLang)} error={(touched[`person.aboutMe_${secondaryLang}`] || isSubmitted) && errors.person?.aboutMeSecondary}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     )}
                     <H2Fields value={`${TEXT.PERSONAL_ADDRESS}:`} language={language} className="genFormH2TitleCont" classNameH2="genFormH2TextTitle" />

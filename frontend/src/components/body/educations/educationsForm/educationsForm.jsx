@@ -95,22 +95,6 @@ function EducationsForm() {
         return allHabilities.filter(hability => !assignedIds.has(hability._id)).sort(sortByName);
     }, [allHabilities, formData.habilities, sortByName]);
 
-    /*const availablesHabilities = useMemo(() => {
-        const assignedIds = new Set(formData.habilities.map(hab => hab._id));
-        return allHabilities.filter(hability => !assignedIds.has(hability._id)).
-            sort((a, b) => (a.name?.[language] || "").localeCompare(b.name?.[language] || "", language, { sensitivity: "base" }));
-    }, [allHabilities, formData.habilities]);*/
-
-    /*const assignedHabilities = useMemo(() => {
-        return [...formData.habilities].sort((a, b) =>
-            (a.name?.[language] || "").localeCompare(
-                b.name?.[language] || "",
-                language,
-                { sensitivity: "base" }
-            )
-        );
-    }, [formData.habilities, language]);*/
-
     const assignedHabilities = useMemo(() => {
         return [...formData.habilities].sort(sortByName);
     }, [formData.habilities, sortByName]);

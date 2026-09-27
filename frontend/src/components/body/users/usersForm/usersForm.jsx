@@ -23,7 +23,7 @@ const emptyPerson = {
     dni: "", firstName: "", lastName: "", phone: "", jobTitle: { es: "", en: "" }, continents: { ...emptyLocation, countries: [] },
     countries: { ...emptyLocation, provinces: [] }, provinces: { ...emptyLocation, cities: [] }, cities: emptyLocation,
     address: { street: "", number: "", floor: "", aparment: "" }, legalAddress: { street: "", number: "", floor: "", aparment: "" }, images: [],
-    aboutMe: { es: "", en: "" }
+    aboutMe: { es: "", en: "" }, gender: ""
 };
 
 function UsersForm() {
@@ -68,6 +68,7 @@ function UsersForm() {
         try { validatorNumber(data.person?.address?.floor, TEXT.ERROR_NUMBERS_MIN); } catch (error) { errors.address.floor = error.message; };
         try { validatorLongText(data.person?.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.person.aboutMePrimary = error.message; };
         if (showOtherLang) { try { validatorLongText(data.person?.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.person.aboutMeSecondary = error.message; } };
+        if(!data.person?.gender) { errors.person.gender = `${TEXT.ERROR}: FALTA TEXTO ERROR GENDER!` };
         //FALTA VALIDAR CONTINENTES; COUNTRY; PROVINCE; CITY
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);

@@ -9,6 +9,7 @@ const peopleSchema = new mongoose.Schema(
         cuil: { type: Number, min: 1, required: true, unique: true },
         birthday: { type: Date, required: true },
         phone: { type: Number, required: true },
+        gender: { type: String, enum: ["female", "male", "other"], required: true, default: "male" },
         jobTitle: { type: Map, of: String },
         aboutMe: { type: Map, of: String },
         address: {

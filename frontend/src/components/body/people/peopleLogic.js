@@ -92,9 +92,10 @@ export const fetchUpdatePersonByIdWithImages = async (id, data) => {
         if(!id) throw new Error("Missing Person Id!");
         if(!data) throw new Error("Error: Missing data to updte the person!");
         const url = `people/${id}`;
+        console.log("DATA  FRONT", data);
         const formData = new FormData();
         //Campos simples:
-        const simpleFields = ["firstName", "lastName", "dni", "cuil", "birthday", "phone"];
+        const simpleFields = ["firstName", "lastName", "dni", "cuil", "birthday", "phone", "gender"];
         simpleFields.forEach(key => { if (data[key] !== undefined) formData.append(key, data[key]); });
         //Campos complejos -> stringify:
         if(data.jobTitle) formData.append("jobTitle", JSON.stringify(data.jobTitle));

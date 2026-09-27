@@ -166,6 +166,7 @@ class PeopleController {
             if (!isValidObjectId(id)) throw new Error("Error: Invalid Id of the person!");
             const data = req.body;
             const files = req.files || [];
+            console.log("DATA CONTRLLER", data);
             if (data.existingImages && typeof data.existingImages === "string") data.existingImages = JSON.parse(data.existingImages);
             if (data.jobTitle) data.jobTitle = JSON.parse(data.jobTitle);
             if (data.address) data.address = JSON.parse(data.address);
