@@ -13,6 +13,7 @@
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
     "country-flag-icons": "^1.6.20",
+    "qrcode.react": "^4.2.0",
     "react": "^19.2.7",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.2.7",

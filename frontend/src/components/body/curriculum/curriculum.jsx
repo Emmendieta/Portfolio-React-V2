@@ -12,8 +12,9 @@ import H1Fields from "../generalFields/h1Fields/h1fields";
 import H2Fields from "../generalFields/h2Fields/h2Fields";
 import { formatDate } from "../../../helpers/formatDate.helper";
 import { fetchGetAllSkills } from "../skills/skillsLogic";
-import "./curriculum.css";
 import { fetchGetUsers } from "../users/userLogic";
+import { QRCodeSVG } from "qrcode.react";
+import "./curriculum.css";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
@@ -87,7 +88,7 @@ function Curriculum() {
             try {
                 startLoading();
                 const result = await fetchGetUsers()
-                if(result?.error) return errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                if (result?.error) return errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const userResponse = result.response[0] || [];
                 setDataUser(userResponse);
             } catch (error) {
@@ -147,7 +148,7 @@ function Curriculum() {
             try {
                 startLoading();
                 const result = await fetchGetAllSkills();
-                if(result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+                if (result?.error) return await errorSweet(`${TEXT.ERROR}: ${result?.error?.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
                 const skillsResp = result.response || [];
                 const hard = skillsResp.filter(skill => skill.type === "Hard") || [];
                 const sortedHard = [...hard].sort((a, b) => Number(a.order || 0) - Number(b.roder || 0));
@@ -249,7 +250,7 @@ function Curriculum() {
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
-                                    <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd): TEXT.CURRENT}`} language={language}
+                                    <H2Fields value={`${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd) : TEXT.CURRENT}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2" />
                                 </div>
                             ))}
@@ -368,23 +369,23 @@ function Curriculum() {
                                     <H2Fields value={`• ${hard.name?.[language] || ""}:`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2BoldRow" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
-                                        className="currFieldH2ContRow" classNameH2="currFieldH2"/>
+                                        className="currFieldH2ContRow" classNameH2="currFieldH2" />
                                 </div>
                             ))}
                         </div>
-                    ): (<></>)}
+                    ) : (<></>)}
                     {softSkills.length > 0 ? (
                         <div className="currFieldCont">
                             <H2Fields value={`${TEXT.SOFT_SKILLS}:`} language={language}
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
-                            {softSkills.map((soft)=> (
+                            {softSkills.map((soft) => (
                                 <div key={soft._id} className="currFieldDetailContRow">
                                     <H2Fields value={`• ${soft.name?.[language] || ""}`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
                             ))}
                         </div>
-                    ): (<></>)}
+                    ) : (<></>)}
                 </div>
                 <div className="currMidDivCont">
                     {proyects.length > 0 ? (
@@ -395,31 +396,31 @@ function Curriculum() {
                                 <div key={proy._id} className="currFieldDetailCont">
                                     <div className="currFieldCont">
                                         <H2Fields value={`• ${proy.name?.[language] || ""}`} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
-                                    <H2Fields value={proy.company?.[language] || ""} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
-                                    <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : TEXT.CURRENT}`} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2" />
-                                    <H2Fields value={proy.description?.[language] || ""} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Desc" />
+                                            className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
+                                        <H2Fields value={proy.company?.[language] || ""} language={language}
+                                            className="currFieldH2Cont" classNameH2="currFieldH2" />
+                                        <H2Fields value={`${formatDate(proy.dateStart)} - ${proy.dateEnd ? formatDate(proy.dateEnd) : TEXT.CURRENT}`} language={language}
+                                            className="currFieldH2Cont" classNameH2="currFieldH2" />
+                                        <H2Fields value={proy.description?.[language] || ""} language={language}
+                                            className="currFieldH2Cont" classNameH2="currFieldH2Desc" />
                                     </div>
                                     <div className="currFieldSubCont">
                                         <H2Fields value={`${TEXT.CATEGORIES}:`} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
+                                            className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.categories.length > 0 ? (
                                             <div className="currFieldContRow">
                                                 {proy.categories.map((category) => (
                                                     <div key={category._id} className="currFieldDetailContRow">
                                                         <H2Fields value={category.name?.[language]} language={language}
-                                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
+                                                            className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                                     </div>
                                                 ))}
                                             </div>
-                                        ): (<></>)}
+                                        ) : (<></>)}
                                     </div>
                                     <div className="currFieldSubCont">
                                         <H2Fields value={`${TEXT.LANGUAGES}:`} language={language}
-                                        className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
+                                            className="currFieldH2Cont" classNameH2="currFieldH2Subtitle" />
                                         {proy.skills.length > 0 ? (
                                             <div className="currFieldContRow">
                                                 {proy.skills.map((skill) => (
@@ -429,11 +430,13 @@ function Curriculum() {
                                                     </div>
                                                 ))}
                                             </div>
-                                        ): (<></>)}
+                                        ) : (<></>)}
                                     </div>
-                                    <div>
-                                        //PODRIA PONER UN QR POR CADA PROYECT
-                                    </div>
+                                    {proy.url && (
+                                        <div className="currQRCont">
+                                            <QRCodeSVG value={proy.url} size={120} level="H" includeMargin={true} />
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
