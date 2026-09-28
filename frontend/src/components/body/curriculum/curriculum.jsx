@@ -250,7 +250,7 @@ function Curriculum() {
         });
     };
 
-    const handleGeneratePDF = () => {
+    const handleGeneratePDF = async () => {
         try {
             setLoading(true);
             startLoading();
