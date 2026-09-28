@@ -16,18 +16,25 @@ class CurriculumController {
     createCurriculum = async (req, res) => {
         try {
             const data = req.body;
-            //console.log("CONTOLLER CURRICULUM", data);
-            console.log(
-                "CONTROLLER CURRICULUM:",
-                JSON.stringify(req.body, null, 2)
-            );
-
-            console.log("EDUCATIONS:", req.body.educations);
-            console.log("WORKS:", req.body.works);
-            console.log("SKILLS:", req.body.skills);
-            console.log("PROYECTS:", req.body.proyects);
             if (!data) throw new Error("Error: Missing the information to create the Curriculum PDF!");
-
+            const { 
+                educations = [],
+                works = [],
+                skills = [],
+                proyects = []
+            } = data;
+            let educationsData = [];
+            let worksData = [];
+            let skillsData = [];
+            let proyectsData = [];
+            if(educations.length > 0) { educationsData = await this.eduService.readByFilter({ _id: { $in: educations } }); }
+            if(works.length > 0) { worksData = await this.workService.readByFilter({ _id: { $in: works } }); }
+            if(skills.length > 0) { skillsData = await this.skillService.readByFilter({ _id: { $in: skills } }); }
+            if(proyects.length > 0) { proyectsData = await this.proySerive.readByFilter({ _id: { $in: proyects } }); }
+            console.log("CURRICULUM EDU", educationsData);
+            console.log("CURRICULUM WORKS", worksData);
+            console.log("CURRICULUM SKILLS", skillsData);
+            console.log("CURRICULUM PROYECTS", proyectsData);
         } catch (error) {
             return res.json500(error.message);
         }
