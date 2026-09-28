@@ -223,7 +223,7 @@ function Curriculum() {
     const handleSelectItem = (type, id) => {
         setSelectedItems((prev) => {
             const currentItems = prev[type];
-            const alredySelected = currentItems.includes(id);
+            const alreadySelected = currentItems.includes(id);
             return { ...prev, [type]: alreadySelected ? currentItems.filter((itemId) => itemId !== id) : [...currentItems, id], };
         });
     };
@@ -260,7 +260,7 @@ function Curriculum() {
                         <div className="currFieldCont">
                             {works.map((work) => (
                                 <div key={work._id} className="currFieldDetailCont">
-                                    <input type="checkbox" checked={selectedItems.works.includes(work._id)} onChange={() => handleSelectItem("works", work._id)} />
+                                    <input type="checkbox" checked={selectedItems.works.includes(work._id)} onChange={() => handleSelectItem("works", work._id)} className="currCkeckBox" />
                                     <H2Fields value={`• ${work.jobTitle?.[language] || ""}`} language={language}
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
@@ -418,7 +418,7 @@ function Curriculum() {
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
                                     <div className="currFieldCont">
-                                        <input type="checkbox" checked={selectedItems.proyects.includes(proy)} onChange={() => handleSelectItem("proyects", proy._id)} />
+                                        <input type="checkbox" checked={selectedItems.proyects.includes(proy._id)} onChange={() => handleSelectItem("proyects", proy._id)} />
                                         <H2Fields value={`• ${proy.name?.[language] || ""}`} language={language}
                                             className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                         <H2Fields value={proy.company?.[language] || ""} language={language}
