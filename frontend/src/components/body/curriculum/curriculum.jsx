@@ -488,9 +488,9 @@ function Curriculum() {
                 </div>
             </section>
             <section className="currSectBottomCont">
-                <div>
+                <div className="currBottomBtnCont">
                     <button type="button" onClick={handleDeselectAll} className="btn btn-outline-danger" >{TEXT.DESELECTED_ALL}</button>
-                    <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" >{TEXT.SELECTED_ALL}</button>
+                    <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" id="btnCurrSelect" >{TEXT.SELECTED_ALL}</button>
                 </div>
                 <div className="QRCont">
                     <QRCodeSVG value={"https://www.emmendieta.com"} size={150} level="H" includeMargin={true} />

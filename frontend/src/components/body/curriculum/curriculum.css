@@ -308,3 +308,14 @@ usa:
     align-items: center;
     margin: 30px 30px 20px 0;
 }
+
+.currBottomBtnCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-right: 30px;
+}
+
+#btnCurrSelect {
+    margin-left: 20px;
+}
