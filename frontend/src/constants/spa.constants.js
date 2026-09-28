@@ -52,6 +52,8 @@ export const LOADING = "Cargando";
 export const PLEASE_WAIT = "Por favor, espere";
 export const PROFESSIONAL_EXP = "Experiencia Profesional";
 export const ACADEMIC_BACKGROUND = "Formación Académica";
+export const SELECTED_ALL = "Seleccionar todos";
+export const DESELECTED_ALL = "Deseleccionar todos";
 
 /* ------------ SEARCHS ------------ */
 

@@ -228,6 +228,26 @@ function Curriculum() {
         });
     };
 
+    const handleSelectedAll = () => {
+        setSelectedItems({
+            educations: educations.map((item) => item._id),
+            works: works.map((item) => item._id),
+            skills: skills.map((item) => item._id),
+            proyects: proyects.map((item) => item._id)
+        });
+    };
+
+    const handleDeselectAll = () => {
+        setSelectedItems({
+            educations: [],
+            works: [],
+            skills: [],
+            proyects: []
+        });
+    };
+
+    console.log("SELECTED ITEMS", selectedItems)
+
     return (
         <div className="currCont">
             <section className="currSectTopCont">
@@ -417,8 +437,8 @@ function Curriculum() {
                                 clH1Cont="currMidH1Cont" clH1Text="currMidH1" />
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.proyects.includes(proy._id)} onChange={() => handleSelectItem("proyects", proy._id)} />
                                     <div className="currFieldCont">
-                                        <input type="checkbox" checked={selectedItems.proyects.includes(proy._id)} onChange={() => handleSelectItem("proyects", proy._id)} />
                                         <H2Fields value={`• ${proy.name?.[language] || ""}`} language={language}
                                             className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                         <H2Fields value={proy.company?.[language] || ""} language={language}
@@ -468,6 +488,10 @@ function Curriculum() {
                 </div>
             </section>
             <section className="currSectBottomCont">
+                <div>
+                    <button type="button" onClick={handleDeselectAll} className="btn btn-outline-danger" >{TEXT.DESELECTED_ALL}</button>
+                    <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" >{TEXT.SELECTED_ALL}</button>
+                </div>
                 <div className="QRCont">
                     <QRCodeSVG value={"https://www.emmendieta.com"} size={150} level="H" includeMargin={true} />
                 </div>

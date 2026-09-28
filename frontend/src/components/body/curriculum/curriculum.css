@@ -1,3 +1,30 @@
+/*
+
+Si quieres que quede exactamente así
+
+☑ • Desarrollador Full Stack
+    Empresa XYZ
+    01/01/2024 - Actualidad
+
+usa:
+
+.currFieldDetailCont,
+.currFieldDetailContRow {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.currCkeckBox {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin: 4px 8px 0 0;
+}
+
+*/
+
 .currCont {
     display: flex;
     flex-direction: column;
