@@ -8,9 +8,9 @@ import { useLoading } from "../../../../context/Loading.Context";
 import { fetchGetAllPeoplePopulate } from "../peopleLogic";
 import H2Fields from "../../generalFields/h2Fields/h2Fields";
 import { formatDate } from "../../../../helpers/formatDate.helper";
-import "./peoplePresentation.css";
 import { FaUserEdit } from "react-icons/fa";
 import { userVerifyPrivileges } from "../../../../helpers/privileges.helper";
+import "./peoplePresentation.css";
 
 function PeoplePresentation() {
 

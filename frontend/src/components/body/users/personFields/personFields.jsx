@@ -80,7 +80,7 @@ function PersonFields({ data, setFormData, handleChange, handleBlur, errors, tou
                     <Inputs textH2={TEXT.LAST_NAME} type="text" name={"person.lastName"} value={data.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/* {TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)} */ language={language}
                         onChange={handleChange} onBlur={handleBlur} error={(touched[`person.lastName`] || isSubmitted) && errors.person?.lastName}
                         className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                    <SelectsV2 label={`FALTA LABEL GENDER`} name={`person.gender`} options={genderTranslations} value={data.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
+                    <SelectsV2 label={`${TEXT.GENDER}`} name={`person.gender`} options={genderTranslations} value={data.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
                         getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur} error={(touched[`person.gender`] || isSubmitted) && errors.person?.gender}
                         className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                     <Inputs textH2={TEXT.CUIL} type="number" name={"person.cuil"} value={data.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/* {TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)} */ language={language}

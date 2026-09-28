@@ -141,7 +141,9 @@ export const NO_PERSON = "Personas no encontradas";
 export const PEOPLE_LIST = "Lista de Personas";
 export const DELETE_PERSON = "Eliminar la persona";
 export const LEGAL_ADDRESS = "Domicilio Legal";
-export const PERSONAL_ADDRESS = "Domicilio Personal";
+export const PERSNAL_ADDRESS = "Domicilio Personal";
+export const GENDER = "Género";
+export const ERROR_GENDER = "Debes seleccionar un género";
 
 /* ------------ PERMISSIONS ------------ */
 

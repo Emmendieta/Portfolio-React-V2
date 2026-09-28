@@ -155,6 +155,8 @@ export const PERMISSIONS_AVAILABLES = "Permissions available";
 export const PERMISSIONS_ASSIGNED = "Permissions assigned";
 export const ERROR_NO_PERMISSION_PROVIDED = "No permission was provided";
 export const NAME_OF_THE_PERMISSION = "Name of the Permission";
+export const GENDER = "Gender";
+export const ERROR_GENDER = "You must select a gender";
 
 /* ------------ PROYECTS ------------ */
 

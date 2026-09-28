@@ -65,7 +65,7 @@ function PeopleForm() {
         };
         try { validatorLongText(data.aboutMe?.[primaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { errors.aboutMePrimary = error.message; };
         if (showOtherLang) { try { validatorLongText(data.aboutMe?.[secondaryLang], TEXT.ERROR_LONG_TEXT); } catch (error) { error.aboutMeSecondary = error.message; }; };
-        if (!data.gender) { errors.gender = `${TEXT.ERROR}: FALTA TEXTO ERROR GENDER!!` };
+        if (!data.gender) { errors.gender = `${TEXT.ERROR}: ${TEXT.ERROR_GENDER}!` };
         return errors;
     }, [primaryLang, secondaryLang, showOtherLang, TEXT]);
 
@@ -208,7 +208,7 @@ function PeopleForm() {
                         <Inputs textH2={TEXT.LAST_NAME} type="text" name={"lastName"} value={formData?.lastName} placeHolder={TEXT.inputsText("m", TEXT.LAST_NAME)}/*{TEXT.inputsText("m", TEXT.LAST_NAME_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
                             error={(touched.lastName || isSubmitted) && errors.lastName} language={language}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
-                        <SelectsV2 label={`FALTA LABEL GENDER`} name={`gender`} options={genderTranslations} value={formData.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
+                        <SelectsV2 label={`${TEXT.GENDER}:`} name={`gender`} options={genderTranslations} value={formData.gender || ""} placeholder={TEXT.SELECT_OPTION} language={language}
                             getValue={(item) => item.value} getLabel={(item, lang) => item.label?.[lang] ?? ""} onChange={handleChange} onBlur={handleBlur} error={(touched.gender || isSubmitted) && errors.gender}
                             className={"genFormInput"} cNContainer="genFormInputCont" cNSecTop="genFormInputTopCont" cnSectBottom="genFormInputBottomCont" />
                         <Inputs textH2={TEXT.CUIL} type="number" name={"cuil"} value={formData?.cuil} placeHolder={TEXT.inputsText("m", TEXT.CUIL)}/*{TEXT.inputsText("m", TEXT.CUIL_OF_THE_PERSON)}*/ onChange={handleChange} onBlur={handleBlur}
@@ -283,11 +283,7 @@ function PeopleForm() {
                         />
                     </div>
                     <div className="genFormImgCont">
-                        <ImageManager images={formData?.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD}
-                            /* cThumbCont={"thumbnailsContainerDetails"} cThumbAddCont={"thumbnailsAddContainerDetails"} 
-                            cThumbPrevContainer={"thumnailsPreviewImgContainerDetails"} labelH2={""} valueH2={""} cThumbPrevImg={"thumbnailsImgPreviewDetails"}
-                            cThumbImgContainer={"thumbnailsImgsContainerDetails"} cThumbImgBody={"thumbnailsImgBodyDetails"} cThumbImgBodyCont={"thumbnailsImgBodyContainerDetails"}
-                            cImgDisplay={"thumbnailImageDisplayDetails"} idThumbBtnAdd={"thumbnailsImageBtnAdd"} */ />
+                        <ImageManager images={formData?.images} setImages={setImages} editable={true} extInput={TEXT.IMAGES} genderInput={"f"} cThumbInput={TEXT.SELECT_IMAGES_ADD} />
                     </div>
                     <div className="genFormDivContBottom">
                         <a className="btn btn-outline-primary" id="btnGoBack" href="/">{TEXT.HOME}</a>
