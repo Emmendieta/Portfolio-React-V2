@@ -59,8 +59,6 @@ function Curriculum() {
         proyects: []
     });
     const { erroorSweet, successSweet } = useSweetAlert();
-    const [loading, setLoading] = useState(true);
-    const { startLoading, stopLoading } = useLoading();
 
     //Person
     useEffect(() => {
