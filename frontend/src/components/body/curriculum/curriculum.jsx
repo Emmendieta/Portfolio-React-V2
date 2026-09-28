@@ -52,7 +52,7 @@ function Curriculum() {
         "Other": { en: "Other", es: "Otro" }
     };
     const [selectedItems, setSelectedItems] = useState({
-        educations =[],
+        educations: [],
         works: [],
         skills: [],
         proyects: []
