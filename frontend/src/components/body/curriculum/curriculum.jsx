@@ -15,6 +15,7 @@ import { fetchGetAllSkills } from "../skills/skillsLogic";
 import { fetchGetUsers } from "../users/userLogic";
 import { QRCodeSVG } from "qrcode.react";
 import "./curriculum.css";
+import { fetchGeneratePDF } from "./curriculumLogic";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
@@ -57,6 +58,9 @@ function Curriculum() {
         skills: [],
         proyects: []
     });
+    const { erroorSweet, successSweet } = useSweetAlert();
+    const [loading, setLoading] = useState(true);
+    const { startLoading, stopLoading } = useLoading();
 
     //Person
     useEffect(() => {
@@ -246,6 +250,21 @@ function Curriculum() {
         });
     };
 
+    const handleGeneratePDF = () => {
+        try {
+            setLoading(true);
+            startLoading();
+            if(selectedItems.length <= 0) return await erroorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_MUST_SELECT}!`);
+            await fetchGeneratePDF(selectedItems);
+        } catch (error) {
+            console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+            await erroorSweet(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+        } finally {
+            setLoading(false);
+            stopLoading();
+        }
+    };
+
     console.log("SELECTED ITEMS", selectedItems)
 
     return (
@@ -262,7 +281,7 @@ function Curriculum() {
                         className="currImg" />
                 </div>
                 <div className="currTopDetailsCont">
-                    <H2Fields value={`${data?.address?.street} ${data?.address?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.PERSONAL_ADDRESS} language={language}
+                    <H2Fields value={`${data?.address?.street} ${data?.address?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.PERSNAL_ADDRESS} language={language}
                         className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
                     <H2Fields value={`${data?.legalAddress?.street} ${data?.legalAddress?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.LEGAL_ADDRESS} language={language}
                         className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
@@ -491,6 +510,9 @@ function Curriculum() {
                 <div className="currBottomBtnCont">
                     <button type="button" onClick={handleDeselectAll} className="btn btn-outline-danger" >{TEXT.DESELECTED_ALL}</button>
                     <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" id="btnCurrSelect" >{TEXT.SELECTED_ALL}</button>
+                </div>
+                <div>
+                    <button type="button" onClick={handleGeneratePDF} className="btn btn-oultine-secondary">{TEXT.GENERATE_PDF}</button>
                 </div>
                 <div className="QRCont">
                     <QRCodeSVG value={"https://www.emmendieta.com"} size={150} level="H" includeMargin={true} />

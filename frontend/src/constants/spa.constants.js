@@ -54,6 +54,7 @@ export const PROFESSIONAL_EXP = "Experiencia Profesional";
 export const ACADEMIC_BACKGROUND = "Formación Académica";
 export const SELECTED_ALL = "Seleccionar todos";
 export const DESELECTED_ALL = "Deseleccionar todos";
+export const GENERATE_PDF = "Generar PDF";
 
 /* ------------ SEARCHS ------------ */
 
@@ -324,6 +325,7 @@ export const ERROR_NAME = "Error: El nombre solo aceptas palabras y el largo má
 export const ERROR_NAME_ALPHANUMERIC = "Error: El nombre solo acepta valores alfanuméricos";
 export const ERROR_TYPE = "Error: El Tipo no es válido";
 export const ERROR_PERCENT = "Error: El Porcentaje tiene que ser superior a 0 e inferior o igual a 100"
+export const ERROR_MUST_SELECT = "Tienes que seleccionar al menos un componente";
 
 /* ------------ PLACEHOLDERS ------------ */
 

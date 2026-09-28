@@ -16,6 +16,7 @@ import educationsRouter from "./api/educations.router.js";
 import proyectsRouter from "./api/proyects.router.js";
 import worksRouter from "./api/works.router.js";
 import socialsRouter from "./api/socials.router.js";
+import curriculumRouter from "./api/curriculum.router.js";
 
 class ApiRouter extends RouterHepler {
     constructor() {
@@ -40,6 +41,7 @@ class ApiRouter extends RouterHepler {
         this.use("/proyects", proyectsRouter);
         this.use("/works", worksRouter);
         this.use("/socials", socialsRouter);
+        this.use("/curriculum/pdf", curriculumRouter);
     };
 };
 

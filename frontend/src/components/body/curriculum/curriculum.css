@@ -314,6 +314,7 @@ usa:
     flex-direction: row;
     width: 100%;
     padding-right: 30px;
+    justify-content: flex-end;
 }
 
 #btnCurrSelect {

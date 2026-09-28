@@ -53,6 +53,7 @@ export const PROFESSIONAL_EXP = "Professional Experience";
 export const ACADEMIC_BACKGROUND = "Academic Background";
 export const SELECTED_ALL = "Select All";
 export const DESELECTED_ALL = "Deslect All";
+export const GENERATE_PDF = "Generate PDF";
 
 /* ------------ SEARCHS ------------ */
 
@@ -324,6 +325,7 @@ export const ERROR_NAME = "Error: The name only accept letter, and the max lengt
 export const ERROR_NAME_ALPHANUMERIC = "Error: The name only accept alphanmerics values";
 export const ERROR_TYPE = "Error: The Type is invalid";
 export const ERROR_PERCENT = "Error: The Percent must be higher than 0 and lower/equal of 100";
+export const ERROR_MUST_SELECT = "You must select at least one";
 
 /* ------------ PLACEHOLDERS ------------ */
 
