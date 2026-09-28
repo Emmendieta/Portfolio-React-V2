@@ -281,6 +281,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {courses.map((course) => (
                                 <div key={course._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(course._id)} onChange={() => handleSelectItem("educations", course._id)} />
                                     <H2Fields value={`• ${course.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={course.title?.[language] || ""} language={language}
@@ -297,6 +298,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {universities.map((uni) => (
                                 <div key={uni._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(uni._id)} onChange={() => handleSelectItem("educations", uni._id)} />
                                     <H2Fields value={`• ${uni.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={uni.title?.[language] || ""} language={language}
@@ -313,6 +315,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {highSchools.map((high) => (
                                 <div key={high._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(high._id)} onChange={() => handleSelectItem("educations", high._id)} />
                                     <H2Fields value={`• ${high.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={high.title?.[language] || ""} language={language}
@@ -329,6 +332,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {primarySchools.map((primary) => (
                                 <div key={primary._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(primary._id)} onChange={() => handleSelectItem("educations", primary._id)} />
                                     <H2Fields value={`• ${primary.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={primary.title?.[language] || ""} language={language}
@@ -345,6 +349,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {conferences.map((conf) => (
                                 <div key={conf._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(conf._id)} onChange={() => handleSelectItem("educations", conf._id)} />
                                     <H2Fields value={`• ${conf.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={conf.title?.[language] || ""} language={language}
@@ -361,6 +366,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {others.map((other) => (
                                 <div key={other._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.educations.includes(other._id)} onChange={() => handleSelectItem("educations", other._id)} />
                                     <H2Fields value={`• ${other.institutionName?.[language] || ""}`} language={language}
                                         className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                     <H2Fields value={other.title?.[language] || ""} language={language}
@@ -381,6 +387,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {hardSkills.map((hard) => (
                                 <div key={hard._id} className="currFieldDetailContRow">
+                                    <input type="checkbox" checked={selectedItems.skills.includes(hard._id)} onChange={() => handleSelectItem("skills", hard._id)} />
                                     <H2Fields value={`• ${hard.name?.[language] || ""}:`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2BoldRow" />
                                     <H2Fields value={`${hard.percent}%`} language={language}
@@ -395,6 +402,7 @@ function Curriculum() {
                                 className="currFieldH2SubtitleCont" classNameH2="currFieldH2Subtitle" />
                             {softSkills.map((soft) => (
                                 <div key={soft._id} className="currFieldDetailContRow">
+                                    <input type="checkbox" checked={selectedItems.skills.includes(soft._id)} onChange={() => handleSelectItem("skills", soft._id)} />
                                     <H2Fields value={`• ${soft.name?.[language] || ""}`} language={language}
                                         className="currFieldH2ContRow" classNameH2="currFieldH2Bold" />
                                 </div>
@@ -410,6 +418,7 @@ function Curriculum() {
                             {proyects.map((proy) => (
                                 <div key={proy._id} className="currFieldDetailCont">
                                     <div className="currFieldCont">
+                                        <input type="checkbox" checked={selectedItems.proyects.includes(proy)} onChange={() => handleSelectItem("proyects", proy._id)} />
                                         <H2Fields value={`• ${proy.name?.[language] || ""}`} language={language}
                                             className="currFieldH2Cont" classNameH2="currFieldH2Bold" />
                                         <H2Fields value={proy.company?.[language] || ""} language={language}
