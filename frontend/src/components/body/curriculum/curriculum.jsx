@@ -51,6 +51,12 @@ function Curriculum() {
         "Conference": { en: "Conference", es: "Conferencia" },
         "Other": { en: "Other", es: "Otro" }
     };
+    const [selectedItems, setSelectedItems] = useState({
+        educations =[],
+        works: [],
+        skills: [],
+        proyects: []
+    });
 
     //Person
     useEffect(() => {
@@ -214,6 +220,14 @@ function Curriculum() {
         loadProyects();
     }, [user, language]);
 
+    const handleSelectItem = (type, id) => {
+        setSelectedItems((prev) => {
+            const currentItems = prev[type];
+            const alredySelected = currentItems.includes(id);
+            return { ...prev, [type]: alreadySelected ? currentItems.filter((itemId) => itemId !== id) : [...currentItems, id], };
+        });
+    };
+
     return (
         <div className="currCont">
             <section className="currSectTopCont">
@@ -246,6 +260,7 @@ function Curriculum() {
                         <div className="currFieldCont">
                             {works.map((work) => (
                                 <div key={work._id} className="currFieldDetailCont">
+                                    <input type="checkbox" checked={selectedItems.works.includes(work._id)} onChange={() => handleSelectItem("works", work._id)} />
                                     <H2Fields value={`• ${work.jobTitle?.[language] || ""}`} language={language}
                                         className="currFieldH2TitleCont" classNameH2="currFieldH2Title" />
                                     <H2Fields value={work.company?.[language] || ""} language={language}
