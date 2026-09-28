@@ -432,9 +432,9 @@ function Curriculum() {
                                             </div>
                                         ) : (<></>)}
                                     </div>
-                                    {proy.url && (
+                                    {proy.linkProyect && (
                                         <div className="currQRCont">
-                                            <QRCodeSVG value={proy.url} size={120} level="H" includeMargin={true} />
+                                            <QRCodeSVG value={proy.linkProyect} size={120} level="H" includeMargin={true} />
                                         </div>
                                     )}
                                 </div>
