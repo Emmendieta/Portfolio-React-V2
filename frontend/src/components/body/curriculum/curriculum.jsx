@@ -443,8 +443,10 @@ function Curriculum() {
                     ) : (<></>)}
                 </div>
             </section>
-            <section>
-                //QR
+            <section className="currSectBottomCont">
+                <div className="QRCont">
+                    <QRCodeSVG value={"https://www.emmendieta.com"} size={150} level="H" includeMargin={true} />
+                </div>
             </section>
         </div>
     );

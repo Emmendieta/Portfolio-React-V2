@@ -245,7 +245,7 @@
 }
 
 
-/* --------------------- BOTTOM --------------------- */
+/* --------------------- PROYECT QR --------------------- */
 
 .currQRCont {
     display: flex;
@@ -254,4 +254,23 @@
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    margin: 30px 20px 30px 0;
+}
+
+/* --------------------- BOTTOM --------------------- */
+
+.currSectBottomCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.QRCont {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 30px 20px 0;
 }
