@@ -54,6 +54,7 @@ export const ACADEMIC_BACKGROUND = "Academic Background";
 export const SELECTED_ALL = "Select All";
 export const DESELECTED_ALL = "Deslect All";
 export const GENERATE_PDF = "Generate PDF";
+export const GENERATE_PDF_OK = "Se genero correctamente el PDF";
 
 /* ------------ SEARCHS ------------ */
 

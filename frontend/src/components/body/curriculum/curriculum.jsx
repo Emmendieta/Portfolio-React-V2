@@ -41,7 +41,6 @@ function Curriculum() {
     const [searchFullNameFilter, setSearchFullNameFilter] = useState("")
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const { errorSweet } = useSweetAlert();
     const { language } = useLanguage();
     const TEXT = LANG_CONST[language];
     const typeEducationLabels = {
@@ -58,7 +57,7 @@ function Curriculum() {
         skills: [],
         proyects: []
     });
-    const { erroorSweet, successSweet } = useSweetAlert();
+    const { errorSweet, successSweet } = useSweetAlert();
 
     //Person
     useEffect(() => {
@@ -252,11 +251,17 @@ function Curriculum() {
         try {
             setLoading(true);
             startLoading();
-            if(selectedItems.length <= 0) return await erroorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_MUST_SELECT}!`);
+            const hasSelectedItems = 
+                selectedItems.educations.length > 0 ||
+                selectedItems.works.length > 0 ||
+                selectedItems.skills.length > 0 || 
+                selectedItems.proyects.length > 0;
+            if(!hasSelectedItems) return await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_MUST_SELECT}!`);
             await fetchGeneratePDF(selectedItems);
+            return await successSweet(`${TEXT.GENERATE_PDF_OK}!`);
         } catch (error) {
             console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
-            await erroorSweet(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
+            await errorSweet(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
         } finally {
             setLoading(false);
             stopLoading();
@@ -510,7 +515,7 @@ function Curriculum() {
                     <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" id="btnCurrSelect" >{TEXT.SELECTED_ALL}</button>
                 </div>
                 <div>
-                    <button type="button" onClick={handleGeneratePDF} className="btn btn-oultine-secondary">{TEXT.GENERATE_PDF}</button>
+                    <button type="button" onClick={handleGeneratePDF} className="btn btn-outline-secondary">{TEXT.GENERATE_PDF}</button>
                 </div>
                 <div className="QRCont">
                     <QRCodeSVG value={"https://www.emmendieta.com"} size={150} level="H" includeMargin={true} />
