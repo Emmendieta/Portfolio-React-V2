@@ -41,7 +41,7 @@ class ApiRouter extends RouterHepler {
         this.use("/proyects", proyectsRouter);
         this.use("/works", worksRouter);
         this.use("/socials", socialsRouter);
-        this.use("/curriculum/pdf", curriculumRouter);
+        this.use("/curriculum", curriculumRouter);
     };
 };
 
