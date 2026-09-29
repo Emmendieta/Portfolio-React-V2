@@ -70,7 +70,7 @@ class CurriculumController {
                     'attachment; filename="Curriculum-Mendieta-Emiliano-Manuel.pdf"',
                 "Content-Length": pdfBuffer.length
             });
-            res,json201(pdfBuffer)
+            res.json201(pdfBuffer)
         } catch (error) {
             return res.json500(error.message);
         }
