@@ -251,13 +251,14 @@ function Curriculum() {
         try {
             setLoading(true);
             startLoading();
-            const hasSelectedItems = 
+            const hasSelectedItems =
                 selectedItems.educations.length > 0 ||
                 selectedItems.works.length > 0 ||
-                selectedItems.skills.length > 0 || 
+                selectedItems.skills.length > 0 ||
                 selectedItems.proyects.length > 0;
-            if(!hasSelectedItems) return await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_MUST_SELECT}!`);
-            await fetchGeneratePDF(selectedItems);
+            if (!hasSelectedItems) return await errorSweet(`${TEXT.ERROR}: ${TEXT.ERROR_MUST_SELECT}!`);
+            const pdfData = { language, ...selectedItems };
+            await fetchGeneratePDF(pdfData);
             return await successSweet(`${TEXT.GENERATE_PDF_OK}!`);
         } catch (error) {
             console.error(`${TEXT.ERROR}: ${error.message}` || `${TEXT.ERROR}: ${TEXT.TEXT_ERROR_OOPS}`);
@@ -512,7 +513,7 @@ function Curriculum() {
                     <button type="button" onClick={handleDeselectAll} className="btn btn-outline-danger" >{TEXT.DESELECTED_ALL}</button>
                     <button type="button" onClick={handleSelectedAll} className="btn btn-outline-primary" id="btnCurrSelect" >{TEXT.SELECTED_ALL}</button>
                 </div>
-                <div className="currSectBottomCont">
+                <div className="currBottomBtnCont">
                     <button type="button" onClick={handleGeneratePDF} className="btn btn-outline-secondary" id="btnCurrPDF">{TEXT.GENERATE_PDF}</button>
                 </div>
                 <div className="QRCont">

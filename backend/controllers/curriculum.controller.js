@@ -62,7 +62,7 @@ class CurriculumController {
             const users = await this.userService.readAllAndPopulate(populateFields);
             if(!users || users.length === 0) throw new Error("Error: Couldn't get the users!");
             const user = users[0];
-            const curriculumData = { user, educations: educationsData, works: worksData, skills: skillsData, proyects: proyectsData };
+            const curriculumData = { user, educations: educationsData, works: worksData, skills: skillsData, proyects: proyectsData, language: data.language };
             const pdfBuffer = await this.curriService.generatePDF(curriculumData);
             res.set({
                 "Content-Type": "application/pdf",

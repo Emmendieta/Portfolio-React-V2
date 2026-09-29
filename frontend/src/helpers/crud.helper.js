@@ -65,6 +65,7 @@ export const createCurriculum = async (baseURL, data) => {
         if (!baseURL) throw new Error("Error in getting the URL to process the information!");
         if (!data) throw new Error("Error in getting the data to process the creation!");
         const url = `${BACKEND_URL}/${baseURL}`;
+        console.log("URL FINAL", url)
         const opts = OPTS_CREATE(data);
         const response = await fetch(url, opts);
         if(!response.ok) {

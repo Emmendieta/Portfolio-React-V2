@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import { getLocalizedValue } from "../helpers/getValueLocalized.helper.js";
 
 class CurriculumService {
     constructor() {
@@ -6,7 +7,10 @@ class CurriculumService {
     };
     generatePDF = async (data) => {
         try {
-            const { user, educations, works, skills, proyects } = data;
+            const { user, educations, works, skills, proyects, language } = data;
+            console.log("SERVICE Curriculum data", language);
+
+            const userAboutMe = getLocalizedValue(user.people.aboutMe, language);
             const html = `
                 <html>
                     <head>
@@ -18,6 +22,7 @@ class CurriculumService {
                         <div>
                             <header>
                                 //ACA VA EL HEADER
+                                <div>${userAboutMe}</div>
                             </header>
                         </div>
                     </body>
