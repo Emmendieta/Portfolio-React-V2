@@ -23,7 +23,7 @@ class CurriculumService {
                     </body>
             `;
 
-            const browser = await puppeteer.launch({ headless: truem, args: ['--no-sandbox', '--disable-setuid-sandobx']});
+            const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', "--disable-setuid-sandbox"]});
             const page = await browser.newPage();
             await page.setContent(html, { waitUntil: "networkidle0" });
             const pdfBuffer = await page.pdf({ format: "A4", printBackground: true, margin: { bottom: "30px" } });
@@ -31,6 +31,7 @@ class CurriculumService {
             return pdfBuffer;
         } catch (error) {
             console.error("PDF Error:", error.message);
+            throw new Error(`Error generating PDF: ${error.message}`);
         }
     };
 };
