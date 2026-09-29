@@ -1,3 +1,4 @@
+import curriculumService from "../services/curriculum.service.js";
 import educationsService from "../services/educations.service.js";
 import proyectsService from "../services/proyects.service.js";
 import skillsService from "../services/skills.service.js";
@@ -11,6 +12,7 @@ class CurriculumController {
         this.skillService = skillsService;
         this.proySerive = proyectsService;
         this.userService = usersService;
+        this.curriService = curriculumService;
     };
 
     createCurriculum = async (req, res) => {
@@ -56,6 +58,19 @@ class CurriculumController {
                 };
                 populateFields = [];
             };
+            populateFields = ["people", "people.continents", "people.countries", "people.provinces", "people.cities", "roles", "roles.permissions", "extraPermission"];
+            const users = await this.userService.readAllAndPopulate(populateFields);
+            if(!users || users.length === 0) throw new Error("Error: Couldn't get the users!");
+            const user = users[0];
+            const curriculumData = { user, educations: educationsData, works: worksData, skills: skillsData, proyects: proyectsData };
+            const pdfBuffer = await this.curriService.generatePDF(curriculumData);
+            res.set({
+                "Content-Type": "application/pdf",
+                "Content-Disposition":
+                    'attachment; filename="Curriculum-Mendieta-Emiliano-Manuel.pdf"',
+                "Content-Length": pdfBuffer.length
+            });
+            res,json201(pdfBuffer)
         } catch (error) {
             return res.json500(error.message);
         }

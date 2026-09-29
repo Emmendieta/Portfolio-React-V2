@@ -1,0 +1,41 @@
+import puppeteer from "puppeteer";
+
+class CurriculumService {
+    constructor() {
+
+    };
+    generatePDF = async (data) => {
+        try {
+            const { user, educations, works, skills, proyects } = data;
+            const html = `
+                <html>
+                    <head>
+                        <style>
+                            //ACA VAN LAS IMPORTACIONES DE LOS STYLES
+                        </style>
+                    </head>
+                    <body>
+                        <div>
+                            <header>
+                                //ACA VA EL HEADER
+                            </header>
+                        </div>
+                    </body>
+            `;
+
+            const browser = await puppeteer.launch({ headless: truem, args: ['--no-sandbox', '--disable-setuid-sandobx']});
+            const page = await browser.newPage();
+            await page.setContent(html, { waitUntil: "networkidle0" });
+            const pdfBuffer = await page.pdf({ format: "A4", printBackground: true, margin: { bottom: "30px" } });
+            await browser.close();
+            return pdfBuffer;
+        } catch (error) {
+            console.error("PDF Error:", error.message);
+            return res.json500(`Error generating PDF: ${error.message}`);
+        }
+    };
+};
+
+const curriculumService = new CurriculumService();
+
+export default curriculumService;
