@@ -31,7 +31,6 @@ class CurriculumService {
             return pdfBuffer;
         } catch (error) {
             console.error("PDF Error:", error.message);
-            return res.json500(`Error generating PDF: ${error.message}`);
         }
     };
 };
