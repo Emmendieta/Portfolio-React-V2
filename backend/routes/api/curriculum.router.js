@@ -7,7 +7,7 @@ class CurriculumRouter extends RouterHepler {
         this.init();
     };
     init = () => {
-        this.create("/pdf", ["public"], curriculumController.createCurriculum);
+        this.read("/pdf", ["public"], curriculumController.createCurriculum);
     };
 };
 

@@ -60,6 +60,21 @@ export const createData = async (baseURL, data) => {
     } catch (error) { throw error; }
 };
 
+export const createCurriculum = async (baseURL, data) => {
+    try {
+        if (!baseURL) throw new Error("Error in getting the URL to process the information!");
+        if (!data) throw new Error("Error in getting the data to process the creation!");
+        const url = `${BACKEND_URL}/${baseURL}`;
+        const opts = OPTS_CREATE(data);
+        const response = await fetch(url, opts);
+        if(!response.ok) {
+            const errorata = await response.json();
+            throw new Error(errorata.error || "Error creating the information!");
+        };
+        return response;
+    } catch (error) { throw error; }
+};
+
 export const createDataWithImages = async (baseURL, data) => {
     try {
         if (!baseURL) throw new Error("Error in getting the URL to process the information!");

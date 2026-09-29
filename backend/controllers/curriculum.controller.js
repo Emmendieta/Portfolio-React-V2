@@ -72,7 +72,7 @@ class CurriculumController {
             });
             return res.send(pdfBuffer);
         } catch (error) {
-            return res.json500(error.message);
+            return res.statu(500).json({message: `Error: ${error.message}`});
         }
     };
 };
