@@ -20,11 +20,11 @@ export function SkillsCurriculum({ skills, language }) {
                                 const name = getLocalizedValue(skill.name, language);
                                 return `
                                 <div>
-                                    <h2>• ${name}</h2>
+                                    <h2>• ${name}:</h2>
                                     <h2>${skill.percent}</h2>
                                 </div>
                                 `;
-                            })}
+                            }).join("")}
                             </div>
                         `: ""
                         }
@@ -38,7 +38,7 @@ export function SkillsCurriculum({ skills, language }) {
                                             <h2>• ${name}</h2>
                                         </div>
                                     `;
-                                })}
+                                }).join("")}
                             </div>
                             `: ""
                         }

@@ -9,7 +9,7 @@ export function worksCurriculum({ works, language }) {
 
         const html = `
             <section>
-                <h1>{TEXT.WORKS}</h1>
+                <h1>{TEXT.WORKS}:</h1>
                 <div>
                     ${sortedWorks.map(work => {
                         const jobTitle = getLocalizedValue(work.jobTitle, language);
@@ -17,10 +17,10 @@ export function worksCurriculum({ works, language }) {
                         return `
                             <h2>• ${jobTitle}</h2>
                             <h2>${company}</h2>
-                            <h2>${formatDate(work.dateStart)} - ${formatDate(work.dateEnd) ?? "CONTINUA"}</h2>
+                            <h2>${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd) : "CONTINUA"}</h2>
                             //FALTAN LAS RESPONSIBILITIES 
                         `;
-                    })}
+                    }).join("")}
                 </div>
             </section>
         `;

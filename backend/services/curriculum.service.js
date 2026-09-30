@@ -4,6 +4,7 @@ import { headerCurriculum } from "../pdf/components/header/header.js";
 import { educationsCurriculum } from "../pdf/components/educations/educations.js";
 import { worksCurriculum } from "../pdf/components/works/works.js";
 import { SkillsCurriculum } from "../pdf/components/skills/skills.js";
+import { ProyectsCurriculum } from "../pdf/components/proyects/proyects.js";
 
 class CurriculumService {
     constructor() {
@@ -17,6 +18,7 @@ class CurriculumService {
             const educationsHTML = educationsCurriculum({ educations, language });
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
+            const proyectsHTML = ProyectsCurriculum({ proyects, language });
             
             const html = `
                 <html>
@@ -34,6 +36,7 @@ class CurriculumService {
                                 ${worksHTML}
                                 ${educationsHTML}
                                 ${skillsHTML}
+                                ${proyectsHTML}
                             </main>
                         </div>
                     </body>

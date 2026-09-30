@@ -27,7 +27,7 @@ export function educationsCurriculum ({ educations, language }) {
                                 return `
                                     <h2>•${title}</h2>
                                     <h2>${institutionName}</h2>
-                                    <h2>${formatDate(education.dateStart)} - ${formatDate(education.dateEnd)}</h2>
+                                    <h2>${formatDate(education.dateStart)} - ${education.dateEnd ? formatDate(education.dateEnd): "INCONCULSO"}</h2>
                                     //faltan las habilities
                                 `;
                             }).join("")}
