@@ -26,7 +26,7 @@ class CurriculumService {
 
             //Styles:
             const htmlStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "curriculum.css"), "utf-8");
-            const headerStyles = await fs.readFile(path.join(__dirname, "..", "header", "header.css"), "utf-8");
+            const headerStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "header", "header.css"), "utf-8");
             
             const html = `
                 <html>
