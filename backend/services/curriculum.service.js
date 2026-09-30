@@ -6,6 +6,8 @@ import { worksCurriculum } from "../pdf/components/works/works.js";
 import { SkillsCurriculum } from "../pdf/components/skills/skills.js";
 import { ProyectsCurriculum } from "../pdf/components/proyects/proyects.js";
 import fs from "fs/promises";
+import path from "path";
+import __dirname from "../utils/utils.js";
 
 class CurriculumService {
     constructor() {
@@ -23,7 +25,7 @@ class CurriculumService {
             const proyectsHTML = ProyectsCurriculum({ proyects, language });
 
             //Styles:
-            const htmlStyles = await fs.readFile("../pdf/curriculum.css", "utf-8");
+            const htmlStyles = await fs.readFile(path.join(__dirname, "pdf/curriculum.css"), "utf-8");
             
             const html = `
                 <html>
