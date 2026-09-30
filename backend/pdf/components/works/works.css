@@ -1,0 +1,71 @@
+#pdfWorkCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+#pdfWorkH1 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.pdfWorkBodyCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+.pdfWorkInfoCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfWorkBodyH2Title {
+    font-size: medium;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.pdfWorkBodyH2 {
+    font-size: medium;
+    margin-bottom: 5px;
+}
+
+/* ------------- RESPONSIBILITIES ------------- */
+
+.pdfWorkRespCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+#pdfWorkRespH1 {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pdfWorkRespH2Cont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 20px;
+}
+
+.pdfWorkRespH2 {
+    font-size: medium;
+    margin-right: 5px;
+}

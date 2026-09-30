@@ -8,20 +8,32 @@ export function worksCurriculum({ works, language }) {
         const sortedWorks = works.sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
 
         const html = `
-            <section>
-                <h1>{TEXT.WORKS}:</h1>
-                <div>
+            <section id="pdfWorkCont">
+                <h1 id="pdfWorkH1">{TEXT.WORKS}:</h1>
                     ${sortedWorks.map(work => {
                         const jobTitle = getLocalizedValue(work.jobTitle, language);
                         const company = getLocalizedValue(work.company, language);
                         return `
-                            <h2>• ${jobTitle}</h2>
-                            <h2>${company}</h2>
-                            <h2>${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd) : "CONTINUA"}</h2>
-                            //FALTAN LAS RESPONSIBILITIES 
+                            <div class="pdfWorkBodyCont">
+                                <div class="pdfWorkInfoCont">
+                                    <h2 class="pdfWorkBodyH2Title">• ${jobTitle}</h2>
+                                    <h2 class="pdfWorkBodyH2">${company}</h2>
+                                    <h2 class="pdfWorkBodyH2">${formatDate(work.dateStart)} - ${work.dateEnd ? formatDate(work.dateEnd) : "CONTINUA"}</h2>
+                                </div>
+                                <div class="pdfWorkRespCont">
+                                    <h1 id="pdfWorkRespH1">{TEXT.RESPONSIBILITIES}:</h1>
+                                    <div class="pdfWorkRespH2Cont">
+                                        ${work.responsibilities?.map(respon => {
+                                            const responName = getLocalizedValue(respon.name, language);
+                                            return `
+                                                <h2 class="pdfWorkRespH2">- ${responName}</h2>
+                                            `
+                                        }).join("")}
+                                    </div>
+                                </div>
+                            </div>
                         `;
                     }).join("")}
-                </div>
             </section>
         `;
         
