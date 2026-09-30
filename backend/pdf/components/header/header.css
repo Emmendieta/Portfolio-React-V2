@@ -1,0 +1,72 @@
+.pdfHeaderCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* -------------------- LEFT -------------------- */
+
+.pdfHeaderLeft {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdfHeaderLeftH1 {
+    font-size: larger;
+    font-weight: bold;
+    color: rgba(36, 36, 36, 0.785);
+}
+
+.pdfHeaderLeftH2 {
+    font-size: large;
+    font-weight: bold;
+    color: rgb(240, 248, 255);
+}
+
+/* -------------------- MIDDLE -------------------- */
+
+.pdfHeaderMiddle {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.pdfHeaderImg {
+    max-width: 300px;
+}
+
+/* -------------------- RIGHT -------------------- */
+
+.pdfHeaderRigth {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.pdfHeaderRightDivCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.pdfHeaderRightH2 {
+    font-size: large;
+    margin-left: 5px;
+}
+
+.pdfHeaderRightH2label {
+    font-size: large;
+    font-weight: bold;
+}

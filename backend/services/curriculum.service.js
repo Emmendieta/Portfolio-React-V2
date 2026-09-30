@@ -23,17 +23,17 @@ class CurriculumService {
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
             const proyectsHTML = ProyectsCurriculum({ proyects, language });
-            console.log("DIRNAME:", __dirname);
-            console.log("PATH",)
 
             //Styles:
             const htmlStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "curriculum.css"), "utf-8");
+            const headerStyles = await fs.readFile(path.join(__dirname, "..", "header", "header.css"), "utf-8");
             
             const html = `
                 <html>
                     <head>
                         <style>
                             ${htmlStyles}
+                            ${headerStyles}
                         </style>
                     </head>
                     <body id="pdfBody">
