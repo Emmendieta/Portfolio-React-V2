@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer";
 import { getLocalizedValue } from "../helpers/getValueLocalized.helper.js";
 import { headerCurriculum } from "../pdf/components/header/header.js";
+import { educationsCurriculum } from "../pdf/components/educations/educations.js";
 
 class CurriculumService {
     constructor() {
@@ -11,6 +12,7 @@ class CurriculumService {
             const { user, educations, works, skills, proyects, language } = data;
             console.log("SERVICE Curriculum data", language);
             const headerHTML = headerCurriculum({ user, language });
+            const educationsHTML = educationsCurriculum({ educations, language });
             
             const html = `
                 <html>
@@ -22,8 +24,11 @@ class CurriculumService {
                     <body>
                         <div>
                             <header>
-                                ${headerHTML};
+                                ${headerHTML}
                             </header>
+                            <main>
+                                ${educationsHTML}
+                            </main>
                         </div>
                     </body>
             `;
