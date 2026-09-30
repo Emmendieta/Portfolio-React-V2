@@ -5,7 +5,7 @@ export function educationsCurriculum ({ educations, language }) {
     try {
         if(!educations) throw new Error("Error: Couldn't get the information of the educations to generate the PDF!");
         if(educations.length === 0) return "";
-        const educationsTypes = ["University", "High School", "Primary School", "Course", "Conference", "Other"];
+        const educationsTypes = ["University", "Course", "High School", "Primary School", "Conference", "Other"];
         const groupedEducations = educationsTypes.reduce((gropus, type) => {
             gropus[type] = educations.filter(education => education.typeEducation === type).sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
             return gropus;
@@ -35,7 +35,7 @@ export function educationsCurriculum ({ educations, language }) {
                 </div>
             </section>
         `;
-        
+
         return html;
     } catch (error) {
         throw error;
