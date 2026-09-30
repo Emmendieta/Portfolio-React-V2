@@ -1,4 +1,4 @@
-import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper";
+import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
 
 export function headerCurriculum({ user, language }) {
     try {
