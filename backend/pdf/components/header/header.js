@@ -3,7 +3,7 @@ import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js"
 export function headerCurriculum({ user, language }) {
     try {
         if (!user) throw new Error("Error: Couldn't the information of the person to generate the PDF!");
-
+        console.log("USER HEADER", user);
         const userAboutMe = getLocalizedValue(user.people?.aboutMe, language);
         const userJobTitle = getLocalizedValue(user.people?.userJobTitle, language);
         const userCityName = getLocalizedValue(user.people?.cities[0]?.name, language);
@@ -26,13 +26,13 @@ export function headerCurriculum({ user, language }) {
                     <h2>{LEGAL ADDRESS}: ${user.people?.legalAddress?.street} - ${user.people?.legalAddress?.number} - ${userCityName} - ${userProvinceName} ${userCountryName}</h2>
                 </div>
                 <div>
-                    <h2>{BIRTHDAY}: ${user.people?.bithday} CAMBIAR EL FORMATO </h2>
+                    <h2>{BIRTHDAY}: ${user.people?.birthday} CAMBIAR EL FORMATO </h2>
                 </div>
                 <div>
                     <h2>{EMAIL}: ${user.email}</h2>
                 </div>
             </div>
-        `;
+        `
 
         return html;
     } catch (error) {
