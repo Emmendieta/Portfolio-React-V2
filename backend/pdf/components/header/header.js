@@ -5,7 +5,7 @@ export function headerCurriculum({ user, language }) {
     try {
         if (!user) throw new Error("Error: Couldn't get the information of the person to generate the PDF!");
         const userAboutMe = getLocalizedValue(user.people?.aboutMe, language);
-        const userJobTitle = getLocalizedValue(user.people?.userJobTitle, language);
+        const userJobTitle = getLocalizedValue(user.people?.jobTitle, language);
         const userCityName = getLocalizedValue(user.people?.cities?.name, language);
         const userProvinceName = getLocalizedValue(user.people.provinces?.name, language);
         const userCountryName = getLocalizedValue(user.people?.countries?.name, language);
