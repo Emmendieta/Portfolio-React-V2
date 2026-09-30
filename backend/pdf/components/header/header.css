@@ -65,11 +65,11 @@
 }
 
 .pdfHeaderRightH2 {
-    font-size: large;
+    font-size: medium;
     margin-left: 5px;
 }
 
 .pdfHeaderRightH2label {
-    font-size: large;
+    font-size: medium;
     font-weight: bold;
 }
