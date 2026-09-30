@@ -6,9 +6,9 @@ export function headerCurriculum({ user, language }) {
         console.log("USER HEADER", user);
         const userAboutMe = getLocalizedValue(user.people?.aboutMe, language);
         const userJobTitle = getLocalizedValue(user.people?.userJobTitle, language);
-        const userCityName = getLocalizedValue(user.people?.cities[0]?.name, language);
-        const userProvinceName = getLocalizedValue(user.people.provinces[0]?.name, language);
-        const userCountryName = getLocalizedValue(user.people?.countries[0]?.name, language);
+        const userCityName = getLocalizedValue(user.people?.cities?.name, language);
+        const userProvinceName = getLocalizedValue(user.people.provinces?.name, language);
+        const userCountryName = getLocalizedValue(user.people?.countries?.name, language);
 
         const html = `
             <div>
