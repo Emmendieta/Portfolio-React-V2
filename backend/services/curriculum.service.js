@@ -5,6 +5,7 @@ import { educationsCurriculum } from "../pdf/components/educations/educations.js
 import { worksCurriculum } from "../pdf/components/works/works.js";
 import { SkillsCurriculum } from "../pdf/components/skills/skills.js";
 import { ProyectsCurriculum } from "../pdf/components/proyects/proyects.js";
+import fs from "fs/promises";
 
 class CurriculumService {
     constructor() {
@@ -13,32 +14,36 @@ class CurriculumService {
     generatePDF = async (data) => {
         try {
             const { user, educations, works, skills, proyects, language } = data;
-            console.log("SERVICE Curriculum data", language);
+            
+            //Data:
             const headerHTML = headerCurriculum({ user, language });
             const educationsHTML = educationsCurriculum({ educations, language });
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
             const proyectsHTML = ProyectsCurriculum({ proyects, language });
+
+            //Styles:
+            const htmlStyles = await fs.readFile("../pdf/curriculum.css", "utf-8");
             
             const html = `
                 <html>
                     <head>
                         <style>
-                            //ACA VAN LAS IMPORTACIONES DE LOS STYLES
+                            ${htmlStyles}
                         </style>
                     </head>
-                    <body>
-                        <div>
-                            <header>
-                                ${headerHTML}
-                            </header>
-                            <main>
-                                ${worksHTML}
-                                ${educationsHTML}
-                                ${skillsHTML}
-                                ${proyectsHTML}
-                            </main>
-                        </div>
+                    <body id="pdfBody">
+                        <header id="pdfHeader">
+                            ${headerHTML}
+                        </header>
+                        <main id="pdfMain">
+                            ${worksHTML}
+                            ${educationsHTML}
+                            ${skillsHTML}
+                            ${proyectsHTML}
+                        </main>
+                        <footer id="pdfFooter">
+                        </footer>
                     </body>
             `;
 

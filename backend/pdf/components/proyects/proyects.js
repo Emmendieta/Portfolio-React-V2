@@ -17,7 +17,7 @@ export function ProyectsCurriculum({ proyects, language }) {
                         <div>
                             <h2>• ${name}</h2>
                             <h2>${company}</h2>
-                            <h2>${description}</h2>
+                            <p>${description}</p>
                             //FALTAN LAS CATEGORIES
                             //FALTAN LAS SKILLS
                             //FALTAN LAS RESPONSABILITIES

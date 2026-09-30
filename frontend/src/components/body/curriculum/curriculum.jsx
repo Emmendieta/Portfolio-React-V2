@@ -14,8 +14,8 @@ import { formatDate } from "../../../helpers/formatDate.helper";
 import { fetchGetAllSkills } from "../skills/skillsLogic";
 import { fetchGetUsers } from "../users/userLogic";
 import { QRCodeSVG } from "qrcode.react";
-import "./curriculum.css";
 import { fetchGeneratePDF } from "./curriculumLogic";
+import "./curriculum.css";
 
 function Curriculum() {
     const { user } = useContext(UserContext);
