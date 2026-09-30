@@ -15,7 +15,7 @@ export function worksCurriculum({ works, language }) {
                         const jobTitle = getLocalizedValue(work.jobTitle, language);
                         const company = getLocalizedValue(work.company, language);
                         return `
-                            <h2>${jobTitle}</h2>
+                            <h2>• ${jobTitle}</h2>
                             <h2>${company}</h2>
                             <h2>${formatDate(work.dateStart)} - ${formatDate(work.dateEnd) ?? "CONTINUA"}</h2>
                             //FALTAN LAS RESPONSIBILITIES 

@@ -3,6 +3,7 @@ import { getLocalizedValue } from "../helpers/getValueLocalized.helper.js";
 import { headerCurriculum } from "../pdf/components/header/header.js";
 import { educationsCurriculum } from "../pdf/components/educations/educations.js";
 import { worksCurriculum } from "../pdf/components/works/works.js";
+import { SkillsCurriculum } from "../pdf/components/skills/skills.js";
 
 class CurriculumService {
     constructor() {
@@ -15,6 +16,7 @@ class CurriculumService {
             const headerHTML = headerCurriculum({ user, language });
             const educationsHTML = educationsCurriculum({ educations, language });
             const worksHTML = worksCurriculum({ works, language });
+            const skillsHTML = SkillsCurriculum({ skills, language });
             
             const html = `
                 <html>
@@ -31,6 +33,7 @@ class CurriculumService {
                             <main>
                                 ${worksHTML}
                                 ${educationsHTML}
+                                ${skillsHTML}
                             </main>
                         </div>
                     </body>
