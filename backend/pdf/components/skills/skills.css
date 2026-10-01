@@ -1,0 +1,63 @@
+#pdfSkillCont{ 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pdfSkillsH1 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+/* ---------------- HARD AND SOFT ---------------- */
+
+.pdfSkillsSubCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.pdfSkillsSubH2 {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pdfSkillsHardCont,.pdfSkillsSubCont {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 40px;
+    padding-right: 40px;
+}
+
+.pdfSkillsHardH2Title {
+    font-size: small;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.pdfSkillsHardH2 {
+    font-size: small;
+    margin-right: 5px;
+}
+
+.pdfSkillsSofCont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 40px;
+    padding-right: 40px;
+}

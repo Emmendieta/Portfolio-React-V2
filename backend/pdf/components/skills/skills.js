@@ -10,18 +10,17 @@ export function SkillsCurriculum({ skills, language }) {
         const sortedSoft = [...softSkills].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
 
         const html = `
-            <section>
-                <div>
-                    <h1>{TEXT.SKILLS}:</h1>
+            <section id="pdfSkillCont">
+                    <h1 id="pdfSkillsH1">{TEXT.SKILLS}:</h1>
                         ${hardSkills.length > 0 ? `
-                            <div>
-                            <h2>{TEXT.HARD SKILLS}:</h2>
+                            <div class="pdfSkillsSubCont">
+                            <h2 class="pdfSkillsSubH2">{TEXT.HARD SKILLS}:</h2>
                             ${sortedHard.map(skill => {
                                 const name = getLocalizedValue(skill.name, language);
                                 return `
-                                <div>
-                                    <h2>• ${name}:</h2>
-                                    <h2>${skill.percent}</h2>
+                                <div class="pdfSkillsHardCont">
+                                    <h2 class="pdfSkillsHardH2Title">• ${name}:</h2>
+                                    <h2 class="pdfSkillsHardH2">${skill.percent}</h2>
                                 </div>
                                 `;
                             }).join("")}
@@ -29,20 +28,19 @@ export function SkillsCurriculum({ skills, language }) {
                         `: ""
                         }
                         ${softSkills.length > 0 ? `
-                            <div>
-                                <h2>{TEXT.SOFT SKILLS}:</h2>
+                            <div class="pdfSkillsSubCont">
+                            <h2 class="pdfSkillsSubH2">{TEXT.SOFT SKILLS}:</h2>
                                 ${sortedSoft.map(skill => {
                                     const name = getLocalizedValue(skill.name, language);
                                     return `
-                                        <div>
-                                            <h2>• ${name}</h2>
+                                        <div class="pdfSkillsSofCont">
+                                            <h2 class="pdfSkillsHardH2Title">• ${name}</h2>
                                         </div>
                                     `;
                                 }).join("")}
                             </div>
                             `: ""
                         }
-                </div>
             </section>
         `;
 
