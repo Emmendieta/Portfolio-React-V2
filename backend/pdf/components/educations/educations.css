@@ -67,9 +67,19 @@
     margin-bottom: 5px;
 }
 
+/*.pdfEduHabDivCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 20px;
+}*/
+
 .pdfEduHabDivCont {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box;
     margin-left: 15px;

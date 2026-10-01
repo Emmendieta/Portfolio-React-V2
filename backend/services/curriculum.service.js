@@ -29,6 +29,7 @@ class CurriculumService {
             const headerStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "header", "header.css"), "utf-8");
             const worksStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "works", "works.css"), "utf-8");
             const eduStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "educations", "educations.css"), "utf-8");
+            const proyectsStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "proyects", "proyects.css"));
             
             const html = `
                 <html>
@@ -38,6 +39,7 @@ class CurriculumService {
                             ${headerStyles}
                             ${worksStyles}
                             ${eduStyles}
+                            ${proyectsStyles}
                         </style>
                     </head>
                     <body id="pdfBody">
