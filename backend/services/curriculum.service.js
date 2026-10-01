@@ -37,6 +37,7 @@ class CurriculumService {
                             ${htmlStyles}
                             ${headerStyles}
                             ${worksStyles}
+                            ${eduStyles}
                         </style>
                     </head>
                     <body id="pdfBody">
