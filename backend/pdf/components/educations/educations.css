@@ -1,0 +1,83 @@
+#pdfEduCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pdfEduH1 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.pdfEduDivCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfEduTitleCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfEduTitleH1 {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pdfEduBodyCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfEduH2Title {
+    font-size: medium;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.pdfEduH2 {
+    font-size: medium;
+    margin-bottom: 5px;
+}
+
+/* ------------- HABILITIES ------------- */
+
+.pdfEduHabCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.pdfEduHabH1 {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pdfEduHabDivCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 20px;
+}
+
+.pdfEduHabH2 {
+    font-size: medium;
+    margin-right: 5px;
+}
+

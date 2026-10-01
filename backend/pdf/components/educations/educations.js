@@ -11,24 +11,36 @@ export function educationsCurriculum ({ educations, language }) {
             return gropus;
         }, {});
         const html = `
-            <section>
-                <h1>{TEXT.ACADEMIC BACKGROUND}:</h1>
-                <div>
+            <section id="pdfEduCont">
+                <h1 id="pdfEduH1">{TEXT.ACADEMIC BACKGROUND}:</h1>
+                <div class="pdfEduDivCont">
                     ${educationsTypes.map(type => {
                         const typeEducations = groupedEducations[type];
                         if(!typeEducations.length) { return ""; }
                         return `
-                            <div>
-                                <h1>${type} VER DE CAMBIAR PARA QUE TENGA EL LENGUAGE<h1> 
+                            <div class="pdfEduTitleCont">
+                                <h1 class="pdfEduTitleH1">${type} VER DE CAMBIAR PARA QUE TENGA EL LENGUAGE</h1> 
                             </div>
                             ${typeEducations.map(education => {
                                 const institutionName = getLocalizedValue(education.institutionName, language);
                                 const title = getLocalizedValue(education.title, language);
                                 return `
-                                    <h2>•${title}</h2>
-                                    <h2>${institutionName}</h2>
-                                    <h2>${formatDate(education.dateStart)} - ${education.dateEnd ? formatDate(education.dateEnd): "INCONCULSO"}</h2>
-                                    //faltan las habilities
+                                    <div class="pdfEduBodyCont">
+                                        <h2 class="pdfEduH2Title">• ${title}</h2>
+                                        <h2 class="pdfEduH2">${institutionName}</h2>
+                                        <h2 class="pdfEduH2">${formatDate(education.dateStart)} - ${education.dateEnd ? formatDate(education.dateEnd): "INCONCULSO"}</h2>
+                                    </div>
+                                    <div class="pdfEduHabCont">
+                                        <h1 class="pdfEduHabH1">{TEXT.HABILITIES}:</h1>
+                                        <div class="pdfEduHabDivCont">
+                                            ${education.habilities?.map(hab => {
+                                                const habName = getLocalizedValue(hab.name, language);
+                                                return `
+                                                    <h2 class="pdfEduHabH2">- ${habName} </h2>
+                                                `
+                                            }).join("")}
+                                        </div>
+                                    </div>
                                 `;
                             }).join("")}
                         `
