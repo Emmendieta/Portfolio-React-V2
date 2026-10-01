@@ -7,21 +7,53 @@ export function ProyectsCurriculum({ proyects, language }) {
         const sortedProyects = proyects.sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
 
         const html = `
-            <section>
-                <h1>{TEXT.PROYECTS}:</h1>
+            <section id="pdfProyCont">
+                <h1 id="pdfProyH1">{TEXT.PROYECTS}:</h1>
                 ${sortedProyects.map(proyect => {
                     const name = getLocalizedValue(proyect.name, language);
                     const company = getLocalizedValue(proyect.company, language);
                     const description = getLocalizedValue(proyect.description, language);
                     return `
+                        <div class="pdfProyBodyCont">
+                            <h2 class="pdfProyTitle">• ${name}</h2>
+                            <h2 class="pdfProy">${company}</h2>
+                            <p class="pdfProyP">${description}</p>
+                        </div>
+                        <div class=""pdfProySubCont>
+                            <h1 class="pdfProySubH1">{TEXT.CATEGORIES}:</h1>
+                            ${proyect.categories?.map(cat => {
+                                const catName = getLocalizedValue(cat.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${catName}</h2>
+                                    </div>
+                                `
+                            }).join("")}                        
+                        </div>
+                        <div class="pdfProySubCont">
+                            <h1 class="pdfProySubH1">{TEXT.SKILLS}:</h1>
+                            ${proyect.skills?.map(skill => {
+                                const skillName = getLocalizedValue(skill.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${skillName}</h2>
+                                    </div>
+                                `
+                            }). join("")}
+                        </div>
+                        <div class="pdfProySubCont">
+                            <h1 class="pdfProySubH1">{TEXT.RESPONSIBILITIES}:</h1>
+                            ${proyect.responsibilities?.map(resp => {
+                                const respName = getLocalizedValue(resp.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${respName}</h2>
+                                    </div>
+                                `
+                            }).join("")}
+                        </div>
                         <div>
-                            <h2>• ${name}</h2>
-                            <h2>${company}</h2>
-                            <p>${description}</p>
-                            //FALTAN LAS CATEGORIES
-                            //FALTAN LAS SKILLS
-                            //FALTAN LAS RESPONSABILITIES
-                            //FALTA GENERAR EL QR
+                            //FALTA QR
                         </div>
                     `;
                 }).join("")}

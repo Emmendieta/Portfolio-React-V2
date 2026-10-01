@@ -1,0 +1,69 @@
+#pdfProyCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pdfProyH1 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.pdfProyBodyCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfProyTitle {
+    font-size: medium;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.pdfProy {
+    font-size: medium;
+    margin-bottom: 5px;
+}
+
+.pdfProyP {
+    font-size: medium;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+
+/* --------------- CATEGORIES, HABILITES, RESPONSIBILITIES --------------- */
+
+.pdfProySubCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdfProySubH1 {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pdfProySubDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 40px;
+    padding-right: 30px;
+}
+
+.pdfProySubH2 {
+    font-size: small;
+    margin-right: 5px;
+}
