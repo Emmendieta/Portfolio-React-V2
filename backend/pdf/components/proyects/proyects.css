@@ -35,6 +35,7 @@
     font-size: medium;
     margin-bottom: 5px;
     text-align: justify;
+    padding-right: 40px;
 }
 
 /* --------------- CATEGORIES, HABILITES, RESPONSIBILITIES --------------- */
@@ -60,7 +61,7 @@
     box-sizing: border-box;
     margin-left: 15px;
     margin-right: 40px;
-    padding-right: 30px;
+    padding-right: 40px;
 }
 
 .pdfProySubH2 {
