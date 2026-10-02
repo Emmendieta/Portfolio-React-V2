@@ -1,5 +1,6 @@
 import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
 import { LANG_PDF } from "../../../utils/langPDF.js";
+import QRCode from "qrcode";
 
 export function ProyectsCurriculum({ proyects, language }) {
     try {
@@ -8,6 +9,16 @@ export function ProyectsCurriculum({ proyects, language }) {
         const sortedProyects = proyects.sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
         const TEXT = LANG_PDF[language] || LANG_PDF["en"];
 
+        generateQR = async (url) => {
+            try {
+                if(!url) return "";   
+                return await QRCode.toDataURL(url, { width: 150 });
+            } catch (error) {
+                console.error("Error generating QR Code: ", error.message);
+                throw error;
+            }
+        };
+
         const html = `
             <section id="pdfProyCont">
                 <h1 id="pdfProyH1">${TEXT.PROYECTS}:</h1>
@@ -15,6 +26,7 @@ export function ProyectsCurriculum({ proyects, language }) {
                     const name = getLocalizedValue(proyect.name, language);
                     const company = getLocalizedValue(proyect.company, language);
                     const description = getLocalizedValue(proyect.description, language);
+                    const qrProyect = await generateQR(proyect.linkProyect);
                     return `
                         <div class="pdfProyBodyCont">
                             <h2 class="pdfProyTitle">• ${name}</h2>
@@ -55,7 +67,8 @@ export function ProyectsCurriculum({ proyects, language }) {
                             }).join("")}
                         </div>
                         <div>
-                            //FALTA QR
+                            <img class="" src="${qrProyect}" alt="qrProyect - ${name}"/>
+                            <p>${TEXT.VIEW_PROYECT}</p>
                         </div>
                     `;
                 }).join("")}

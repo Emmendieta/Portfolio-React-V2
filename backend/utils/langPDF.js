@@ -23,6 +23,9 @@ export const LANG_PDF = {
         SOFT_SKILLS: "Competencias Interpersonales",
         WORKS: "Trabajos",
         CURRENT: "Actual",
+        VIEW_PROYECT: "Escanea para ver el proyecto",
+        VIEW_PROTFOLIO: "Escanea para ver el portfolio",
+        WHATSAPP: "Whatsapp",
     },
     en: {
         ACADEMIC_BACKGROUND: "Academic Background",
@@ -48,5 +51,8 @@ export const LANG_PDF = {
         SOFT_SKILLS: "Soft Skills",
         WORKS: "Works",
         CURRENT: "Current",
+        VIEW_PROYECT: "Scan to view the proyect",
+        VIEW_PROTFOLIO: "Scan to view the portfolio",
+        WHATSAPP: "Whatsapp",
     }
 };

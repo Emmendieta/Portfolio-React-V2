@@ -8,6 +8,7 @@ import { ProyectsCurriculum } from "../pdf/components/proyects/proyects.js";
 import fs from "fs/promises";
 import path from "path";
 import __dirname from "../utils/utils.js";
+import { FooterCurriculum } from "../pdf/components/footer/footer.js";
 
 class CurriculumService {
     constructor() {
@@ -23,6 +24,7 @@ class CurriculumService {
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
             const proyectsHTML = ProyectsCurriculum({ proyects, language });
+            const footerHTML = FooterCurriculum({ user, language });
 
             //Styles:
             const htmlStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "curriculum.css"), "utf-8");
@@ -31,6 +33,7 @@ class CurriculumService {
             const eduStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "educations", "educations.css"), "utf-8");
             const skillsStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "skills", "skills.css"), "utf-8");
             const proyectsStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "proyects", "proyects.css"));
+            const footerStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "componentes", "footer", "footer.css"), "utf-8");
             
             
             const html = `
@@ -43,6 +46,7 @@ class CurriculumService {
                             ${eduStyles}
                             ${skillsStyles}
                             ${proyectsStyles}
+                            ${footerStyles}
                         </style>
                     </head>
                     <body id="pdfBody">
@@ -56,6 +60,7 @@ class CurriculumService {
                             ${proyectsHTML}
                         </main>
                         <footer id="pdfFooter">
+                            ${footerHTML}
                         </footer>
                     </body>
             `;
