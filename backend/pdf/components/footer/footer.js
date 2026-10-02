@@ -1,4 +1,4 @@
-import { LANG_PDF } from "../../../utils/langPDF";
+import { LANG_PDF } from "../../../utils/langPDF.js";
 import QRCode from "qrcode";
 
 export async function FooterCurriculum({ user, language }) {
