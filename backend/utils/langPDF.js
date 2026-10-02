@@ -1,0 +1,52 @@
+export const LANG_PDF = {
+    es: {
+        ACADEMIC_BACKGROUND: "Formación Académica",
+        EDUCATION_LABELS: {
+            "Primary School": { es: "Escuela Primaria", en: "Primary School" }, 
+            "High School": { es: "Escuela Secundaria", en: "High School" },
+            "University": { es: "Universidades", en: "Universities" },
+            "Course": { es: "Cursos", en: "Course" },
+            "Conference": { es: "Conferencias", en: "Conferences" },
+            "Other": { es: "Otros", en: "Other" }
+        },
+        HABILITIES: "Habilidades",
+        ONGOING: "Inconcluso",
+        PERSONAL_ADDRESS: "Dirección Personal",
+        LEGAL_ADDRESS: "Dirección Legal",
+        BIRTHDAY: "Fecha de Nacimiento",
+        EMAIL: "Email",
+        PROYECTS: "Proyectos",
+        CATEGORIES: "Categorías",
+        SKILLS: "Compentencias",
+        RESPONSIBILITIES: "Responsabilidades",
+        HARD_SKILLS: "Competencias Técnicas",
+        SOFT_SKILLS: "Competencias Interpersonales",
+        WORKS: "Trabajos",
+        CURRENT: "Actual",
+    },
+    en: {
+        ACADEMIC_BACKGROUND: "Academic Background",
+        EDUCATION_LABELS: {
+            "Primary School": { es: "Escuela Primaria", en: "Primary School" }, 
+            "High School": { es: "Escuela Secundaria", en: "High School" },
+            "University": { es: "Universidades", en: "Universities" },
+            "Course": { es: "Cursos", en: "Course" },
+            "Conference": { es: "Conferencias", en: "Conferences" },
+            "Other": { es: "Otros", en: "Other" }
+        },
+        HABILITIES: "Habilities",
+        ONGOING: "Ongoing",
+        PERSONAL_ADDRESS: "Personal Address",
+        LEGAL_ADDRESS: "Legal Address",
+        BIRTHDAY: "Birthday",
+        EMAIL: "Email",
+        PROYECTS: "Proyects",
+        CATEGORIES: "Categories",
+        SKILLS: "Skills",
+        RESPONSIBILITIES: "Responsibilities",
+        HARD_SKILLS: "Hard Skills",
+        SOFT_SKILLS: "Soft Skills",
+        WORKS: "Works",
+        CURRENT: "Current",
+    }
+};

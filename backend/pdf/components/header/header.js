@@ -1,5 +1,6 @@
 import { formatDate } from "../../../helpers/formatDate.helper.js";
 import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
+import { LANG_PDF } from "../../../utils/langPDF.js";
 
 export function headerCurriculum({ user, language }) {
     try {
@@ -9,6 +10,7 @@ export function headerCurriculum({ user, language }) {
         const userCityName = getLocalizedValue(user.people?.cities?.name, language);
         const userProvinceName = getLocalizedValue(user.people.provinces?.name, language);
         const userCountryName = getLocalizedValue(user.people?.countries?.name, language);
+        const TEXT = LANG_PDF[language] || LANG_PDF["en"];
 
         const html = `
             <div class="pdfHeaderCont">
@@ -21,19 +23,19 @@ export function headerCurriculum({ user, language }) {
                 </div>
                 <div class="pdfHeaderRigth">
                     <div class="pdfHeaderRightDivCont">
-                        <h2 class="pdfHeaderRightH2label">{PERSONAL ADDDRESS}:</h2>
+                        <h2 class="pdfHeaderRightH2label">${TEXT.PERSONAL_ADDRESS}:</h2>
                         <h2 class="pdfHeaderRightH2">${user.people?.address?.street} - ${user.people?.address?.number} - ${userCityName} - ${userProvinceName} - ${userCountryName}</h2>
                     </div>
                     <div class="pdfHeaderRightDivCont">
-                        <h2 class="pdfHeaderRightH2label">{LEGAL ADDRESS}:</h2>
+                        <h2 class="pdfHeaderRightH2label">${TEXT.LEGAL_ADDRESS}:</h2>
                         <h2 class="pdfHeaderRightH2"> ${user.people?.legalAddress?.street} - ${user.people?.legalAddress?.number} - ${userCityName} - ${userProvinceName} ${userCountryName}</h2>
                     </div>
                     <div class="pdfHeaderRightDivCont">
-                        <h2 class="pdfHeaderRightH2label">{BIRTHDAY}:</h2>
+                        <h2 class="pdfHeaderRightH2label">${TEXT.BIRTHDAY}:</h2>
                         <h2 class="pdfHeaderRightH2">${formatDate(user.people?.birthday)}</h2>
                     </div>
                     <div class="pdfHeaderRightDivCont">
-                        <h2 class="pdfHeaderRightH2label">{EMAIL}:</h2>
+                        <h2 class="pdfHeaderRightH2label">${TEXT.EMAIL}:</h2>
                         <h2 class="pdfHeaderRightH2">${user.email}</h2>
                     </div>
                 </div>
