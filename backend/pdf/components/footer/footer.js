@@ -17,7 +17,7 @@ export async function FooterCurriculum({ user, language }) {
             }
         };
         const phone = user.people?.phone;
-        const whatsappUrl = phone ? `https://wa.me/${phone.replace(/\D/g, "")}`: "";
+        const whatsappUrl = phone ? `https://wa.me/${phone}`: "";
         const qrCode =  await generateQR(url);
         const qrPhone = await generateQR(whatsappUrl);
 
