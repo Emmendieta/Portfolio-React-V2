@@ -7,7 +7,7 @@ export async function FooterCurriculum({ user, language }) {
         const TEXT = LANG_PDF[language] || LANG_PDF["en"];
         const url = "https://www.emmendieta.com";
 
-        generateQR = async (url) => {
+        const generateQR = async (url) => {
             try {
                 if(!url) return "";
                 return await QRCode.toDataURL(url, { width: 150 });
