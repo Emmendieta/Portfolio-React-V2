@@ -1,7 +1,7 @@
 import { LANG_PDF } from "../../../utils/langPDF";
 import QRCode from "qrcode";
 
-export function FooterCurriculum({ user, language }) {
+export async function FooterCurriculum({ user, language }) {
     try {
         if(!user) throw new Error("Error: Couldn't get the information of the person to generate the PDF!");
         const TEXT = LANG_PDF[language] || LANG_PDF["en"];
@@ -16,8 +16,10 @@ export function FooterCurriculum({ user, language }) {
                 throw error;
             }
         };
-        const qrCode = generateQR(url);
-        const qrPhone = `https://wa.me/${user.people?.phone}`;
+        const phone = user.people?.phone;
+        const whatsappUrl = phone ? `https://wa.me/${phone.replace(/\D/g, "")}`: "";
+        const qrCode =  await generateQR(url);
+        const qrPhone = await generateQR(whatsappUrl);
 
         const html = `
             <section>

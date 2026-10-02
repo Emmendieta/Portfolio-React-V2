@@ -23,8 +23,8 @@ class CurriculumService {
             const educationsHTML = educationsCurriculum({ educations, language });
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
-            const proyectsHTML = ProyectsCurriculum({ proyects, language });
-            const footerHTML = FooterCurriculum({ user, language });
+            const proyectsHTML = await ProyectsCurriculum({ proyects, language });
+            const footerHTML = await FooterCurriculum({ user, language });
 
             //Styles:
             const htmlStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "curriculum.css"), "utf-8");

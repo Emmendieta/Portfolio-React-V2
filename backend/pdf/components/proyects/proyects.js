@@ -2,7 +2,7 @@ import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js"
 import { LANG_PDF } from "../../../utils/langPDF.js";
 import QRCode from "qrcode";
 
-export function ProyectsCurriculum({ proyects, language }) {
+export async function ProyectsCurriculum({ proyects, language }) {
     try {
         if(!proyects) throw new Error("Error: Couldn't get the information of the proyects to generate the PDF!");
         if(proyects.length === 0) return "";
