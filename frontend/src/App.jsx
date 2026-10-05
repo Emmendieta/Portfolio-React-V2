@@ -131,7 +131,7 @@ function AppRoutes() {
         <Route path='*' element={<NotFound />} />
         <Route path='/terms' element={<Terms /> } />
         <Route path='/privacy-policy' element={<Privacy /> } />
-        <Route path='/curriculum' element={<Curriculum /> } />
+        <Route path='/curriculum' element={ <ProtectedRoutes permissionResolver={() => "developer"}><Curriculum /></ProtectedRoutes> } />
 
       </Route>
     </Routes>
