@@ -1,3 +1,8 @@
+h1,
+h2 {
+    font-family: "Inter", sans-serif;
+}
+
 #pdfEduCont {
     display: flex;
     flex-direction: column;
@@ -30,7 +35,8 @@
 .pdfEduTitleH1 {
     font-size: medium;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-left: 15px;
 }
 
 .pdfEduBodyCont {
@@ -38,6 +44,8 @@
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .pdfEduH2Title {
@@ -49,6 +57,7 @@
 .pdfEduH2 {
     font-size: medium;
     margin-bottom: 5px;
+    font-weight: 400;
 }
 
 /* ------------- HABILITIES ------------- */
@@ -59,22 +68,16 @@
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 15px;
+    margin-left: 20px;
+    padding-right: 20px;
 }
 
 .pdfEduHabH1 {
     font-size: medium;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-left: 5px;
 }
-
-/*.pdfEduHabDivCont {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 15px;
-    margin-right: 20px;
-}*/
 
 .pdfEduHabDivCont {
     display: flex;
@@ -85,10 +88,11 @@
     margin-left: 15px;
     margin-right: 40px;
     padding-right: 40px;
+    margin-bottom: 10px;
 }
 
 .pdfEduHabH2 {
     font-size: medium;
     margin-right: 5px;
+    font-weight: 400;
 }
-

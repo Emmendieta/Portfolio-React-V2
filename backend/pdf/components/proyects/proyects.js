@@ -20,7 +20,7 @@ export async function ProyectsCurriculum({ proyects, language }) {
             }
         };
 
-         const projectsHTML = await Promise.all(
+        const projectsHTML = await Promise.all(
             sortedProyects.map(async (proyect) => {
                 const name = getLocalizedValue(proyect.name, language);
                 const company = getLocalizedValue(proyect.company, language);
@@ -44,33 +44,36 @@ export async function ProyectsCurriculum({ proyects, language }) {
                             `;
                         }).join("") || ""}
                     </div>
-
                     <div class="pdfProySubCont">
                         <h1 class="pdfProySubH1">${TEXT.SKILLS}:</h1>
-                        ${proyect.skills?.map(skill => {
-                            const skillName = getLocalizedValue(skill.name, language);
-                            return `
-                                <div class="pdfProySubDiv">
-                                    <h2 class="pdfProySubH2">- ${skillName}</h2>
-                                </div>
-                            `;
-                        }).join("") || ""}
+                        <div class="pdfProySubItems">
+                            ${proyect.skills?.map(skill => {
+                                const skillName = getLocalizedValue(skill.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${skillName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
                     </div>
                     <div class="pdfProySubCont">
                         <h1 class="pdfProySubH1">${TEXT.RESPONSIBILITIES}:</h1>
-                        ${proyect.responsibilities?.map(resp => {
-                            const respName = getLocalizedValue(resp.name, language);
-                            return `
-                                <div class="pdfProySubDiv">
-                                    <h2 class="pdfProySubH2">- ${respName}</h2>
-                                </div>
-                            `;
-                        }).join("") || ""}
+                        <div class="pdfProySubItems">
+                            ${proyect.responsibilities?.map(resp => {
+                                const respName = getLocalizedValue(resp.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${respName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
                     </div>
                     ${ qrProyect ? `
                                 <div class="pdfProyQRCont">
                                     <img src="${qrProyect}" alt="QR Project - ${name}" />
-                                    <p>${TEXT.VIEW_PROYECT}</p>
+                                    <p class="pdfProyQRP">${TEXT.VIEW_PROYECT}</p>
                                 </div>
                             ` : ""
                     } `;
@@ -83,63 +86,6 @@ export async function ProyectsCurriculum({ proyects, language }) {
                 ${projectsHTML.join("")}
             </section>
         `;
-
-
-        /*const html = `
-            <section id="pdfProyCont">
-                <h1 id="pdfProyH1">${TEXT.PROYECTS}:</h1>
-                ${sortedProyects.map(proyect => {
-                    const name = getLocalizedValue(proyect.name, language);
-                    const company = getLocalizedValue(proyect.company, language);
-                    const description = getLocalizedValue(proyect.description, language);
-                    const qrProyect = await generateQR(proyect.linkProyect);
-                    return `
-                        <div class="pdfProyBodyCont">
-                            <h2 class="pdfProyTitle">• ${name}</h2>
-                            <h2 class="pdfProy">${company}</h2>
-                            <p class="pdfProyP">${description}</p>
-                        </div>
-                        <div class=""pdfProySubCont>
-                            <h1 class="pdfProySubH1">${TEXT.CATEGORIES}:</h1>
-                            ${proyect.categories?.map(cat => {
-                                const catName = getLocalizedValue(cat.name, language);
-                                return `
-                                    <div class="pdfProySubDiv">
-                                        <h2 class="pdfProySubH2">- ${catName}</h2>
-                                    </div>
-                                `
-                            }).join("")}                        
-                        </div>
-                        <div class="pdfProySubCont">
-                            <h1 class="pdfProySubH1">${TEXT.SKILLS}:</h1>
-                            ${proyect.skills?.map(skill => {
-                                const skillName = getLocalizedValue(skill.name, language);
-                                return `
-                                    <div class="pdfProySubDiv">
-                                        <h2 class="pdfProySubH2">- ${skillName}</h2>
-                                    </div>
-                                `
-                            }). join("")}
-                        </div>
-                        <div class="pdfProySubCont">
-                            <h1 class="pdfProySubH1">${TEXT.RESPONSIBILITIES}:</h1>
-                            ${proyect.responsibilities?.map(resp => {
-                                const respName = getLocalizedValue(resp.name, language);
-                                return `
-                                    <div class="pdfProySubDiv">
-                                        <h2 class="pdfProySubH2">- ${respName}</h2>
-                                    </div>
-                                `
-                            }).join("")}
-                        </div>
-                        <div>
-                            <img class="" src="${qrProyect}" alt="qrProyect - ${name}"/>
-                            <p>${TEXT.VIEW_PROYECT}</p>
-                        </div>
-                    `;
-                }).join("")}
-            </section>
-        `;*/
 
         return html;
     } catch (error) {

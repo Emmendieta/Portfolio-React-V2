@@ -24,7 +24,7 @@ export const LANG_PDF = {
         WORKS: "Trabajos",
         CURRENT: "Actual",
         VIEW_PROYECT: "Escanea para ver el proyecto",
-        VIEW_PROTFOLIO: "Escanea para ver el portfolio",
+        VIEW_PORTFOLIO: "Escanea para ver el portfolio",
         WHATSAPP: "Whatsapp",
     },
     en: {
@@ -52,7 +52,7 @@ export const LANG_PDF = {
         WORKS: "Works",
         CURRENT: "Current",
         VIEW_PROYECT: "Scan to view the proyect",
-        VIEW_PROTFOLIO: "Scan to view the portfolio",
+        VIEW_PORTFOLIO: "Scan to view the portfolio",
         WHATSAPP: "Whatsapp",
     }
 };

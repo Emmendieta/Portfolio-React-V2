@@ -1,3 +1,7 @@
+h1, h2 {
+    font-family: "Inter", sans-serif;
+}
+
 #pdfWorkCont {
     display: flex;
     flex-direction: column;
@@ -20,6 +24,7 @@
     width: 100%;
     box-sizing: border-box;
     margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .pdfWorkInfoCont {
@@ -33,11 +38,13 @@
     font-size: medium;
     font-weight: bolder;
     margin-bottom: 5px;
+    margin-top: 3px;
 }
 
 .pdfWorkBodyH2 {
     font-size: medium;
     margin-bottom: 5px;
+    font-weight: 400;
 }
 
 /* ------------- RESPONSIBILITIES ------------- */
@@ -54,6 +61,8 @@
     font-size: medium;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
 .pdfWorkRespH2Cont {
@@ -62,10 +71,12 @@
     width: 100%;
     box-sizing: border-box;
     margin-left: 15px;
-    margin-right: 20px;
+    margin-right: 50px;
+    padding-right: 60px;
 }
 
 .pdfWorkRespH2 {
     font-size: medium;
     margin-right: 5px;
+    font-weight: 400;
 }

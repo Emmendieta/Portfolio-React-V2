@@ -22,13 +22,13 @@ export async function FooterCurriculum({ user, language }) {
         const qrPhone = await generateQR(whatsappUrl);
 
         const html = `
-            <section>
-                <div>
-                    <img class="" src="${qrCode}" alt="qrPortfolio/>
-                    <p>${TEXT.VIEW_PROTFOLIO}</p>
+            <section class="pdfFooterBodyCont">
+                <div class="pdfFooterQRCont">
+                    <img class="" src="${qrCode}" alt="qrPortfolio"/>
+                    <p>${TEXT.VIEW_PORTFOLIO}</p>
                 </div>
-                <div>
-                    <img class="" src="${qrPhone}" atl="qrPhone"/>
+                <div class="pdfFooterQRCont">
+                    <img class="" src="${qrPhone}" alt  ="qrPhone"/>
                     <p>${TEXT.WHATSAPP}</p>
                 </div>
             </section>

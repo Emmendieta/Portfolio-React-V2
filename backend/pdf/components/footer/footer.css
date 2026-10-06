@@ -1,0 +1,30 @@
+.pdfFooterBodyCont {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-top: 40px;
+}
+
+.pdfFooterQRCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.pdfFooterQRCont img {
+    width: 150px;
+    height: 150px;
+}
+
+.pdfFooterQRCont p {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+}

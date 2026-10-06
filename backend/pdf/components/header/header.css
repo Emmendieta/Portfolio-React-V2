@@ -10,6 +10,7 @@ h2,
 p {
     margin: 0;
     padding: 0;
+    font-family: "Inter", Arial, sans-serif;
 }
 
 /* -------------------- LEFT -------------------- */
@@ -21,6 +22,7 @@ p {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
 }
 
 .pdfHeaderLeftH1 {
@@ -35,7 +37,8 @@ p {
     font-weight: bold;
     color: rgb(240, 248, 255);
     text-align: center;
-    margin-left: 30px;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 /* -------------------- MIDDLE -------------------- */
@@ -49,7 +52,7 @@ p {
 }
 
 .pdfHeaderImg {
-    max-width: 250px;
+    max-width: 200px;
 }
 
 /* -------------------- RIGHT -------------------- */
@@ -70,14 +73,20 @@ p {
     box-sizing: border-box;
     margin-top: 5px;
     padding-right: 15px;
+    align-items: baseline;
 }
 
 .pdfHeaderRightH2 {
-    font-size: medium;
+    font-size: 11px;
     margin-left: 5px;
+    white-space: nowrap;
+    font-weight: 400;
+    margin-top: 3px;
 }
 
 .pdfHeaderRightH2label {
-    font-size: medium;
+    font-size: 11px;
     font-weight: bold;
+    white-space: nowrap;
+    margin-top: 3px;
 }
