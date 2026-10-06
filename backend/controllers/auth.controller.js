@@ -11,7 +11,7 @@ class AuthController {
         const opts = {
             httpOnly: true,
             secure: true, // ⚠️ Ponelo en true si usás HTTPS
-            sameSite: "none", // O "none" si usás HTTPS y querés compartir entre dominios ⚠️ Si usás sameSite: "none", secure debe estar en true y necesitás usar HTTPS. Para desarrollo local, mejor usar sameSite: "lax" y secure: false.
+            sameSite: "lax", // O "none" si usás HTTPS y querés compartir entre dominios ⚠️ Si usás sameSite: "none", secure debe estar en true y necesitás usar HTTPS. Para desarrollo local, mejor usar sameSite: "lax" y secure: false.
             maxAge: 24 * 60 * 60 * 1000
         };
         res.cookie("tokenPortfolioEmm", req.user.token, opts);
