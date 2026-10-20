@@ -1,8 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 #pdfBody {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin: 0;
 }
 
@@ -12,12 +15,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin: 0;
 }
 
 #pdfMain {
     margin-left: 15px;
+    padding-right: 15px;
 }
 
 #pdfHeader {
@@ -31,4 +34,21 @@
             #e5e5e5 70%,
             #c4c4c4 85%,
             #9e9e9e 100%);
+}
+
+@media print {
+    #pdfEduH1,
+    .pdfEduTitleH1,
+    .pdfEduH2Title,
+    .pdfEduHabH1 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    #pdfWorkH1,
+    .pdfWorkBodyH2Title,
+    #pdfWorkRespH1 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
 }

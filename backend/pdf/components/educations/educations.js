@@ -38,7 +38,7 @@ export function educationsCurriculum ({ educations, language }) {
                                             ${education.habilities?.map(hab => {
                                                 const habName = getLocalizedValue(hab.name, language);
                                                 return `
-                                                    <h2 class="pdfEduHabH2">- ${habName}</h2>
+                                                    <span class="pdfEduHabH2">- ${habName}</span>
                                                 `
                                             }).join("")}
                                         </div>

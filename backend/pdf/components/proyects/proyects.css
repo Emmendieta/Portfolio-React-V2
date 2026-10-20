@@ -8,7 +8,6 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
 }
 
 #pdfProyH1 {
@@ -23,7 +22,6 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .pdfProyTitle {
@@ -54,7 +52,6 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 25px;
@@ -69,21 +66,24 @@ p {
 .pdfProySubItems {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
     width: 100%;
-    box-sizing: border-box;
     margin-right: 15px;
 }
 
 .pdfProySubDiv {
     display: flex;
     flex-direction: row;
+    flex: 0 0 auto;
     width: auto;
-    box-sizing: border-box;
     margin-right: 15px;
 }
 
 .pdfProySubH2 {
     font-size: small;
+    width: auto;
+    margin: 0 0 5px 0;
 }
 
 .pdfProyQRCont {
@@ -92,7 +92,6 @@ p {
     justify-content: center;
     align-items: center;
     width: 100%;
-    box-sizing: border-box;
     margin-bottom: 15px;
 }
 

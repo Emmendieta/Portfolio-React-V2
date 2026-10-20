@@ -6,7 +6,6 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin-top: 20px;
 }
 
@@ -22,7 +21,6 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin-left: 20px;
     margin-bottom: 10px;
 }
@@ -31,7 +29,6 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .pdfWorkBodyH2Title {
@@ -53,7 +50,6 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    box-sizing: border-box;
     margin-bottom: 15px;
 }
 
@@ -68,15 +64,18 @@ h1, h2 {
 .pdfWorkRespH2Cont {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     width: 100%;
-    box-sizing: border-box;
     margin-left: 15px;
-    margin-right: 50px;
     padding-right: 60px;
 }
 
 .pdfWorkRespH2 {
+    width: auto;
     font-size: medium;
     margin-right: 5px;
     font-weight: 400;
+    margin: 0 12px 5px 0;
+    white-space: normal;
 }
