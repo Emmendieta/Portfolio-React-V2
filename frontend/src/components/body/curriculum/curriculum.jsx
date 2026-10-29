@@ -55,7 +55,11 @@ function Curriculum() {
         educations: [],
         works: [],
         skills: [],
-        proyects: []
+        proyects: [],
+        personalInfo: {
+            personalStreet: true, personalNumber: true, personalCity: true, personalProvince: true, personalCountry: true, legalStreet: true, legalNumber: true,
+            legalCity: true, legalProvince: true, legalCountry: true, birthday: true, email: true
+        },
     });
     const { errorSweet, successSweet } = useSweetAlert();
 
@@ -221,6 +225,10 @@ function Curriculum() {
         loadProyects();
     }, [user, language]);
 
+    const handleSelectPersonalInfo = (field) => {
+        setSelectedItems((prev) => ({ ...prev, personalInfo: { ...prev.personalInfo, [field]: !prev.personalInfo[field] } }));
+    };
+
     const handleSelectItem = (type, id) => {
         setSelectedItems((prev) => {
             const currentItems = prev[type];
@@ -234,7 +242,8 @@ function Curriculum() {
             educations: educations.map((item) => item._id),
             works: works.map((item) => item._id),
             skills: skills.map((item) => item._id),
-            proyects: proyects.map((item) => item._id)
+            proyects: proyects.map((item) => item._id),
+            personalInfo: Object.fromEntries(Object.keys(selectedItems.personalInfo).map((key) => [key, true]))
         });
     };
 
@@ -243,7 +252,8 @@ function Curriculum() {
             educations: [],
             works: [],
             skills: [],
-            proyects: []
+            proyects: [],
+            personalInfo: Object.fromEntries(Object.keys(selectedItems.personalInfo).map((key) => [key, false]))
         });
     };
 
@@ -282,7 +292,7 @@ function Curriculum() {
                     <img src={data?.images?.[0]?.url || "/img/imagen-no-disponible.png"} alt={data?._id ?? "ID"} onError={(e) => { e.currentTarget.src = "/img/imagen-no-disponible.png" }}
                         className="currImg" />
                 </div>
-                <div className="currTopDetailsCont">
+                {/*                 <div className="currTopDetailsCont">
                     <H2Fields value={`${data?.address?.street} ${data?.address?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.PERSNAL_ADDRESS} language={language}
                         className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
                     <H2Fields value={`${data?.legalAddress?.street} ${data?.legalAddress?.number} - ${data?.cities[0]?.name?.[language]} - ${data?.provinces[0]?.name?.[language]} - ${data?.countries[0]?.name?.[language]}`} label={TEXT.LEGAL_ADDRESS} language={language}
@@ -291,6 +301,159 @@ function Curriculum() {
                         className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
                     <H2Fields value={dataUser?.email} label={TEXT.EMAIL} language={language}
                         className="currTopH2Cont" classNameH2="currTopH2" classNameLabel="currTopH2Label" />
+                </div> */}
+                <div className="currTopDetailsCont">
+
+                    {/* DIRECCIÓN PERSONAL */}
+
+                    <div className="currPersonalInfoGroup">
+                        <H2Fields
+                            value={TEXT.PERSNAL_ADDRESS}
+                            language={language}
+                            className="currTopH2Cont"
+                            classNameH2="currTopH2"
+                        />
+
+                        {[
+                            {
+                                key: "personalStreet",
+                                label: language === "es" ? "Calle" : "Street",
+                                value: data?.address?.street
+                            },
+                            {
+                                key: "personalNumber",
+                                label: language === "es" ? "Número" : "Number",
+                                value: data?.address?.number
+                            },
+                            {
+                                key: "personalCity",
+                                label: language === "es" ? "Ciudad" : "City",
+                                value: data?.cities?.[0]?.name?.[language]
+                            },
+                            {
+                                key: "personalProvince",
+                                label: language === "es" ? "Provincia" : "Province",
+                                value: data?.provinces?.[0]?.name?.[language]
+                            },
+                            {
+                                key: "personalCountry",
+                                label: language === "es" ? "País" : "Country",
+                                value: data?.countries?.[0]?.name?.[language]
+                            }
+                        ].map((field) => (
+                            <div key={field.key} className="currPersonalInfoField">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedItems.personalInfo[field.key]}
+                                    onChange={() => handleSelectPersonalInfo(field.key)}
+                                    className="currCkeckBox"
+                                />
+
+                                <H2Fields
+                                    value={`${field.label}: ${field.value ?? ""}`}
+                                    language={language}
+                                    className="currTopH2Cont"
+                                    classNameH2="currTopH2"
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* DOMICILIO LEGAL */}
+
+                    <div className="currPersonalInfoGroup">
+                        <H2Fields
+                            value={TEXT.LEGAL_ADDRESS}
+                            language={language}
+                            className="currTopH2Cont"
+                            classNameH2="currTopH2"
+                        />
+
+                        {[
+                            {
+                                key: "legalStreet",
+                                label: language === "es" ? "Calle" : "Street",
+                                value: data?.legalAddress?.street
+                            },
+                            {
+                                key: "legalNumber",
+                                label: language === "es" ? "Número" : "Number",
+                                value: data?.legalAddress?.number
+                            },
+                            {
+                                key: "legalCity",
+                                label: language === "es" ? "Ciudad" : "City",
+                                value: data?.cities?.[0]?.name?.[language]
+                            },
+                            {
+                                key: "legalProvince",
+                                label: language === "es" ? "Provincia" : "Province",
+                                value: data?.provinces?.[0]?.name?.[language]
+                            },
+                            {
+                                key: "legalCountry",
+                                label: language === "es" ? "País" : "Country",
+                                value: data?.countries?.[0]?.name?.[language]
+                            }
+                        ].map((field) => (
+                            <div key={field.key} className="currPersonalInfoField">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedItems.personalInfo[field.key]}
+                                    onChange={() => handleSelectPersonalInfo(field.key)}
+                                    className="currCkeckBox"
+                                />
+
+                                <H2Fields
+                                    value={`${field.label}: ${field.value ?? ""}`}
+                                    language={language}
+                                    className="currTopH2Cont"
+                                    classNameH2="currTopH2"
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* FECHA DE NACIMIENTO */}
+
+                    <div className="currPersonalInfoField">
+                        <input
+                            type="checkbox"
+                            checked={selectedItems.personalInfo.birthday}
+                            onChange={() => handleSelectPersonalInfo("birthday")}
+                            className="currCkeckBox"
+                        />
+
+                        <H2Fields
+                            value={formatDate(data?.birthday)}
+                            label={TEXT.BIRTHDAY}
+                            language={language}
+                            className="currTopH2Cont"
+                            classNameH2="currTopH2"
+                            classNameLabel="currTopH2Label"
+                        />
+                    </div>
+
+                    {/* EMAIL */}
+
+                    <div className="currPersonalInfoField">
+                        <input
+                            type="checkbox"
+                            checked={selectedItems.personalInfo.email}
+                            onChange={() => handleSelectPersonalInfo("email")}
+                            className="currCkeckBox"
+                        />
+
+                        <H2Fields
+                            value={dataUser?.email}
+                            label={TEXT.EMAIL}
+                            language={language}
+                            className="currTopH2Cont"
+                            classNameH2="currTopH2"
+                            classNameLabel="currTopH2Label"
+                        />
+                    </div>
+
                 </div>
             </section>
             <section className="currSectMiddleCont">

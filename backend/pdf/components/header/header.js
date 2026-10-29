@@ -28,7 +28,7 @@ export function headerCurriculum({ user, language }) {
                     </div>
                     <div class="pdfHeaderRightDivCont">
                         <h2 class="pdfHeaderRightH2label">${TEXT.LEGAL_ADDRESS}:</h2>
-                        <h2 class="pdfHeaderRightH2"> ${user.people?.legalAddress?.street} - ${user.people?.legalAddress?.number} - ${userCityName} - ${userProvinceName} ${userCountryName}</h2>
+                        <h2 class="pdfHeaderRightH2"> ${user.people?.legalAddress?.street} - ${user.people?.legalAddress?.number} - ${userCityName} - ${userProvinceName} - ${userCountryName}</h2>
                     </div>
                     <div class="pdfHeaderRightDivCont">
                         <h2 class="pdfHeaderRightH2label">${TEXT.BIRTHDAY}:</h2>

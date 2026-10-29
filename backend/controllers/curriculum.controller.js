@@ -18,6 +18,7 @@ class CurriculumController {
     createCurriculum = async (req, res) => {
         try {
             const data = req.body;
+            console.log("CONTOLLER", data);
             if (!data) throw new Error("Error: Missing the information to create the Curriculum PDF!");
             const { 
                 educations = [],
