@@ -25,10 +25,12 @@ export async function FooterCurriculum({ user, language }) {
             <section class="pdfFooterBodyCont">
                 <div class="pdfFooterQRCont">
                     <img class="" src="${qrCode}" alt="qrPortfolio"/>
+                    <p>${url}</p>
                     <p>${TEXT.VIEW_PORTFOLIO}</p>
                 </div>
                 <div class="pdfFooterQRCont">
-                    <img class="" src="${qrPhone}" alt  ="qrPhone"/>
+                    <img class="" src="${qrPhone}" alt ="Whatsapp"/>
+                    <p>+${phone}</p>
                     <p>${TEXT.WHATSAPP}</p>
                 </div>
             </section>

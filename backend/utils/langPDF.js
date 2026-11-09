@@ -26,6 +26,7 @@ export const LANG_PDF = {
         VIEW_PROYECT: "Escanea para ver el proyecto",
         VIEW_PORTFOLIO: "Escanea para ver el portfolio",
         WHATSAPP: "Whatsapp",
+        ABOUT_ME: "Acerca de Mí",
     },
     en: {
         ACADEMIC_BACKGROUND: "Academic Background",
@@ -54,5 +55,6 @@ export const LANG_PDF = {
         VIEW_PROYECT: "Scan to view the proyect",
         VIEW_PORTFOLIO: "Scan to view the portfolio",
         WHATSAPP: "Whatsapp",
+        ABOUT_ME: "About Me",
     }
 };

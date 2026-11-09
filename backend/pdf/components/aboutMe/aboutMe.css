@@ -1,0 +1,24 @@
+#aboutMeCont {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.pdfAboutMeH1 {
+    font-size: larger;
+    text-decoration: underline;
+}
+
+.pdfAboutMeH2 {
+    font-size: large;
+    text-align: justify;
+    padding-left: 5px;
+    padding-right: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

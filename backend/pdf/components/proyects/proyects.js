@@ -1,4 +1,4 @@
-import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
+/*import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
 import { LANG_PDF } from "../../../utils/langPDF.js";
 import QRCode from "qrcode";
 
@@ -77,6 +77,85 @@ export async function ProyectsCurriculum({ proyects, language }) {
                                 </div>
                             ` : ""
                     } `;
+            })
+        );
+
+        const html = `
+            <section id="pdfProyCont">
+                <h1 id="pdfProyH1">${TEXT.PROYECTS}:</h1>
+                ${projectsHTML.join("")}
+            </section>
+        `;
+
+        return html;
+    } catch (error) {
+        throw error;
+    }
+};*/
+
+import { getLocalizedValue } from "../../../helpers/getValueLocalized.helper.js";
+import { LANG_PDF } from "../../../utils/langPDF.js";
+
+export async function ProyectsCurriculum({ proyects, language }) {
+    try {
+        if(!proyects) throw new Error("Error: Couldn't get the information of the proyects to generate the PDF!");
+        if(proyects.length === 0) return "";
+        const sortedProyects = [...proyects].sort( (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0) );
+        //const sortedProyects = proyects.sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
+        const TEXT = LANG_PDF[language] || LANG_PDF["en"];
+
+        const projectsHTML = await Promise.all(
+            sortedProyects.map(async (proyect) => {
+                const name = getLocalizedValue(proyect.name, language);
+                const company = getLocalizedValue(proyect.company, language);
+                const description = getLocalizedValue(proyect.description, language);
+                const link = proyect.linkProyect;
+
+                return `
+                    <div class="pdfProyBodyCont">
+                        <h2 class="pdfProyTitle">• ${name}</h2>
+                        <h2 class="pdfProy">${company}</h2>
+                        <p class="pdfProyP">${link}</p>
+                        <p class="pdfProyP">${description}</p>
+                    </div>
+                    <div class="pdfProySubCont">
+                        <h1 class="pdfProySubH1">${TEXT.CATEGORIES}:</h1>
+                        ${proyect.categories?.map(cat => {
+                            const catName = getLocalizedValue(cat.name, language);
+                            return `
+                                <div class="pdfProySubDiv">
+                                    <h2 class="pdfProySubH2">- ${catName}</h2>
+                                </div>
+                            `;
+                        }).join("") || ""}
+                    </div>
+                    <div class="pdfProySubCont">
+                        <h1 class="pdfProySubH1">${TEXT.SKILLS}:</h1>
+                        <div class="pdfProySubItems">
+                            ${proyect.skills?.map(skill => {
+                                const skillName = getLocalizedValue(skill.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${skillName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
+                    </div>
+                    <div class="pdfProySubCont">
+                        <h1 class="pdfProySubH1">${TEXT.RESPONSIBILITIES}:</h1>
+                        <div class="pdfProySubItems">
+                            ${proyect.responsibilities?.map(resp => {
+                                const respName = getLocalizedValue(resp.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${respName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
+                    </div>
+                `;
             })
         );
 

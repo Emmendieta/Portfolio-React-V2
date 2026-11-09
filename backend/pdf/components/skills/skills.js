@@ -16,6 +16,47 @@ export function SkillsCurriculum({ skills, language }) {
                     <h1 id="pdfSkillsH1">${TEXT.SKILLS}:</h1>
                         ${hardSkills.length > 0 ? `
                             <div class="pdfSkillsSubCont">
+                                <h2 class="pdfSkillsSubH2">${TEXT.HARD_SKILLS}:</h2>
+                                    <div class="pdfHardContH2">
+                                        ${sortedHard.map(skill => {
+                                            const name = getLocalizedValue(skill.name, language);
+                                            return `
+                                                <h2 class="pdfSkillsHardH2Title">• ${name}</h2>
+                                            `;
+                                        }).join("")}
+                                    </div>
+                            </div>
+                        `: ""
+                        }
+                        ${softSkills.length > 0 ? `
+                            <div class="pdfSkillsSubCont">
+                            <h2 class="pdfSkillsSubH2">${TEXT.SOFT_SKILLS}:</h2>
+                                ${sortedSoft.map(skill => {
+                                    const name = getLocalizedValue(skill.name, language);
+                                    return `
+                                        <div class="pdfSkillsSofCont">
+                                            <h2 class="pdfSkillsHardH2Title">• ${name}</h2>
+                                        </div>
+                                    `;
+                                }).join("")}
+                            </div>
+                            `: ""
+                        }
+            </section>
+        `;
+
+        return html;
+    } catch (error) {
+        throw error;
+    }
+};
+
+/*
+        const html = `
+            <section id="pdfSkillCont">
+                    <h1 id="pdfSkillsH1">${TEXT.SKILLS}:</h1>
+                        ${hardSkills.length > 0 ? `
+                            <div class="pdfSkillsSubCont">
                             <h2 class="pdfSkillsSubH2">${TEXT.HARD_SKILLS}:</h2>
                             ${sortedHard.map(skill => {
                                 const name = getLocalizedValue(skill.name, language);
@@ -46,8 +87,4 @@ export function SkillsCurriculum({ skills, language }) {
             </section>
         `;
 
-        return html;
-    } catch (error) {
-        throw error;
-    }
-};
+*/

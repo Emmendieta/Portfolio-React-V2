@@ -12,7 +12,8 @@ export function educationsCurriculum ({ educations, language }) {
             gropus[type] = educations.filter(education => education.typeEducation === type).sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
             return gropus;
         }, {});
-        const html = `
+
+        /* const html = `
             <section id="pdfEduCont">
                 <h1 id="pdfEduH1">${TEXT.ACADEMIC_BACKGROUND}:</h1>
                 <div class="pdfEduDivCont">
@@ -50,6 +51,36 @@ export function educationsCurriculum ({ educations, language }) {
                 </div>
             </section>
         `;
+ */
+
+        const html = `
+            <section id="pdfEduCont">
+                <h1 id="pdfEduH1">${TEXT.ACADEMIC_BACKGROUND}:</h1>
+                <div class="pdfEduDivCont">
+                    ${educationsTypes.map(type => {
+                        const typeEducations = groupedEducations[type];
+                        if(!typeEducations.length) { return ""; }
+                        return `
+                            <div class="pdfEduTitleCont">
+                                <h1 class="pdfEduTitleH1">${TEXT.EDUCATION_LABELS?.[type]?.[language] || type}</h1> 
+                            </div>
+                            ${typeEducations.map(education => {
+                                const institutionName = getLocalizedValue(education.institutionName, language);
+                                const title = getLocalizedValue(education.title, language);
+                                return `
+                                    <div class="pdfEduBodyCont">
+                                        <h2 class="pdfEduH2Title">• ${title}</h2>
+                                        <h2 class="pdfEduH2">${institutionName}</h2>
+                                        <h2 class="pdfEduH2">${formatDate(education.dateStart)} - ${education.dateEnd ? formatDate(education.dateEnd): `${TEXT.ONGOING}`}</h2>
+                                    </div>
+                                `;
+                            }).join("")}
+                        `
+                    }).join("")}
+                </div>
+            </section>
+        `;
+
 
         return html;
     } catch (error) {

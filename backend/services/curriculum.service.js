@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer";
-import { getLocalizedValue } from "../helpers/getValueLocalized.helper.js";
 import { headerCurriculum } from "../pdf/components/header/header.js";
 import { educationsCurriculum } from "../pdf/components/educations/educations.js";
 import { worksCurriculum } from "../pdf/components/works/works.js";
@@ -9,6 +8,7 @@ import fs from "fs/promises";
 import path from "path";
 import __dirname from "../utils/utils.js";
 import { FooterCurriculum } from "../pdf/components/footer/footer.js";
+import { aboutMeCurriculum } from "../pdf/components/aboutMe/aboutMe.js";
 
 class CurriculumService {
     constructor() {
@@ -16,10 +16,11 @@ class CurriculumService {
     };
     generatePDF = async (data) => {
         try {
-            const { user, educations, works, skills, proyects, language } = data;
-            
+            const { user, educations, works, skills, proyects, language, personalInfo } = data;
+            const aboutMe = user?.people?.aboutMe;
             //Data:
-            const headerHTML = headerCurriculum({ user, language });
+            const headerHTML = headerCurriculum({ user, language, personalInfo });
+            const aboutMeHTML = aboutMeCurriculum({ aboutMe, language });
             const educationsHTML = educationsCurriculum({ educations, language });
             const worksHTML = worksCurriculum({ works, language });
             const skillsHTML = SkillsCurriculum({ skills, language });
@@ -29,6 +30,7 @@ class CurriculumService {
             //Styles:
             const htmlStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "curriculum.css"), "utf-8");
             const headerStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "header", "header.css"), "utf-8");
+            const aboutMeStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "aboutMe", "aboutMe.css"), "utf-8");
             const worksStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "works", "works.css"), "utf-8");
             const eduStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "educations", "educations.css"), "utf-8");
             const skillsStyles = await fs.readFile(path.join(__dirname, "..", "pdf", "components", "skills", "skills.css"), "utf-8");
@@ -42,6 +44,7 @@ class CurriculumService {
                         <style>
                             ${htmlStyles}
                             ${headerStyles}
+                            ${aboutMeStyles}
                             ${worksStyles}
                             ${eduStyles}
                             ${skillsStyles}
@@ -54,9 +57,10 @@ class CurriculumService {
                             ${headerHTML}
                         </header>
                         <main id="pdfMain">
+                            ${aboutMeHTML}
+                            ${skillsHTML}
                             ${worksHTML}
                             ${educationsHTML}
-                            ${skillsHTML}
                             ${proyectsHTML}
                         </main>
                         <footer id="pdfFooter">
@@ -64,7 +68,6 @@ class CurriculumService {
                         </footer>
                     </body>
             `; 
-
 
             const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', "--disable-setuid-sandbox"]});
             const page = await browser.newPage();

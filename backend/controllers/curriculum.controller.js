@@ -18,7 +18,6 @@ class CurriculumController {
     createCurriculum = async (req, res) => {
         try {
             const data = req.body;
-            console.log("CONTOLLER", data);
             if (!data) throw new Error("Error: Missing the information to create the Curriculum PDF!");
             const { 
                 educations = [],
@@ -63,7 +62,7 @@ class CurriculumController {
             const users = await this.userService.readAllAndPopulate(populateFields);
             if(!users || users.length === 0) throw new Error("Error: Couldn't get the users!");
             const user = users[0];
-            const curriculumData = { user, educations: educationsData, works: worksData, skills: skillsData, proyects: proyectsData, language: data.language };
+            const curriculumData = { user, educations: educationsData, works: worksData, skills: skillsData, proyects: proyectsData, language: data.language, personalInfo: data.personalInfo };
             const pdfBuffer = await this.curriService.generatePDF(curriculumData);
             res.set({
                 "Content-Type": "application/pdf",
@@ -73,7 +72,7 @@ class CurriculumController {
             });
             return res.send(pdfBuffer);
         } catch (error) {
-            return res.statu(500).json({message: `Error: ${error.message}`});
+            return res.status(500).json({message: `Error: ${error.message}`});
         }
     };
 };
