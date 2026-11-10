@@ -111,7 +111,7 @@ export async function ProyectsCurriculum({ proyects, language }) {
                 const description = getLocalizedValue(proyect.description, language);
                 const link = proyect.linkProyect;
 
-                return `
+                /*return `
                     <div class="pdfProyBodyCont">
                         <h2 class="pdfProyTitle">• ${name}</h2>
                         <h2 class="pdfProy">${company}</h2>
@@ -128,6 +128,43 @@ export async function ProyectsCurriculum({ proyects, language }) {
                                 </div>
                             `;
                         }).join("") || ""}
+                    </div>
+                    <div class="pdfProySubCont">
+                        <h1 class="pdfProySubH1">${TEXT.SKILLS}:</h1>
+                        <div class="pdfProySubItems">
+                            ${proyect.skills?.map(skill => {
+                                const skillName = getLocalizedValue(skill.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${skillName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
+                    </div>
+                    <div class="pdfProySubCont">
+                        <h1 class="pdfProySubH1">${TEXT.RESPONSIBILITIES}:</h1>
+                        <div class="pdfProySubItems">
+                            ${proyect.responsibilities?.map(resp => {
+                                const respName = getLocalizedValue(resp.name, language);
+                                return `
+                                    <div class="pdfProySubDiv">
+                                        <h2 class="pdfProySubH2">- ${respName}</h2>
+                                    </div>
+                                `;
+                            }).join("") || ""}
+                        </div>
+                    </div>
+                `;
+            })
+        );*/
+
+         return `
+                    <div class="pdfProyBodyCont">
+                        <h2 class="pdfProyTitle">• ${name}</h2>
+                        <h2 class="pdfProy">${company}</h2>
+                        <p class="pdfProyP">${link}</p>
+                        <p class="pdfProyP">${description}</p>
                     </div>
                     <div class="pdfProySubCont">
                         <h1 class="pdfProySubH1">${TEXT.SKILLS}:</h1>
