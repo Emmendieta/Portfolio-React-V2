@@ -50,6 +50,16 @@ usa:
             #9e9e9e 100%);
 }
 
+.currPersonalInfoField {
+    display: flex;
+    flex-direction: row;
+}
+
+.currCkeckBox {
+    width: auto;
+    margin-right: 10px;
+}
+
 /* ----- LEFT ----- */
 
 .currTopPersonalCont {
