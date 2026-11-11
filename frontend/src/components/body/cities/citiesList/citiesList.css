@@ -1,0 +1,62 @@
+.citListCont {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 15px;
+    box-sizing: border-box;
+}
+
+.citListAddCont {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.citListSearchCont {
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.citiesListContInput {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.citiesListTopInput {
+    width: 100%;
+    text-align: center;
+}
+
+.citiesListBottonInput {
+    width: 100%;
+    padding-left: 15px;
+}
+
+.citiesListInputSearch {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.btnCitListZipSearch, .btnCitListNameSearch {
+    width: fit-content;
+    margin-left: 15px;
+}
+
+/* ----------------------- UL ------------------ */
+
+.citiesListUl {
+    padding: 0;
+}
+
+.citiesListLi {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}

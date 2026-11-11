@@ -41,19 +41,19 @@ function CitiesCard({ city, onDelete }) {
     }, [user, verifyPrivileges]);
 
     return (
-        <div key={city._id} className={`generalCardRow ${visible ? 'fade-in': ""}`}>
-            <div id="generalCardBodyRow">
-                <H2Fields label={TEXT.ID} value={city._id} className={"cardH2FieldsRow"} classNameLabel={"cardH2FieldsRowLabel"} classNameH2={"cardH2FieldsRowH2"} language={language} />
-                <H2Fields label={TEXT.NAME} value={city.name?.[language] || ""} className={"cardH2FieldsRow"} classNameLabel={"cardH2FieldsRowLabel"} classNameH2={"cardH2FieldsRowH2"} language={language} />
-                <H2Fields label={TEXT.ZIP_CODE} value={city.zipCode} className={"cardH2FieldsRow"} classNameLabel={"cardH2FieldsRowLabel"} classNameH2={"cardH2FieldsRowH2"} language={language} />
+        <div key={city._id} className={`citCardRow ${visible ? 'fade-in': ""}`}>
+            <div id="citCardBodyRow">
+                <H2Fields label={TEXT.ID} value={city._id} className={"citCardH2FieldsRow"} classNameLabel={"citCardH2FieldsRowLabel"} classNameH2={"citCardH2FieldsRowH2"} language={language} />
+                <H2Fields label={TEXT.NAME} value={city.name?.[language] || ""} className={"citCardH2FieldsRow"} classNameLabel={"citCardH2FieldsRowLabel"} classNameH2={"citCardH2FieldsRowH2"} language={language} />
+                <H2Fields label={TEXT.ZIP_CODE} value={city.zipCode} className={"citCardH2FieldsRow"} classNameLabel={"citCardH2FieldsRowLabel"} classNameH2={"citCardH2FieldsRowH2"} language={language} />
             </div>
             {(canEdit || canDelete) && (
-            <div id="generalCardBtnsRow">
+            <div id="citCardBtnsRow">
                 {canEdit && (
-                    <button className="btn btn-outline-primary" id="generalCardBtnEdit" onClick={() => navigate(`/cities/form/${city._id}`, { state: { city }})}><FaArrowRightToCity className="iconBtnGeneralEdit"/></button>
+                    <button className="btn btn-outline-primary" id="citCardBtnEdit" onClick={() => navigate(`/cities/form/${city._id}`, { state: { city }})}><FaArrowRightToCity className="iconBtnGeneralEdit"/></button>
                 )}
                 {canDelete && (
-                    <button className="btn btn-outline-danger" id="generalCardBtnDelete" onClick={() => onDelete(city._id)}><FaRegTrashCan className="iconBtnGeneralDelete" /></button>
+                    <button className="btn btn-outline-danger" id="citCardBtnDelete" onClick={() => onDelete(city._id)}><FaRegTrashCan className="iconBtnGeneralDelete" /></button>
                 )}
             </div>
             )}

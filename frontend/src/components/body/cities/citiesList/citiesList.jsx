@@ -110,27 +110,27 @@ function CitiesList() {
     };
 
     return (
-        <div>
+        <div className="citListCont">
             {canCreate && (
-                <section>
-                    <Link to={"/cities/form/new"}>
+                <section className="citListAddCont">
+                    <Link to={"/cities/form/new"} className="citListLinkAdd">
                         <button type="button" className="btn btn-outline-success" id="btnAddCity">{`${TEXT.NEW_F} ${TEXT.CITY}`}</button>
                     </Link>
                 </section>
             )}
-            <section>
-                <div>
+            <section className="citListSearchCont">
+                <div className="citListInptusCont">
                     <Inputs textH2={TEXT.SEARCH_NAME} type="text" cNContainer={"citiesListContInput"} cNSecTop={"citiesListTopInput"} cnSectBottom={"citiesListBottonInput"}
                         placeHolder={TEXT.inputsText("m", TEXT.NAME_OF_THE_CITY)} value={searchName} onChange={(e) => setSearchName(e.target.value)} />
-                    <button type="button" onClick={handleSearchName} className="btn btn-outline-success">{TEXT.SEARCH_NAME}</button>
+                    <button type="button" onClick={handleSearchName} className="btn btn-outline-success" id="btnCitListNameSearch">{TEXT.SEARCH_NAME}</button>
                 </div>
-                <div>
-                    <Inputs textH2={TEXT.SEARCH_ZIPCODE} type="text" cNContainer={"citiesListContInput"} cNSecTop={"citiesListTopInput"} cnSectBottom={"citiesListBottonInput"}
+                <div className="citListInptusCont">
+                    <Inputs textH2={TEXT.SEARCH_ZIPCODE} type="text" className={"citiesListInputSearch"} cNContainer={"citiesListContInput"} cNSecTop={"citiesListTopInput"} cnSectBottom={"citiesListBottonInput"}
                         placeHolder={TEXT.inputsText("m", TEXT.ZIP_CODE)} value={searchZipCode} onChange={(e) => setSearchZipCode(e.target.value)} />
-                    <button type="button" onClick={handleSearchZipCode} className="btn btn-outline-success">{TEXT.SEARCH_ZIPCODE}</button>
+                    <button type="button" onClick={handleSearchZipCode} className="btn btn-outline-success" id="btnCitListZipSearch">{TEXT.SEARCH_ZIPCODE}</button>
                 </div>
             </section>
-            <section>
+            <section className="citListSectCont">
                 {cities.length > 0 ? (
                     <Uls list={cities} classNameUl={"citiesListUl"} classnameli={"citiesListLi"} valueH1Field={TEXT.CITIES_LIST} idH1Field={"citiesListH1"} language={language} renderItem={(city) => (
                         <CitiesCard key={city._id} city={city} onDelete={handleDelete} />
@@ -142,7 +142,7 @@ function CitiesList() {
                     </div>
                 )}
             </section>
-            <section>
+            <section className="citListBtnCont">
                 <button type="button" disabled={page === 1} className="btn btn-outline-primary btnGeneralListPrev" onClick={() => setPage(p => p - 1)}>{TEXT.PREV}</button>
                 <span>{page} / {totalPages}</span>
                 <button type="button" disabled={page === totalPages} className="btn btn-outline-primary btnGeneralListNext" onClick={() => setPage(p => p + 1)}>{TEXT.NEXT}</button>

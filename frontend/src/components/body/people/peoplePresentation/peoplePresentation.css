@@ -106,7 +106,9 @@
     background-color: #E6E4D8;
 }
 
-
+#peoPresentEditBtn {
+    margin-right: 20px;   
+}
 
 /* ---- Mobile ---- */
 
@@ -155,8 +157,7 @@
     }
 
     #peoPresentEditBtn {
-        margin-right: 20px;
-        
+        margin-right: 20px;   
     }
 
     #peoPresentDetailBtn {
